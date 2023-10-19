@@ -1,0 +1,12 @@
+.bodyHome{
+    height: 100%;
+    width: 96%;
+    margin: 2rem auto;
+}
+
+.bodyProducts{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap:wrap-reverse;
+}

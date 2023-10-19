@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Euphoria+Script&family=Roboto:ital,wght@0,300;0,400;1,300;1,400;1,500&display=swap');
+
+
+.bodySearch{
+    display: grid;
+    grid-template-columns: 205px 205px;
+    background-color: white;
+    border-radius: 5px;
+    padding: 0.3rem;
+}
+
+.divSearch{
+    position: relative;
+    margin-bottom: 5px;
+}
+
+.searchButton{
+    position: absolute;
+    bottom: 15px;
+    right: 10px;
+    border: solid 1px #AE9279;
+    padding: 0.2rem 1.2rem 0.3rem 1.2rem;
+    border-radius: 2px;
+    backdrop-filter:  blur(4px);
+    opacity: 0.80;
+    font-family: 'Roboto', serif;
+    font-style: italic;
+    color: #454545;
+    cursor: pointer;
+}

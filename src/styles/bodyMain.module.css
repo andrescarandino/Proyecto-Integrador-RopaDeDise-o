@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Euphoria+Script&family=Roboto:ital,wght@0,300;0,400;1,300;1,400;1,500&display=swap');
+
+
+.bodyMain{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 1258px;
+    height: 10rem;
+    border-radius: 5px 5px 0 0;
+    background-color: #464646;
+    margin: 2rem auto 0;
+}
+
+.bodyH1{
+    font-family: 'Berkshire Swash', serif;
+    color: white;
+    font-size: 6rem;
+}
+
+.bodyH2{
+    font-family: 'Euphoria Script', cursive;
+    font-weight: 100;
+    color: white;
+    font-size: 2.3rem;
+    margin: -1.5rem 0 1rem -3rem  ;
+}

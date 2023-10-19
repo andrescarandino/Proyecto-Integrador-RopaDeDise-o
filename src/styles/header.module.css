@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Gruppo&family=Inter:wght@300;400;500;600;700;800;900&family=Roboto:ital,wght@0,300;1,400;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Gruppo&family=Inter:wght@300;400;500;600;700;800;900&family=Roboto:ital,wght@0,300;0,400;1,300;1,400;1,500&display=swap');
+
+
+.headerFixed{
+    position: relative;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.headerContainer{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    background: #AE9279;
+    padding: 0 2rem;
+    max-width: 1258px;
+    margin: 0 auto;
+    height: 6.1rem;
+}
+
+.headerLink{
+    text-decoration: none;
+    font-family: 'Berkshire Swash', serif;
+    color: white;
+    font-size: 22px;
+}
+
+.headerLogin{
+    display: flex;
+}
+.headerLine{
+    width: 1.5px;
+    height: 25px;
+    margin-left: 8px;
+    background-color: aliceblue;
+    transform: rotate(12deg);
+}
+
+.headerButton{
+    background: none;
+    border: none;
+    color: white;
+    margin-left: 8px;
+    font-family: 'Roboto', sans-serif;
+    font-style: italic;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.headerButton:hover{
+    color: #464646;
+}
+
+.headerHr{
+    background: #464646;
+    max-width: 1258px;
+    margin: 0.5em auto;  
+}

@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Euphoria+Script&family=Roboto:ital,wght@0,300;0,400;1,300;1,400;1,500&display=swap');
+
+.footerContainer{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    background: #AE9279;
+    padding: 0 2rem;
+    max-width: 1258px;
+    margin: 0 auto;
+    margin-top: 2rem;
+    margin-bottom: 5px;
+    height: 8rem;
+}
+
+.footerLink{
+    text-decoration: none;
+    font-family: 'Berkshire Swash', serif;
+    color: white;
+    font-size: 22px;
+}
+
+.footerH3{
+    font-family: 'Roboto', sans-serif;
+    font-style: italic;
+    font-weight: 100;
+    font-size: 15px;
+    color: white;
+    margin-right: 5rem;
+    margin-top: 1rem;
+}
+
+.footerIcons{
+    color: white;
+    font-size: 30px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.footerIcons:hover{
+    color: #464646;
+}
