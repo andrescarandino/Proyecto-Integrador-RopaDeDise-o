@@ -2,16 +2,18 @@
 
 .recomendadoContainer{
     position: relative;
+    display: flex;
+    justify-content: end;
     background: white;
-    width: 772px;
-    height: 576px;
-    margin-left: 10px;
+    width: 49.4rem;
+    height: 612px;
+    margin-left: 15px;
     border-radius: 5px;
+    padding: 5px;
 }
 
 .recomendadoImg{
-    margin-left: 19.5rem;
-    margin-top: 5px;
+    width: 30rem;
 }
 
 .recomendadoDetail{
@@ -29,8 +31,8 @@
     font-style: italic; 
     border-radius: 3px;
     color: #494949;
-    top: 4rem;  
-    left: 4rem; 
+    top: 5rem;  
+    left: 5rem; 
 }
 
 .recomendadoDetail:hover{
@@ -50,4 +52,8 @@
     color: #494949;
 }
 
-
+@media (max-width: 1307px){
+    .recomendadoContainer{
+        margin-left: 0px;
+    }
+}

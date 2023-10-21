@@ -3,15 +3,19 @@
 
 .bodySearch{
     display: grid;
-    grid-template-columns: 205px 205px;
+    grid-template-columns: 220px 220px;
     background-color: white;
     border-radius: 5px;
     padding: 0.3rem;
+    padding-bottom: 0;
 }
 
 .divSearch{
     position: relative;
-    margin-bottom: 5px;
+}
+
+.searchImg{
+    width: 14rem;
 }
 
 .searchButton{
@@ -27,4 +31,20 @@
     font-style: italic;
     color: #454545;
     cursor: pointer;
+}
+
+@media (max-width: 1307px){
+    .bodySearch {
+        display: flex;
+        margin-left: 0px;
+        margin-top: 32px;
+    }    
+    .searchImg{
+        width: 12.2rem;
+    }
+}
+@media (max-width: 810px){ 
+    .searchImg{
+        width: 12rem;
+    }
 }

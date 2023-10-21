@@ -1,11 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Gruppo&family=Inter:wght@300;400;500;600;700;800;900&family=Roboto:ital,wght@0,300;1,400;1,500;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Gruppo&family=Inter:wght@300;400;500;600;700;800;900&family=Roboto:ital,wght@0,300;0,400;1,300;1,400;1,500&display=swap');
 
 
 .headerFixed{
     position: relative;
     width: 100%;
-    margin-top: 5px;
+    top: 1px;
+    position: sticky;
+    z-index: 2;
 }
 
 .headerContainer{

@@ -10,22 +10,22 @@ function BodySearch() {
     <div>
       <div className={styles.bodySearch}>
         <div className={styles.divSearch}>
-          <img src={img1} alt="" />
+          <img src={img1} alt="" className={styles.searchImg}/>
           <button className={styles.searchButton} >ver</button>
         </div>
         <div className={styles.divSearch} >
-          <img src={img2} alt="" />
+          <img src={img2} alt="" className={styles.searchImg}/>
           <button className={styles.searchButton}>ver</button>
         </div>
      
 
       
         <div className={styles.divSearch}>
-          <img src={img3} alt="" />
+          <img src={img3} alt="" className={styles.searchImg}/>
           <button className={styles.searchButton}>ver</button>
         </div>
         <div className={styles.divSearch}>
-          <img src={img4} alt="" />
+          <img src={img4} alt="" className={styles.searchImg}/>
           <button className={styles.searchButton}>ver</button>
         </div>
       </div>
