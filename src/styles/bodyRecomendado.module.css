@@ -57,3 +57,44 @@
         margin-left: 0px;
     }
 }
+
+@media (max-width: 390px){
+    .recomendadoImg{
+        width: 22.7rem;
+    }
+    .recomendadoContainer{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        width: 100%;
+        height: 632px;
+        border-radius: 5px;
+    }
+    .recomendadoDetail{
+        position: relative;
+        width: 100%;
+        height: 50%;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+        top: 0rem;  
+        left: 0rem; 
+
+
+    }
+    .recomendadoButton{
+        border-radius: 2px;
+        padding: 0.4rem 1rem;
+        font-size: 10px;
+    }
+    .recomendadoH2{
+        font-size: 16px;
+        font-weight: 400;
+    }
+    .recomendadoP{
+        font-size: 10px;
+    }
+}

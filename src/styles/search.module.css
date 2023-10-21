@@ -39,3 +39,9 @@
     font-size: 18px;
     margin-top: 3px;
 }
+
+@media (max-width: 390px){
+    .searchContainer{
+        margin: 1rem auto ;
+    }
+}

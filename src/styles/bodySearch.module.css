@@ -48,3 +48,13 @@
         width: 12rem;
     }
 }
+@media (max-width: 390px){ 
+    .bodySearch {
+        display: grid;
+        justify-self: center;
+        grid-template-columns: 182px 182px;
+    }   
+    .searchImg{
+        width: 11rem;
+    } 
+}
