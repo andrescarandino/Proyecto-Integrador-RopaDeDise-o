@@ -1,4 +1,4 @@
-import styles from "../styles/bodyMain.module.css";
+import styles from '../styles/bodyMain.module.css';
 
 function BodyMain() {
   return (

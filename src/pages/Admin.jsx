@@ -1,5 +1,5 @@
 function Admin() {
-  return <div></div>;
+  return <div />;
 }
 
 export default Admin;

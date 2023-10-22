@@ -1,10 +1,10 @@
-import { Route, Routes } from "react-router-dom";
-import Admin from "./pages/Admin";
-import ProductDetail from "./pages/ProductDetail";
-import Home from "./pages/Home";
-import Layout from "./pages/Layout";
-import NotFound from "./pages/NotFound";
-import "./styles/App.css";
+import { Route, Routes } from 'react-router-dom';
+import Admin from './pages/Admin';
+import ProductDetail from './pages/ProductDetail';
+import Home from './pages/Home';
+import Layout from './pages/Layout';
+import NotFound from './pages/NotFound';
+import './styles/App.css';
 
 function App() {
   return (

@@ -1,5 +1,5 @@
-import { IoMdSearch } from "react-icons/io";
-import styles from "../styles/search.module.css";
+import { IoMdSearch } from 'react-icons/io';
+import styles from '../styles/search.module.css';
 
 function Search() {
   return (
