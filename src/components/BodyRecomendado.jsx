@@ -12,7 +12,6 @@ function BodyRecomendado() {
         alt="recomendado"
       />
 
-
       <div className={styles.recomendadoDetail}>
         <h2 className={styles.recomendadoH2}>Lorem Ipsum</h2>
         <p className={styles.recomendadoP}>
