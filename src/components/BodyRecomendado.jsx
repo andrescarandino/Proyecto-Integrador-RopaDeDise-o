@@ -1,6 +1,6 @@
 import { IoIosStarOutline } from 'react-icons/io';
 import recomendado from '../img/recomendado.png';
-import styles from '../styles/BodyRecomendado.module.css';
+import styles from '../styles/bodyRecomendado.module.css';
 
 function BodyRecomendado() {
   return (
