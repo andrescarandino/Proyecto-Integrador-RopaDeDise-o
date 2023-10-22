@@ -1,7 +1,6 @@
-import React from 'react'
-import styles from '../styles/BodyRecomendado.module.css'
-import { IoIosStarOutline } from "react-icons/io";
-import recomendado from '../img/recomendado.png'
+import { IoIosStarOutline } from 'react-icons/io';
+import recomendado from '../img/recomendado.png';
+import styles from '../styles/BodyRecomendado.module.css';
 
 function BodyRecomendado() {
   return (
@@ -27,11 +26,12 @@ function BodyRecomendado() {
           <IoIosStarOutline />
           <IoIosStarOutline />
         </div>
-      <button className={styles.recomendadoButton}>Recomendado</button>
+        <button type="button" className={styles.recomendadoButton}>
+          Recomendado
+        </button>
       </div>
-
     </div>
   );
 }
 
-export default BodyRecomendado
+export default BodyRecomendado;

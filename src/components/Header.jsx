@@ -1,6 +1,5 @@
-import React from 'react'
-import styles from '../styles/header.module.css'
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
+import styles from "../styles/header.module.css";
 
 function Header() {
   return (
@@ -10,14 +9,18 @@ function Header() {
           <h1>carolki.</h1>
         </Link>
         <div className={styles.headerLogin}>
-          <button className={styles.headerButton}>crear cuenta</button>
-          <div className={styles.headerLine}></div>
-          <button className={styles.headerButton}>iniciar sesión</button>
+          <button type="button" className={styles.headerButton}>
+            crear cuenta
+          </button>
+          <div className={styles.headerLine} />
+          <button type="button" className={styles.headerButton}>
+            iniciar sesión
+          </button>
         </div>
       </div>
-      <hr className={styles.headerHr}/>
+      <hr className={styles.headerHr} />
     </div>
   );
 }
 
-export default Header
+export default Header;

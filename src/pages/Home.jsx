@@ -1,10 +1,9 @@
-import React from 'react'
-import styles from '../styles/home.module.css'
-import Search from '../components/Search'
-import BodyMain from '../components/BodyMain'
-import BodySection from '../components/BodySection'
-import BodySearch from '../components/BodySearch'
-import BodyRecomendado from '../components/BodyRecomendado'
+import styles from "../styles/home.module.css";
+import Search from "../components/Search";
+import BodyMain from "../components/BodyMain";
+import BodySection from "../components/BodySection";
+import BodySearch from "../components/BodySearch";
+import BodyRecomendado from "../components/BodyRecomendado";
 
 function Home() {
   return (
@@ -20,4 +19,4 @@ function Home() {
   );
 }
 
-export default Home
+export default Home;
