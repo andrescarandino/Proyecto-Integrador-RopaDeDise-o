@@ -28,6 +28,7 @@ public class CategoriasService {
     }
 
     public Categorias obtenerCategoriaPorId(Integer id) {
+
         return categoriasRepository.findById(id).orElse(null);
     }
 
