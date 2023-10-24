@@ -4,7 +4,7 @@
     display:flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: 5px;
+    border-radius: 5px 5px 0 0;
     background: #AE9279;
     padding: 0 2rem;
     max-width: 1258px;

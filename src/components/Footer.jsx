@@ -8,6 +8,7 @@ function Footer() {
       <div className={styles.footerContainer}>
         <Link to="/" className={styles.footerLink}>
           <h1>carolki.</h1>
+          <h3>...diseñamos pasión</h3>
         </Link>
         <h3 className={styles.footerH3}>Copyright 2023</h3>
         <div>

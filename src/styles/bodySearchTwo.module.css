@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Euphoria+Script&family=Roboto:ital,wght@0,300;0,400;1,300;1,400;1,500&display=swap');
+
+
+.bodySearch{
+    display: grid;
+    grid-template-columns: 224px 224px;
+    background-color: white;
+    border-radius: 5px;
+    padding: 0.3rem;
+    padding-bottom: 0;
+}
+
+.divSearch{
+    position: relative;
+}
+
+.searchImg{
+    width: 14rem;
+}
+
+.searchButton{
+    position: absolute;
+    bottom: 15px;
+    right: 10px;
+    border: solid 1px #AE9279;
+    padding: 0.2rem 1.2rem 0.3rem 1.2rem;
+    border-radius: 2px;
+    backdrop-filter:  blur(4px);
+    opacity: 0.80;
+    font-family: 'Roboto', serif;
+    font-style: italic;
+    color: #454545;
+    cursor: pointer;
+}
+
+@media (max-width: 1307px){
+    .bodySearch {
+        display: flex;
+        margin-left: 0px;
+        margin-top: 32px;
+    }    
+    .searchImg{
+        width: 12.2rem;
+    }
+}
+@media (max-width: 810px){ 
+    .searchImg{
+        width: 12rem;
+    }
+}
+@media (max-width: 390px){ 
+    .bodySearch {
+        display: grid;
+        justify-self: center;
+        grid-template-columns: 182px 182px;
+    }   
+    .searchImg{
+        width: 11rem;
+    } 
+}

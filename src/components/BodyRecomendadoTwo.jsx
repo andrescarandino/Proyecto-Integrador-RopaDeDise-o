@@ -1,13 +1,13 @@
 import { IoIosStarOutline } from 'react-icons/io';
-import recomendado from '../img/recomendado.png';
-import styles from '../styles/bodyRecomendado.module.css';
+import recomendado2 from '../img/recomendado2.png';
+import styles from '../styles/bodyRecomendadoTwo.module.css';
 
-function BodyRecomendado() {
+function BodyRecomendadoOne() {
   return (
     <div className={styles.recomendadoContainer}>
       <img
         className={styles.recomendadoImg}
-        src={recomendado}
+        src={recomendado2}
         alt="recomendado"
       />
 
@@ -34,4 +34,4 @@ function BodyRecomendado() {
   );
 }
 
-export default BodyRecomendado;
+export default BodyRecomendadoOne;

@@ -3,7 +3,7 @@
 
 .bodySearch{
     display: grid;
-    grid-template-columns: 220px 220px;
+    grid-template-columns: 224px 224px;
     background-color: white;
     border-radius: 5px;
     padding: 0.3rem;

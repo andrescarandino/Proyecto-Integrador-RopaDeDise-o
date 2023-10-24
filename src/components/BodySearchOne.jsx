@@ -1,10 +1,10 @@
-import styles from '../styles/bodySearch.module.css';
+import styles from '../styles/bodySearchOne.module.css';
 import img1 from '../img/img1.png';
 import img2 from '../img/img2.png';
 import img3 from '../img/img3.png';
 import img4 from '../img/img4.png';
 
-function BodySearch() {
+function BodySearchOne() {
   return (
     <div>
       <div className={styles.bodySearch}>
@@ -38,4 +38,4 @@ function BodySearch() {
   );
 }
 
-export default BodySearch;
+export default BodySearchOne;

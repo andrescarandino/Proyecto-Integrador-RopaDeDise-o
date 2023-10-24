@@ -4,7 +4,7 @@
 .headerFixed{
     position: relative;
     width: 100%;
-    top: 1px;
+    top: 0.1px;
     position: sticky;
     z-index: 2;
 }
@@ -13,12 +13,12 @@
     display:flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: 5px;
+    border-radius: 0 0 5px 5px;
     background: #AE9279;
     padding: 0 2rem;
     max-width: 1258px;
     margin: 0 auto;
-    height: 6.1rem;
+    height: 6.6rem;
 }
 
 .headerLink{
@@ -58,5 +58,13 @@
     background: #464646;
     max-width: 1258px;
     margin: 0.5em auto;  
+}
+
+h3{
+    font-family: 'Euphoria Script', cursive;
+    font-size: 18px;
+    font-weight: 100;
+    margin-top: -10px;
+    margin-left: 7px;
 }
 

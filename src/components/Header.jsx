@@ -7,6 +7,7 @@ function Header() {
       <div className={styles.headerContainer}>
         <Link to="/" className={styles.headerLink}>
           <h1>carolki.</h1>
+          <h3>...diseñamos pasión</h3>
         </Link>
         <div className={styles.headerLogin}>
           <button type="button" className={styles.headerButton}>
