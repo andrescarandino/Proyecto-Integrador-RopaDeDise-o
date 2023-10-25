@@ -8,21 +8,21 @@ import BodyRecomendadoOne from '../components/BodyRecomendadoOne';
 import BodyRecomendadoTwo from '../components/BodyRecomendadoTwo';
 
 function Home() {
-  return (
-    <div className={styles.bodyHome}>
-      <Search />
-      <div className={styles.bodyProducts}>
-        <BodySearchOne />
-        <BodyRecomendadoOne />
-      </div>
-      <div className={styles.bodyProductsTwo}>
-        <BodyRecomendadoTwo />
-        <BodySearchTwo />
-      </div>
-      <BodyMain />
-      <BodySection />
-    </div>
-  );
+	return (
+		<div className={styles.bodyHome}>
+			<Search />
+			<div className={styles.bodyProducts}>
+				<BodySearchOne />
+				<BodyRecomendadoOne />
+			</div>
+			<div className={styles.bodyProductsTwo}>
+				<BodyRecomendadoTwo />
+				<BodySearchTwo />
+			</div>
+			<BodyMain />
+			<BodySection />
+		</div>
+	);
 }
 
 export default Home;

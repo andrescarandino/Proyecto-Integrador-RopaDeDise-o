@@ -9,69 +9,69 @@ import tradicional from '../img/tradicional.png';
 import vintage from '../img/vintage.png';
 
 function BodySection() {
-  return (
-    <div className={styles.sectionContainer}>
-      <div className={styles.sectionFila}>
-        <div className={styles.sectionCard}>
-          <img src={elegante} alt="elegante" />
-          <button type="button" className={styles.sectionButton}>
-            Elegante
-          </button>
-        </div>
-        <div className={styles.sectionCard}>
-          <img src={sexy} alt="sexy" />
-          <button type="button" className={styles.sectionButton}>
-            Sexy
-          </button>
-        </div>
-      </div>
+	return (
+		<div className={styles.sectionContainer}>
+			<div className={styles.sectionFila}>
+				<div className={styles.sectionCard}>
+					<img src={elegante} alt="elegante" />
+					<button type="button" className={styles.sectionButton}>
+						Elegante
+					</button>
+				</div>
+				<div className={styles.sectionCard}>
+					<img src={sexy} alt="sexy" />
+					<button type="button" className={styles.sectionButton}>
+						Sexy
+					</button>
+				</div>
+			</div>
 
-      <div className={styles.sectionFila}>
-        <div className={styles.sectionCard}>
-          <img src={casual} alt="casual" />
-          <button type="button" className={styles.sectionButton}>
-            Casual
-          </button>
-        </div>
-        <div className={styles.sectionCard}>
-          <img src={romantico} alt="romantico" />
-          <button type="button" className={styles.sectionButton}>
-            Romantico
-          </button>
-        </div>
-      </div>
+			<div className={styles.sectionFila}>
+				<div className={styles.sectionCard}>
+					<img src={casual} alt="casual" />
+					<button type="button" className={styles.sectionButton}>
+						Casual
+					</button>
+				</div>
+				<div className={styles.sectionCard}>
+					<img src={romantico} alt="romantico" />
+					<button type="button" className={styles.sectionButton}>
+						Romantico
+					</button>
+				</div>
+			</div>
 
-      <div className={styles.sectionFila}>
-        <div className={styles.sectionCard}>
-          <img src={creativo} alt="creativo" />
-          <button type="button" className={styles.sectionButton}>
-            Creativo
-          </button>
-        </div>
-        <div className={styles.sectionCard}>
-          <img src={tradicional} alt="tradicional" />
-          <button type="button" className={styles.sectionButton}>
-            Tradicional
-          </button>
-        </div>
-      </div>
+			<div className={styles.sectionFila}>
+				<div className={styles.sectionCard}>
+					<img src={creativo} alt="creativo" />
+					<button type="button" className={styles.sectionButton}>
+						Creativo
+					</button>
+				</div>
+				<div className={styles.sectionCard}>
+					<img src={tradicional} alt="tradicional" />
+					<button type="button" className={styles.sectionButton}>
+						Tradicional
+					</button>
+				</div>
+			</div>
 
-      <div className={styles.sectionFila}>
-        <div className={styles.sectionCard}>
-          <img src={dramatico} alt="dramatico" />
-          <button type="button" className={styles.sectionButton}>
-            Dramatico
-          </button>
-        </div>
-        <div className={styles.sectionCard}>
-          <img src={vintage} alt="vintage" />
-          <button type="button" className={styles.sectionButton}>
-            Vintage
-          </button>
-        </div>
-      </div>
-    </div>
-  );
+			<div className={styles.sectionFila}>
+				<div className={styles.sectionCard}>
+					<img src={dramatico} alt="dramatico" />
+					<button type="button" className={styles.sectionButton}>
+						Dramatico
+					</button>
+				</div>
+				<div className={styles.sectionCard}>
+					<img src={vintage} alt="vintage" />
+					<button type="button" className={styles.sectionButton}>
+						Vintage
+					</button>
+				</div>
+			</div>
+		</div>
+	);
 }
 
 export default BodySection;

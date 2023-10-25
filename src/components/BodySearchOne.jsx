@@ -5,37 +5,37 @@ import img3 from '../img/img3.png';
 import img4 from '../img/img4.png';
 
 function BodySearchOne() {
-  return (
-    <div>
-      <div className={styles.bodySearch}>
-        <div className={styles.divSearch}>
-          <img src={img1} alt="" className={styles.searchImg} />
-          <button type="button" className={styles.searchButton}>
-            ver
-          </button>
-        </div>
-        <div className={styles.divSearch}>
-          <img src={img2} alt="" className={styles.searchImg} />
-          <button type="button" className={styles.searchButton}>
-            ver
-          </button>
-        </div>
+	return (
+		<div>
+			<div className={styles.bodySearch}>
+				<div className={styles.divSearch}>
+					<img src={img1} alt="" className={styles.searchImg} />
+					<button type="button" className={styles.searchButton}>
+						ver
+					</button>
+				</div>
+				<div className={styles.divSearch}>
+					<img src={img2} alt="" className={styles.searchImg} />
+					<button type="button" className={styles.searchButton}>
+						ver
+					</button>
+				</div>
 
-        <div className={styles.divSearch}>
-          <img src={img3} alt="" className={styles.searchImg} />
-          <button type="button" className={styles.searchButton}>
-            ver
-          </button>
-        </div>
-        <div className={styles.divSearch}>
-          <img src={img4} alt="" className={styles.searchImg} />
-          <button type="button" className={styles.searchButton}>
-            ver
-          </button>
-        </div>
-      </div>
-    </div>
-  );
+				<div className={styles.divSearch}>
+					<img src={img3} alt="" className={styles.searchImg} />
+					<button type="button" className={styles.searchButton}>
+						ver
+					</button>
+				</div>
+				<div className={styles.divSearch}>
+					<img src={img4} alt="" className={styles.searchImg} />
+					<button type="button" className={styles.searchButton}>
+						ver
+					</button>
+				</div>
+			</div>
+		</div>
+	);
 }
 
 export default BodySearchOne;

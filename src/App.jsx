@@ -1,22 +1,29 @@
+import { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Admin from './pages/Admin';
-import ProductDetail from './pages/ProductDetail';
-import Home from './pages/Home';
 import Layout from './pages/Layout';
-import NotFound from './pages/NotFound';
-import './styles/App.css';
+import routes from './routes/routes';
+import Spinner from './components/Spinner';
+import './styles/index.css';
 
 function App() {
-  return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="product/:id" element={<ProductDetail />} />
-        <Route path="admin" element={<Admin />} />
-      </Route>
-      <Route path="*" element={<NotFound />} />
-    </Routes>
-  );
+	return (
+		<Suspense fallback={<Spinner />}>
+			<Routes>
+				<Route path="/" element={<Layout />}>
+					{routes.map((route) => {
+						return (
+							<Route
+								key={route.path}
+								path={route.path}
+								element={<route.element />}
+								index={route?.index}
+							/>
+						);
+					})}
+				</Route>
+			</Routes>
+		</Suspense>
+	);
 }
 
 export default App;
