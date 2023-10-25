@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CategoriasService {
+public class CategoriasService implements IService <Categorias, Categorias>{
 
     private final CategoriasRepository categoriasRepository;
 
@@ -19,20 +19,20 @@ public class CategoriasService {
     }
 
     // Métodos para operaciones relacionadas con Categorias
-    public Categorias guardarCategoria(Categorias categoria) {
+    public Categorias guardar(Categorias categoria) {
         return categoriasRepository.save(categoria);
     }
 
-    public List<Categorias> obtenerTodasCategorias() {
+    public List<Categorias> listar() {
         return categoriasRepository.findAll();
     }
 
-    public Categorias obtenerCategoriaPorId(Integer id) {
+    public Categorias buscar(Integer id) {
 
         return categoriasRepository.findById(id).orElse(null);
     }
 
-    public void eliminarCategoria(Integer id) {
+    public void eliminar(Integer id) {
         categoriasRepository.deleteById(id);
     }
 }
