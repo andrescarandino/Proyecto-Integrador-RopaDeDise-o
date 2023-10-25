@@ -12,7 +12,7 @@ import java.util.List;
 public class ProductoService implements IService <Productos, Productos>{
 
     @Autowired
-    ProductosRepository productosRepository;
+    private ProductosRepository productosRepository;
 
     public Productos guardar(Productos productos){
         return productosRepository.save(productos);
