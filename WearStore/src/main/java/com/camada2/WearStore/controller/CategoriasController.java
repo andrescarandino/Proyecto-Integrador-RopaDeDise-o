@@ -21,25 +21,25 @@ public class CategoriasController {
     // Endpoint para crear una nueva categoría
     @PostMapping
     public Categorias crearCategoria(@RequestBody Categorias categoria) {
-        return categoriasService.guardarCategoria(categoria);
+        return categoriasService.guardar(categoria);
     }
 
     // Endpoint para obtener todas las categorías
     @GetMapping
     public List<Categorias> obtenerTodasCategorias() {
-        return categoriasService.obtenerTodasCategorias();
+        return categoriasService.listar();
     }
 
     // Endpoint para obtener una categoría por ID
     @GetMapping("/{id}")
     public Categorias obtenerCategoriaPorId(@PathVariable Integer id) {
-        return categoriasService.obtenerCategoriaPorId(id);
+        return categoriasService.buscar(id);
     }
 
     // Endpoint para eliminar una categoría por ID
     @DeleteMapping("/{id}")
     public void eliminarCategoria(@PathVariable Integer id) {
-        categoriasService.eliminarCategoria(id);
+        categoriasService.eliminar(id);
     }
 }
 

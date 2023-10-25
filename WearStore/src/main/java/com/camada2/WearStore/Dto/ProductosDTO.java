@@ -1,68 +1,42 @@
-package com.camada2.WearStore.entity;
+package com.camada2.WearStore.Dto;
 
-import jakarta.persistence.*;
+import com.camada2.WearStore.entity.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class ProductosDTO {
 
-@Entity
-@Table(name = "Productos")
-
-public class Productos {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-    @Column(name = "idProductos")
     private Integer idProductos;
 
-    @Column(name = "nombre")
     private String nombre;
 
-    @Column(name = "descripcion")
     private String descripcion;
 
-    @Column(name = "precio")
     private Double precio;
 
-    @Column(name = "cantidad")
-    private Integer cantidad; //Cambiar en BBDD a Integer no se puede calcular si no es numero
+    private Integer cantidad;
 
-    @Column(name = "fechaCreacion")
-    private String fechaCreacion; // revisar en bd esta como string
-    // Revisionar debe ir DATE para poder saber cuando se guardo el producto y que no se puede colocar cualquier valor.
-
-    @ManyToOne
-    @JoinColumn(name = "TipoProductos_idTipoProductos")
     private TipoProductos tipoProductos;
 
-    @ManyToOne
-    @JoinColumn(name = "Generos_idGeneros")
     private Generos generos;
 
-    @ManyToOne
-    @JoinColumn(name = "Colores_idColores")
     private Colores colores;
 
-    @ManyToOne
-    @JoinColumn(name = "Tallas_idTallas")
     private Tallas tallas;
 
-    @ManyToOne
-    @JoinColumn(name = "Categorias_idCategorias")
     private Categorias categorias;
 
-    // Constructores, getters y setters
 
-    public Productos() {
-        // Constructor por defecto
+    public ProductosDTO() {
+
     }
 
-    // Getters y setters
-
-    public int getIdProductos() {
+    public Integer getIdProductos() {
         return idProductos;
     }
 
-    public void setIdProductos(int idProductos) {
+    public void setIdProductos(Integer idProductos) {
         this.idProductos = idProductos;
     }
 
@@ -82,11 +56,11 @@ public class Productos {
         this.descripcion = descripcion;
     }
 
-    public double getPrecio() {
+    public Double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(double precio) {
+    public void setPrecio(Double precio) {
         this.precio = precio;
     }
 
@@ -96,14 +70,6 @@ public class Productos {
 
     public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
-    }
-
-    public String getFechaCreacion() {
-        return fechaCreacion;
-    }
-
-    public void setFechaCreacion(String fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
     }
 
     public TipoProductos getTipoProductos() {
