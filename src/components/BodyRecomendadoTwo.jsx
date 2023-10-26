@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { IoIosStarOutline } from 'react-icons/io';
 import recomendado2 from '../img/recomendado2.png';
 import styles from '../styles/bodyRecomendadoTwo.module.css';
@@ -27,7 +28,9 @@ function BodyRecomendadoOne() {
 					<IoIosStarOutline />
 				</div>
 				<button type="button" className={styles.recomendadoButton}>
-					Recomendado
+					<Link className={styles.recomendadoLink} to="product/:id">
+						Recomendado
+					</Link>
 				</button>
 			</div>
 		</div>

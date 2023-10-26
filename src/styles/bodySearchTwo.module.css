@@ -33,6 +33,11 @@
     cursor: pointer;
 }
 
+.searchLink{
+    color: #454545;
+    text-decoration: none;
+}
+
 @media (max-width: 1307px){
     .bodySearch {
         display: flex;

@@ -52,6 +52,11 @@
     color: #494949;
 }
 
+.recomendadoLink{
+    color: white;
+    text-decoration: none;
+}
+
 @media (max-width: 1307px){
     .recomendadoContainer{
         margin-right: 0px;

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styles from '../styles/bodySearchOne.module.css';
 import img1 from '../img/img1.png';
 import img2 from '../img/img2.png';
@@ -11,26 +12,34 @@ function BodySearchOne() {
 				<div className={styles.divSearch}>
 					<img src={img1} alt="" className={styles.searchImg} />
 					<button type="button" className={styles.searchButton}>
-						ver
+						<Link className={styles.searchLink} to="product/:id">
+							ver
+						</Link>
 					</button>
 				</div>
 				<div className={styles.divSearch}>
 					<img src={img2} alt="" className={styles.searchImg} />
 					<button type="button" className={styles.searchButton}>
-						ver
+						<Link className={styles.searchLink} to="product/:id">
+							ver
+						</Link>
 					</button>
 				</div>
 
 				<div className={styles.divSearch}>
 					<img src={img3} alt="" className={styles.searchImg} />
 					<button type="button" className={styles.searchButton}>
-						ver
+						<Link className={styles.searchLink} to="product/:id">
+							ver
+						</Link>
 					</button>
 				</div>
 				<div className={styles.divSearch}>
 					<img src={img4} alt="" className={styles.searchImg} />
 					<button type="button" className={styles.searchButton}>
-						ver
+						<Link className={styles.searchLink} to="product/:id">
+							ver
+						</Link>
 					</button>
 				</div>
 			</div>
