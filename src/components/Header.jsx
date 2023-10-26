@@ -19,7 +19,7 @@ function Header() {
 					</button>
 				</div>
 			</div>
-			<hr className={styles.headerHr} />
+			{/* <hr className={styles.headerHr} /> */}
 		</div>
 	);
 }

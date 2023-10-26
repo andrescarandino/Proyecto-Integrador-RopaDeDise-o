@@ -1,9 +1,150 @@
-* {
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
 	padding: 0;
 	margin: 0;
-	box-sizing: border-box;
+}
+
+:root {
+	--input-border: #8b8a8b;
+	--input-focus-h: 55;
+	--input-focus-s: 100%;
+	--input-focus-l: 20%;
+	--font-color: #464646;
 }
 
 body {
 	background: #d9d9d9;
+}
+
+/* 
+	Forms styles begins
+	
+	ಥ_ಥ
+*/
+
+.input {
+	font-size: 0.95rem;
+	font-family: inherit;
+	padding: 0.2em 0.5em;
+	background-color: #fff;
+	border: 2px solid var(--input-border);
+	border-radius: 4px;
+	transition: 180ms box-shadow ease-in-out;
+}
+
+.input:focus {
+	border-color: hsl(
+		var(--input-focus-h),
+		var(--input-focus-s),
+		var(--input-focus-l)
+	);
+	box-shadow: 0 0 0 3px
+		hsla(
+			var(--input-focus-h),
+			var(--input-focus-s),
+			calc(var(--input-focus-l) + 40%),
+			0.1
+		);
+	outline: 3px solid transparent;
+}
+
+.input:not(textarea) {
+	line-height: 1;
+	height: 2.25rem;
+}
+
+input[type='file'] {
+	font-size: 0.9em;
+	padding-top: 0.35rem;
+}
+
+textarea.input {
+	resize: vertical;
+}
+
+.input[readonly] {
+	border-style: dotted;
+	cursor: not-allowed;
+	color: #777;
+}
+
+.input[disabled] {
+	--input-border: #ccc;
+	background-color: #eee;
+	cursor: not-allowed;
+}
+
+label {
+	font-size: 0.95rem;
+	font-weight: 500;
+	line-height: 1;
+	color: var(--font-color);
+}
+
+.input + label {
+	margin-top: 2rem;
+}
+
+.form-group {
+	display: flex;
+	flex-direction: column;
+	gap: 0.45rem;
+	margin-bottom: 2rem;
+}
+
+.submit-button {
+	appearance: button;
+	background-color: #6c6c6c;
+	background-image: none;
+	border: 1px solid #000;
+	border-radius: 4px;
+	box-shadow:
+		#fff 4px 4px 0 0,
+		#000 4px 4px 0 1px;
+	box-sizing: border-box;
+	color: #fff;
+	cursor: pointer;
+	display: inline-block;
+	font-family: ITCAvantGardeStd-Bk, Arial, sans-serif;
+	font-size: 0.95rem;
+	font-weight: 600;
+	line-height: 20px;
+	margin: 0 5px 10px 0;
+	overflow: visible;
+	padding: 12px 40px;
+	text-align: center;
+	text-transform: none;
+	touch-action: manipulation;
+	user-select: none;
+	-webkit-user-select: none;
+	vertical-align: middle;
+	white-space: nowrap;
+}
+
+.submit-button:focus {
+	text-decoration: none;
+}
+
+.submit-button:hover {
+	text-decoration: none;
+}
+
+.submit-button:active {
+	box-shadow: rgba(0, 0, 5, 0.125) 0 3px 5px inset;
+	outline: 0;
+}
+
+.submit-button:not([disabled]):active {
+	box-shadow:
+		#fff 2px 2px 0 0,
+		#000 2px 2px 0 1px;
+	transform: translate(2px, 2px);
+}
+
+@media (min-width: 768px) {
+	.submit-button {
+		padding: 12px 50px;
+	}
 }
