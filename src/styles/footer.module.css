@@ -42,3 +42,12 @@
 .footerIcons:hover{
     color: #464646;
 }
+
+@media (max-width: 390px){ 
+    .footerContainer{
+        padding: 0 15px;
+    }
+    .footerH3{
+        display: none;
+    }
+}

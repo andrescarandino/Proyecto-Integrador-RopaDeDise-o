@@ -68,3 +68,8 @@ h3{
     margin-left: 7px;
 }
 
+@media (max-width: 390px){ 
+    .headerContainer{
+        padding: 0 1rem;
+    }
+}

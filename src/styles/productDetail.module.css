@@ -71,3 +71,30 @@
     border-radius: 3px;
     color: #464646;
 }
+
+.descriptionFooter{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.descriptionButton{
+    background-color: #464646;
+    border: none;
+    padding: 0.5rem 0.7rem;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+@media (max-width: 810px){ 
+    .descriptionImg{
+        display: none;
+    }
+    .descriptionBigImg{
+        width: 50%;
+        height: 100%;
+    }
+}
+@media (max-width: 390px){ 
+ 
+}

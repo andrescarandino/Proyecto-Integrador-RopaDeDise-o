@@ -28,7 +28,17 @@ function ProductDetail() {
 						magna aliqua. Aliquam vestibulum morbi blandit cursus.
 						Enim sed faucibus turpis in eu mi bibendum.
 					</p>
-					<h4>$00,00</h4>
+					<div className={styles.descriptionFooter}>
+						<h4>$00,00</h4>
+						<button
+							type="button"
+							className={styles.descriptionButton}
+						>
+							<Link to="/" className={styles.productLink}>
+								ver mas
+							</Link>
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>
