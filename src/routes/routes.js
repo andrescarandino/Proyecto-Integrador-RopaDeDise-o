@@ -1,6 +1,7 @@
 import { lazy } from 'react';
 
-const Admin = lazy(() => import('../pages/Admin'));
+const AdminHome = lazy(() => import('../pages/admin/AdminHome'));
+const CreateProduct = lazy(() => import('../pages/admin/CreateProduct'));
 const ProductDetail = lazy(() => import('../pages/ProductDetail'));
 const Home = lazy(() => import('../pages/Home'));
 const NotFound = lazy(() => import('../pages/NotFound'));
@@ -17,7 +18,11 @@ const routes = [
 	},
 	{
 		path: 'admin',
-		element: Admin,
+		element: AdminHome,
+	},
+	{
+		path: 'admin/products/create',
+		element: CreateProduct,
 	},
 	{
 		path: '*',
