@@ -2,6 +2,8 @@ package com.camada2.WearStore.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "Imagenes")
 public class Imagenes {
@@ -19,6 +21,9 @@ public class Imagenes {
 
     @Column(name = "descripcion")
     private String descripcion;
+
+    @ManyToMany(mappedBy = "imagenes")
+    private List<Productos> productos;
 
     // Constructores, getters y setters
 
@@ -56,6 +61,14 @@ public class Imagenes {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public List<Productos> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<Productos> productos) {
+        this.productos = productos;
     }
 }
 

@@ -2,6 +2,7 @@ package com.camada2.WearStore.entity;
 
 import jakarta.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "Reservas")
@@ -18,6 +19,9 @@ public class Reservas {
     @ManyToOne
     @JoinColumn(name = "Usuarios_idUsuarios")
     private Usuarios usuario;
+
+    @ManyToMany(mappedBy = "reservas")
+    private List<Productos> productos;
 
     // Constructores, getters y setters
 
@@ -47,6 +51,14 @@ public class Reservas {
 
     public void setUsuario(Usuarios usuario) {
         this.usuario = usuario;
+    }
+
+    public List<Productos> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<Productos> productos) {
+        this.productos = productos;
     }
 }
 

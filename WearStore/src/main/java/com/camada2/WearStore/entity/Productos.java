@@ -2,6 +2,7 @@ package com.camada2.WearStore.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 
 
 @Entity
@@ -49,6 +50,16 @@ public class Productos {
     @ManyToOne
     @JoinColumn(name = "Categorias_idCategorias")
     private Categorias categorias;
+
+    @ManyToMany (fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinTable (name = "ProductoHasReservas", joinColumns = @JoinColumn(name = "idProductos", referencedColumnName = "idProductos"),
+    inverseJoinColumns = @JoinColumn(name = "idReservas", referencedColumnName = "idReservas"))
+    private List<Reservas> reservas;
+
+    @ManyToMany (fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinTable (name = "ProductoHasImagenes", joinColumns = @JoinColumn(name = "idProductos", referencedColumnName = "idProductos"),
+            inverseJoinColumns = @JoinColumn(name = "idImagenes", referencedColumnName = "idImagenes"))
+    private List<Imagenes> imagenes;
 
     // Constructores, getters y setters
 
@@ -144,5 +155,21 @@ public class Productos {
 
     public void setCategorias(Categorias categorias) {
         this.categorias = categorias;
+    }
+
+    public List<Reservas> getReservas() {
+        return reservas;
+    }
+
+    public void setReservas(List<Reservas> reservas) {
+        this.reservas = reservas;
+    }
+
+    public List<Imagenes> getImagenes() {
+        return imagenes;
+    }
+
+    public void setImagenes(List<Imagenes> imagenes) {
+        this.imagenes = imagenes;
     }
 }
