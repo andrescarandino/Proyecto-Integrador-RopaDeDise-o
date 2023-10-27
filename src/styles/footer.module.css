@@ -9,7 +9,7 @@
     padding: 0 3rem;
     max-width: 1258px;
     margin: 0 auto;
-    margin-top: 2rem;
+    margin-top: 3rem;
     margin-bottom: 1px;
     height: 8rem;
 }
@@ -43,11 +43,25 @@
     color: #464646;
 }
 
+@media (max-width: 810px){
+    .footerContainer{
+        padding: 2rem;
+        height: 6.4rem;
+    }
+}
+
 @media (max-width: 390px){ 
     .footerContainer{
         padding: 0 15px;
+        border-radius: 2px 2px 0 0;
+    }
+    .footerLink{
+        font-size: 1.1em;
     }
     .footerH3{
         display: none;
+    }
+    .footerIcons{
+        font-size: 1.6em;  
     }
 }

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { IoMdMenu } from 'react-icons/io';
 import styles from '../styles/header.module.css';
 
 function Header() {
@@ -9,6 +10,7 @@ function Header() {
 					<h1>carolki.</h1>
 					<h3>...diseñamos pasión</h3>
 				</Link>
+				<IoMdMenu className={styles.headermenu} />
 				<div className={styles.headerLogin}>
 					<button type="button" className={styles.headerButton}>
 						crear cuenta

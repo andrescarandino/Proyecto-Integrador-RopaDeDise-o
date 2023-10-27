@@ -2,7 +2,7 @@
     display: grid;
     justify-content: center;
     align-content: center;
-    max-width: 1258px;
+    max-width: 78.6rem;
     border-radius: 5px;
     height: 3rem;
     background-color: #464646;
@@ -11,7 +11,7 @@
 
 .searchDiv{
     display: flex;
-    width: 100%;
+    width: 18rem;
     background-color: white;
     padding: 1px;
     border-radius: 4px;
@@ -19,7 +19,7 @@
 }
 
 .searchInput{
-    width: 18rem;
+    width: 100%;
     border: none;
     padding-left: 1em;
     outline: none;
@@ -39,7 +39,12 @@
     font-size: 18px;
     margin-top: 3px;
 }
-
+@media (max-width: 768px){
+    .searchContainer{
+        width: 100%;
+        margin: 1rem auto ;
+    }
+}
 @media (max-width: 390px){
     .searchContainer{
         margin: 1rem auto ;

@@ -15,17 +15,17 @@
     align-items: center;
     border-radius: 0 0 5px 5px;
     background: #AE9279;
-    padding: 0 3rem;
-    max-width: 1258px;
+    padding: 3rem;
+    max-width: 78.6rem;
     margin: 0 auto;
-    height: 6.6rem;
+    height: 8rem;
 }
 
 .headerLink{
     text-decoration: none;
     font-family: 'Berkshire Swash', serif;
     color: white;
-    font-size: 22px;
+    font-size: 1.4em;
 }
 
 .headerLogin{
@@ -33,8 +33,8 @@
 }
 .headerLine{
     width: 1.5px;
-    height: 25px;
-    margin-left: 8px;
+    height: 1.5em;
+    margin-left: 0.5em;
     background-color: aliceblue;
     transform: rotate(12deg);
 }
@@ -43,7 +43,7 @@
     background: none;
     border: none;
     color: white;
-    margin-left: 8px;
+    margin-left: 0.5em;
     font-family: 'Roboto', sans-serif;
     font-style: italic;
     cursor: pointer;
@@ -54,22 +54,41 @@
     color: #464646;
 }
 
-.headerHr{
-    background: #464646;
-    max-width: 1258px;
-    margin: 0.5em auto;  
-}
-
 h3{
     font-family: 'Euphoria Script', cursive;
-    font-size: 18px;
+    font-size: 0.9em;
     font-weight: 100;
-    margin-top: -10px;
-    margin-left: 7px;
+    margin-top: -0.6em;
+    margin-left: 0.1em;
 }
 
-@media (max-width: 390px){ 
+.headermenu{
+    display: none;
+}
+
+@media (max-width: 810px){
+    .headerContainer{
+        padding: 2rem;
+        height: 6.3rem;
+        border-radius: 0 0 3px 3px;
+    }
+}
+
+@media (max-width: 576px){ 
     .headerContainer{
         padding: 0 1rem;
+        height: 5rem;
+        border-radius: 0 0 2px 2px;
+    }
+    .headermenu{
+        display: inline;
+        color: white;
+        font-size: 1.8em;
+    }
+    .headerLogin{
+        display: none;
+    }
+    .headerLink{
+        font-size: 1.1em;
     }
 }
