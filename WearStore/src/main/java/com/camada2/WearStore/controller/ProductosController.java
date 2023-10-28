@@ -3,7 +3,6 @@ package com.camada2.WearStore.controller;
 
 import com.camada2.WearStore.entity.Productos;
 import com.camada2.WearStore.service.ProductoService;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,7 +42,7 @@ public class ProductosController {
     }
 
     @PutMapping
-    public ResponseEntity<Productos> modificarProductos(Productos producto){
+    public ResponseEntity<Productos> modificarProductos(@RequestBody Productos producto){
 
         productoService.guardar(producto);
 

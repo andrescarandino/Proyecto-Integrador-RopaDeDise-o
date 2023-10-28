@@ -1,7 +1,11 @@
 package com.camada2.WearStore.entity;
 
 import jakarta.persistence.*;
+import jdk.jfr.Timestamp;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import java.util.Calendar;
 import java.util.List;
 
 
@@ -25,30 +29,38 @@ public class Productos {
     private Double precio;
 
     @Column(name = "cantidad")
-    private Integer cantidad; //Cambiar en BBDD a Integer no se puede calcular si no es numero
+    private Integer cantidad;
 
     @Column(name = "fechaCreacion")
-    private String fechaCreacion; // revisar en bd esta como string
-    // Revisionar debe ir DATE para poder saber cuando se guardo el producto y que no se puede colocar cualquier valor.
+    @CreationTimestamp
+    private Calendar fechaCreacion;
+
+    @Column(name = "fechaModificacion")
+    @UpdateTimestamp
+    private Calendar fechaModificacion;
+
+    @Column(name = "fechaEliminacion")
+    @Timestamp
+    private Calendar fechaEliminacion;
 
     @ManyToOne
-    @JoinColumn(name = "TipoProductos_idTipoProductos")
+    @JoinColumn(name = "idTipoProductos")
     private TipoProductos tipoProductos;
 
     @ManyToOne
-    @JoinColumn(name = "Generos_idGeneros")
+    @JoinColumn(name = "idGeneros")
     private Generos generos;
 
     @ManyToOne
-    @JoinColumn(name = "Colores_idColores")
+    @JoinColumn(name = "idColores")
     private Colores colores;
 
     @ManyToOne
-    @JoinColumn(name = "Tallas_idTallas")
+    @JoinColumn(name = "idTallas")
     private Tallas tallas;
 
     @ManyToOne
-    @JoinColumn(name = "Categorias_idCategorias")
+    @JoinColumn(name = "idCategorias")
     private Categorias categorias;
 
     @ManyToMany (fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
@@ -107,14 +119,6 @@ public class Productos {
 
     public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
-    }
-
-    public String getFechaCreacion() {
-        return fechaCreacion;
-    }
-
-    public void setFechaCreacion(String fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
     }
 
     public TipoProductos getTipoProductos() {
