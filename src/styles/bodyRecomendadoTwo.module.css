@@ -17,7 +17,8 @@
 }
 
 .recomendadoDetail{
-    backdrop-filter:  blur(4px) ;
+    backdrop-filter:  blur(4px);
+    background-color: rgba(255, 255, 255, 0.7);
     border: 1px solid #AE9279;
     width: 325px;
     height: 450px;
@@ -63,9 +64,9 @@
     }
 }
 
-@media (max-width: 390px){
+@media (max-width: 768px){
     .recomendadoImg{
-        width: 22.7rem;
+        width: 99%;
     }
     .recomendadoContainer{
         flex-direction: column;
@@ -73,13 +74,13 @@
         justify-content: center;
         display: flex;
         width: 100%;
-        height: 632px;
+        height: 100%;
         border-radius: 5px;
     }
     .recomendadoDetail{
         position: relative;
-        width: 100%;
-        height: 50%;
+        width: 99%;
+        height: 10%;
         padding: 1rem;
         display: flex;
         flex-direction: column;
@@ -87,19 +88,17 @@
         gap: 10px;
         top: 0rem;  
         left: 0rem; 
-
-
     }
     .recomendadoButton{
         border-radius: 2px;
         padding: 0.4rem 1rem;
-        font-size: 10px;
+        font-size: 14px;
     }
     .recomendadoH2{
-        font-size: 16px;
+        font-size: 20px;
         font-weight: 400;
     }
     .recomendadoP{
-        font-size: 10px;
+        font-size: 14px;
     }
 }

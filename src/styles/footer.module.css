@@ -50,9 +50,9 @@
     }
 }
 
-@media (max-width: 390px){ 
+@media (max-width: 576px){ 
     .footerContainer{
-        padding: 0 15px;
+        padding: 0 2rem;
         border-radius: 2px 2px 0 0;
     }
     .footerLink{

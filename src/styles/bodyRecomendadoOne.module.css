@@ -18,6 +18,7 @@
 
 .recomendadoDetail{
     backdrop-filter:  blur(4px) ;
+    background-color: rgba(255, 255, 255, 0.7);
     border: 1px solid #AE9279;
     width: 325px;
     height: 450px;
@@ -91,13 +92,13 @@
     .recomendadoButton{
         border-radius: 2px;
         padding: 0.4rem 1rem;
-        font-size: 10px;
+        font-size: 14px;
     }
     .recomendadoH2{
-        font-size: 16px;
+        font-size: 20px;
         font-weight: 400;
     }
     .recomendadoP{
-        font-size: 10px;
+        font-size: 14px;
     }
 }

@@ -16,6 +16,11 @@
 
 .searchImg{
     width: 14rem;
+    transition: 0.2s ease;
+}
+
+.divSearch:hover .searchImg{
+    transform: scale(0.99);
 }
 
 .searchButton{
@@ -38,28 +43,34 @@
     text-decoration: none;
 }
 
-@media (max-width: 1307px){
+@media (max-width: 1310px){
+    .bodySearchContainer{
+        width: 49.4rem;
+    }
     .bodySearch {
         display: flex;
+        justify-content: center;
         margin-left: 0px;
         margin-top: 32px;
     }    
     .searchImg{
-        width: 12.2rem;
+        width: 99%;
     }
 }
-@media (max-width: 810px){ 
+@media (max-width: 768px){ 
+    .bodySearchContainer{
+        width: 100%;
+    }
     .searchImg{
-        width: 12rem;
+        width: 99%;
     }
 }
-@media (max-width: 390px){ 
+@media (max-width: 576px){ 
     .bodySearch {
         display: grid;
-        justify-self: center;
-        grid-template-columns: 182px 182px;
-    }   
-    .searchImg{
-        width: 11rem;
+        grid-template-columns: 50% 50%;
     } 
+
+
 }
+

@@ -7,7 +7,7 @@ import img8 from '../img/img8.png';
 
 function BodySearchTwo() {
 	return (
-		<div>
+		<div className={styles.bodySearchContainer}>
 			<div className={styles.bodySearch}>
 				<div className={styles.divSearch}>
 					<img src={img5} alt="" className={styles.searchImg} />
