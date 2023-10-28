@@ -125,8 +125,8 @@ CREATE TABLE `productos` (
   `nombre` varchar(255) NOT NULL,
   `descripcion` text NOT NULL,
   `precio` decimal(10,2) DEFAULT NULL,
-  `cantidad` varchar(45) DEFAULT NULL,
-  `fechaCreacion` varchar(45) DEFAULT NULL,
+  `cantidad` int DEFAULT NULL,
+  `fechaCreacion` datetime DEFAULT NULL,
   `TipoProductos_idTipoProductos` int NOT NULL,
   `Generos_idGeneros` int NOT NULL,
   `Colores_idColores` int NOT NULL,
@@ -144,7 +144,7 @@ CREATE TABLE `productos` (
   CONSTRAINT `fk_Productos_Generos1` FOREIGN KEY (`Generos_idGeneros`) REFERENCES `generos` (`idGeneros`),
   CONSTRAINT `fk_Productos_Tallas1` FOREIGN KEY (`Tallas_idTallas`) REFERENCES `tallas` (`idTallas`),
   CONSTRAINT `fk_Productos_TipoProductos1` FOREIGN KEY (`TipoProductos_idTipoProductos`) REFERENCES `tipoproductos` (`idTipoProductos`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -153,7 +153,7 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES (1,'jean primavera','pantalon jean hombre',50.00,'10','2023-10-24 20:57:41',8,3,5,17,2);
+INSERT INTO `productos` VALUES (1,'jean primavera','pantalon jean hombre',50.00,10,'2023-10-24 20:57:41',8,3,5,17,2),(2,'camisa hombre fondo entero manga larga','camisa hombre fondo entero manga larga, de tela importada',30.00,10,'2023-10-26 18:00:06',10,3,1,18,2),(3,'camisa dama fondo entero manga larga','camisa dama fondo entero manga larga  tela importada',30.00,6,'2023-10-26 18:02:58',10,4,7,4,2),(4,'esqueleto dama gym','esqueleto para dama, tela deportiva',70.00,8,'2023-10-26 18:07:14',19,4,2,4,3),(5,'guayos milenio niño','guayo de marca adidas para niño de 7 taches',90.00,5,'2023-10-26 18:12:15',2,1,4,13,1),(6,'jean beige','jean rosa para dama',90.00,8,'2023-10-26 19:25:12',8,4,7,13,2);
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -221,7 +221,7 @@ DROP TABLE IF EXISTS `reservas`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `reservas` (
   `idReservas` int NOT NULL AUTO_INCREMENT,
-  `fecha` date DEFAULT NULL,
+  `fecha` datetime DEFAULT NULL,
   `Usuarios_idUsuarios` int NOT NULL,
   PRIMARY KEY (`idReservas`),
   KEY `fk_Reservas_Usuarios1_idx` (`Usuarios_idUsuarios`),
@@ -276,7 +276,7 @@ CREATE TABLE `tipoproductos` (
   PRIMARY KEY (`idTipoProductos`),
   KEY `fk_TipoProductos_Categorias1_idx` (`Categorias_idCategorias`),
   CONSTRAINT `fk_TipoProductos_Categorias1` FOREIGN KEY (`Categorias_idCategorias`) REFERENCES `categorias` (`idCategorias`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -285,7 +285,7 @@ CREATE TABLE `tipoproductos` (
 
 LOCK TABLES `tipoproductos` WRITE;
 /*!40000 ALTER TABLE `tipoproductos` DISABLE KEYS */;
-INSERT INTO `tipoproductos` VALUES (1,'running',1),(2,'guayos',1),(3,'sandalias',1),(4,'urbano',1),(5,'camiseta',3),(6,'pantaloneta',3),(7,'chaqueta',2),(8,'jean',2),(9,'falda',2);
+INSERT INTO `tipoproductos` VALUES (1,'running',1),(2,'guayos',1),(3,'sandalias',1),(4,'urbano',1),(5,'camiseta futbol',3),(6,'pantaloneta',3),(7,'chaqueta',2),(8,'jean',2),(9,'falda',2),(10,'camisa',2),(11,'camiseta',2),(12,'chaleco',2),(13,'pantalon largo',2),(14,'pantalon corto',2),(15,'blazer',2),(16,'corbata',4),(17,'pañuelo',4),(18,'sombrero',4),(19,'camiseta',3);
 /*!40000 ALTER TABLE `tipoproductos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -298,11 +298,11 @@ DROP TABLE IF EXISTS `tipousuarios`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tipousuarios` (
   `idTipoUsuarios` int NOT NULL AUTO_INCREMENT,
-  `nombre` int NOT NULL,
+  `nombre` varchar(45) NOT NULL,
   `descripcion` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idTipoUsuarios`),
   UNIQUE KEY `nombre_UNIQUE` (`nombre`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -311,6 +311,7 @@ CREATE TABLE `tipousuarios` (
 
 LOCK TABLES `tipousuarios` WRITE;
 /*!40000 ALTER TABLE `tipousuarios` DISABLE KEYS */;
+INSERT INTO `tipousuarios` VALUES (1,'Administrador','administrador general del sistema'),(2,'Coordinador','coordinador de tienda'),(3,'Estandar','usuario estandar del sistema');
 /*!40000 ALTER TABLE `tipousuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -328,7 +329,7 @@ CREATE TABLE `usuarios` (
   `email` varchar(45) NOT NULL,
   `nombre` varchar(45) NOT NULL,
   `apellido` varchar(45) NOT NULL,
-  `fechaCreacion` varchar(45) DEFAULT NULL,
+  `fechaCreacion` datetime DEFAULT NULL,
   `estado` int NOT NULL,
   `TipoUsuarios_idTipoUsuarios` int NOT NULL,
   PRIMARY KEY (`idUsuarios`),
@@ -337,7 +338,7 @@ CREATE TABLE `usuarios` (
   UNIQUE KEY `user_UNIQUE` (`user`),
   KEY `fk_Usuarios_TipoUsuarios1_idx` (`TipoUsuarios_idTipoUsuarios`),
   CONSTRAINT `fk_Usuarios_TipoUsuarios1` FOREIGN KEY (`TipoUsuarios_idTipoUsuarios`) REFERENCES `tipousuarios` (`idTipoUsuarios`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -346,6 +347,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
+INSERT INTO `usuarios` VALUES (1,'administrador','12345','administrador@camada2.com','carlos','sanchez','2023-10-26 00:00:00',1,1),(2,'coordinador1','12345','coordinador@camada2.com','carolina','benitez','2023-10-25 00:00:00',1,2),(3,'estandar1','12345','gaston@camada2.com','gaston','balmaceda',NULL,1,3),(4,'felix','12345','felix@camada2.com','felix','andres','2023-10-25 00:00:00',1,1);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -358,4 +360,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-24 21:58:59
+-- Dump completed on 2023-10-27  8:05:13
