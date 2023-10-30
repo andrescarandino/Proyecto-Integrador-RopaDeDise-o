@@ -1,8 +1,13 @@
 import { Link } from 'react-router-dom';
-import { IoMdMenu } from 'react-icons/io';
+import { useState } from 'react';
+import { IoMdMenu, IoMdClose } from 'react-icons/io';
 import styles from '../styles/header.module.css';
 
 function Header() {
+	const [menuActive, setMenuActive] = useState(false);
+	const handleMenu = () => {
+		setMenuActive(!menuActive);
+	};
 	return (
 		<div className={styles.headerFixed}>
 			<div className={styles.headerContainer}>
@@ -10,7 +15,27 @@ function Header() {
 					<h1>carolki.</h1>
 					<h3>...diseñamos pasión</h3>
 				</Link>
-				<IoMdMenu className={styles.headermenu} />
+				<button
+					className={styles.headerMenuButton}
+					type="button"
+					onClick={handleMenu}
+				>
+					{menuActive ? (
+						<IoMdClose className={styles.headermenu} />
+					) : (
+						<IoMdMenu className={styles.headermenu} />
+					)}
+				</button>
+				{menuActive && (
+					<div className={styles.headerMenuContainer}>
+						<button type="button" className={styles.menuButton}>
+							crear cuenta
+						</button>
+						<button type="button" className={styles.menuButton}>
+							iniciar sesión
+						</button>
+					</div>
+				)}
 				<div className={styles.headerLogin}>
 					<button type="button" className={styles.headerButton}>
 						crear cuenta

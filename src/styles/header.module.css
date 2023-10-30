@@ -28,6 +28,24 @@
     font-size: 1.4em;
 }
 
+.headerMenuButton{
+    background-color: #AE9279;
+    border: none;
+}
+
+.headerMenuContainer{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #464646;
+    width: 96%;
+    height: 60%;
+    right: 2%;
+    top: 120%;
+    border-radius: 5px;
+}
+
 .headerLogin{
     display: flex;
 }
@@ -35,7 +53,16 @@
     width: 1.5px;
     height: 1.5em;
     margin-left: 0.5em;
-    background-color: aliceblue;
+    background-color: white;
+    transform: rotate(12deg);
+}
+
+.headerLineMenu{
+    width: 1.5px;
+    height: 1.8em;
+    margin-left: 1.5%;
+    margin-top: 2%;
+    background-color: white;
     transform: rotate(12deg);
 }
 
@@ -44,6 +71,17 @@
     border: none;
     color: white;
     margin-left: 0.5em;
+    font-family: 'Roboto', sans-serif;
+    font-style: italic;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.menuButton{
+    background: none;
+    border: none;
+    color: white;
+    margin-left: 1em;
     font-family: 'Roboto', sans-serif;
     font-style: italic;
     cursor: pointer;
