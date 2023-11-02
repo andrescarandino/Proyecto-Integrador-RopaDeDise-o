@@ -6,6 +6,7 @@ import BodySearchOne from '../components/BodySearchOne';
 import BodySearchTwo from '../components/BodySearchTwo';
 import BodyRecomendadoOne from '../components/BodyRecomendadoOne';
 import BodyRecomendadoTwo from '../components/BodyRecomendadoTwo';
+import Pagination from '../components/Pagination';
 
 function Home() {
 	return (
@@ -19,6 +20,7 @@ function Home() {
 				<BodyRecomendadoTwo />
 				<BodySearchTwo />
 			</div>
+			<Pagination />
 			<BodyMain />
 			<BodySection />
 		</div>
