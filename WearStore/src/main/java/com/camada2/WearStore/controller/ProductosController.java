@@ -49,8 +49,43 @@ public class ProductosController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
+    @PatchMapping("/{id}")
+    public ResponseEntity<Productos> modificarProductoParcial(@PathVariable Integer id, @RequestBody Productos producto) {
+        Productos productoExistente = productoService.buscar(id);
 
-@DeleteMapping("/eliminar/{id}")
+        if (productoExistente == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
+        // Verificar y actualizar los campos modificados
+        if (producto.getNombre() != null) {
+            productoExistente.setNombre(producto.getNombre());
+        }
+
+        if (producto.getDescripcion() != null) {
+            productoExistente.setDescripcion(producto.getDescripcion());
+        }
+
+        if (producto.getPrecio() >= 0) {
+            productoExistente.setPrecio(producto.getPrecio());
+        }
+
+        if (producto.getCantidad() != null) {
+            productoExistente.setCantidad(producto.getCantidad());
+        }
+
+
+
+
+
+        // Guardar el producto modificado
+        productoService.guardar(productoExistente);
+
+        return ResponseEntity.status(HttpStatus.OK).body(productoExistente);
+    }
+
+
+    @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<Productos> eliminarProductoPorId(@PathVariable  Integer id){
         productoService.eliminar(id);
 

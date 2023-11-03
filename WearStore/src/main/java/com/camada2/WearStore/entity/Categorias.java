@@ -2,6 +2,8 @@ package com.camada2.WearStore.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 
 @Entity
 @Table(name = "Categorias")
@@ -14,6 +16,9 @@ public class Categorias {
 
     @Column(name = "nombre")
     private String nombre;
+
+    @OneToMany(mappedBy = "categorias")
+    private List<TipoProductos> tipoProductosList;
 
     // Constructores, getters y setters
 

@@ -14,6 +14,12 @@ public class TipoProductos {
     @Column(name = "nombre")
     private String nombre;
 
+    // insertable = false,updatable = false, significa que desde tipoProductos no puede insertar,
+    // borrar o cambiar el nombre de una NUEVA categoria
+    @ManyToOne
+    @JoinColumn(name="id_categorias", insertable = false,updatable = false)
+    private Categorias categorias;
+
     // Constructores, getters y setters
 
     public TipoProductos() {
