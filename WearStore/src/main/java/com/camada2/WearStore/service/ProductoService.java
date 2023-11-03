@@ -16,6 +16,7 @@ public class ProductoService implements IService <Productos, Productos>{
 
 
     public Productos guardar(Productos productos){
+
         return productosRepository.save(productos);
     }
 
@@ -27,6 +28,7 @@ public class ProductoService implements IService <Productos, Productos>{
     }
 
     public Productos buscar(Integer id){
+
         return productosRepository.findById(id).orElse(null);
     }
 

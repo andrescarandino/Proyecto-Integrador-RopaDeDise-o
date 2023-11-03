@@ -29,7 +29,7 @@ public class ProductosController {
 
     }
 
-    @GetMapping
+    @GetMapping("/listar")
     public List<Productos> listarProductos(){
         return productoService.listar();
     }
@@ -41,7 +41,7 @@ public class ProductosController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @PutMapping
+    @PutMapping("/actualizarP")
     public ResponseEntity<Productos> modificarProductos(@RequestBody Productos producto){
 
         productoService.guardar(producto);
@@ -49,7 +49,9 @@ public class ProductosController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    public ResponseEntity<Productos> eliminarProductoPorId(Integer id){
+
+@DeleteMapping("/eliminar/{id}")
+    public ResponseEntity<Productos> eliminarProductoPorId(@PathVariable  Integer id){
         productoService.eliminar(id);
 
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
