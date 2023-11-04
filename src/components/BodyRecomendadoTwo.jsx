@@ -1,14 +1,15 @@
 import { Link } from 'react-router-dom';
 import { IoIosStarOutline } from 'react-icons/io';
-import recomendado2 from '../img/recomendado2.png';
 import styles from '../styles/bodyRecomendadoTwo.module.css';
 
-function BodyRecomendadoOne() {
+// eslint-disable-next-line react/prop-types
+function BodyRecomendadoOne({ data }) {
 	return (
 		<div className={styles.recomendadoContainer}>
 			<img
 				className={styles.recomendadoImg}
-				src={recomendado2}
+				// eslint-disable-next-line react/prop-types
+				src={data[8].image_url}
 				alt="recomendado"
 			/>
 
@@ -28,7 +29,10 @@ function BodyRecomendadoOne() {
 					<IoIosStarOutline />
 				</div>
 				<button type="button" className={styles.recomendadoButton}>
-					<Link className={styles.recomendadoLink} to="product/:id">
+					<Link
+						className={styles.recomendadoLink}
+						to={`product/${data[8].id}`}
+					>
 						Recomendado
 					</Link>
 				</button>

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styles from '../styles/home.module.css';
 import Search from '../components/Search';
 import BodyMain from '../components/BodyMain';
@@ -7,20 +8,35 @@ import BodySearchTwo from '../components/BodySearchTwo';
 import BodyRecomendadoOne from '../components/BodyRecomendadoOne';
 import BodyRecomendadoTwo from '../components/BodyRecomendadoTwo';
 import Pagination from '../components/Pagination';
+import MockData from '../../MOCK_DATA.json';
 
 function Home() {
+	const [productQt, setProductQt] = useState(10);
+	const [currentPage, setCurrentPage] = useState(1);
+	const indexFin = currentPage * productQt;
+	const indexIni = indexFin - productQt;
+	const nProducts = MockData.slice(indexIni, indexFin);
+	const nPages = Math.ceil(MockData.length / productQt);
 	return (
 		<div className={styles.bodyHome}>
 			<Search />
-			<div className={styles.bodyProducts}>
-				<BodySearchOne />
-				<BodyRecomendadoOne />
-			</div>
-			<div className={styles.bodyProductsTwo}>
-				<BodyRecomendadoTwo />
-				<BodySearchTwo />
-			</div>
-			<Pagination />
+			{nProducts.map((x, index) => (
+				<div key={index}>
+					<div className={styles.bodyProducts}>
+						<BodySearchOne data={nProducts} />
+						<BodyRecomendadoOne data={nProducts} />
+					</div>
+					<div className={styles.bodyProductsTwo}>
+						<BodyRecomendadoTwo data={nProducts} />
+						<BodySearchTwo data={nProducts} />
+					</div>
+				</div>
+			))}
+			<Pagination
+				setCurrentPage={setCurrentPage}
+				currentPage={currentPage}
+				nPages={nPages}
+			/>
 			<BodyMain />
 			<BodySection />
 		</div>

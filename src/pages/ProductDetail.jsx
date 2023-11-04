@@ -1,8 +1,11 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import styles from '../styles/productDetail.module.css';
-import img1 from '../img/img1.png';
+import MockData from '../../MOCK_DATA.json';
 
 function ProductDetail() {
+	const params = useParams();
+	const { id } = params;
+	const img = MockData[id - 1].image_url;
 	return (
 		<div className={styles.productContainer}>
 			<div className={styles.productHeader}>
@@ -16,13 +19,13 @@ function ProductDetail() {
 			<div className={styles.descriptionDivContainer}>
 				<div className={styles.descriptionContainer}>
 					<div className={styles.descriptionBigImg}>
-						<img src={img1} alt="" />
+						<img src={img} alt="" />
 					</div>
 					<div className={styles.descriptionImg}>
-						<img src={img1} alt="" />
-						<img src={img1} alt="" />
-						<img src={img1} alt="" />
-						<img src={img1} alt="" />
+						<img src={img} alt="" />
+						<img src={img} alt="" />
+						<img src={img} alt="" />
+						<img src={img} alt="" />
 					</div>
 				</div>
 				<div className={styles.descriptionP}>

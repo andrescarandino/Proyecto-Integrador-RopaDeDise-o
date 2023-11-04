@@ -4,7 +4,7 @@ import styles from '../styles/footer.module.css';
 
 function Footer() {
 	return (
-		<div>
+		<div className={styles.footerFixed}>
 			<div className={styles.footerContainer}>
 				<Link to="/" className={styles.footerLink}>
 					<h1>carolki.</h1>

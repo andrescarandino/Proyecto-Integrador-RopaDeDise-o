@@ -1,43 +1,67 @@
 import { Link } from 'react-router-dom';
 import styles from '../styles/bodySearchTwo.module.css';
-import img5 from '../img/img5.png';
-import img6 from '../img/img6.png';
-import img7 from '../img/img7.png';
-import img8 from '../img/img8.png';
 
-function BodySearchTwo() {
+function BodySearchTwo({ data }) {
 	return (
 		<div className={styles.bodySearchContainer}>
 			<div className={styles.bodySearch}>
 				<div className={styles.divSearch}>
-					<img src={img5} alt="" className={styles.searchImg} />
+					<img
+						src={data[4].image_url}
+						alt=""
+						className={styles.searchImg}
+					/>
 					<button type="button" className={styles.searchButton}>
-						<Link className={styles.searchLink} to="product/:id">
+						<Link
+							className={styles.searchLink}
+							to={`product/${data[4].id}`}
+						>
 							ver
 						</Link>
 					</button>
 				</div>
 				<div className={styles.divSearch}>
-					<img src={img6} alt="" className={styles.searchImg} />
+					<img
+						src={data[5].image_url}
+						alt=""
+						className={styles.searchImg}
+					/>
 					<button type="button" className={styles.searchButton}>
-						<Link className={styles.searchLink} to="product/:id">
+						<Link
+							className={styles.searchLink}
+							to={`product/${data[5].id}`}
+						>
 							ver
 						</Link>
 					</button>
 				</div>
 
 				<div className={styles.divSearch}>
-					<img src={img7} alt="" className={styles.searchImg} />
+					<img
+						src={data[6].image_url}
+						alt=""
+						className={styles.searchImg}
+					/>
 					<button type="button" className={styles.searchButton}>
-						<Link className={styles.searchLink} to="product/:id">
+						<Link
+							className={styles.searchLink}
+							to={`product/${data[6].id}`}
+						>
 							ver
 						</Link>
 					</button>
 				</div>
 				<div className={styles.divSearch}>
-					<img src={img8} alt="" className={styles.searchImg} />
+					<img
+						src={data[7].image_url}
+						alt=""
+						className={styles.searchImg}
+					/>
 					<button type="button" className={styles.searchButton}>
-						<Link className={styles.searchLink} to="product/:id">
+						<Link
+							className={styles.searchLink}
+							to={`product/${data[7].id}`}
+						>
 							ver
 						</Link>
 					</button>

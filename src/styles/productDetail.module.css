@@ -95,7 +95,13 @@
     cursor: pointer;
 }
 
-@media (max-width: 810px){ 
+@media (max-width: 1260px){ 
+    .descriptionDivContainer{
+        flex-wrap: wrap;
+    }
+    .descriptionContainer{
+        justify-content: center;
+    }
 
 }
 @media (max-width: 390px){ 
