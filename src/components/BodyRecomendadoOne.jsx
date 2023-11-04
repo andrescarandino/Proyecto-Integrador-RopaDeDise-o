@@ -1,14 +1,13 @@
 import { Link } from 'react-router-dom';
 import { IoIosStarOutline } from 'react-icons/io';
+import PropTypes from 'prop-types';
 import styles from '../styles/bodyRecomendadoOne.module.css';
 
-// eslint-disable-next-line react/prop-types
 function BodyRecomendadoOne({ data }) {
 	return (
 		<div className={styles.recomendadoContainer}>
 			<img
 				className={styles.recomendadoImg}
-				// eslint-disable-next-line react/prop-types
 				src={data[9].image_url}
 				alt="recomendado"
 			/>
@@ -40,5 +39,12 @@ function BodyRecomendadoOne({ data }) {
 		</div>
 	);
 }
+
+BodyRecomendadoOne.propTypes = {
+	data: PropTypes.shape({
+		id: PropTypes.string.isRequired,
+		image_url: PropTypes.string.isRequired,
+	}).isRequired,
+};
 
 export default BodyRecomendadoOne;

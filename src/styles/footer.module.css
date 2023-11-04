@@ -1,72 +1,70 @@
-@import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Euphoria+Script&family=Roboto:ital,wght@0,300;0,400;1,300;1,400;1,500&display=swap');
-
-.footerFixed{
-    width: 100%;
-    height: 8rem;
-    background: #AE9279;
+.footerFixed {
+	width: 100%;
+	height: 8rem;
+	background: #ae9279;
 }
-.footerContainer{
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 5px 5px 0 0;
-    background: #AE9279;
-    padding: 0 3rem;
-    max-width: 1258px;
-    margin: 0 auto;
-    margin-top: 3rem;
-    margin-bottom: 1px;
-    height: 8rem;
+.footerContainer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-radius: 5px 5px 0 0;
+	background: #ae9279;
+	padding: 0 3rem;
+	max-width: 1258px;
+	margin: 0 auto;
+	margin-top: 3rem;
+	margin-bottom: 1px;
+	height: 8rem;
 }
 
-.footerLink{
-    text-decoration: none;
-    font-family: 'Berkshire Swash', serif;
-    color: white;
-    font-size: 22px;
+.footerLink {
+	text-decoration: none;
+	font-family: 'Berkshire Swash', serif;
+	color: white;
+	font-size: 22px;
 }
 
-.footerH3{
-    font-family: 'Roboto', sans-serif;
-    font-style: italic;
-    font-weight: 100;
-    font-size: 15px;
-    color: white;
-    margin-right: 5rem;
-    margin-top: 1rem;
+.footerH3 {
+	font-family: 'Roboto', sans-serif;
+	font-style: italic;
+	font-weight: 100;
+	font-size: 15px;
+	color: white;
+	margin-right: 5rem;
+	margin-top: 1rem;
 }
 
-.footerIcons{
-    color: white;
-    font-size: 30px;
-    margin-left: 10px;
-    cursor: pointer;
-    transition: 0.2s ease;
+.footerIcons {
+	color: white;
+	font-size: 30px;
+	margin-left: 10px;
+	cursor: pointer;
+	transition: 0.2s ease;
 }
 
-.footerIcons:hover{
-    color: #464646;
+.footerIcons:hover {
+	color: #464646;
 }
 
-@media (max-width: 810px){
-    .footerContainer{
-        padding: 2rem;
-        height: 6.4rem;
-    }
+@media (max-width: 810px) {
+	.footerContainer {
+		padding: 2rem;
+		height: 6.4rem;
+	}
 }
 
-@media (max-width: 576px){ 
-    .footerContainer{
-        padding: 0 2rem;
-        border-radius: 2px 2px 0 0;
-    }
-    .footerLink{
-        font-size: 1.1em;
-    }
-    .footerH3{
-        display: none;
-    }
-    .footerIcons{
-        font-size: 1.6em;  
-    }
+@media (max-width: 576px) {
+	.footerContainer {
+		padding: 0 2rem;
+		border-radius: 2px 2px 0 0;
+	}
+	.footerLink {
+		font-size: 1.1em;
+	}
+	.footerH3 {
+		display: none;
+	}
+	.footerIcons {
+		font-size: 1.6em;
+	}
 }

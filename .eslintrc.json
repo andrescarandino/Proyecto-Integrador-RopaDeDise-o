@@ -17,7 +17,13 @@
 	},
 	"rules": {
 		"no-shadow": "off",
-		"react/jsx-props-no-spreading": ["warn"]
+		"react/jsx-props-no-spreading": ["warn"],
+		"prettier/prettier": [
+			"error",
+			{
+				"endOfLine": "auto"
+			}
+		]
 	},
 	"plugins": ["react", "prettier"] // "prettier" should be last
 }

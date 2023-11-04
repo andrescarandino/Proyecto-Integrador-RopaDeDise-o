@@ -1,109 +1,101 @@
-@import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Gruppo&family=Inter:wght@300;400;500;600;700;800;900&family=Roboto:ital,wght@0,300;0,400;1,300;1,400;1,500&display=swap');
-
-
-.productContainer{
-    height: 100%;
-    width: 99%;
-    margin: 2rem auto;
-    max-width: 1258px; 
-    font-family: 'Roboto', sans-serif;
+.productContainer {
+	height: 100%;
+	width: 99%;
+	margin: 2rem auto;
+	max-width: 1258px;
+	font-family: 'Roboto', sans-serif;
 }
 
-.productHeader{
-    display: flex;
-    justify-content: space-between;
-    background-color: white;
-    padding: 1rem;
-    border-radius: 5px;
+.productHeader {
+	display: flex;
+	justify-content: space-between;
+	background-color: white;
+	padding: 1rem;
+	border-radius: 5px;
 }
 
-.productH2{
-    color: #464646;
+.productH2 {
+	color: #464646;
 }
 
-.productButton{
-    background-color: #464646;
-    border: none;
-    padding: 0.2rem 0.6rem;
-    border-radius: 3px;
-    cursor: pointer;
+.productButton {
+	background-color: #464646;
+	border: none;
+	padding: 0.2rem 0.6rem;
+	border-radius: 3px;
+	cursor: pointer;
 }
 
-.productButton:hover{
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+.productButton:hover {
+	box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
 }
 
-.productLink{
-    color: white;
-    font-style: italic;
-    text-decoration: none;
+.productLink {
+	color: white;
+	font-style: italic;
+	text-decoration: none;
 }
 
-.descriptionDivContainer{
-    display: flex;
-    margin-top: 1%;
-    gap: 10px;   
+.descriptionDivContainer {
+	display: flex;
+	margin-top: 1%;
+	gap: 10px;
 }
 
-.descriptionContainer{
-    display: flex;
-    background-color: white;
-    border-radius: 5px;
-    padding: 10px;
-    width: 210rem;
+.descriptionContainer {
+	display: flex;
+	background-color: white;
+	border-radius: 5px;
+	padding: 10px;
+	width: 210rem;
 }
 
-.descriptionBigImg{
-    width: 50%;
-    margin-right: 1%;
-    
-    
+.descriptionBigImg {
+	width: 50%;
+	margin-right: 1%;
 }
-.descriptionBigImg img{
-    height: 100%;
-    width: 100%
+.descriptionBigImg img {
+	height: 100%;
+	width: 100%;
 }
-.descriptionImg{
-    display: flex;
-    flex-wrap: wrap;
-    width: 54%;
-    gap: 10px;
+.descriptionImg {
+	display: flex;
+	flex-wrap: wrap;
+	width: 54%;
+	gap: 10px;
 }
 
-
-.descriptionP{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 1rem;
-    border-radius: 5px;
-    color: #464646;
-    background-color: white;
+.descriptionP {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 1rem;
+	border-radius: 5px;
+	color: #464646;
+	background-color: white;
 }
 
-.descriptionFooter{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.descriptionFooter {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
-.descriptionButton{
-    background-color: #464646;
-    border: none;
-    padding: 0.5rem 0.7rem;
-    border-radius: 3px;
-    cursor: pointer;
+.descriptionButton {
+	background-color: #464646;
+	border: none;
+	padding: 0.5rem 0.7rem;
+	border-radius: 3px;
+	cursor: pointer;
 }
 
-@media (max-width: 1260px){ 
-    .descriptionDivContainer{
-        flex-wrap: wrap;
-    }
-    .descriptionContainer{
-        justify-content: center;
-    }
-
+@media (max-width: 1260px) {
+	.descriptionDivContainer {
+		flex-wrap: wrap;
+	}
+	.descriptionContainer {
+		justify-content: center;
+	}
 }
-@media (max-width: 390px){ 
- 
+@media (max-width: 390px) {
 }

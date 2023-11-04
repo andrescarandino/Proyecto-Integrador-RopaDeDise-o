@@ -1,133 +1,130 @@
-@import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Gruppo&family=Inter:wght@300;400;500;600;700;800;900&family=Roboto:ital,wght@0,300;0,400;1,300;1,400;1,500&display=swap');
-
-
-.headerFixed{
-    position: relative;
-    width: 100%;
-    top: 0.1px;
-    position: sticky;
-    z-index: 2;
-    background: #AE9279;
+.headerFixed {
+	position: relative;
+	width: 100%;
+	top: 0.1px;
+	position: sticky;
+	z-index: 2;
+	background: #ae9279;
 }
 
-.headerContainer{
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 0 0 5px 5px;
-    background: #AE9279;
-    padding: 3rem;
-    max-width: 78.6rem;
-    margin: 0 auto;
-    height: 8rem;
+.headerContainer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-radius: 0 0 5px 5px;
+	background: #ae9279;
+	padding: 3rem;
+	max-width: 78.6rem;
+	margin: 0 auto;
+	height: 8rem;
 }
 
-.headerLink{
-    text-decoration: none;
-    font-family: 'Berkshire Swash', serif;
-    color: white;
-    font-size: 1.4em;
+.headerLink {
+	text-decoration: none;
+	font-family: 'Berkshire Swash', serif;
+	color: white;
+	font-size: 1.4em;
 }
 
-.headerMenuButton{
-    background-color: #AE9279;
-    border: none;
+.headerMenuButton {
+	background-color: #ae9279;
+	border: none;
 }
 
-.headerMenuContainer{
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #464646;
-    width: 96%;
-    height: 60%;
-    right: 2%;
-    top: 120%;
-    border-radius: 5px;
+.headerMenuContainer {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #464646;
+	width: 96%;
+	height: 60%;
+	right: 2%;
+	top: 120%;
+	border-radius: 5px;
 }
 
-.headerLogin{
-    display: flex;
+.headerLogin {
+	display: flex;
 }
-.headerLine{
-    width: 1.5px;
-    height: 1.5em;
-    margin-left: 0.5em;
-    background-color: white;
-    transform: rotate(12deg);
-}
-
-.headerLineMenu{
-    width: 1.5px;
-    height: 1.8em;
-    margin-left: 1.5%;
-    margin-top: 2%;
-    background-color: white;
-    transform: rotate(12deg);
+.headerLine {
+	width: 1.5px;
+	height: 1.5em;
+	margin-left: 0.5em;
+	background-color: white;
+	transform: rotate(12deg);
 }
 
-.headerButton{
-    background: none;
-    border: none;
-    color: white;
-    margin-left: 0.5em;
-    font-family: 'Roboto', sans-serif;
-    font-style: italic;
-    cursor: pointer;
-    transition: 0.2s ease;
+.headerLineMenu {
+	width: 1.5px;
+	height: 1.8em;
+	margin-left: 1.5%;
+	margin-top: 2%;
+	background-color: white;
+	transform: rotate(12deg);
 }
 
-.menuButton{
-    background: none;
-    border: none;
-    color: white;
-    margin-left: 1em;
-    font-family: 'Roboto', sans-serif;
-    font-style: italic;
-    cursor: pointer;
-    transition: 0.2s ease;
+.headerButton {
+	background: none;
+	border: none;
+	color: white;
+	margin-left: 0.5em;
+	font-family: 'Roboto', sans-serif;
+	font-style: italic;
+	cursor: pointer;
+	transition: 0.2s ease;
 }
 
-.headerButton:hover{
-    color: #464646;
+.menuButton {
+	background: none;
+	border: none;
+	color: white;
+	margin-left: 1em;
+	font-family: 'Roboto', sans-serif;
+	font-style: italic;
+	cursor: pointer;
+	transition: 0.2s ease;
 }
 
-h3{
-    font-family: 'Euphoria Script', cursive;
-    font-size: 0.9em;
-    font-weight: 100;
-    margin-top: -0.6em;
-    margin-left: 0.1em;
+.headerButton:hover {
+	color: #464646;
 }
 
-.headermenu{
-    display: none;
+h3 {
+	font-family: 'Euphoria Script', cursive;
+	font-size: 0.9em;
+	font-weight: 100;
+	margin-top: -0.6em;
+	margin-left: 0.1em;
 }
 
-@media (max-width: 810px){
-    .headerContainer{
-        padding: 2rem;
-        height: 6.3rem;
-        border-radius: 0 0 3px 3px;
-    }
+.headermenu {
+	display: none;
 }
 
-@media (max-width: 576px){ 
-    .headerContainer{
-        padding: 0 2rem;
-        height: 5rem;
-        border-radius: 0 0 2px 2px;
-    }
-    .headermenu{
-        display: inline;
-        color: white;
-        font-size: 1.8em;
-    }
-    .headerLogin{
-        display: none;
-    }
-    .headerLink{
-        font-size: 1.1em;
-    }
+@media (max-width: 810px) {
+	.headerContainer {
+		padding: 2rem;
+		height: 6.3rem;
+		border-radius: 0 0 3px 3px;
+	}
+}
+
+@media (max-width: 576px) {
+	.headerContainer {
+		padding: 0 2rem;
+		height: 5rem;
+		border-radius: 0 0 2px 2px;
+	}
+	.headermenu {
+		display: inline;
+		color: white;
+		font-size: 1.8em;
+	}
+	.headerLogin {
+		display: none;
+	}
+	.headerLink {
+		font-size: 1.1em;
+	}
 }

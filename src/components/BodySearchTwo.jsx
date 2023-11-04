@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styles from '../styles/bodySearchTwo.module.css';
 
@@ -70,5 +71,12 @@ function BodySearchTwo({ data }) {
 		</div>
 	);
 }
+
+BodySearchTwo.propTypes = {
+	data: PropTypes.shape({
+		id: PropTypes.string.isRequired,
+		image_url: PropTypes.string.isRequired,
+	}).isRequired,
+};
 
 export default BodySearchTwo;

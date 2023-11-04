@@ -1,45 +1,42 @@
-@import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Gruppo&family=Inter:wght@300;400;500;600;700;800;900&family=Roboto:ital,wght@0,300;0,400;1,300;1,400;1,500&display=swap');
-
-.paginationContainer{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 10rem;
-    margin: 2rem auto;
+.paginationContainer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 10rem;
+	margin: 2rem auto;
 }
 
-.paginationContainer button{
-    border: none;
-    padding: 0.4rem 0.6rem;
-    border-radius: 3px;
-    background: #AE9279;
-    color: white;
-    cursor: pointer;
+.paginationContainer button {
+	border: none;
+	padding: 0.4rem 0.6rem;
+	border-radius: 3px;
+	background: #ae9279;
+	color: white;
+	cursor: pointer;
 }
 
-.paginationContainer button:hover{
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-    color: #464646;
+.paginationContainer button:hover {
+	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+	color: #464646;
 }
 
-.paginationContainer h3{
-    font-family: 'Roboto', sans-serif;
-    font-style: italic;
-    background-color: white;
-    border: 1px solid #AE9279;
-    padding: 0.3rem 0.6rem;
-    color: #464646;
-    border-radius: 3px;
-    margin-right: 1.4px;
-    margin-top: 0.1px;
+.paginationContainer h3 {
+	font-family: 'Roboto', sans-serif;
+	font-style: italic;
+	background-color: white;
+	border: 1px solid #ae9279;
+	padding: 0.3rem 0.6rem;
+	color: #464646;
+	border-radius: 3px;
+	margin-right: 1.4px;
+	margin-top: 0.1px;
 }
 
-@media (max-width: 576px){
-    .paginationContainer h3{
-        font-size: 12px;
-    }
-    .paginationContainer button{
-        padding: 0.4rem 0.5rem;
-    }
-
+@media (max-width: 576px) {
+	.paginationContainer h3 {
+		font-size: 12px;
+	}
+	.paginationContainer button {
+		padding: 0.4rem 0.5rem;
+	}
 }

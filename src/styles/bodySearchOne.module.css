@@ -1,77 +1,71 @@
-@import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Euphoria+Script&family=Roboto:ital,wght@0,300;0,400;1,300;1,400;1,500&display=swap');
-
-
-.bodySearch{
-    display: grid;
-    grid-template-columns: 224px 224px;
-    background-color: white;
-    border-radius: 5px;
-    padding: 0.3rem;
-    padding-bottom: 0;
+.bodySearch {
+	display: grid;
+	grid-template-columns: 224px 224px;
+	background-color: white;
+	border-radius: 5px;
+	padding: 0.3rem;
+	padding-bottom: 0;
 }
 
-.divSearch{
-    position: relative;
+.divSearch {
+	position: relative;
 }
 
-.searchImg{
-    width: 14rem;
-    height: 98%;
-    transition: 0.2s ease;
+.searchImg {
+	width: 14rem;
+	height: 98%;
+	transition: 0.2s ease;
 }
 
-.divSearch:hover .searchImg{
-    transform: scale(0.99);
+.divSearch:hover .searchImg {
+	transform: scale(0.99);
 }
 
-.searchButton{
-    position: absolute;
-    bottom: 15px;
-    right: 10px;
-    border: solid 1px #AE9279;
-    padding: 0.2rem 1.2rem 0.3rem 1.2rem;
-    border-radius: 2px;
-    backdrop-filter:  blur(4px);
-    opacity: 0.80;
-    font-family: 'Roboto', serif;
-    font-style: italic;
-    color: #454545;
-    cursor: pointer;
+.searchButton {
+	position: absolute;
+	bottom: 15px;
+	right: 10px;
+	border: solid 1px #ae9279;
+	padding: 0.2rem 1.2rem 0.3rem 1.2rem;
+	border-radius: 2px;
+	backdrop-filter: blur(4px);
+	opacity: 0.8;
+	font-family: 'Roboto', serif;
+	font-style: italic;
+	color: #454545;
+	cursor: pointer;
 }
 
-.searchLink{
-    color: #454545;
-    text-decoration: none;
+.searchLink {
+	color: #454545;
+	text-decoration: none;
 }
 
-@media (max-width: 1310px){
-    .bodySearchContainer{
-        width: 49.4rem;
-    }
-    .bodySearch {
-        display: flex;
-        justify-content: center;
-        margin-left: 0px;
-        margin-top: 32px;
-    }    
-    .searchImg{
-        width: 99%;
-    }
+@media (max-width: 1310px) {
+	.bodySearchContainer {
+		width: 49.4rem;
+	}
+	.bodySearch {
+		display: flex;
+		justify-content: center;
+		margin-left: 0px;
+		margin-top: 32px;
+	}
+	.searchImg {
+		width: 99%;
+	}
 }
-@media (max-width: 768px){ 
-    .bodySearchContainer{
-        width: 100%;
-    }
-    .searchImg{
-        width: 99%;
-    }
+@media (max-width: 768px) {
+	.bodySearchContainer {
+		width: 100%;
+	}
+	.searchImg {
+		width: 99%;
+	}
 }
-@media (max-width: 576px){ 
-    .bodySearch {
-        display: grid;
-        grid-template-columns: 50% 50%;
-    } 
-
-
+@media (max-width: 576px) {
+	.bodySearch {
+		display: grid;
+		grid-template-columns: 50% 50%;
+	}
 }
-

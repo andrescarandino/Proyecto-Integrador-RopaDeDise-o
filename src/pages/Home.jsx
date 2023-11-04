@@ -11,6 +11,7 @@ import Pagination from '../components/Pagination';
 import MockData from '../../MOCK_DATA.json';
 
 function Home() {
+	// eslint-disable-next-line no-unused-vars
 	const [productQt, setProductQt] = useState(10);
 	const [currentPage, setCurrentPage] = useState(1);
 	const indexFin = currentPage * productQt;
@@ -21,6 +22,7 @@ function Home() {
 		<div className={styles.bodyHome}>
 			<Search />
 			{nProducts.map((x, index) => (
+				// eslint-disable-next-line react/no-array-index-key
 				<div key={index}>
 					<div className={styles.bodyProducts}>
 						<BodySearchOne data={nProducts} />
