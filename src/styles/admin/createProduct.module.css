@@ -7,12 +7,12 @@
 	align-items: center;
 	max-width: 1258px;
 	border-radius: 5px;
-	font-family: 'Roboto', sans-serif;
+	font-family: var(--ff-roboto);
 }
 
 .sectionContainer {
 	width: 100%;
-	background-color: #ffffff;
+	background-color: var(--color-white);
 	padding: 1rem;
 	border-radius: 5px;
 	margin-top: 5px;
@@ -45,23 +45,23 @@
 }
 
 .sectionDescription {
-	color: var(--font-color);
+	color: var(--color-black-cow);
 }
 
 .headerContainer {
 	width: 100%;
 	display: flex;
-	background-color: #ffffff;
+	background-color: var(--color-white);
 	padding: 1rem;
 	border-radius: 5px;
 }
 
 .title {
-	color: var(--font-color);
+	color: var(--color-black-cow);
 }
 
 .imageItem {
 	font-size: 0.88rem;
 	font-weight: 600;
-	color: var(--font-color);
+	color: var(--color-black-cow);
 }
