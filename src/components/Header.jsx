@@ -29,20 +29,20 @@ function Header() {
 				{menuActive && (
 					<div className={styles.headerMenuContainer}>
 						<button type="button" className={styles.menuButton}>
-							crear cuenta
+							Crear cuenta
 						</button>
 						<button type="button" className={styles.menuButton}>
-							iniciar sesión
+							Iniciar sesión
 						</button>
 					</div>
 				)}
 				<div className={styles.headerLogin}>
 					<button type="button" className={styles.headerButton}>
-						crear cuenta
+						Crear cuenta
 					</button>
 					<div className={styles.headerLine} />
 					<button type="button" className={styles.headerButton}>
-						iniciar sesión
+						Iniciar sesión
 					</button>
 				</div>
 			</div>

@@ -17,7 +17,7 @@ function BodySearchOne({ data }) {
 							className={styles.searchLink}
 							to={`product/${data[0].id}`}
 						>
-							ver
+							Ver
 						</Link>
 					</button>
 				</div>
@@ -32,7 +32,7 @@ function BodySearchOne({ data }) {
 							className={styles.searchLink}
 							to={`product/${data[1].id}`}
 						>
-							ver
+							Ver
 						</Link>
 					</button>
 				</div>
@@ -48,7 +48,7 @@ function BodySearchOne({ data }) {
 							className={styles.searchLink}
 							to={`product/${data[2].id}`}
 						>
-							ver
+							Ver
 						</Link>
 					</button>
 				</div>
@@ -63,7 +63,7 @@ function BodySearchOne({ data }) {
 							className={styles.searchLink}
 							to={`product/${data[3].id}`}
 						>
-							ver
+							Ver
 						</Link>
 					</button>
 				</div>

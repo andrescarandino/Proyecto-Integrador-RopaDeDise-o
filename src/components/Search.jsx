@@ -7,7 +7,7 @@ function Search() {
 			<div className={styles.searchDiv}>
 				<input
 					type="text"
-					placeholder="buscar"
+					placeholder="Buscar"
 					className={styles.searchInput}
 				/>
 				<button type="button" className={styles.searchButton}>

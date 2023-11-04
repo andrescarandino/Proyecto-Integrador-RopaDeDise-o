@@ -9,10 +9,10 @@ function ProductDetail() {
 	return (
 		<div className={styles.productContainer}>
 			<div className={styles.productHeader}>
-				<h2 className={styles.productH2}>Titulo del Producto</h2>
+				<h2 className={styles.productH2}>Título del Producto</h2>
 				<button type="button" className={styles.productButton}>
 					<Link to="/" className={styles.productLink}>
-						volver
+						Volver
 					</Link>
 				</button>
 			</div>
@@ -42,7 +42,7 @@ function ProductDetail() {
 							className={styles.descriptionButton}
 						>
 							<Link to="/" className={styles.productLink}>
-								ver mas
+								Ver más
 							</Link>
 						</button>
 					</div>

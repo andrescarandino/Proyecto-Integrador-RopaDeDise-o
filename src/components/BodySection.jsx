@@ -13,13 +13,13 @@ function BodySection() {
 		<div className={styles.sectionContainer}>
 			<div className={styles.sectionFila}>
 				<div className={styles.sectionCard}>
-					<img src={elegante} alt="elegante" />
+					<img src={elegante} alt="Categoría de ropa elegante" />
 					<button type="button" className={styles.sectionButton}>
 						Elegante
 					</button>
 				</div>
 				<div className={styles.sectionCard}>
-					<img src={sexy} alt="sexy" />
+					<img src={sexy} alt="Categoría de ropa sexy" />
 					<button type="button" className={styles.sectionButton}>
 						Sexy
 					</button>
@@ -28,28 +28,31 @@ function BodySection() {
 
 			<div className={styles.sectionFila}>
 				<div className={styles.sectionCard}>
-					<img src={casual} alt="casual" />
+					<img src={casual} alt="Categoría de ropa casual" />
 					<button type="button" className={styles.sectionButton}>
 						Casual
 					</button>
 				</div>
 				<div className={styles.sectionCard}>
-					<img src={romantico} alt="romantico" />
+					<img src={romantico} alt="Categoría de ropa 'romántico'" />
 					<button type="button" className={styles.sectionButton}>
-						Romantico
+						Romántico
 					</button>
 				</div>
 			</div>
 
 			<div className={styles.sectionFila}>
 				<div className={styles.sectionCard}>
-					<img src={creativo} alt="creativo" />
+					<img src={creativo} alt="Categoría de ropa creativo" />
 					<button type="button" className={styles.sectionButton}>
 						Creativo
 					</button>
 				</div>
 				<div className={styles.sectionCard}>
-					<img src={tradicional} alt="tradicional" />
+					<img
+						src={tradicional}
+						alt="Categoría de ropa tradicional"
+					/>
 					<button type="button" className={styles.sectionButton}>
 						Tradicional
 					</button>
@@ -58,13 +61,13 @@ function BodySection() {
 
 			<div className={styles.sectionFila}>
 				<div className={styles.sectionCard}>
-					<img src={dramatico} alt="dramatico" />
+					<img src={dramatico} alt="Categoría de ropa dramático" />
 					<button type="button" className={styles.sectionButton}>
-						Dramatico
+						Dramático
 					</button>
 				</div>
 				<div className={styles.sectionCard}>
-					<img src={vintage} alt="vintage" />
+					<img src={vintage} alt="Categoría de ropa vintage" />
 					<button type="button" className={styles.sectionButton}>
 						Vintage
 					</button>
