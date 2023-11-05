@@ -3,11 +3,13 @@
 
 .bodySearch{
     display: grid;
-    grid-template-columns: 224px 224px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     background-color: white;
     border-radius: 5px;
     padding: 0.3rem;
-    padding-bottom: 0;
+    width: 28rem;
+    height: 38.2rem;
 }
 
 .divSearch{
@@ -15,8 +17,8 @@
 }
 
 .searchImg{
-    width: 14rem;
-    height: 98%;
+    width: 13.7em;
+    height: 18.6em;
     transition: 0.2s ease;
 }
 
@@ -46,32 +48,53 @@
 
 @media (max-width: 1310px){
     .bodySearchContainer{
-        width: 49.4rem;
+        width: 100%;
     }
     .bodySearch {
-        display: flex;
-        justify-content: center;
-        margin-left: 0px;
-        margin-top: 32px;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        margin: 0 auto;
+        width: 49.5rem;
+        height: 17rem;
+        margin-top: 1%;
     }    
+    .divSearch{
+        height: 100%;
+    }
     .searchImg{
-        width: 99%;
+        width: 12.1em;
+        height: 16.3em;
     }
 }
-@media (max-width: 768px){ 
+@media (max-width: 832px){ 
     .bodySearchContainer{
         width: 100%;
     }
+    .bodySearch {
+        width: 100%;
+    }    
     .searchImg{
-        width: 99%;
+        width: 100%;
     }
 }
-@media (max-width: 576px){ 
-    .bodySearch {
+
+@media (max-width: 578px){
+    .bodySearch{
         display: grid;
-        grid-template-columns: 50% 50%;
-    } 
-
-
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        width: 100%;
+        height: 100%;
+    }
+    .searchImg{
+        width: 100%;
+        height: 100%;
+    }
 }
+
+
+
+
+
+
+
 

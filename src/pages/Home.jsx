@@ -20,18 +20,17 @@ function Home() {
 	return (
 		<div className={styles.bodyHome}>
 			<Search />
-			{nProducts.map((x, index) => (
-				<div key={index}>
-					<div className={styles.bodyProducts}>
-						<BodySearchOne data={nProducts} />
-						<BodyRecomendadoOne data={nProducts} />
-					</div>
-					<div className={styles.bodyProductsTwo}>
-						<BodyRecomendadoTwo data={nProducts} />
-						<BodySearchTwo data={nProducts} />
-					</div>
+			<div>
+				<div className={styles.bodyProducts}>
+					<BodySearchOne data={nProducts} />
+					<BodyRecomendadoOne data={nProducts} />
 				</div>
-			))}
+				<div className={styles.bodyProductsTwo}>
+					<BodyRecomendadoTwo data={nProducts} />
+					<BodySearchTwo data={nProducts} />
+				</div>
+			</div>
+
 			<Pagination
 				setCurrentPage={setCurrentPage}
 				currentPage={currentPage}

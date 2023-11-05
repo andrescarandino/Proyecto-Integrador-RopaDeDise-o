@@ -7,7 +7,6 @@
     background: white;
     width: 49.4rem;
     height: 612px;
-    margin-left: 10px;
     border-radius: 5px;
     padding: 5px;
 }
@@ -68,6 +67,7 @@
     .recomendadoImg{
         width: 99%;
     }
+
     .recomendadoContainer{
         flex-direction: column;
         align-items: center;
