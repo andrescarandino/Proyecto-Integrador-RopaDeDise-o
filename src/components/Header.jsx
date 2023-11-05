@@ -38,9 +38,9 @@ function Header() {
 				)}
 				<div className={styles.headerLogin}>
 					<Link to="users/register">
-					<button type="button" className={styles.headerButton}>
-						crear cuenta
-					</button>
+						<button type="button" className={styles.headerButton}>
+							crear cuenta
+						</button>
 					</Link>
 					<div className={styles.headerLine} />
 					<Link to='users/login'>
