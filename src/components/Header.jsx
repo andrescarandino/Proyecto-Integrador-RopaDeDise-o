@@ -43,9 +43,11 @@ function Header() {
 					</button>
 					</Link>
 					<div className={styles.headerLine} />
+					<Link to='users/login'>
 					<button type="button" className={styles.headerButton}>
 						iniciar sesión
 					</button>
+					</Link>
 				</div>
 			</div>
 			{/* <hr className={styles.headerHr} /> */}
