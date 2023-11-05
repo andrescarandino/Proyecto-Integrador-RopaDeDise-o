@@ -1,8 +1,10 @@
 import { lazy } from 'react';
 
+
 const AdminHome = lazy(() => import('../pages/admin/AdminHome'));
 const CreateProduct = lazy(() => import('../pages/admin/CreateProduct'));
 const ProductDetail = lazy(() => import('../pages/ProductDetail'));
+const Register = lazy(() => import('../pages/users/Register'));
 const Home = lazy(() => import('../pages/Home'));
 const NotFound = lazy(() => import('../pages/NotFound'));
 
@@ -23,6 +25,10 @@ const routes = [
 	{
 		path: 'admin/products/create',
 		element: CreateProduct,
+	},
+	{
+		path: 'users/register',
+		element: Register,
 	},
 	{
 		path: '*',

@@ -37,9 +37,11 @@ function Header() {
 					</div>
 				)}
 				<div className={styles.headerLogin}>
+					<Link to="users/register">
 					<button type="button" className={styles.headerButton}>
 						crear cuenta
 					</button>
+					</Link>
 					<div className={styles.headerLine} />
 					<button type="button" className={styles.headerButton}>
 						iniciar sesión

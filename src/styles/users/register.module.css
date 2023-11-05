@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Euphoria+Script&family=Roboto:ital,wght@0,300;0,400;1,300;1,400;1,500&display=swap');
+
+.formContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: large;
+    font-style: italic;
+    color: #494949;
+  }
+  
+  label {
+    display: block;
+  }
+  
+  span {
+    display: block;
+    color: tomato;
+    font-size: small;
+    padding-bottom: .1rem;
+  }
+  
+  input {
+      margin-bottom: .5rem;
+      min-width: 50vh;
+      display: block;
+   }

@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import Layout from './pages/Layout';
 import routes from './routes/routes';
 import Spinner from './components/Spinner';
-import './styles/index.css';
+
 
 function App() {
 	return (

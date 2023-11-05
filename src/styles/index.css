@@ -92,8 +92,7 @@ label {
 	flex-direction: column;
 	gap: 0.45rem;
 	margin-bottom: 2rem;
-}
-
+} 
 .submit-button {
 	appearance: button;
 	background-color: #6c6c6c;
