@@ -1,0 +1,32 @@
+.navigation {
+	margin: 1.5rem auto;
+}
+
+.itemsContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 0.75rem;
+	list-style: none;
+}
+
+.item {
+	padding: 0.5rem 0.35rem;
+	width: 200px;
+	background-color: #ae9279;
+	background-color: var(--color-black-cow);
+	color: var(--color-white);
+	margin-inline-start: 16px;
+	border-radius: 5px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+}
+
+.titleItem {
+	font-weight: 700;
+	margin-inline-start: 0;
+	cursor: auto;
+}
