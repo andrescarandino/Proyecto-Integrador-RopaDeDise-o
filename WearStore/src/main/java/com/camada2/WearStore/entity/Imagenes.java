@@ -19,16 +19,18 @@ public class Imagenes {
     @Column(name = "titulo")
     private String titulo;
 
-    @Column(name = "descripcion")
-    private String descripcion;
-
-    @ManyToMany(mappedBy = "imagenes")
-    private List<Productos> productos;
 
     // Constructores, getters y setters
 
     public Imagenes() {
         // Constructor por defecto
+    }
+
+    public Imagenes(String ruta, String titulo) {
+        this.idImagenes = idImagenes;
+        this.ruta = ruta;
+        this.titulo = titulo;
+
     }
 
     public int getIdImagenes() {
@@ -55,20 +57,6 @@ public class Imagenes {
         this.titulo = titulo;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public List<Productos> getProductos() {
-        return productos;
-    }
-
-    public void setProductos(List<Productos> productos) {
-        this.productos = productos;
-    }
 }
 

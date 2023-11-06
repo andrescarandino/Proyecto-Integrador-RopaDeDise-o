@@ -68,9 +68,8 @@ public class Productos {
     inverseJoinColumns = @JoinColumn(name = "idReservas", referencedColumnName = "idReservas"))
     private List<Reservas> reservas;
 
-    @ManyToMany (fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinTable (name = "ProductoHasImagenes", joinColumns = @JoinColumn(name = "idProductos", referencedColumnName = "idProductos"),
-            inverseJoinColumns = @JoinColumn(name = "idImagenes", referencedColumnName = "idImagenes"))
+    @OneToMany
+    @JoinColumn (name = "producto_id")
     private List<Imagenes> imagenes;
 
     // Constructores, getters y setters

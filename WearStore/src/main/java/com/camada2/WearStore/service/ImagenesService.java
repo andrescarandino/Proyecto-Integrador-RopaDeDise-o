@@ -3,15 +3,89 @@ package com.camada2.WearStore.service;
 import com.camada2.WearStore.entity.Imagenes;
 import com.camada2.WearStore.repository.ImagenesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
+import org.springframework.util.FileSystemUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.stream.Stream;
+
 @Service
-public class ImagenesService implements IService<Imagenes,Imagenes> {
+public class ImagenesService implements IService<Imagenes,Imagenes>, IServiceImg {
 
      @Autowired
      private  ImagenesRepository imagenesRepository;
 
+     private final Path root = Paths.get("img");
+
+     @Override
+     public void iniciar(){
+         try {
+             Files.createDirectory(root);
+         } catch (IOException e) {
+             throw new RuntimeException(e);
+         }
+     }
+
+     @Override
+     public void guardarArchivo(MultipartFile archivo) {
+
+         try {
+             Files.copy(archivo.getInputStream(), this.root.resolve(archivo.getOriginalFilename()));
+         } catch (IOException e) {
+             throw new RuntimeException(e);
+         }
+
+     }
+
+    @Override
+     public Resource cargarArchivo(String nombreArchivo){
+
+         try {
+             Path archivo = root.resolve(nombreArchivo);
+             Resource recurso = new UrlResource(archivo.toUri());
+
+             if (recurso.exists() || recurso.isReadable()){
+                 return recurso;
+             }
+            throw new RuntimeException("Archivo no se puede leer");
+         } catch (MalformedURLException e) {
+             throw new RuntimeException("Error: "+ e.getMessage());
+         }
+     }
+
+    @Override
+     public void borrarTodasImagenes(){
+         FileSystemUtils.deleteRecursively(root.toFile());
+     }
+
+    @Override
+     public Stream<Path> cargarTodasImagenes(){
+        try {
+            return Files.walk(this.root, 1).filter(path -> !path.equals(this.root))
+                    .map(this.root::relativize);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    @Override
+     public String borrarArchivo(String archivo) {
+        try {
+            Boolean borrar = Files.deleteIfExists(this.root.resolve(archivo));
+            return "Archivo Borrado";
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+     }
 
     @Override
     public Imagenes guardar(Imagenes imagenes) {
@@ -30,6 +104,6 @@ public class ImagenesService implements IService<Imagenes,Imagenes> {
 
     @Override
     public void eliminar(Integer i) {
-imagenesRepository.findById(i);
+        imagenesRepository.findById(i);
     }
 }
