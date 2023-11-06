@@ -4,6 +4,7 @@ import Layout from './pages/Layout';
 import routes from './routes/routes';
 import Spinner from './components/Spinner';
 
+
 function App() {
 	return (
 		<Suspense fallback={<Spinner />}>
