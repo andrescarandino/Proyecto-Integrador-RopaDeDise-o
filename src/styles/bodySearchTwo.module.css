@@ -1,19 +1,23 @@
 .bodySearch {
 	display: grid;
-	grid-template-columns: 224px 224px;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr 1fr;
 	background-color: white;
 	border-radius: 5px;
 	padding: 0.3rem;
-	padding-bottom: 0;
+	width: 28rem;
+	height: 38.2rem;
 }
 
 .divSearch {
 	position: relative;
+	width: 13.7em;
+	height: 18.6em;
 }
 
-.searchImg {
-	width: 14rem;
-	height: 98%;
+.divSearch Img {
+	width: 100%;
+	height: 100%;
 	transition: 0.2s ease;
 }
 
@@ -42,30 +46,55 @@
 }
 
 @media (max-width: 1310px) {
-	.bodySearchContainer {
-		width: 49.4rem;
-	}
 	.bodySearch {
-		display: flex;
-		justify-content: center;
-		margin-left: 0px;
-		margin-top: 32px;
+		grid-template-columns: 1fr 1fr 1fr 1fr;
+		width: 49.5rem;
+		height: 17rem;
+		margin-top: 3%;
 	}
-	.searchImg {
-		width: 99%;
+	.divSearch {
+		width: 100%;
+		height: 16.3em;
+	}
+	.divSearch Img {
+		height: 100%;
 	}
 }
-@media (max-width: 768px) {
-	.bodySearchContainer {
+@media (max-width: 832px) {
+	.bodySearch {
 		width: 100%;
 	}
-	.searchImg {
-		width: 99%;
+	.divSearch {
+		width: 100%;
+	}
+	.divSearch Img {
+		height: 100%;
 	}
 }
-@media (max-width: 576px) {
+
+@media (max-width: 768px) {
+	.bodySearch {
+		width: 100%;
+		height: 15rem;
+	}
+	.divSearch {
+		width: 100%;
+		height: 14.5rem;
+	}
+	.divSearch Img {
+		height: 100%;
+	}
+}
+@media (max-width: 578px) {
 	.bodySearch {
 		display: grid;
-		grid-template-columns: 50% 50%;
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: 1fr 1fr;
+		width: 100%;
+		height: 100%;
+	}
+	.searchImg {
+		width: 100%;
+		height: 100%;
 	}
 }

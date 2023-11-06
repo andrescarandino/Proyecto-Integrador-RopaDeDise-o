@@ -4,6 +4,8 @@ const AdminHome = lazy(() => import('../pages/admin/AdminHome'));
 const CreateProduct = lazy(() => import('../pages/admin/CreateProduct'));
 const ListProducts = lazy(() => import('../pages/admin/ListProduct'));
 const ProductDetail = lazy(() => import('../pages/ProductDetail'));
+const Register = lazy(() => import('../pages/users/Register'));
+const Login = lazy(() => import('../pages/users/Login'));
 const Home = lazy(() => import('../pages/Home'));
 const NotFound = lazy(() => import('../pages/NotFound'));
 
@@ -28,6 +30,14 @@ const routes = [
 	{
 		path: 'admin/products/list',
 		element: ListProducts,
+	},
+	{
+		path: 'users/register',
+		element: Register,
+	},
+	{
+		path: 'users/login',
+		element: Login,
 	},
 	{
 		path: '*',

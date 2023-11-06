@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { IoIosImage, IoMdCheckmarkCircleOutline } from 'react-icons/io';
 import { useCreateProduct, useToast } from '../../hooks';
 import * as createProductStyles from '../../styles/admin/createProduct.module.css';
 
@@ -53,27 +54,38 @@ function CreateProduct() {
 				</p>
 				<div className={createProductStyles.formContainer}>
 					<div className={createProductStyles.galleryContainer}>
-						{preview?.images?.length > 0
-							? preview?.images?.map((image, index) => (
-									<div className="imageContainer">
-										<div
-											className={
-												createProductStyles.imageItem
-											}
-										>
-											<img
-												src={image}
-												alt={`Previsualización de la imagen ${
-													index + 1
-												}`}
-												key={image}
-												width={200}
-												height={200}
-											/>
-										</div>
+						{preview?.images?.length > 0 ? (
+							preview?.images?.map((image, index) => (
+								<div
+									className={
+										createProductStyles.imageContainer
+									}
+								>
+									<div
+										className={
+											createProductStyles.imageItem
+										}
+									>
+										<img
+											src={image}
+											alt={`Previsualización de la imagen ${
+												index + 1
+											}`}
+											key={image}
+											width={200}
+											height={200}
+										/>
 									</div>
-							  ))
-							: '🙃 No hay imágenes cargadas.'}
+								</div>
+							))
+						) : (
+							<>
+								🙃 No hay imágenes cargadas.
+								<IoIosImage
+									className={createProductStyles.imageIcon}
+								/>
+							</>
+						)}
 					</div>
 					<form
 						onSubmit={handleSubmit(onSubmit)}
@@ -151,7 +163,10 @@ function CreateProduct() {
 							)}
 						</div>
 						<button type="submit" className="submit-button">
-							Agregar producto ✨
+							Agregar producto
+							<IoMdCheckmarkCircleOutline
+								className={createProductStyles.buttonIcon}
+							/>
 						</button>
 					</form>
 				</div>

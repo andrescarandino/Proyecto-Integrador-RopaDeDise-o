@@ -36,33 +36,33 @@
 	text-decoration: none;
 }
 
-.descriptionDivContainer {
-	display: flex;
-	margin-top: 1%;
-	gap: 10px;
-}
-
 .descriptionContainer {
-	display: flex;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
 	background-color: white;
 	border-radius: 5px;
 	padding: 10px;
-	width: 210rem;
+	margin-top: 1%;
+	gap: 5px;
 }
 
 .descriptionBigImg {
-	width: 50%;
-	margin-right: 1%;
+	width: 25rem;
 }
 .descriptionBigImg img {
-	height: 100%;
 	width: 100%;
+	box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
 }
+
 .descriptionImg {
-	display: flex;
-	flex-wrap: wrap;
-	width: 54%;
-	gap: 10px;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	row-gap: 5px;
+	column-gap: 5px;
+}
+.descriptionImg img {
+	width: 12.25rem;
+	box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
 }
 
 .descriptionP {
@@ -73,6 +73,8 @@
 	border-radius: 5px;
 	color: #464646;
 	background-color: white;
+	box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+	height: 99.2%;
 }
 
 .descriptionFooter {
@@ -84,18 +86,31 @@
 .descriptionButton {
 	background-color: #464646;
 	border: none;
-	padding: 0.5rem 0.7rem;
+	padding: 0.42rem 0.7rem;
 	border-radius: 3px;
 	cursor: pointer;
 }
 
-@media (max-width: 1260px) {
-	.descriptionDivContainer {
-		flex-wrap: wrap;
+.descriptionButton:hover {
+	box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 1280px) {
+	.descriptionBigImg {
+		width: 100%;
 	}
-	.descriptionContainer {
-		justify-content: center;
+	.descriptionImg {
+		width: 100%;
+	}
+	.descriptionImg img {
+		width: 100%;
 	}
 }
-@media (max-width: 390px) {
+@media (max-width: 1020px) {
+	.descriptionContainer {
+		grid-template-columns: 1fr 1fr;
+	}
+	.descriptionP {
+		grid-column-end: span 2;
+	}
 }
