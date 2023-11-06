@@ -17,6 +17,10 @@ function AdminHome() {
 		navigate('/admin/products/create');
 	};
 
+	const goToListProducts = () => {
+		navigate('/admin/products/list');
+	};
+
 	return width > 768 ? (
 		<div className={createProductStyles.container}>
 			<header className={createProductStyles.headerContainer}>
@@ -53,7 +57,11 @@ function AdminHome() {
 						>
 							Agregar producto <IconArrowNarrowRight />
 						</li>
-						<li className={menuStyles.item}>
+						<li
+							className={menuStyles.item}
+							onClick={goToListProducts}
+							role="menuitem"
+						>
 							Listado de productos <IconArrowNarrowRight />
 						</li>
 					</ul>
