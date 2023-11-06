@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect } from 'react';
 import * as createProductStyles from '../../styles/admin/createProduct.module.css';
+import { useToast } from '../../hooks';
 
 function CreateProduct() {
 	const [state, setState] = React.useState({
@@ -9,6 +10,8 @@ function CreateProduct() {
 		description: '',
 		images: [],
 	});
+	const toast = useToast();
+
 	const onSubmit = (e) => {
 		e.preventDefault();
 
@@ -99,6 +102,13 @@ function CreateProduct() {
 						</div>
 						<button type="submit" className="submit-button">
 							Agregar producto ✨
+						</button>
+						<button
+							type="button"
+							className="submit-button"
+							onClick={() => toast.error('Example')}
+						>
+							Mostrar toast{' '}
 						</button>
 					</form>
 				</div>
