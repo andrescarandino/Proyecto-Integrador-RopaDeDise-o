@@ -93,7 +93,7 @@ label {
 	gap: 0.45rem;
 	margin-bottom: 2rem;
 } 
-.submit-button {
+/* .submit-button {
 	appearance: button;
 	background-color: #6c6c6c;
 	background-image: none;
@@ -120,7 +120,7 @@ label {
 	-webkit-user-select: none;
 	vertical-align: middle;
 	white-space: nowrap;
-}
+} */
 
 .submit-button:focus {
 	text-decoration: none;

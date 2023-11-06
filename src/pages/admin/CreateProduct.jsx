@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect } from 'react';
+import { IoIosImage, IoMdCheckmarkCircleOutline } from 'react-icons/io';
 import * as createProductStyles from '../../styles/admin/createProduct.module.css';
 
 function CreateProduct() {
@@ -35,14 +36,16 @@ function CreateProduct() {
 				</p>
 				<div className={createProductStyles.formContainer}>
 					<div className={createProductStyles.galleryContainer}>
-						<div className="imageContainer">
+						<div className={createProductStyles.imageContainer}>
 							<div className={createProductStyles.imageItem}>
 								{/* <img
 									src="https://i.imgur.com/s05AhrD.png"
 									alt=""
 								/> */}
-								👁️ Aquí se verá la previsualización del
-								producto.
+								<IoIosImage
+									className={createProductStyles.imageIcon}
+								/>
+								Aquí se verá la previsualización del producto.
 							</div>
 						</div>
 					</div>
@@ -98,7 +101,10 @@ function CreateProduct() {
 							/>
 						</div>
 						<button type="submit" className="submit-button">
-							Agregar producto ✨
+							Agregar producto
+							<IoMdCheckmarkCircleOutline
+								className={createProductStyles.buttonIcon}
+							/>
 						</button>
 					</form>
 				</div>
