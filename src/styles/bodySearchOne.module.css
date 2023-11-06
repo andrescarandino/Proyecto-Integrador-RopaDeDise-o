@@ -14,11 +14,13 @@
 
 .divSearch{
     position: relative;
-}
-
-.searchImg{
     width: 13.7em;
     height: 18.6em;
+}
+
+.divSearch Img{
+    width: 100%;
+    height: 100%;
     transition: 0.2s ease;
 }
 
@@ -47,36 +49,45 @@
 }
 
 @media (max-width: 1310px){
-    .bodySearchContainer{
-        width: 100%;
-    }
     .bodySearch {
         grid-template-columns: 1fr 1fr 1fr 1fr;
-        margin: 0 auto;
         width: 49.5rem;
         height: 17rem;
         margin-top: 1%;
     }    
     .divSearch{
-        height: 100%;
-    }
-    .searchImg{
-        width: 12.1em;
+        width: 100%;
         height: 16.3em;
+    }
+    .divSearch Img{
+        height: 100%;
     }
 }
 @media (max-width: 832px){ 
-    .bodySearchContainer{
-        width: 100%;
-    }
     .bodySearch {
         width: 100%;
     }    
-    .searchImg{
+    .divSearch{
         width: 100%;
+    }
+    .divSearch Img{
+        height: 100%;
     }
 }
 
+@media (max-width: 768px){
+    .bodySearch {
+        width: 100%;
+        height: 15rem;
+    }    
+    .divSearch{
+        width: 100%;
+        height: 14.5rem;
+    }
+    .divSearch Img{
+        height: 100%;
+    }
+}
 @media (max-width: 578px){
     .bodySearch{
         display: grid;

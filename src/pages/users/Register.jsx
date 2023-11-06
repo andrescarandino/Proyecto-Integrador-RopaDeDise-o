@@ -23,6 +23,7 @@ function Register() {
 			<form onSubmit={onSubmit}>
 				<label type="text">Nombre:</label>
 				<input
+					className={styles.formInput}
 					type="text"
 					name="nombre"
 					{...register('nombre', {
@@ -45,6 +46,7 @@ function Register() {
 
 				<label>Apellido:</label>
 				<input
+					className={styles.formInput}
 					type="text"
 					name="apellido"
 					{...register('apellido', {
@@ -67,6 +69,7 @@ function Register() {
 
 				<label>Email:</label>
 				<input
+					className={styles.formInput}
 					type="email"
 					name="email"
 					{...register('email', {
@@ -84,6 +87,7 @@ function Register() {
 
 				<label>Contraseña:</label>
 				<input
+					className={styles.formInput}
 					type="password"
 					name="password"
 					{...register('password', {
@@ -107,6 +111,7 @@ function Register() {
 
 				<label>Confirmar contraseña:</label>
 				<input
+					className={styles.formInput}
 					type="password"
 					name="confirmPassword"
 					{...register('confirmPassword', {

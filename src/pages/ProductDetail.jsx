@@ -16,17 +16,16 @@ function ProductDetail() {
 					</Link>
 				</button>
 			</div>
-			<div className={styles.descriptionDivContainer}>
-				<div className={styles.descriptionContainer}>
-					<div className={styles.descriptionBigImg}>
-						<img src={img} alt="" />
-					</div>
-					<div className={styles.descriptionImg}>
-						<img src={img} alt="" />
-						<img src={img} alt="" />
-						<img src={img} alt="" />
-						<img src={img} alt="" />
-					</div>
+
+			<div className={styles.descriptionContainer}>
+				<div className={styles.descriptionBigImg}>
+					<img src={img} alt="" />
+				</div>
+				<div className={styles.descriptionImg}>
+					<img src={img} alt="" />
+					<img src={img} alt="" />
+					<img src={img} alt="" />
+					<img src={img} alt="" />
 				</div>
 				<div className={styles.descriptionP}>
 					<p>

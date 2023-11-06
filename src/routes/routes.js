@@ -1,6 +1,5 @@
 import { lazy } from 'react';
 
-
 const AdminHome = lazy(() => import('../pages/admin/AdminHome'));
 const CreateProduct = lazy(() => import('../pages/admin/CreateProduct'));
 const ProductDetail = lazy(() => import('../pages/ProductDetail'));

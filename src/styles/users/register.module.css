@@ -21,7 +21,7 @@
     padding-bottom: .1rem;
   }
   
-  input {
+  .formInput {
       margin-bottom: .5rem;
       min-width: 50vh;
       display: block;
