@@ -169,6 +169,7 @@ dist
 hs_err_pid*
 replay_pid*
 *.xml
+*.idea
 
 # End of https://www.toptal.com/developers/gitignore/api/java
 
