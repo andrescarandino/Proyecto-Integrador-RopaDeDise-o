@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import {
 	IconAlertCircleFilled,
 	IconCircleCheckFilled,
@@ -5,6 +6,7 @@ import {
 	IconInfoCircleFilled,
 	IconX,
 } from '@tabler/icons-react';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import PropTypes from 'prop-types';
 import { useRef, useEffect, useState } from 'react';
 // eslint-disable-next-line import/no-cycle

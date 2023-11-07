@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useRef } from 'react';
 import styles from '../../styles/users/login.module.css';
 
-function Register() {
+function Login() {
 	const {
 		register,
 		handleSubmit,
@@ -44,4 +44,4 @@ function Register() {
 	);
 }
 
-export default Register;
+export default Login;
