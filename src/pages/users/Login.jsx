@@ -38,7 +38,7 @@ function Register() {
 					{...register('password')}
 				/>
 
-				<button type="button">Ingresar</button>
+				<button type="submit">Ingresar</button>
 			</form>
 		</div>
 	);

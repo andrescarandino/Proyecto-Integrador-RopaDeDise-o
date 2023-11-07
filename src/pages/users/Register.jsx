@@ -14,6 +14,7 @@ function Register() {
 	} = useForm();
 
 	const onSubmit = handleSubmit((data) => {
+		console.log(errors);
 		reset();
 	});
 
@@ -140,7 +141,7 @@ function Register() {
 					<span>{errors.confirmPassword.message}</span>
 				)}
 
-				<button type="button">Registrar</button>
+				<button type="submit">Registrar</button>
 			</form>
 		</div>
 	);
