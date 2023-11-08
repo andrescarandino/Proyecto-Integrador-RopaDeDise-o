@@ -3,6 +3,7 @@ import {
 	IconArrowNarrowRight,
 	IconBuildingStore,
 	IconUserFilled,
+	IconCategoryFilled,
 } from '@tabler/icons-react';
 import { useNavigate } from 'react-router-dom';
 import * as createProductStyles from '../../styles/admin/createProduct.module.css';
@@ -17,6 +18,14 @@ function AdminHome() {
 
 	const goToListProducts = () => {
 		navigate('/admin/products/list');
+	};
+
+	const goToCreateCategories = () => {
+		navigate('/admin/categories/create');
+	};
+
+	const goToListCategories = () => {
+		navigate('/admin/categories/list');
 	};
 
 	return (
@@ -60,7 +69,26 @@ function AdminHome() {
 							onClick={goToListProducts}
 							role="menuitem"
 						>
-							Listado de productos <IconArrowNarrowRight />
+							Lista de productos <IconArrowNarrowRight />
+						</li>
+						<li
+							className={`${menuStyles.item} ${menuStyles.titleItem}`}
+						>
+							<IconCategoryFilled /> Categorías
+						</li>
+						<li
+							className={menuStyles.item}
+							onClick={goToCreateCategories}
+							role="menuitem"
+						>
+							Agregar categoría <IconArrowNarrowRight />
+						</li>
+						<li
+							className={menuStyles.item}
+							onClick={goToListCategories}
+							role="menuitem"
+						>
+							Lista de categorías <IconArrowNarrowRight />
 						</li>
 					</ul>
 				</nav>
