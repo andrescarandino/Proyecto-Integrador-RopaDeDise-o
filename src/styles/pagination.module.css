@@ -4,7 +4,35 @@
 	align-items: center;
 	width: 10rem;
 	margin: 2rem auto;
+	-webkit-animation: fade-in-bck 2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+			animation: fade-in-bck 2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 }
+
+ @-webkit-keyframes fade-in-bck {
+	0% {
+	  -webkit-transform: translateZ(80px);
+			  transform: translateZ(80px);
+	  opacity: 0;
+	}
+	100% {
+	  -webkit-transform: translateZ(0);
+			  transform: translateZ(0);
+	  opacity: 1;
+	}
+  }
+  @keyframes fade-in-bck {
+	0% {
+	  -webkit-transform: translateZ(80px);
+			  transform: translateZ(80px);
+	  opacity: 0;
+	}
+	100% {
+	  -webkit-transform: translateZ(0);
+			  transform: translateZ(0);
+	  opacity: 1;
+	}
+  }
+  
 
 .paginationContainer button {
 	border: none;
