@@ -13,7 +13,7 @@ function Login() {
 		reset,
 	} = useForm();
 
-	const onSubmit = handleSubmit((data) => {
+	const onSubmit = handleSubmit((/*data*/) => {
 		reset();
 	});
 	const password = useRef(null);

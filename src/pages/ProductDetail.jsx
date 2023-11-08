@@ -1,15 +1,16 @@
 import { Link, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { IoIosClose } from 'react-icons/io';
+import ReactSlidy from 'react-slidy';
 import styles from '../styles/productDetail.module.css';
 import MockData from '../../MOCK_DATA.json';
-import ReactSlidy from 'react-slidy';
 
 function ProductDetail() {
 	const [slidyActive, setSlidyActive] = useState(false);
 	const params = useParams();
 	const { id } = params;
 	const img = MockData[id - 1].image_url;
+	const { description } = MockData[id - 1];
 
 	const handleSlidy = () => {
 		setSlidyActive(!slidyActive);
@@ -37,12 +38,7 @@ function ProductDetail() {
 					<img src={img} alt="" />
 				</div>
 				<div className={styles.descriptionP}>
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-						sed do eiusmod tempor incididunt ut labore et dolore
-						magna aliqua. Aliquam vestibulum morbi blandit cursus.
-						Enim sed faucibus turpis in eu mi bibendum.
-					</p>
+					<p>{description}</p>
 					<div className={styles.descriptionFooter}>
 						<h4>$00,00</h4>
 						<button

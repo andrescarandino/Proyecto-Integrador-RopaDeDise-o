@@ -37,6 +37,9 @@
 .recomendadoDetail:hover {
 	box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.2);
 }
+.recomendadoP{
+	height: 10rem;
+}
 .recomendadoButton {
 	background-color: #ae9279;
 	border: none;
@@ -65,6 +68,9 @@
 @media (max-width: 768px) {
 	.recomendadoImg {
 		width: 99%;
+	}
+	.recomendadoP{
+		height: 100%;
 	}
 
 	.recomendadoContainer {

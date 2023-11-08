@@ -13,13 +13,8 @@ function BodyRecomendadoOne({ data }) {
 			/>
 
 			<div className={styles.recomendadoDetail}>
-				<h2 className={styles.recomendadoH2}>Lorem Ipsum</h2>
-				<p className={styles.recomendadoP}>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-					do eiusmod tempor incididunt ut labore et dolore magna
-					aliqua. Aliquam vestibulum morbi blandit cursus. Enim sed
-					faucibus turpis in eu mi bibendum.
-				</p>
+				<h2 className={styles.recomendadoH2}>{data[8].name}</h2>
+				<p className={styles.recomendadoP}>{data[8].description}</p>
 				<div>
 					<IoIosStarOutline />
 					<IoIosStarOutline />

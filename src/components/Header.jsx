@@ -2,8 +2,10 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { IoMdMenu, IoMdClose } from 'react-icons/io';
 import styles from '../styles/header.module.css';
+import UserActive from './UserActive';
 
 function Header() {
+	const [usuarioActive, setUsuarioActive] = useState(true);
 	const [menuActive, setMenuActive] = useState(false);
 	const handleMenu = () => {
 		setMenuActive(!menuActive);
@@ -36,19 +38,28 @@ function Header() {
 						</button>
 					</div>
 				)}
-				<div className={styles.headerLogin}>
-					<Link to="users/register">
-						<button type="button" className={styles.headerButton}>
-							crear cuenta
-						</button>
-					</Link>
-					<div className={styles.headerLine} />
-					<Link to="users/login">
-						<button type="button" className={styles.headerButton}>
-							iniciar sesión
-						</button>
-					</Link>
-				</div>
+				{!usuarioActive && (
+					<div className={styles.headerLogin}>
+						<Link to="users/register">
+							<button
+								type="button"
+								className={styles.headerButton}
+							>
+								crear cuenta
+							</button>
+						</Link>
+						<div className={styles.headerLine} />
+						<Link to="users/login">
+							<button
+								type="button"
+								className={styles.headerButton}
+							>
+								iniciar sesión
+							</button>
+						</Link>
+					</div>
+				)}
+				{usuarioActive && <UserActive />}
 			</div>
 			{/* <hr className={styles.headerHr} /> */}
 		</div>
