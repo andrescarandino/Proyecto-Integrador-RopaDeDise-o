@@ -14,6 +14,7 @@ function Register() {
 	} = useForm();
 
 	const onSubmit = handleSubmit((data) => {
+		// eslint-disable-next-line no-console
 		console.log(errors);
 		reset();
 	});
