@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { IoMdMenu, IoMdClose } from 'react-icons/io';
