@@ -20,26 +20,36 @@ function Login() {
 	password.current = watch('password', '');
 
 	return (
-		<div className={styles.formContainer}>
-			<form onSubmit={onSubmit}>
-				<label>Email:</label>
-				<input
-					className={styles.formInput}
-					type="email"
-					name="email"
-					{...register('email')}
-				/>
+		<div className={styles.bodyContainer}>
+			<div className={styles.formContainer}>
+				<div className={styles.formLogo}>
+					<h1>carolki.</h1>
+					<h3>...diseñamos pasión</h3>
+				</div>
+				<form onSubmit={onSubmit}>
+					{/* <label>Email:</label> */}
+					<input
+						placeholder="Email"
+						className={styles.formInput}
+						type="email"
+						name="email"
+						{...register('email')}
+					/>
 
-				<label>Contraseña:</label>
-				<input
-					className={styles.formInput}
-					type="password"
-					name="password"
-					{...register('password')}
-				/>
+					{/* <label>Contraseña:</label> */}
+					<input
+						placeholder="Contraseña"
+						className={styles.formInput}
+						type="password"
+						name="password"
+						{...register('password')}
+					/>
 
-				<button type="submit">Ingresar</button>
-			</form>
+					<button className={styles.formButton} type="submit">
+						Ingresar
+					</button>
+				</form>
+			</div>
 		</div>
 	);
 }
