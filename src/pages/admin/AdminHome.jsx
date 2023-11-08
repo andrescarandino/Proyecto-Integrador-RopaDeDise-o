@@ -7,11 +7,9 @@ import {
 import { useNavigate } from 'react-router-dom';
 import * as createProductStyles from '../../styles/admin/createProduct.module.css';
 import * as menuStyles from '../../styles/admin/menu.module.css';
-import { useWindowDimensions } from '../../hooks';
 
 function AdminHome() {
 	const navigate = useNavigate();
-	const { width } = useWindowDimensions();
 
 	const goToCreateProduct = () => {
 		navigate('/admin/products/create');
@@ -21,7 +19,7 @@ function AdminHome() {
 		navigate('/admin/products/list');
 	};
 
-	return width > 768 ? (
+	return (
 		<div className={createProductStyles.container}>
 			<header className={createProductStyles.headerContainer}>
 				<h2 className={createProductStyles.title}>
@@ -67,13 +65,6 @@ function AdminHome() {
 					</ul>
 				</nav>
 			</section>
-		</div>
-	) : (
-		<div>
-			<p style={{ textAlign: 'center', color: 'red' }}>
-				🎈 No es posible acceder al panel administrativo desde un
-				dispositivo móvil.
-			</p>
 		</div>
 	);
 }

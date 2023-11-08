@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-unused-vars */
 import { useForm } from 'react-hook-form';
 import { useRef } from 'react';

@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import { useForm } from 'react-hook-form';
 import { useRef } from 'react';
 import styles from '../../styles/users/register.module.css';

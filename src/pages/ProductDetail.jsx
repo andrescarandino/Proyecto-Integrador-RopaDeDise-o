@@ -1,6 +1,8 @@
-import { Link, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { IoIosClose } from 'react-icons/io';
+import { Link, useParams } from 'react-router-dom';
+import ReactSlidy from 'react-slidy';
+import MockData from '../../MOCK_DATA.json';
 import ReactSlidy from 'react-slidy';
 import styles from '../styles/productDetail.module.css';
 import MockData from '../../MOCK_DATA.json';
