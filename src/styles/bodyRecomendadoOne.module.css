@@ -11,6 +11,9 @@
 	-webkit-animation: fade-in-right 0.7s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 	animation: fade-in-right 0.7s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 }
+.recomendadoContainer:hover{
+	filter: saturate(120%);
+}
 
 @-webkit-keyframes fade-in-right {
 	0% {
