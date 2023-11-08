@@ -23,6 +23,7 @@ public class UsuarioServices implements IService<Usuarios,Usuarios> {
     @Transactional
     @Override
     public Usuarios guardar(Usuarios usuarios) {
+        usuarios.setUser(usuarios.getNombre()+usuarios.getApellido());
 
         return usuariosRepository.save(usuarios);
     }
