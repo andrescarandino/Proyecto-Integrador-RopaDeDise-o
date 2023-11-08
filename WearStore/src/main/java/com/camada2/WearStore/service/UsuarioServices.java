@@ -6,6 +6,7 @@ import com.camada2.WearStore.exeptions.UsuarioInexistenteExeption;
 import com.camada2.WearStore.repository.UsuariosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,7 +20,7 @@ public class UsuarioServices implements IService<Usuarios,Usuarios> {
     @Autowired
     MailServices mailServices;
 
-
+    @Transactional
     @Override
     public Usuarios guardar(Usuarios usuarios) {
 
@@ -44,8 +45,9 @@ public class UsuarioServices implements IService<Usuarios,Usuarios> {
         usuariosRepository.deleteById(i);
 
     }
-
-    public Usuarios generarVerificacionEmail(String user){
+    @Transactional
+    public Usuarios generarVerificacionEmail(String user, Usuarios usuarios){
+        usuariosRepository.save(usuarios);
         Usuarios usuario=usuariosRepository.findByUser(user).orElseThrow(UsuarioInexistenteExeption::new);
        try {
 

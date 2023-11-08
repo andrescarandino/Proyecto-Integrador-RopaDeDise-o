@@ -25,23 +25,24 @@ public class UsuarioController {
 
 
     @ExceptionHandler(EmailException.class)
-    public ResponseEntity<String> handlFaliedSendEmail(){
+    public ResponseEntity<String> falloAlEnviarEmail(){
         return new ResponseEntity<String>("El email no se puedo enviar , intente mas tarde",HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(UsuarioInexistenteExeption.class)
-    public ResponseEntity<String> handlerUserNotExist(){
+    public ResponseEntity<String> UsuarioNoExiste(){
         return new ResponseEntity<String>("el usuario no existe",HttpStatus.NOT_FOUND);
 
 
     }
-
-    @PostMapping("/")
-    public ResponseEntity<Usuarios>guardarUsuario(@RequestBody Usuarios u ){
-        Usuarios usuario=usuarioServices.guardar(u);
-        return ResponseEntity.status(HttpStatus.CREATED).body(usuario);
-
+    @PostMapping
+    public ResponseEntity<Usuarios> guardarUsuario(@RequestBody Usuarios usuario) {
+        Usuarios usuarioGuardado = usuarioServices.guardar(usuario);
+        usuarioServices.generarVerificacionEmail(usuario.getUser(), usuarioGuardado);
+        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioGuardado);
     }
+
+
 
     @PutMapping("/actualizarU")
     public ResponseEntity<Usuarios>ActualizarUsuario(@RequestBody Usuarios u ){
@@ -66,13 +67,7 @@ public class UsuarioController {
 
 
     }
-    @PostMapping("/email")
-    public ResponseEntity<String>createEmailVerification(@RequestBody LinkedHashMap<String, String> body) throws EmailException {
 
-        usuarioServices.generarVerificacionEmail(body.get("user"));
-        return new ResponseEntity<String>("verificacion de codigo generada ,email enviado",HttpStatus.OK);
-
-    }
 
 
 
