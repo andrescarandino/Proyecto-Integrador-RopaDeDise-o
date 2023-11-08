@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { IoMdArrowDropdown, IoMdArrowDropup, IoIosLogOut} from 'react-icons/io';
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import { IoIosLogOut } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 import styles from '../styles/userActive.module.css';
 

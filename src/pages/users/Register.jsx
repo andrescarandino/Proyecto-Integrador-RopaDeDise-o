@@ -18,7 +18,7 @@ function Register() {
 
 	const password = useRef(null);
 	password.current = watch('password', '');
-	console.log(password);
+	// console.log(password);
 
 	return (
 		<div className={styles.bodyContainer}>
