@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface IService <T, E>{
 
-    public E guardar(T t);
+    public E guardar(T t) throws Exception;
 
 
 

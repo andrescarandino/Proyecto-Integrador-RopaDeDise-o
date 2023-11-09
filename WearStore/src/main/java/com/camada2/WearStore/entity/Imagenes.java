@@ -1,6 +1,7 @@
 package com.camada2.WearStore.entity;
 
 import jakarta.persistence.*;
+import org.springframework.lang.NonNull;
 
 import java.util.List;
 
@@ -14,9 +15,11 @@ public class Imagenes {
     private int idImagenes;
 
     @Column(name = "ruta")
+    @Transient
     private String ruta;
 
     @Column(name = "titulo")
+    @NonNull
     private String titulo;
 
 

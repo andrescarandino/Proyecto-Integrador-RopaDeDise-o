@@ -15,7 +15,6 @@ import java.util.List;
 public class Productos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name = "idProductos")
     private Integer idProductos;
 
@@ -76,6 +75,23 @@ public class Productos {
 
     public Productos() {
         // Constructor por defecto
+    }
+
+    public Productos(String nombre, String descripcion, Double precio, Integer cantidad, Calendar fechaCreacion, Calendar fechaModificacion, Calendar fechaEliminacion, TipoProductos tipoProductos, Generos generos, Colores colores, Tallas tallas, Categorias categorias, List<Reservas> reservas, List<Imagenes> imagenes) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.cantidad = cantidad;
+        this.fechaCreacion = fechaCreacion;
+        this.fechaModificacion = fechaModificacion;
+        this.fechaEliminacion = fechaEliminacion;
+        this.tipoProductos = tipoProductos;
+        this.generos = generos;
+        this.colores = colores;
+        this.tallas = tallas;
+        this.categorias = categorias;
+        this.reservas = reservas;
+        this.imagenes = imagenes;
     }
 
     // Getters y setters
