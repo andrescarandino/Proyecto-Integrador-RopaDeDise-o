@@ -1,6 +1,0 @@
-# Activar el ambiente que se necesite desarrollo o produccion
-
-spring:
-  profiles:
-    active: dev
-    #active: prod

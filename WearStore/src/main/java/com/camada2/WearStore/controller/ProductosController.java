@@ -3,7 +3,7 @@ package com.camada2.WearStore.controller;
 
 import com.camada2.WearStore.entity.Imagenes;
 import com.camada2.WearStore.entity.Productos;
-//import com.camada2.WearStore.service.ImagenesService;
+import com.camada2.WearStore.service.ImagenesService;
 import com.camada2.WearStore.service.ProductoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +27,8 @@ public class ProductosController {
     @Autowired
     private ProductoService productoService;
 
-//    @Autowired
-//    private ImagenesService imagenesService;
+    @Autowired
+    private ImagenesService imagenesService;
 
 
     ObjectMapper objectMapper = new ObjectMapper();
@@ -53,18 +53,18 @@ public class ProductosController {
     @PostMapping
     public ResponseEntity<Productos> guardarProducto(@ModelAttribute Productos producto, @RequestParam("archivos") MultipartFile[] archivos) throws Exception {
 
-//        List<Imagenes> archivosNombre = new ArrayList<>();
-//        Arrays.asList(archivos).stream().forEach(archivo -> {
-//
-//            imagenesService.guardarArchivo(archivo);
-//            Imagenes imagen = new Imagenes();
-//            imagen.setTitulo(archivo.getOriginalFilename());
-//            imagen.setRuta(Paths.get("img")+archivo.getOriginalFilename());
-//            archivosNombre.add(imagen);
-//            imagenesService.guardar(imagen);
-//        });
+        List<Imagenes> archivosNombre = new ArrayList<>();
+        Arrays.asList(archivos).stream().forEach(archivo -> {
 
-//        producto.setImagenes(archivosNombre);
+            imagenesService.guardarArchivo(archivo);
+            Imagenes imagen = new Imagenes();
+            imagen.setTitulo(archivo.getOriginalFilename());
+            imagen.setRuta(Paths.get("img")+archivo.getOriginalFilename());
+            archivosNombre.add(imagen);
+            imagenesService.guardar(imagen);
+        });
+
+        producto.setImagenes(archivosNombre);
         productoService.guardar(producto);
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
