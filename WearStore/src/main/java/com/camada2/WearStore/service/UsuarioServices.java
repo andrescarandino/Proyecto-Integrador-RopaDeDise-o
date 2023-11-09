@@ -52,7 +52,7 @@ public class UsuarioServices implements IService<Usuarios,Usuarios> {
         Usuarios usuario=usuariosRepository.findByUser(user).orElseThrow(UsuarioInexistenteExeption::new);
        try {
 
-           mailServices.sendEmail(usuario.getEmail(), "Corre de confirmacion de cuenta", "Te dejamos el link:" + "http://localhost:5173/login");
+           mailServices.sendEmail(usuario.getEmail(), "Corre de confirmacion de cuenta", "Te dejamos el link:" + "http://localhost:5173/users/login");
            usuariosRepository.save(usuario);
        }catch (Exception e){
            throw new EmailException();
