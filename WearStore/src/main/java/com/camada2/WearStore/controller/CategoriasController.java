@@ -3,6 +3,7 @@ package com.camada2.WearStore.controller;
 import com.camada2.WearStore.entity.Categorias;
 import com.camada2.WearStore.service.CategoriasService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

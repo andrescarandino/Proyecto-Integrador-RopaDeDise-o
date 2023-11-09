@@ -35,5 +35,7 @@ public class CategoriasService implements IService <Categorias, Categorias>{
     public void eliminar(Integer id) {
         categoriasRepository.deleteById(id);
     }
+
+
 }
 
