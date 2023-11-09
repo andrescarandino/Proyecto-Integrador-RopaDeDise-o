@@ -9,6 +9,7 @@ import BodyRecomendadoOne from '../components/BodyRecomendadoOne';
 import BodyRecomendadoTwo from '../components/BodyRecomendadoTwo';
 import Pagination from '../components/Pagination';
 import MockData from '../../MOCK_DATA.json';
+import _ from 'underscore';
 
 function Home() {
 	// eslint-disable-next-line no-unused-vars
@@ -16,7 +17,10 @@ function Home() {
 	const [currentPage, setCurrentPage] = useState(1);
 	const indexFin = currentPage * productQt;
 	const indexIni = indexFin - productQt;
-	const nProducts = MockData.slice(indexIni, indexFin);
+	const nProducts = _.shuffle(MockData.slice(indexIni, indexFin));
+
+	
+
 	const nPages = Math.ceil(MockData.length / productQt);
 	return (
 		<div className={styles.bodyHome}>
