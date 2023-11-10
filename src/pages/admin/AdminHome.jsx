@@ -8,25 +8,10 @@ import {
 import { useNavigate } from 'react-router-dom';
 import * as createProductStyles from '../../styles/admin/createProduct.module.css';
 import * as menuStyles from '../../styles/admin/menu.module.css';
+import { URLS } from '../../constants/urls';
 
 function AdminHome() {
 	const navigate = useNavigate();
-
-	const goToCreateProduct = () => {
-		navigate('/admin/products/create');
-	};
-
-	const goToListProducts = () => {
-		navigate('/admin/products/list');
-	};
-
-	const goToCreateCategories = () => {
-		navigate('/admin/categories/create');
-	};
-
-	const goToListCategories = () => {
-		navigate('/admin/categories/list');
-	};
 
 	return (
 		<div className={createProductStyles.container}>
@@ -59,14 +44,14 @@ function AdminHome() {
 						</li>
 						<li
 							className={menuStyles.item}
-							onClick={goToCreateProduct}
+							onClick={() => navigate(URLS.ADMIN_CREATE_PRODUCTS)}
 							role="menuitem"
 						>
 							Agregar producto <IconArrowNarrowRight />
 						</li>
 						<li
 							className={menuStyles.item}
-							onClick={goToListProducts}
+							onClick={() => navigate(URLS.ADMIN_LIST_PRODUCTS)}
 							role="menuitem"
 						>
 							Lista de productos <IconArrowNarrowRight />
@@ -78,14 +63,16 @@ function AdminHome() {
 						</li>
 						<li
 							className={menuStyles.item}
-							onClick={goToCreateCategories}
+							onClick={() =>
+								navigate(URLS.ADMIN_CREATE_CATEGORIES)
+							}
 							role="menuitem"
 						>
 							Agregar categoría <IconArrowNarrowRight />
 						</li>
 						<li
 							className={menuStyles.item}
-							onClick={goToListCategories}
+							onClick={() => navigate(URLS.ADMIN_LIST_CATEGORIES)}
 							role="menuitem"
 						>
 							Lista de categorías <IconArrowNarrowRight />
