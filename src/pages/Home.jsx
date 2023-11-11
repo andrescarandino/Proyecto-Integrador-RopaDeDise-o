@@ -18,9 +18,6 @@ function Home() {
 	const indexFin = currentPage * productQt;
 	const indexIni = indexFin - productQt;
 	const nProducts = _.shuffle(MockData.slice(indexIni, indexFin));
-
-	
-
 	const nPages = Math.ceil(MockData.length / productQt);
 	return (
 		<div className={styles.bodyHome}>

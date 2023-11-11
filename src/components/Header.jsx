@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IoMdMenu, IoMdClose } from 'react-icons/io';
 import styles from '../styles/header.module.css';
 import UserActive from './UserActive';
@@ -8,6 +8,9 @@ import UserActive from './UserActive';
 function Header() {
 	const [usuarioActive, setUsuarioActive] = useState(false);
 	const [menuActive, setMenuActive] = useState(false);
+	useEffect(() => {
+		setUsuarioActive(false);
+	}, []);
 	const handleMenu = () => {
 		setMenuActive(!menuActive);
 	};
