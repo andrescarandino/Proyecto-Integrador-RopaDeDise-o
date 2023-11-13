@@ -72,15 +72,15 @@ function CreateProduct() {
 												index + 1
 											}`}
 											key={image}
-											width={200}
-											height={200}
+											width={300}
+											height={300}
 										/>
 									</div>
 								</div>
 							))
 						) : (
 							<>
-								🙃 No hay imágenes cargadas.
+								No hay imágenes cargadas.
 								<IoIosImage
 									className={createProductStyles.imageIcon}
 								/>

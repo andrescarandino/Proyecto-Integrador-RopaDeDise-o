@@ -43,18 +43,20 @@
 .imageContainer {
 	width: 100%;
 	height: 23.8rem;
-	border: 2px solid #ae9279;
 	border-radius: 5px;
 }
 
 .galleryContainer {
 	width: 50%;
+	height: 24.3rem;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	flex-wrap: wrap;
 	border-radius: 5px;
 	gap: 8px;
+	border: 2px solid #ae9279;
 }
 
 .sectionDescription {

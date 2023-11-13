@@ -9,8 +9,8 @@ function UserActive() {
 	// 	setMenuActive(!menuActive);
 	// };
 	const user = {
-		firstName: 'Andres',
-		lastName: 'Carandino',
+		firstName: 'Gaston',
+		lastName: 'Balmaceda',
 	};
 	const letterFirstName = user.firstName.charAt(0).toUpperCase();
 	const letterLastName = user.lastName.charAt(0).toUpperCase();

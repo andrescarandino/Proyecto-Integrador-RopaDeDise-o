@@ -98,7 +98,8 @@ label {
 
 .form-group {
 	display: flex;
-	flex-direction: column;
+	align-items: center;
+	/* flex-direction: column; */
 	gap: 0.45rem;
 	margin-bottom: 2rem;
 } 
