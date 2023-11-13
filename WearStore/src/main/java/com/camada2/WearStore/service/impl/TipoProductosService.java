@@ -37,5 +37,10 @@ public class TipoProductosService implements IService<TipoProductos, TipoProduct
     public void eliminar(Integer id) {
         tipoProductosRepository.deleteById(id);
     }
+
+    @Override
+    public TipoProductos actualizar(TipoProductos tipoProductos) {
+        return null;
+    }
 }
 

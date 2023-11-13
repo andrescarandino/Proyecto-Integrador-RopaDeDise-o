@@ -81,7 +81,7 @@ public class ImagenesService implements IS3ServiceImg<String, MultipartFile> {
 
         try {
             String ext = StringUtils.getFilenameExtension(file.getOriginalFilename());
-            if (ext.endsWith(".jpg") || ext.endsWith(".jpng") || ext.endsWith(".png")) {
+            if (ext.endsWith(".jpg") || ext.endsWith(".jpeg") || ext.endsWith(".png")) {
                 String filename = file.getOriginalFilename();
                 PutObjectRequest putObjectRequest = PutObjectRequest.builder()
                         .bucket(bucketName)

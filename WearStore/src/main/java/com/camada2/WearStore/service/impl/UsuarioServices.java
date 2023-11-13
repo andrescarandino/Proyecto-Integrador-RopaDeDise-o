@@ -47,6 +47,12 @@ public class UsuarioServices implements IService<Usuarios,Usuarios> {
         usuariosRepository.deleteById(i);
 
     }
+
+    @Override
+    public Usuarios actualizar(Usuarios usuarios) {
+        return null;
+    }
+
     @Transactional
     public Usuarios generarVerificacionEmail(String user, Usuarios usuarios){
         usuariosRepository.save(usuarios);
