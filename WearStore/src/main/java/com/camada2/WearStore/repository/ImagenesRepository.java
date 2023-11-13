@@ -12,6 +12,6 @@ public interface ImagenesRepository extends JpaRepository<Imagenes, Integer> {
 
     // Ejemplo de consulta personalizada para buscar imágenes por título
     @Query("SELECT i FROM Imagenes i WHERE i.titulo = :titulo")
-    List<Imagenes> findImagenesByTitulo(String titulo);
+    Imagenes findImagenesByTitulo(String titulo);
 }
 

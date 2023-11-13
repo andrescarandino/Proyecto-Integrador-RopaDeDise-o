@@ -29,7 +29,7 @@ public class ProductosController {
 
     }
 
-    @GetMapping("/listar")
+    @GetMapping
     public List<Productos> listarProductos(){
         return productoService.listar();
     }
@@ -41,8 +41,8 @@ public class ProductosController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @PutMapping("/actualizarP")
-    public ResponseEntity<Productos> modificarProductos(@RequestBody Productos producto){
+    @PutMapping
+    public ResponseEntity<Productos> modificarProductos(@RequestBody Productos producto) throws Exception {
 
         productoService.guardar(producto);
 

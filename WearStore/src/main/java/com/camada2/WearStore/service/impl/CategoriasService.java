@@ -36,6 +36,11 @@ public class CategoriasService implements IService <Categorias, Categorias>{
         categoriasRepository.deleteById(id);
     }
 
+    @Override
+    public Categorias actualizar(Categorias categorias) {
+        return null;
+    }
+
 
 }
 
