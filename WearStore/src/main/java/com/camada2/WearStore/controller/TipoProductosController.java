@@ -3,7 +3,7 @@ package com.camada2.WearStore.controller;
 
 
 import com.camada2.WearStore.entity.TipoProductos;
-import com.camada2.WearStore.service.TipoProductosService;
+import com.camada2.WearStore.service.impl.TipoProductosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,7 +1,8 @@
-package com.camada2.WearStore.service;
+package com.camada2.WearStore.service.impl;
 
 import com.camada2.WearStore.entity.TipoProductos;
 import com.camada2.WearStore.repository.TipoProductosRepository;
+import com.camada2.WearStore.service.IService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

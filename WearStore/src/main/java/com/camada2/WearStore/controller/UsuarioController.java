@@ -3,14 +3,12 @@ package com.camada2.WearStore.controller;
 import com.camada2.WearStore.entity.Usuarios;
 import com.camada2.WearStore.exeptions.EmailException;
 import com.camada2.WearStore.exeptions.UsuarioInexistenteExeption;
-import com.camada2.WearStore.service.UsuarioServices;
+import com.camada2.WearStore.service.impl.UsuarioServices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 
 @RestController

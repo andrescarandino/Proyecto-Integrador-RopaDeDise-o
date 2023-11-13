@@ -1,4 +1,4 @@
-package com.camada2.WearStore.service;
+package com.camada2.WearStore.service.impl;
 
 
 import com.camada2.WearStore.exeptions.EmailException;
