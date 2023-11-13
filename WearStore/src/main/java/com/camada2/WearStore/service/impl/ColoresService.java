@@ -1,7 +1,8 @@
-package com.camada2.WearStore.service;
+package com.camada2.WearStore.service.impl;
 
 import com.camada2.WearStore.entity.Colores;
 import com.camada2.WearStore.repository.ColoresRepository;
+import com.camada2.WearStore.service.IService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,5 +32,10 @@ public class ColoresService implements IService<Colores,Colores> {
     @Override
     public void eliminar(Integer i) {
      coloresRepository.deleteById(i);
+    }
+
+    @Override
+    public Colores actualizar(Colores colores) {
+        return null;
     }
 }

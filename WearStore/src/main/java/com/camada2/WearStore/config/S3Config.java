@@ -23,7 +23,7 @@ public class S3Config {
     @Bean
     public S3Client s3Client(){
 
-        Region region = Region.US_EAST_2;
+        Region region = Region.US_WEST_2;
         AwsCredentials credentials = AwsBasicCredentials.create(accessKey,secretKey);
 
         S3Client s3Client = S3Client.builder()
