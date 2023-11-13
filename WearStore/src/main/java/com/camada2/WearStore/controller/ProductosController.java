@@ -2,12 +2,13 @@ package com.camada2.WearStore.controller;
 
 
 import com.camada2.WearStore.entity.Productos;
-import com.camada2.WearStore.service.ProductoService;
+import com.camada2.WearStore.service.impl.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -35,7 +36,7 @@ public class ProductosController {
     }
 
     @PostMapping
-    public ResponseEntity<Productos> guardarProducto(@RequestBody Productos producto){
+    public ResponseEntity<Productos> guardarProducto(@RequestBody Productos producto) throws IOException {
         productoService.guardar(producto);
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
@@ -44,49 +45,13 @@ public class ProductosController {
     @PutMapping
     public ResponseEntity<Productos> modificarProductos(@RequestBody Productos producto) throws Exception {
 
-        productoService.guardar(producto);
+        productoService.actualizar(producto);
 
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    @PatchMapping("/{id}")
-    public ResponseEntity<Productos> modificarProductoParcial(@PathVariable Integer id, @RequestBody Productos producto) {
-        Productos productoExistente = productoService.buscar(id);
-
-        if (productoExistente == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-
-        // Verificar y actualizar los campos modificados
-        if (producto.getNombre() != null) {
-            productoExistente.setNombre(producto.getNombre());
-        }
-
-        if (producto.getDescripcion() != null) {
-            productoExistente.setDescripcion(producto.getDescripcion());
-        }
-
-        if (producto.getPrecio() >= 0) {
-            productoExistente.setPrecio(producto.getPrecio());
-        }
-
-        if (producto.getCantidad() != null) {
-            productoExistente.setCantidad(producto.getCantidad());
-        }
-
-
-
-
-
-        // Guardar el producto modificado
-        productoService.guardar(productoExistente);
-
-        return ResponseEntity.status(HttpStatus.OK).body(productoExistente);
-    }
-
-
     @DeleteMapping("/eliminar/{id}")
-    public ResponseEntity<Productos> eliminarProductoPorId(@PathVariable  Integer id){
+    public ResponseEntity<Productos> eliminarProductoPorId(@PathVariable  Integer id) throws IOException {
         productoService.eliminar(id);
 
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
