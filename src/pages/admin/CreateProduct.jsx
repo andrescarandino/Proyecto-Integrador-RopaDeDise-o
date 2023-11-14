@@ -27,9 +27,9 @@ function CreateProduct() {
 		// });
 	};
 
-	const handlePreview = ({ target: { name, files } }) => {
+	const handlePreview = ({ target: { files } }) => {
 		setPreview({
-			[name]: Array.from(files).map((file) => URL.createObjectURL(file)),
+			images: Array.from(files).map((file) => URL.createObjectURL(file)),
 		});
 	};
 
