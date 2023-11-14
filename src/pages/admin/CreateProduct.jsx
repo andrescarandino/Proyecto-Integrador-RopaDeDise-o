@@ -1,9 +1,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
+import { IconBuildingStore } from '@tabler/icons-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { IoIosImage, IoMdCheckmarkCircleOutline } from 'react-icons/io';
 import { useCreateProduct, useToast } from '../../hooks';
-import * as createProductStyles from '../../styles/admin/createProduct.module.css';
 
 function CreateProduct() {
 	const toast = useToast();
@@ -41,56 +40,46 @@ function CreateProduct() {
 	} = useForm();
 
 	return (
-		<div className={createProductStyles.container}>
-			<header className={createProductStyles.headerContainer}>
-				<h2 className={createProductStyles.title}>Agregar producto</h2>
-			</header>
-			<section className={createProductStyles.sectionContainer}>
-				<p className={createProductStyles.sectionDescription}>
-					Estimado administrador, desde ésta sección podrás crear
-					nuevos productos, los cuales se listarán de forma automática
-					en el listado general del sitio.
-					<br />A continuación completa la información. 👇
-				</p>
-				<div className={createProductStyles.formContainer}>
-					<div className={createProductStyles.galleryContainer}>
-						{preview?.images?.length > 0 ? (
-							preview?.images?.map((image, index) => (
-								<div
-									className={
-										createProductStyles.imageContainer
-									}
-								>
-									<div
-										className={
-											createProductStyles.imageItem
-										}
-									>
-										<img
-											src={image}
-											alt={`Previsualización de la imagen ${
-												index + 1
-											}`}
-											key={image}
-											width={300}
-											height={300}
-										/>
-									</div>
-								</div>
-							))
-						) : (
-							<>
-								No hay imágenes cargadas.
-								<IoIosImage
-									className={createProductStyles.imageIcon}
-								/>
-							</>
-						)}
-					</div>
-					<form
-						onSubmit={handleSubmit(onSubmit)}
-						className={createProductStyles.form}
+		<div className="form-page-container">
+			<section className="section-container">
+				<header
+					style={{
+						display: 'flex',
+						alignItems: 'center',
+						gap: '1.5rem',
+					}}
+				>
+					<div
+						style={{
+							height: '60px',
+							width: '60px',
+							display: 'flex',
+							justifyContent: 'center',
+							alignItems: 'center',
+							color: 'var(--color-black-cow)',
+							borderRadius: '5px',
+							boxShadow: '0 2px 15px -5px var(--color-black-cow)',
+						}}
 					>
+						<IconBuildingStore />
+					</div>
+					<div
+						style={{
+							display: 'flex',
+							flexDirection: 'column',
+							justifyContent: 'space-between',
+							height: '60px',
+						}}
+					>
+						<h2 className="form-page-title">Agregar producto</h2>
+						<p className="section-description">
+							Estimado administrador, desde ésta sección podrás
+							crear nuevos productos para la plataforma.
+						</p>
+					</div>
+				</header>
+				<main className="form-container">
+					<form onSubmit={handleSubmit(onSubmit)} className="form">
 						<div className="form-group">
 							<label htmlFor="name">Escribe un nombre:</label>
 							<input
@@ -98,19 +87,22 @@ function CreateProduct() {
 								id="name"
 								type="text"
 								autoComplete="off"
+								placeholder="Nombre"
 								{...register('name', { required: true })}
 							/>
-							{errors.name && (
-								<span
-									style={{
-										color: 'red',
-										fontSize: '12.25px',
-									}}
-								>
-									Este campo es requerido.
-								</span>
-							)}
 						</div>
+						{errors.name && (
+							<span
+								style={{
+									color: 'red',
+									fontSize: '12.25px',
+									marginInlineStart: 'auto',
+									marginBlockStart: '5px',
+								}}
+							>
+								Este campo es requerido.
+							</span>
+						)}
 						<div className="form-group">
 							<label htmlFor="description">
 								Escribe una descripción:
@@ -120,19 +112,22 @@ function CreateProduct() {
 								id="description"
 								type="text"
 								autoComplete="off"
+								placeholder="Descripción"
 								{...register('description', { required: true })}
 							/>
-							{errors.description && (
-								<span
-									style={{
-										color: 'red',
-										fontSize: '12.25px',
-									}}
-								>
-									Este campo es requerido.
-								</span>
-							)}
 						</div>
+						{errors.description && (
+							<span
+								style={{
+									color: 'red',
+									fontSize: '12.25px',
+									marginInlineStart: 'auto',
+									marginBlockStart: '5px',
+								}}
+							>
+								Este campo es requerido.
+							</span>
+						)}
 						<div className="form-group">
 							<label htmlFor="image">
 								Selecciona las imágenes:
@@ -151,25 +146,38 @@ function CreateProduct() {
 									{ required: true },
 								)}
 							/>
-							{errors.images && (
-								<span
-									style={{
-										color: 'red',
-										fontSize: '12.25px',
-									}}
-								>
-									Este campo es requerido.
-								</span>
-							)}
 						</div>
+						{errors.images && (
+							<span
+								style={{
+									color: 'red',
+									fontSize: '12.25px',
+									marginInlineStart: 'auto',
+									marginBlockStart: '5px',
+								}}
+							>
+								Este campo es requerido.
+							</span>
+						)}
+						{preview?.images?.length > 0 &&
+							preview?.images?.map((image, index) => (
+								<div className="form-preview-item">
+									<img
+										src={image}
+										alt={`Previsualización de la imagen ${
+											index + 1
+										}`}
+										key={image}
+										width={300}
+										height={300}
+									/>
+								</div>
+							))}
 						<button type="submit" className="submit-button">
 							Agregar producto
-							<IoMdCheckmarkCircleOutline
-								className={createProductStyles.buttonIcon}
-							/>
 						</button>
 					</form>
-				</div>
+				</main>
 			</section>
 		</div>
 	);

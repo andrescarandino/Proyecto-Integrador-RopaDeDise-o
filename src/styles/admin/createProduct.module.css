@@ -1,3 +1,5 @@
+/** Este archivo ya no se usa. Moví los estilos hacia el index.css para que sean los globales para creación */
+
 .container {
 	width: 92%;
 	margin: 2rem auto;
@@ -13,8 +15,8 @@
 .sectionContainer {
 	width: 100%;
 	background-color: #ffffff;
-	padding: 1rem;
-	border-radius: 5px;
+	padding: 2rem;
+	border-radius: 10px;
 	margin-top: 1%;
 	margin-inline: auto;
 }
@@ -31,37 +33,17 @@
 }
 
 .form {
-	width: 50%;
 	height: 100%;
-	padding: 2rem;
+	padding-block: 5rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
-	border: 2px solid #ae9279;
 	border-radius: 5px;
-}
-.imageContainer {
-	width: 100%;
-	height: 23.8rem;
-	border-radius: 5px;
-}
-
-.galleryContainer {
-	width: 50%;
-	height: 24.3rem;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	flex-wrap: wrap;
-	border-radius: 5px;
-	gap: 8px;
-	border: 2px solid #ae9279;
 }
 
 .sectionDescription {
-	color: var(--font-color);
-	margin-left: 0.4rem;
+	color: var(--color-black-cow);
+	font-size: 14px;
 }
 
 .headerContainer {
@@ -74,44 +56,14 @@
 
 .title {
 	color: var(--color-black-cow);
+	font-size: 20px;
 }
 
 .imageItem {
-	font-size: 0.88rem;
-	font-weight: 600;
-	color: var(--color-black-cow);
-	color: var(--font-color);
-	font-style: italic;
-	font-weight: 500;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	padding-top: 2rem;
 	gap: 1rem;
-}
-
-.imageIcon {
-	font-size: 2rem;
-}
-
-.form button {
-	border: none;
-	background-color: #464646;
-	border-radius: 3px;
-	color: white;
-	font-style: italic;
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.form button:hover {
-	box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
-}
-
-.buttonIcon {
-	font-size: 1.5rem;
-	margin-left: 1rem;
 }
