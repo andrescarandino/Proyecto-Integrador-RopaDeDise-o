@@ -182,7 +182,7 @@ function CreateCategories() {
 								</div>
 							))}
 						<button type="submit" className="submit-button">
-							Agregar producto
+							Agregar categoría
 						</button>
 					</form>
 				</main>
