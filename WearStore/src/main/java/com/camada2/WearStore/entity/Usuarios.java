@@ -14,6 +14,8 @@ public class Usuarios {
     @Column(name = "idUsuarios")
     private int idUsuarios;
 
+    @Column(name = "user")
+    private String user;
     @Column(name = "nombre")
     private String nombre;
 
@@ -109,5 +111,12 @@ public class Usuarios {
         this.estado = estado;
     }
 
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
 }
 
