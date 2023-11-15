@@ -49,6 +49,11 @@ body {
 	padding-inline: 0.5em;
 }
 
+/* .placeholder {
+	color: var(--color-oslo-grey) !important;
+	padding-inline: 0.5em !important;
+} */
+
 .input:focus {
 	border-color: hsl(
 		var(--input-focus-h),
@@ -113,7 +118,7 @@ label {
 	width: 300px;
 }
 
-.form-group input {
+.form-group .input {
 	width: 450px;
 	background-color: transparent;
 }

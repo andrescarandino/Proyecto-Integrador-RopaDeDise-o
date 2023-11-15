@@ -2,7 +2,7 @@
 import { IconBuildingStore } from '@tabler/icons-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useCreateProduct, useToast } from '../../hooks';
+import { useCreateProduct, useToast, useGetCategories } from '../../hooks';
 
 function CreateProduct() {
 	const toast = useToast();
@@ -13,6 +13,7 @@ function CreateProduct() {
 		// isLoading,
 		// dataState,
 	} = useCreateProduct();
+	const { categories } = useGetCategories();
 
 	const onSubmit = (data) => {
 		createProductOnSubmit(data);
@@ -20,10 +21,9 @@ function CreateProduct() {
 		if (statusCode !== 200) {
 			toast.error('Error al crear el producto.');
 		}
+
 		// console.log({
 		// 	data,
-		// 	isLoading,
-		// 	dataState,
 		// });
 	};
 
@@ -84,6 +84,43 @@ function CreateProduct() {
 								placeholder="Descripción"
 								{...register('description', { required: true })}
 							/>
+						</div>
+						{errors.description && (
+							<span className="form-error-message">
+								Este campo es requerido.
+							</span>
+						)}
+						<div className="form-group">
+							<label htmlFor="category">
+								Selecciona una categoría:
+							</label>
+							<select
+								className="input"
+								id="category"
+								name="category"
+								{...register('category', { required: true })}
+							>
+								<option
+									// TODO: Style blank option
+									style={{
+										color: 'var(--color-oslo-grey) !important',
+										paddingInline: '0.5em !important',
+									}}
+									hidden
+									disabled
+									selected
+								>
+									Selecciona una categoría
+								</option>
+								{categories?.map((category) => (
+									<option
+										key={category.id}
+										value={category.id}
+									>
+										{category.name}
+									</option>
+								))}
+							</select>
 						</div>
 						{errors.description && (
 							<span className="form-error-message">

@@ -3,3 +3,4 @@ export * from './useToast';
 export { default as useCreateProduct } from './useCreateProduct';
 export { default as useCreateCategory } from './useCreateCategory';
 export { default as useWindowDimensions } from './useWindowDimensions';
+export { default as useGetCategories } from './useGetCategories';
