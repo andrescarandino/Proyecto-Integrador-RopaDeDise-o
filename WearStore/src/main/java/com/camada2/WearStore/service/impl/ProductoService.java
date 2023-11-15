@@ -5,11 +5,9 @@ import com.camada2.WearStore.repository.ProductosRepository;
 import com.camada2.WearStore.service.IService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ProductoService implements IService<Productos, Productos> {
@@ -44,13 +42,25 @@ public class ProductoService implements IService<Productos, Productos> {
         return productosRepository.findById(id).orElse(null);
     }
 
-   public void eliminar(Integer id) throws IOException {
-       productosRepository.deleteById(id);
-   }
+    public void eliminar(Integer id) throws IOException {
+        productosRepository.deleteById(id);
+    }
 
-   public Productos actualizar(Productos productos) {
+    public Productos actualizar(Productos productos) {
         return productosRepository.save(productos);
-   }
+    }
+
+    public List<Productos> buscarPorAtributo(String palabraClave) {
+        return (palabraClave != null) ? productosRepository.findAll(palabraClave) : productosRepository.findAll();
+    }
+
 
 
 }
+
+
+
+
+
+
+

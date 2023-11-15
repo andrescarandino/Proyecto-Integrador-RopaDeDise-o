@@ -28,8 +28,11 @@ import com.google.api.services.gmail.Gmail;
 
 @Configuration
 public class MailConfig {
+
+
+
     // Nombre de la aplicación
-    private static final String APPLICATION_NAME = "wear_store";
+    private static final String APPLICATION_NAME = "WearStoreApplication";
 
     // Factoria para el formato JSON
     private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();

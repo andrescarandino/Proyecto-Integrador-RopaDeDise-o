@@ -8,8 +8,8 @@ public class Usuarios {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idUsuarios")
-    private int idUsuarios;
+    @Column(name = "id_Usuarios")
+    private int id_Usuarios;
 
     @Column(name = "user")
     private String user;
@@ -34,7 +34,11 @@ public class Usuarios {
 
     @ManyToOne
     @JoinColumn(name = "TipoUsuarios_idTipoUsuarios")
-    private TipoUsuarios tipoUsuarios;
+    private TipoUsuarios tipo_usuarios_id_tipo_usuarios;
+
+
+
+
 
     // Constructores, getters y setters
 
@@ -43,11 +47,11 @@ public class Usuarios {
     }
 
     public int getIdUsuarios() {
-        return idUsuarios;
+        return id_Usuarios;
     }
 
     public void setIdUsuarios(int idUsuarios) {
-        this.idUsuarios = idUsuarios;
+        this.id_Usuarios = idUsuarios;
     }
 
     public String getUser() {
@@ -107,11 +111,11 @@ public class Usuarios {
     }
 
     public TipoUsuarios getTipoUsuarios() {
-        return tipoUsuarios;
+        return tipo_usuarios_id_tipo_usuarios;
     }
 
     public void setTipoUsuarios(TipoUsuarios tipoUsuarios) {
-        this.tipoUsuarios = tipoUsuarios;
+        this.tipo_usuarios_id_tipo_usuarios = tipoUsuarios;
     }
 }
 

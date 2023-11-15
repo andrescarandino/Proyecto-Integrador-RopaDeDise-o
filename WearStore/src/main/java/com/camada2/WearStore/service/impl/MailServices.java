@@ -8,14 +8,17 @@ import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.ByteArrayOutputStream;
+import javax.mail.Authenticator;
+import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.io.ByteArrayOutputStream;
 import java.util.Properties;
 
 @Service
 public class MailServices {
+    @Autowired
     private final Gmail gmail;
 
     @Autowired
@@ -27,9 +30,16 @@ public class MailServices {
     public void sendEmail (String toAddress,String subject,String content)throws EmailException{
 
 
+
+
         Properties props =new Properties();
 
-        Session session = Session.getInstance(props,null);
+        Session session = Session.getInstance(props, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return super.getPasswordAuthentication();
+            }
+        });
 
         MimeMessage email= new MimeMessage(session);
 
@@ -54,6 +64,7 @@ public class MailServices {
             message=gmail.users().messages().send("me", message).execute();
 
         }catch(Exception e) {
+            e.printStackTrace();
             throw new EmailException();
         }
     }
