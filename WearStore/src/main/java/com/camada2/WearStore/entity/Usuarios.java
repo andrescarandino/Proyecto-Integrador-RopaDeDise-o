@@ -1,6 +1,9 @@
 package com.camada2.WearStore.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+
+import java.util.Set;
 
 @Entity
 @Table(name = "Usuarios")
@@ -11,20 +14,18 @@ public class Usuarios {
     @Column(name = "idUsuarios")
     private int idUsuarios;
 
-    @Column(name = "user")
-    private String user;
-
-    @Column(name = "password")
-    private String password;
-
-    @Column(name = "email")
-    private String email;
-
     @Column(name = "nombre")
     private String nombre;
 
     @Column(name = "apellido")
     private String apellido;
+
+    @Email
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "password")
+    private String password;
 
     @Column(name = "fechaCreacion")
     private String fechaCreacion;
@@ -32,14 +33,24 @@ public class Usuarios {
     @Column(name = "estado")
     private int estado;
 
-    @ManyToOne
-    @JoinColumn(name = "TipoUsuarios_idTipoUsuarios")
-    private TipoUsuarios tipoUsuarios;
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity = TipoUsuarios.class, cascade = CascadeType.PERSIST)
+    @JoinTable(name = "usuarios_tipoUsuarios", joinColumns = @JoinColumn(name = "idUsuarios"), inverseJoinColumns = @JoinColumn(name = "idTipoUsuarios"))
+    private Set<TipoUsuarios> roles;
 
     // Constructores, getters y setters
 
     public Usuarios() {
         // Constructor por defecto
+    }
+
+    public Usuarios(int idUsuarios, String nombre, String apellido, String email, String password, String fechaCreacion, int estado) {
+        this.idUsuarios = idUsuarios;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.password = password;
+        this.fechaCreacion = fechaCreacion;
+        this.estado = estado;
     }
 
     public int getIdUsuarios() {
@@ -48,14 +59,6 @@ public class Usuarios {
 
     public void setIdUsuarios(int idUsuarios) {
         this.idUsuarios = idUsuarios;
-    }
-
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
     }
 
     public String getPassword() {
@@ -106,12 +109,5 @@ public class Usuarios {
         this.estado = estado;
     }
 
-    public TipoUsuarios getTipoUsuarios() {
-        return tipoUsuarios;
-    }
-
-    public void setTipoUsuarios(TipoUsuarios tipoUsuarios) {
-        this.tipoUsuarios = tipoUsuarios;
-    }
 }
 

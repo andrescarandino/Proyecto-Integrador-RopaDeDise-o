@@ -57,6 +57,8 @@ public class ImagenesService implements IS3ServiceImg<String, MultipartFile> {
                 throw new RuntimeException(e);
             }
         });
+
+
         return imagenesRepository.save(imagenes);
     }
 
@@ -91,7 +93,7 @@ public class ImagenesService implements IS3ServiceImg<String, MultipartFile> {
 
                 return putObjectRequest.key();
             } else {
-                return "El archivo debe ser una extension .jpg, .jpng, .png";
+                return "El archivo debe ser una extension .jpg, .jpeg, .png";
             }
         } catch (IOException e) {
             throw new IOException(e.getMessage());
