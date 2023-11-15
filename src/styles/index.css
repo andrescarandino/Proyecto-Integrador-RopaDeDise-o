@@ -220,6 +220,37 @@ label {
 	gap: 1rem;
 }
 
+.form-error-message {
+	color: red;
+	font-size: 12.25px;
+	margin-inline-start: auto;
+	margin-block-start: 5px;
+}
+
+.form-header {
+	display: flex;
+	align-items: center;
+	gap: 1.5rem;
+}
+
+.form-header-icon-container {
+	height: 60px;
+	width: 60px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: var(--color-black-cow);
+	border-radius: 5px;
+	box-shadow: 0 2px 15px -5px var(--color-black-cow);
+}
+
+.form-header-texts-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 60px;
+}
+
 /* 
 	Toast styles begins
 	

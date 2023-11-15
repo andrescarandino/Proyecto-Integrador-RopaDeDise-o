@@ -51,35 +51,11 @@ function CreateCategories() {
 	return (
 		<div className="form-page-container">
 			<section className="section-container">
-				<header
-					style={{
-						display: 'flex',
-						alignItems: 'center',
-						gap: '1.5rem',
-					}}
-				>
-					<div
-						style={{
-							height: '60px',
-							width: '60px',
-							display: 'flex',
-							justifyContent: 'center',
-							alignItems: 'center',
-							color: 'var(--color-black-cow)',
-							borderRadius: '5px',
-							boxShadow: '0 2px 15px -5px var(--color-black-cow)',
-						}}
-					>
+				<header className="form-header">
+					<div className="form-header-icon-container">
 						<IconCategoryFilled />
 					</div>
-					<div
-						style={{
-							display: 'flex',
-							flexDirection: 'column',
-							justifyContent: 'space-between',
-							height: '60px',
-						}}
-					>
+					<div className="form-header-texts-container">
 						<h2 className="form-page-title">Agregar categoría</h2>
 						<p className="section-description">
 							Estimado administrador, desde ésta sección podrás
@@ -101,14 +77,7 @@ function CreateCategories() {
 							/>
 						</div>
 						{errors.title && (
-							<span
-								style={{
-									color: 'red',
-									fontSize: '12.25px',
-									marginInlineStart: 'auto',
-									marginBlockStart: '5px',
-								}}
-							>
+							<span className="form-error-message">
 								Este campo es requerido.
 							</span>
 						)}
@@ -126,14 +95,7 @@ function CreateCategories() {
 							/>
 						</div>
 						{errors.description && (
-							<span
-								style={{
-									color: 'red',
-									fontSize: '12.25px',
-									marginInlineStart: 'auto',
-									marginBlockStart: '5px',
-								}}
-							>
+							<span className="form-error-message">
 								Este campo es requerido.
 							</span>
 						)}
@@ -156,14 +118,7 @@ function CreateCategories() {
 							/>
 						</div>
 						{errors.image && (
-							<span
-								style={{
-									color: 'red',
-									fontSize: '12.25px',
-									marginInlineStart: 'auto',
-									marginBlockStart: '5px',
-								}}
-							>
+							<span className="form-error-message">
 								Este campo es requerido.
 							</span>
 						)}
