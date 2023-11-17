@@ -12,10 +12,13 @@ public class Reservas {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idReservas")
-    private int idReservas;
+    private Integer idReservas;
 
-    @Column(name = "fecha")
-    private Date fecha;
+    @Column(name = "fecha_inicio")
+    private Date fechaInicio;
+
+    @Column(name = "fecha_fin")
+    private Date fechaFin;
 
     @ManyToOne
     @JoinColumn(name = "Usuarios_idUsuarios")
@@ -29,6 +32,13 @@ public class Reservas {
     public Reservas() {
         // Constructor por defecto
     }
+    public Reservas(Date fechaInicio, Date fechaFin, Usuarios usuario, List<Productos> productos) {
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+        this.usuario = usuario;
+        this.productos = productos;
+    }
+
 
     public int getIdReservas() {
         return idReservas;
@@ -38,12 +48,20 @@ public class Reservas {
         this.idReservas = idReservas;
     }
 
-    public Date getFecha() {
-        return fecha;
+    public Date getFechaInicio() {
+        return fechaInicio;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public Date getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(Date fechaFin) {
+        this.fechaFin = fechaFin;
     }
 
     public Usuarios getUsuario() {

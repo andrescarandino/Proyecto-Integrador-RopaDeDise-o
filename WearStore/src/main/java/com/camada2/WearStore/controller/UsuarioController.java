@@ -20,8 +20,6 @@ public class UsuarioController {
 
 
 
-
-
     @ExceptionHandler(EmailException.class)
     public ResponseEntity<String> falloAlEnviarEmail(){
         return new ResponseEntity<String>("El email no se puedo enviar , intente mas tarde",HttpStatus.INTERNAL_SERVER_ERROR);

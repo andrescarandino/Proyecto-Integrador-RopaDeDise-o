@@ -2,6 +2,8 @@ package com.camada2.WearStore.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "Usuarios")
 public class Usuarios {
@@ -35,6 +37,13 @@ public class Usuarios {
     @ManyToOne
     @JoinColumn(name = "TipoUsuarios_idTipoUsuarios")
     private TipoUsuarios tipoUsuarios;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Reservas> reservas;
+
+
+
+
 
     // Constructores, getters y setters
 

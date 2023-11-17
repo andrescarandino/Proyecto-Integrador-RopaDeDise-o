@@ -1,5 +1,6 @@
 package com.camada2.WearStore.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import jdk.jfr.Timestamp;
 import org.hibernate.annotations.CreationTimestamp;
@@ -64,7 +65,7 @@ public class Productos {
 
     @ManyToMany (fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable (name = "ProductoHasReservas", joinColumns = @JoinColumn(name = "idProductos", referencedColumnName = "idProductos"),
-    inverseJoinColumns = @JoinColumn(name = "idReservas", referencedColumnName = "idReservas"))
+            inverseJoinColumns = @JoinColumn(name = "idReservas", referencedColumnName = "idReservas"))
     private List<Reservas> reservas;
 
     @OneToMany
