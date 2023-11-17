@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class CategoriasService implements IService <Categorias, Categorias>{
 
-    private final CategoriasRepository categoriasRepository;
+    private CategoriasRepository categoriasRepository;
 
     @Autowired
     public CategoriasService(CategoriasRepository categoriasRepository) {
