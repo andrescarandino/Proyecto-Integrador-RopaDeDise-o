@@ -16,7 +16,7 @@ function ProductSearch() {
 			setProduct(productData);
 		};
 		response();
-	}, [params]);
+	}, [data]);
 	return (
 		<div>
 			<Search />
