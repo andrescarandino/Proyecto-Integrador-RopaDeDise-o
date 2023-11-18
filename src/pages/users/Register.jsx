@@ -1,12 +1,14 @@
 /* eslint-disable no-unused-vars */
 import { useForm } from 'react-hook-form';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import registerUser from '../../services/registerUser';
 import styles from '../../styles/users/register.module.css';
 import imgRegister from '../../img/imgRegister.png';
 import imgRegister2 from '../../img/imgRegister2.png';
 
 function Register() {
+	const [registered, setRegistered] = useState(false);
 	const navigate = useNavigate();
 	const handleHome = () => {
 		navigate('/');
@@ -19,10 +21,11 @@ function Register() {
 		reset,
 	} = useForm();
 
-	const onSubmit = handleSubmit((data) => {
-		navigate('/');
-		reset();
-	});
+	const onSubmit = async (user) => {
+		const res = await registerUser(user);
+		console.log(res);
+		// reset();
+	};
 
 	const password = useRef(null);
 	password.current = watch('password', '');
@@ -42,7 +45,7 @@ function Register() {
 						<h1>carolki.</h1>
 						<h3>...diseñamos pasión</h3>
 					</div>
-					<form onSubmit={onSubmit}>
+					<form onSubmit={handleSubmit(onSubmit)}>
 						{/* <label type="text">Nombre:</label> */}
 						<input
 							placeholder="Nombre"
@@ -94,7 +97,6 @@ function Register() {
 						{errors.apellido && (
 							<span>{errors.apellido.message}</span>
 						)}
-
 						{/* <label>Email:</label> */}
 						<input
 							placeholder="Email"
@@ -113,7 +115,6 @@ function Register() {
 							})}
 						/>
 						{errors.email && <span>{errors.email.message}</span>}
-
 						{/* <label>Contraseña:</label> */}
 						<input
 							placeholder="Contraseña"
@@ -142,7 +143,7 @@ function Register() {
 						)}
 
 						{/* <label>Confirmar contraseña:</label> */}
-						<input
+						{/* <input
 							placeholder="Confirmar Contraseña"
 							className={styles.formInput}
 							type="password"
@@ -170,7 +171,7 @@ function Register() {
 						/>
 						{errors.confirmPassword && (
 							<span>{errors.confirmPassword.message}</span>
-						)}
+						)} */}
 
 						<button className={styles.formButton} type="submit">
 							Registrar
