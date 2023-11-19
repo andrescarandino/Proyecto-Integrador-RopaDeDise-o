@@ -1,7 +1,10 @@
 import { IconBuildingStore } from '@tabler/icons-react';
 import ProductForm from './Forms/ProductForm';
+import { useGetProduct } from '../../hooks';
 
-function CreateProduct() {
+function UpdateProduct() {
+	const { product } = useGetProduct();
+
 	return (
 		<div className="form-page-container">
 			<section className="section-container">
@@ -10,17 +13,17 @@ function CreateProduct() {
 						<IconBuildingStore />
 					</div>
 					<div className="form-header-texts-container">
-						<h2 className="form-page-title">Crear producto</h2>
+						<h2 className="form-page-title">Editar producto</h2>
 						<p className="section-description">
 							Estimado administrador, desde ésta sección podrás
-							crear un nuevo producto para la plataforma.
+							editar un producto de la plataforma.
 						</p>
 					</div>
 				</header>
-				<ProductForm edit={false} />
+				<ProductForm edit initialValues={product} />
 			</section>
 		</div>
 	);
 }
 
-export default CreateProduct;
+export default UpdateProduct;
