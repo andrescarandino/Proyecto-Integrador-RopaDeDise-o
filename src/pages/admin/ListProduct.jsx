@@ -4,10 +4,12 @@ import { IconPencil, IconTrashFilled } from '@tabler/icons-react';
 import { useState } from 'react';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import { useNavigate } from 'react-router-dom';
 import * as createProductStyles from '../../styles/admin/createProduct.module.css';
 import * as ListProductsStyles from '../../styles/admin/listProducts.module.css';
 
 function ListProducts() {
+	const navigate = useNavigate();
 	const [products, setProducts] = useState([
 		{
 			id: 1,
@@ -91,6 +93,11 @@ function ListProducts() {
 												ListProductsStyles.actionButton
 											}
 											role="button"
+											onClick={() =>
+												navigate(
+													`/admin/products/${product?.id}`,
+												)
+											}
 										>
 											<IconPencil />
 										</div>
