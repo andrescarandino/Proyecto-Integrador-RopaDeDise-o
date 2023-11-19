@@ -3,9 +3,11 @@ import { IconBuildingStore } from '@tabler/icons-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useCreateProduct, useToast, useGetCategories } from '../../hooks';
+import CustomModal from '../../components/modal/CustomModal';
 
 function CreateProduct() {
 	const toast = useToast();
+	const [openModal, setOpenModal] = useState(false);
 	const [preview, setPreview] = useState(null);
 	const {
 		onSubmit: createProductOnSubmit,
@@ -127,6 +129,72 @@ function CreateProduct() {
 								Este campo es requerido.
 							</span>
 						)}
+						<div>
+							<CustomModal
+								openModal={openModal}
+								setOpenModal={setOpenModal}
+								contentComponent={
+									<div
+										// TODO: load default value of selected feature
+										style={{
+											fontFamily: 'var(--ff-roboto)',
+										}}
+									>
+										<header
+											style={{
+												color: 'var(--color-black-cow)',
+											}}
+										>
+											<p
+												style={{
+													fontSize: '15px',
+													fontWeight: '600',
+													marginBlockEnd: '0.75rem',
+												}}
+											>
+												Editar característica
+												&quot;Ejemplo&quot;
+											</p>
+											<p
+												style={{
+													fontSize: '14px',
+												}}
+											>
+												Escribe a continuación el nuevo
+												valor des esta característica.
+											</p>
+										</header>
+										<div className="form-group">
+											<label htmlFor="feature">
+												Característica:
+											</label>
+											<input
+												className="input"
+												id="feature"
+												type="text"
+												autoComplete="off"
+												placeholder="Característica"
+												{...register('feature', {
+													required: true,
+												})}
+											/>
+										</div>
+										<div
+											style={{
+												display: 'flex',
+											}}
+										>
+											<button
+												type="button"
+												className="submit-button"
+											>
+												Guardar cambio
+											</button>
+										</div>
+									</div>
+								}
+							/>
+						</div>
 						<div className="form-group">
 							<label htmlFor="image">
 								Selecciona las imágenes:
