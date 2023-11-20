@@ -1,15 +1,16 @@
-package com.camada2.WearStore.service;
+package com.camada2.WearStore.service.impl;
 
 
 import com.camada2.WearStore.entity.Categorias;
 import com.camada2.WearStore.repository.CategoriasRepository;
+import com.camada2.WearStore.service.IService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class CategoriasService implements IService <Categorias, Categorias>{
+public class CategoriasService implements IService<Categorias, Categorias> {
 
     private final CategoriasRepository categoriasRepository;
 

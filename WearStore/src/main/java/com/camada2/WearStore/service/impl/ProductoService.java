@@ -20,7 +20,6 @@ public class ProductoService implements IService<Productos, Productos> {
 
     @Override
     public Productos guardar(Productos productos) throws IOException {
-
         List<Productos> listaProductos = productosRepository.findAll();
         String nombreProducto = productos.getNombre();
         if (!listaProductos.isEmpty()) {
@@ -35,9 +34,7 @@ public class ProductoService implements IService<Productos, Productos> {
     }
 
     public List<Productos> listar(){
-
         return productosRepository.findAll();
-
     }
 
     public Productos buscar(Integer id){

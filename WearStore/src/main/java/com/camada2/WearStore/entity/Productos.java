@@ -71,6 +71,10 @@ public class Productos {
     @JoinColumn (name = "producto_id")
     private List<Imagenes> imagenes;
 
+
+
+
+
     // Constructores, getters y setters
 
     public Productos() {
