@@ -1,15 +1,22 @@
 package com.camada2.WearStore.controller;
 
+import com.camada2.WearStore.Dto.UsuariosDTO;
+import com.camada2.WearStore.entity.ERole;
+import com.camada2.WearStore.entity.TipoUsuarios;
 import com.camada2.WearStore.entity.Usuarios;
 import com.camada2.WearStore.exeptions.EmailException;
 import com.camada2.WearStore.exeptions.UsuarioInexistenteExeption;
 import com.camada2.WearStore.service.impl.UsuarioServices;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/usuario")
@@ -17,10 +24,6 @@ public class UsuarioController {
 
     @Autowired
     UsuarioServices usuarioServices;
-
-
-
-
 
     @ExceptionHandler(EmailException.class)
     public ResponseEntity<String> falloAlEnviarEmail(){
@@ -66,7 +69,20 @@ public class UsuarioController {
 
     }
 
+    @PostMapping("/createUser")
+    public ResponseEntity<?> createUser(@Valid @RequestBody UsuariosDTO usuariosDTO){
 
+        Usuarios usuarios = usuarioServices.createUser(usuariosDTO);
+
+        return ResponseEntity.ok(usuarios);
+
+    }
+
+    @DeleteMapping("/deleteUser/{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable Integer id){
+        usuarioServices.deleteUser(id);
+        return ResponseEntity.ok().build();
+    }
 
 
 }

@@ -11,7 +11,7 @@ import java.util.List;
 public interface TipoUsuariosRepository extends JpaRepository<TipoUsuarios, Integer> {
 
     // Ejemplo de consulta personalizada para buscar tipos de usuarios por nombre
-    @Query("SELECT tu FROM TipoUsuarios tu WHERE tu.nombre = :nombre")
-    List<TipoUsuarios> findTipoUsuariosByNombre(String nombre);
+    @Query("SELECT tu FROM TipoUsuarios tu WHERE tu.rol = :rol")
+    List<TipoUsuarios> findTipoUsuariosByNombre(String rol);
 }
 

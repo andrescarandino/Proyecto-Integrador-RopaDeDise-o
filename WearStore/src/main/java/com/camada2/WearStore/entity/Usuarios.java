@@ -2,8 +2,10 @@ package com.camada2.WearStore.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import lombok.Data;
 
 import java.util.Set;
+
 
 @Entity
 @Table(name = "Usuarios")
@@ -45,8 +47,8 @@ public class Usuarios {
         // Constructor por defecto
     }
 
-    public Usuarios(int idUsuarios, String nombre, String apellido, String email, String password, String fechaCreacion, int estado) {
-        this.idUsuarios = idUsuarios;
+    public Usuarios(String user, String nombre, String apellido, String email, String password, String fechaCreacion, int estado) {
+        this.user = user;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
@@ -117,6 +119,14 @@ public class Usuarios {
 
     public void setUser(String user) {
         this.user = user;
+    }
+
+    public Set<TipoUsuarios> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<TipoUsuarios> roles) {
+        this.roles = roles;
     }
 }
 

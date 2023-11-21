@@ -12,7 +12,7 @@ public class TipoUsuarios {
     private int idTipoUsuarios;
 
     @Enumerated(EnumType.STRING)
-    private ERole nombre;
+    private ERole rol;
 
     // Constructores, getters y setters
 
@@ -20,10 +20,11 @@ public class TipoUsuarios {
         // Constructor por defecto
     }
 
-    public TipoUsuarios(int idTipoUsuarios, ERole nombre) {
-        this.idTipoUsuarios = idTipoUsuarios;
-        this.nombre = nombre;
+    public TipoUsuarios(ERole rol) {
+
+        this.rol = rol;
     }
+
 
     public int getIdTipoUsuarios() {
         return idTipoUsuarios;
@@ -34,11 +35,11 @@ public class TipoUsuarios {
     }
 
     public ERole getNombre() {
-        return nombre;
+        return rol;
     }
 
-    public void setNombre(ERole nombre) {
-        this.nombre = nombre;
+    public void setNombre(ERole rol) {
+        this.rol = rol;
     }
 }
 
