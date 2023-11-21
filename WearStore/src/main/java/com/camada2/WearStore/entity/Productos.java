@@ -71,6 +71,9 @@ public class Productos {
     @JoinColumn (name = "producto_id")
     private List<Imagenes> imagenes;
 
+    @OneToMany (mappedBy = "producto")
+    private List <CaracteristicasProducto> ProductosList;
+
     // Constructores, getters y setters
 
     public Productos() {
@@ -190,5 +193,13 @@ public class Productos {
 
     public void setImagenes(List<Imagenes> imagenes) {
         this.imagenes = imagenes;
+    }
+
+    public List<CaracteristicasProducto> getProductosList() {
+        return ProductosList;
+    }
+
+    public void setProductosList(List<CaracteristicasProducto> productosList) {
+        ProductosList = productosList;
     }
 }

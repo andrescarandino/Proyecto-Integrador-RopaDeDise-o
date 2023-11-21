@@ -2,6 +2,8 @@ package com.camada2.WearStore.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name="caracteristica")
 
@@ -9,11 +11,15 @@ public class Caracteristica {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_caracteristica")
     private int idCaracteristica;
 
     private String nombre;
     private String descripcion;
     private String rutaIcono;
+
+    @OneToMany(mappedBy = "caracteristica")
+    private List<CaracteristicasProducto> caracteristicasList;
 
     //Constructor
     public Caracteristica() {
@@ -53,5 +59,13 @@ public class Caracteristica {
 
     public void setRutaIcono(String rutaIcono) {
         this.rutaIcono = rutaIcono;
+    }
+
+    public List<CaracteristicasProducto> getCaracteristicasList() {
+        return caracteristicasList;
+    }
+
+    public void setCaracteristicasList(List<CaracteristicasProducto> caracteristicasList) {
+        this.caracteristicasList = caracteristicasList;
     }
 }
