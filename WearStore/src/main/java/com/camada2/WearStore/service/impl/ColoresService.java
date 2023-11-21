@@ -13,7 +13,7 @@ public class ColoresService implements IService<Colores,Colores> {
 
 
     @Autowired
-   private ColoresRepository coloresRepository;
+    private ColoresRepository coloresRepository;
     @Override
     public Colores guardar(Colores colores) {
         return coloresRepository.save(colores);
@@ -31,7 +31,7 @@ public class ColoresService implements IService<Colores,Colores> {
 
     @Override
     public void eliminar(Integer i) {
-     coloresRepository.deleteById(i);
+        coloresRepository.deleteById(i);
     }
 
     @Override

@@ -30,7 +30,7 @@ public class ProductosController {
 
     }
 
-    @GetMapping
+    @GetMapping("/listarP")
     public List<Productos> listarProductos(){
         return productoService.listar();
     }
@@ -50,12 +50,20 @@ public class ProductosController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    @DeleteMapping("/eliminar/{id}")
+    @DeleteMapping("/eliminar{id}")
     public ResponseEntity<Productos> eliminarProductoPorId(@PathVariable  Integer id) throws IOException {
         productoService.eliminar(id);
 
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
+
+    @GetMapping("/buscar/{palabraClave}")
+
+    public List<Productos> buscarPor (@PathVariable("palabraClave") String palabraClave){
+    return productoService.buscarPorAtributo(palabraClave);
+
+    }
+
 
 
 
