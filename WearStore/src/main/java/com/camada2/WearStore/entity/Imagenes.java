@@ -15,7 +15,6 @@ public class Imagenes {
     private int idImagenes;
 
     @Column(name = "ruta")
-    @Transient
     private String ruta;
 
     @Column(name = "titulo")
