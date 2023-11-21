@@ -22,7 +22,7 @@ public class UsuarioController {
 
     @ExceptionHandler(EmailException.class)
     public ResponseEntity<String> falloAlEnviarEmail(){
-        return new ResponseEntity<String>("El email no se puedo enviar , intente mas tarde",HttpStatus.INTERNAL_SERVER_ERROR);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("El email no se puedo enviar , intente mas tarde");
     }
 
     @ExceptionHandler(UsuarioInexistenteExeption.class)
@@ -32,10 +32,9 @@ public class UsuarioController {
     @PostMapping
     public ResponseEntity<Usuarios> guardarUsuario(@RequestBody Usuarios usuario) {
         Usuarios usuarioGuardado = usuarioServices.guardar(usuario);
-        usuarioServices.generarVerificacionEmail(usuario.getUser(), usuarioGuardado);
+        //usuarioServices.generarVerificacionEmail(usuario.getUser(), usuarioGuardado);
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioGuardado);
     }
-
 
 
     @PutMapping("/actualizarU")
@@ -43,7 +42,6 @@ public class UsuarioController {
         Usuarios usuario=usuarioServices.guardar(u);
 
         return ResponseEntity.status(HttpStatus.OK).body(usuario);
-
     }
 
     @GetMapping("/listar")
@@ -58,9 +56,6 @@ public class UsuarioController {
             return ResponseEntity.status(HttpStatus.OK).body(usuario);
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-
-
     }
-
 
 }
