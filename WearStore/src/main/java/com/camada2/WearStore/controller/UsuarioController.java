@@ -1,5 +1,6 @@
 package com.camada2.WearStore.controller;
 
+import com.camada2.WearStore.entity.Productos;
 import com.camada2.WearStore.entity.Usuarios;
 import com.camada2.WearStore.exeptions.EmailException;
 import com.camada2.WearStore.exeptions.UsuarioInexistenteExeption;
@@ -19,9 +20,6 @@ public class UsuarioController {
     UsuarioServices usuarioServices;
 
 
-
-
-
     @ExceptionHandler(EmailException.class)
     public ResponseEntity<String> falloAlEnviarEmail(){
         return new ResponseEntity<String>("El email no se puedo enviar , intente mas tarde",HttpStatus.INTERNAL_SERVER_ERROR);
@@ -30,8 +28,6 @@ public class UsuarioController {
     @ExceptionHandler(UsuarioInexistenteExeption.class)
     public ResponseEntity<String> UsuarioNoExiste(){
         return new ResponseEntity<String>("el usuario no existe",HttpStatus.NOT_FOUND);
-
-
     }
     @PostMapping
     public ResponseEntity<Usuarios> guardarUsuario(@RequestBody Usuarios usuario) {
@@ -65,8 +61,6 @@ public class UsuarioController {
 
 
     }
-
-
 
 
 }

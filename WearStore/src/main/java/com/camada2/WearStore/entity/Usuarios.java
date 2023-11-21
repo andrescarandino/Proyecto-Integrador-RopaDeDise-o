@@ -2,6 +2,9 @@ package com.camada2.WearStore.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "Usuarios")
 public class Usuarios {
@@ -40,7 +43,12 @@ public class Usuarios {
 
 
 
-    // Constructores, getters y setters
+    @OneToMany(mappedBy = "usuariosId", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Favorito> favoritos = new ArrayList<>();
+
+    public void setFavoritos(List<Favorito> favoritos) {
+        this.favoritos = favoritos;
+    }
 
     public Usuarios() {
         // Constructor por defecto
@@ -117,5 +125,6 @@ public class Usuarios {
     public void setTipoUsuarios(TipoUsuarios tipoUsuarios) {
         this.tipo_usuarios_id_tipo_usuarios = tipoUsuarios;
     }
+
 }
 

@@ -17,7 +17,6 @@ public class UsuarioServices implements IService<Usuarios,Usuarios> {
 
     @Autowired
     UsuariosRepository usuariosRepository;
-
     @Autowired
     MailServices mailServices;
 

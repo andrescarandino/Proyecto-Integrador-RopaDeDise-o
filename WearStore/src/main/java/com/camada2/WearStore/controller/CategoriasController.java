@@ -1,7 +1,12 @@
 package com.camada2.WearStore.controller;
 
 import com.camada2.WearStore.entity.Categorias;
+<<<<<<< HEAD
 import com.camada2.WearStore.service.CategoriasService;
+=======
+
+import com.camada2.WearStore.service.impl.CategoriasService;
+>>>>>>> f2e364c0771b128818d1c9e50c64b1926df22523
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
