@@ -12,7 +12,7 @@ public class Usuarios {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_Usuarios")
-    private int id_Usuarios;
+    private int idUsuarios;
 
     @Column(name = "user")
     private String user;
@@ -55,11 +55,11 @@ public class Usuarios {
     }
 
     public int getIdUsuarios() {
-        return id_Usuarios;
+        return idUsuarios;
     }
 
     public void setIdUsuarios(int idUsuarios) {
-        this.id_Usuarios = idUsuarios;
+        this.idUsuarios = idUsuarios;
     }
 
     public String getUser() {
