@@ -1,19 +1,22 @@
 package com.camada2.WearStore.controller;
 
-import com.camada2.WearStore.entity.Productos;
 import com.camada2.WearStore.entity.Usuarios;
 import com.camada2.WearStore.exeptions.EmailException;
 import com.camada2.WearStore.exeptions.UsuarioInexistenteExeption;
 import com.camada2.WearStore.service.impl.UsuarioServices;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/usuario")
+@RequestMapping("/usuarios")
 public class UsuarioController {
 
     @Autowired
@@ -28,20 +31,29 @@ public class UsuarioController {
     @ExceptionHandler(UsuarioInexistenteExeption.class)
     public ResponseEntity<String> UsuarioNoExiste(){
         return new ResponseEntity<String>("el usuario no existe",HttpStatus.NOT_FOUND);
+
+
     }
     @PostMapping
-    public ResponseEntity<Usuarios> guardarUsuario(@RequestBody Usuarios usuario) {
-        Usuarios usuarioGuardado = usuarioServices.guardar(usuario);
-        //usuarioServices.generarVerificacionEmail(usuario.getUser(), usuarioGuardado);
-        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioGuardado);
+    public ResponseEntity<Usuarios> guardarUsuario(@RequestBody UsuariosDTO usuariosDTO) {
+        Usuarios usuarioGuardado = usuarioServices.guardar(usuariosDTO);
+        //usuarioServices.generarVerificacionEmail(usuarioGuardado.getUser(), usuarioGuardado);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+    public ResponseEntity<?> createUser(@Valid @RequestBody UsuariosDTO usuariosDTO) {
+
+        usuarioServices.createUser(usuariosDTO);
+
+        return ResponseEntity.ok().build();
     }
 
 
-    @PutMapping("/actualizarU")
-    public ResponseEntity<Usuarios>ActualizarUsuario(@RequestBody Usuarios u ){
-        Usuarios usuario=usuarioServices.guardar(u);
+    @PutMapping
+    public ResponseEntity<Usuarios>ActualizarUsuario(@RequestBody UsuariosDTO u ){
+        usuarioServices.actualizar(u);
 
-        return ResponseEntity.status(HttpStatus.OK).body(usuario);
+        return ResponseEntity.status(HttpStatus.OK).build();
+
     }
 
     @GetMapping("/listar")
@@ -56,6 +68,19 @@ public class UsuarioController {
             return ResponseEntity.status(HttpStatus.OK).body(usuario);
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+
     }
+
+    @GetMapping
+    public ResponseEntity<Usuarios> buscarPorMail(@RequestParam("mail") String mail){
+        return ResponseEntity.ok(usuarioServices.buscarPorMail(mail));
+    }
+
+    @DeleteMapping("/deleteUser/{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable Integer id){
+        usuarioServices.eliminar(id);
+        return ResponseEntity.ok().build();
+    }
+
 
 }

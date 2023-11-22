@@ -36,6 +36,7 @@ public class ProductosController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Productos> guardarProducto(@RequestBody Productos producto) throws IOException {
         productoService.guardar(producto);
 
@@ -43,6 +44,7 @@ public class ProductosController {
     }
 
     @PutMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Productos> modificarProductos(@RequestBody Productos producto) throws Exception {
 
         productoService.actualizar(producto);
@@ -50,7 +52,8 @@ public class ProductosController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    @DeleteMapping("/eliminar{id}")
+    @DeleteMapping("/eliminar/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Productos> eliminarProductoPorId(@PathVariable  Integer id) throws IOException {
         productoService.eliminar(id);
 

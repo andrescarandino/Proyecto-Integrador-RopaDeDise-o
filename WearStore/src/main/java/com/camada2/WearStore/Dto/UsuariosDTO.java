@@ -1,5 +1,7 @@
-package com.camada2.WearStore.entity;
+package com.camada2.WearStore.Dto;
 
+import com.camada2.WearStore.entity.TipoUsuarios;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -7,65 +9,41 @@ import lombok.Data;
 
 import java.util.Set;
 
+@Data
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class UsuariosDTO {
 
-@Entity
-@Table(name = "Usuarios")
-public class Usuarios {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idUsuarios")
-    private int idUsuarios;
-
-    @Column(name = "user")
     private String user;
 
-    @Column(name = "password")
-    private String password;
-
-    @Column(name = "email")
-    private String email;
-
-    @Column(name = "nombre")
     private String nombre;
 
-    @Column(name = "apellido")
+
     private String apellido;
 
     @Email
     @NotBlank
-    @Column(name = "email", unique = true)
     private String email;
 
-    @Column(name = "password")
     @NotBlank
     private String password;
 
-    @Column(name = "fechaCreacion")
+
     private String fechaCreacion;
 
-    @Column(name = "estado")
+
     private int estado;
 
-    @ManyToMany(fetch = FetchType.EAGER, targetEntity = TipoUsuarios.class, cascade = CascadeType.ALL)
-    @JoinTable(name = "usuarios_tipoUsuarios", joinColumns = @JoinColumn(name = "idUsuarios"), inverseJoinColumns = @JoinColumn(name = "idTipoUsuarios"))
-    private Set<TipoUsuarios> roles;
 
+    private Set<String> roles;
 
+    // Constructores, getters y setters
 
-
-    @OneToMany(mappedBy = "usuariosId", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Favorito> favoritos = new ArrayList<>();
-
-    public void setFavoritos(List<Favorito> favoritos) {
-        this.favoritos = favoritos;
-    }
-
-    public Usuarios() {
+    public UsuariosDTO() {
         // Constructor por defecto
     }
 
-    public Usuarios(String user, String nombre, String apellido, String email, String password, String fechaCreacion, int estado) {
+    public UsuariosDTO(String user, String nombre, String apellido, String email, String password, String fechaCreacion, int estado) {
         this.user = user;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -73,14 +51,6 @@ public class Usuarios {
         this.password = password;
         this.fechaCreacion = fechaCreacion;
         this.estado = estado;
-    }
-
-    public int getIdUsuarios() {
-        return idUsuarios;
-    }
-
-    public void setIdUsuarios(int idUsuarios) {
-        this.idUsuarios = idUsuarios;
     }
 
     public String getPassword() {
@@ -139,15 +109,4 @@ public class Usuarios {
         this.user = user;
     }
 
-    public Set<TipoUsuarios> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<TipoUsuarios> roles) {
-        this.roles = roles;
-    }
-
-
-
 }
-
