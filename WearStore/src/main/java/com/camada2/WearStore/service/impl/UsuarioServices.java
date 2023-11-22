@@ -33,7 +33,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-public class UsuarioServices implements IService<Usuarios, Usuarios>, UserDetailsService {
+public class UsuarioServices implements IService<UsuariosDTO, Usuarios>, UserDetailsService {
 
     @Autowired
     UsuariosRepository usuariosRepository;
@@ -44,12 +44,28 @@ public class UsuarioServices implements IService<Usuarios, Usuarios>, UserDetail
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    @Transactional
+    @Autowired
+    ObjectMapper mapper;
+
+
     @Override
-    public Usuarios guardar(Usuarios usuarios) {
-        usuarios.setUser(usuarios.getNombre() + usuarios.getApellido());
+    public Usuarios guardar(UsuariosDTO usuariosDTO) {
+
+
+        Set<TipoUsuarios> roles = usuariosDTO.getRoles().stream()
+                .map(rol -> new TipoUsuarios(ERole.valueOf(rol)))
+                .collect(Collectors.toSet());
+
+        Usuarios usuarios = new Usuarios();
+        usuarios.setUser(usuariosDTO.getNombre() + usuariosDTO.getApellido());
+        usuarios.setNombre(usuariosDTO.getNombre());
+        usuarios.setApellido(usuariosDTO.getApellido());
+        usuarios.setEmail(usuariosDTO.getEmail());
+        usuarios.setPassword(passwordEncoder.encode(usuariosDTO.getPassword()));
+        usuarios.setRoles(roles);
 
         return usuariosRepository.save(usuarios);
+
     }
 
     @Override
@@ -71,9 +87,13 @@ public class UsuarioServices implements IService<Usuarios, Usuarios>, UserDetail
 
     }
 
+
     @Override
-    public Usuarios actualizar(Usuarios usuarios) {
-        return null;
+    public Usuarios actualizar(UsuariosDTO usuariosDTO) {
+
+        Usuarios usuario = mapper.convertValue(usuariosDTO, Usuarios.class);
+
+        return usuariosRepository.save(usuario);
     }
 
     @Transactional
@@ -90,7 +110,13 @@ public class UsuarioServices implements IService<Usuarios, Usuarios>, UserDetail
         return usuariosRepository.save(usuario);
     }
 
+public Usuarios buscarPorMail(String mail){
 
+        Usuarios usuario = usuariosRepository.findUsuariosByEmail(mail).orElseThrow(UsuarioInexistenteExeption::new);
+        usuario.setPassword("");
+
+        return usuario;
+}
     public Usuarios createUser(UsuariosDTO usuariosDTO) {
 
 
@@ -108,15 +134,11 @@ public class UsuarioServices implements IService<Usuarios, Usuarios>, UserDetail
         return usuariosRepository.save(usuarios);
     }
 
-    public void deleteUser(Integer id) {
-        usuariosRepository.deleteById(id);
-    }
-
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        Usuarios usuario = usuariosRepository.findUsuariosByEmail(username)
-                .orElseThrow(() -> new UsernameNotFoundException("El usuario " + username + " no existe"));
+        Usuarios usuario = usuariosRepository.findUsuariosByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("El usuario " + email + " no existe"));
 
         Collection<? extends GrantedAuthority> authorities = usuario.getRoles()
                 .stream()

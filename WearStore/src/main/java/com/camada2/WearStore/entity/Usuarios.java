@@ -2,6 +2,7 @@ package com.camada2.WearStore.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 import java.util.Set;
@@ -25,10 +26,12 @@ public class Usuarios {
     private String apellido;
 
     @Email
-    @Column(name = "email")
+    @NotBlank
+    @Column(name = "email", unique = true)
     private String email;
 
     @Column(name = "password")
+    @NotBlank
     private String password;
 
     @Column(name = "fechaCreacion")
@@ -37,7 +40,7 @@ public class Usuarios {
     @Column(name = "estado")
     private int estado;
 
-    @ManyToMany(fetch = FetchType.EAGER, targetEntity = TipoUsuarios.class, cascade = CascadeType.PERSIST)
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity = TipoUsuarios.class, cascade = CascadeType.ALL)
     @JoinTable(name = "usuarios_tipoUsuarios", joinColumns = @JoinColumn(name = "idUsuarios"), inverseJoinColumns = @JoinColumn(name = "idTipoUsuarios"))
     private Set<TipoUsuarios> roles;
 
@@ -128,5 +131,7 @@ public class Usuarios {
     public void setRoles(Set<TipoUsuarios> roles) {
         this.roles = roles;
     }
+
+
 }
 

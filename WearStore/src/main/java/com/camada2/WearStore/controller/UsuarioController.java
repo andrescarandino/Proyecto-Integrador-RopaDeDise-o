@@ -19,7 +19,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/usuario")
+@RequestMapping("/usuarios")
 public class UsuarioController {
 
     @Autowired
@@ -37,19 +37,24 @@ public class UsuarioController {
 
     }
     @PostMapping
-    public ResponseEntity<Usuarios> guardarUsuario(@RequestBody Usuarios usuario) {
-        Usuarios usuarioGuardado = usuarioServices.guardar(usuario);
-        usuarioServices.generarVerificacionEmail(usuario.getUser(), usuarioGuardado);
-        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioGuardado);
+    public ResponseEntity<Usuarios> guardarUsuario(@RequestBody UsuariosDTO usuariosDTO) {
+        Usuarios usuarioGuardado = usuarioServices.guardar(usuariosDTO);
+        //usuarioServices.generarVerificacionEmail(usuarioGuardado.getUser(), usuarioGuardado);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+    public ResponseEntity<?> createUser(@Valid @RequestBody UsuariosDTO usuariosDTO) {
+
+        usuarioServices.createUser(usuariosDTO);
+
+        return ResponseEntity.ok().build();
     }
 
 
+    @PutMapping
+    public ResponseEntity<Usuarios>ActualizarUsuario(@RequestBody UsuariosDTO u ){
+        usuarioServices.actualizar(u);
 
-    @PutMapping("/actualizarU")
-    public ResponseEntity<Usuarios>ActualizarUsuario(@RequestBody Usuarios u ){
-        Usuarios usuario=usuarioServices.guardar(u);
-
-        return ResponseEntity.status(HttpStatus.OK).body(usuario);
+        return ResponseEntity.status(HttpStatus.OK).build();
 
     }
 
@@ -66,21 +71,16 @@ public class UsuarioController {
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 
-
     }
 
-    @PostMapping("/createUser")
-    public ResponseEntity<?> createUser(@Valid @RequestBody UsuariosDTO usuariosDTO){
-
-        Usuarios usuarios = usuarioServices.createUser(usuariosDTO);
-
-        return ResponseEntity.ok(usuarios);
-
+    @GetMapping
+    public ResponseEntity<Usuarios> buscarPorMail(@RequestParam("mail") String mail){
+        return ResponseEntity.ok(usuarioServices.buscarPorMail(mail));
     }
 
     @DeleteMapping("/deleteUser/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable Integer id){
-        usuarioServices.deleteUser(id);
+        usuarioServices.eliminar(id);
         return ResponseEntity.ok().build();
     }
 

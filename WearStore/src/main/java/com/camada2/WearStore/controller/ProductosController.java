@@ -6,6 +6,7 @@ import com.camada2.WearStore.service.impl.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -19,6 +20,7 @@ public class ProductosController {
     private ProductoService productoService;
 
     @GetMapping("/{id}")
+
     public ResponseEntity<Productos> buscarProductoPorId(@PathVariable Integer id){
 
         Productos producto = productoService.buscar(id);
@@ -36,6 +38,7 @@ public class ProductosController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Productos> guardarProducto(@RequestBody Productos producto) throws IOException {
         productoService.guardar(producto);
 
@@ -43,6 +46,7 @@ public class ProductosController {
     }
 
     @PutMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Productos> modificarProductos(@RequestBody Productos producto) throws Exception {
 
         productoService.actualizar(producto);
@@ -51,6 +55,7 @@ public class ProductosController {
     }
 
     @DeleteMapping("/eliminar/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Productos> eliminarProductoPorId(@PathVariable  Integer id) throws IOException {
         productoService.eliminar(id);
 
