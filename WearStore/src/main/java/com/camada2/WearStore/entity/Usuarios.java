@@ -5,6 +5,8 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 
@@ -19,12 +21,6 @@ public class Usuarios {
 
     @Column(name = "user")
     private String user;
-
-    @Column(name = "password")
-    private String password;
-
-    @Column(name = "email")
-    private String email;
 
     @Column(name = "nombre")
     private String nombre;
@@ -50,8 +46,6 @@ public class Usuarios {
     @ManyToMany(fetch = FetchType.EAGER, targetEntity = TipoUsuarios.class, cascade = CascadeType.ALL)
     @JoinTable(name = "usuarios_tipoUsuarios", joinColumns = @JoinColumn(name = "idUsuarios"), inverseJoinColumns = @JoinColumn(name = "idTipoUsuarios"))
     private Set<TipoUsuarios> roles;
-
-
 
 
     @OneToMany(mappedBy = "usuariosId", cascade = CascadeType.ALL, orphanRemoval = true)
