@@ -5,6 +5,8 @@ package com.camada2.WearStore.controller;
 import com.camada2.WearStore.entity.TipoProductos;
 import com.camada2.WearStore.service.impl.TipoProductosService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -38,12 +40,13 @@ public class TipoProductosController {
     @PutMapping("/{id}")
     public TipoProductos actualizarTipoProducto(@PathVariable Integer id, @RequestBody TipoProductos tipoProducto) {
         tipoProducto.setIdTipoProductos(id);
-        return tipoProductosService.guardar(tipoProducto);
+        return tipoProductosService.actualizar(tipoProducto);
     }
 
     @DeleteMapping("/{id}")
-    public void eliminarTipoProducto(@PathVariable Integer id) {
+    public ResponseEntity<?> eliminarTipoProducto(@PathVariable Integer id) {
         tipoProductosService.eliminar(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }
 

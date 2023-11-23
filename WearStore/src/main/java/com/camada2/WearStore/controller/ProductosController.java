@@ -19,6 +19,7 @@ public class ProductosController {
     @Autowired
     private ProductoService productoService;
 
+
     @GetMapping("/{id}")
     public ResponseEntity<Productos> buscarProductoPorId(@PathVariable Integer id){
 
@@ -31,7 +32,7 @@ public class ProductosController {
 
     }
 
-    @GetMapping("/listarP")
+    @GetMapping
     public List<Productos> listarProductos(){
         return productoService.listar();
     }
@@ -53,7 +54,7 @@ public class ProductosController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    @DeleteMapping("/eliminar/{id}")
+    @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Productos> eliminarProductoPorId(@PathVariable  Integer id) throws IOException {
         productoService.eliminar(id);

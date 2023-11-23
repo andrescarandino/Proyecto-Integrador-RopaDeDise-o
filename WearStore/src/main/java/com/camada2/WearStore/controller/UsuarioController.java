@@ -9,6 +9,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,38 +32,29 @@ public class UsuarioController {
 
     @ExceptionHandler(UsuarioInexistenteExeption.class)
     public ResponseEntity<String> UsuarioNoExiste(){
-        return new ResponseEntity<String>("el usuario no existe",HttpStatus.NOT_FOUND);
-
-
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El usuario no existe");
     }
     @PostMapping
     public ResponseEntity<Usuarios> guardarUsuario(@RequestBody UsuariosDTO usuariosDTO) {
         Usuarios usuarioGuardado = usuarioServices.guardar(usuariosDTO);
-        //usuarioServices.generarVerificacionEmail(usuarioGuardado.getUser(), usuarioGuardado);
+        usuarioServices.generarVerificacionEmail(usuarioGuardado.getUser(), usuarioGuardado);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
-    public ResponseEntity<?> createUser(@Valid @RequestBody UsuariosDTO usuariosDTO) {
-
-        usuarioServices.createUser(usuariosDTO);
-
-        return ResponseEntity.ok().build();
-    }
-
 
     @PutMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Usuarios>ActualizarUsuario(@RequestBody UsuariosDTO u ){
         usuarioServices.actualizar(u);
-
         return ResponseEntity.status(HttpStatus.OK).build();
-
     }
 
-    @GetMapping("/listar")
+    @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public List<Usuarios>listarUsuarios(){
         return usuarioServices.listar();
     }
 
-    @GetMapping("/listar/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Usuarios>buscarUsuario(@PathVariable Integer id){
       Usuarios usuario= usuarioServices.buscar(id);
         if (usuario != null){
@@ -72,12 +64,15 @@ public class UsuarioController {
 
     }
 
-    @GetMapping
+
+    @GetMapping("/buscar")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Usuarios> buscarPorMail(@RequestParam("mail") String mail){
         return ResponseEntity.ok(usuarioServices.buscarPorMail(mail));
     }
 
-    @DeleteMapping("/deleteUser/{id}")
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> deleteUser(@PathVariable Integer id){
         usuarioServices.eliminar(id);
         return ResponseEntity.ok().build();

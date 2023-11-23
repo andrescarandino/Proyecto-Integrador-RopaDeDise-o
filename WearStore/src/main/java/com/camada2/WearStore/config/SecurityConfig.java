@@ -52,7 +52,11 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> { //comportamiento de acceso a los endpoints
                     auth.requestMatchers("/productos/**").permitAll();
                     auth.requestMatchers("/usuarios/**").permitAll();
-                    auth.requestMatchers("/usuarios/**").permitAll();
+                    auth.requestMatchers("/tipoProductos/**").hasRole("ADMIN");
+                    auth.requestMatchers("/img/**").permitAll();
+                    auth.requestMatchers("/favoritos/**").hasAnyRole("ADMIN", "USER");
+                    auth.requestMatchers("/categorias/**").permitAll();
+                    auth.requestMatchers("/caracteristicas/**").permitAll();
                     auth.anyRequest().authenticated();
                 })
                 .sessionManagement(session -> {

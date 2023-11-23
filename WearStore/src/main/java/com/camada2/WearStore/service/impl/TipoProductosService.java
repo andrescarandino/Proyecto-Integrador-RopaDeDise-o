@@ -40,7 +40,8 @@ public class TipoProductosService implements IService<TipoProductos, TipoProduct
 
     @Override
     public TipoProductos actualizar(TipoProductos tipoProductos) {
-        return null;
+
+        return tipoProductosRepository.save(tipoProductos);
     }
 }
 

@@ -4,14 +4,16 @@ import com.camada2.WearStore.entity.Caracteristica;
 import com.camada2.WearStore.exeptions.ElementoNoencontradoException;
 import com.camada2.WearStore.service.impl.CaracteristicaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/caracteristica")
+@RequestMapping("/caracteristicas")
 
 public class CaracteristicaController {
 
@@ -19,18 +21,20 @@ public class CaracteristicaController {
     private CaracteristicaService caracteristicaService;
 
     @PostMapping
-    public Caracteristica crearCaracteristica(@RequestBody Caracteristica caracteristica) throws IOException {
-        return caracteristicaService.guardar(caracteristica);
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> crearCaracteristica(@RequestBody Caracteristica caracteristica) throws IOException {
+        caracteristicaService.guardar(caracteristica);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
     // endpoint para obtener todas las caracteristicas
     @GetMapping
-    public List<Caracteristica> obtenerTodasCaracteristica(){
-        return caracteristicaService.listar();
+    public ResponseEntity<List<Caracteristica>> obtenerTodasCaracteristica(){
+        return ResponseEntity.status(HttpStatus.OK).body(caracteristicaService.listar());
     }
     // Endpoint para obtener una caracteristica por id
     @GetMapping("/{id}")
-    public Caracteristica obtenerCaracteristicaPorId(@PathVariable Integer id){
-        return caracteristicaService.buscar(id);
+    public ResponseEntity<Caracteristica> obtenerCaracteristicaPorId(@PathVariable Integer id){
+        return ResponseEntity.status(HttpStatus.OK).body(caracteristicaService.buscar(id));
     }
 
     @GetMapping(params ="nombre")
@@ -46,11 +50,14 @@ public class CaracteristicaController {
 
     // Endpoint para eliminar una categoria por ID
     @DeleteMapping("/{id}")
-    public void eliminarCaracteristica(@PathVariable Integer id){
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> eliminarCaracteristica(@PathVariable Integer id){
         caracteristicaService.eliminar(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Caracteristica> actualizarCaracteristica(
             @PathVariable Integer id,
             @RequestBody Caracteristica nuevaCaracteristica){

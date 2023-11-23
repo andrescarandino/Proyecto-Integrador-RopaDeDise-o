@@ -39,7 +39,7 @@ public class CategoriasService implements IService<Categorias, Categorias> {
 
     @Override
     public Categorias actualizar(Categorias categorias) {
-        return null;
+        return categoriasRepository.save(categorias);
     }
 
 
