@@ -8,7 +8,7 @@ import { isUrl } from '../../../utils';
 
 function FeaturesForm({ edit, initialValues }) {
 	const toast = useToast();
-	const [preview, setPreview] = useState(null);
+	const [preview, setPreview] = useState(initialValues?.icon);
 
 	const onSubmit = (data) => {
 		console.log({
@@ -19,12 +19,11 @@ function FeaturesForm({ edit, initialValues }) {
 	const {
 		register,
 		handleSubmit,
-		// watch,
 		setError,
 		formState: { errors },
-	} = useForm();
-
-	// const watchIcon = watch('icon');
+	} = useForm({
+		defaultValues: initialValues,
+	});
 
 	const handleIconChange = ({ target: { value } }) => {
 		if (!isUrl(value)) {
@@ -92,7 +91,7 @@ function FeaturesForm({ edit, initialValues }) {
 					</div>
 				)}
 				<button type="submit" className="submit-button">
-					Agregar característica
+					{edit ? 'Editar' : 'Agregar'} característica
 				</button>
 			</form>
 		</main>
