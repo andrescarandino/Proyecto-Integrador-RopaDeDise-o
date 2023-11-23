@@ -1,14 +1,15 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { IconPencil, IconTrashFilled } from '@tabler/icons-react';
+import { IconTrashFilled } from '@tabler/icons-react';
 import PropTypes from 'prop-types';
 import { Fragment, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
-import CustomModal from '../../../components/modal/CustomModal';
+// import CustomModal from '../../../components/modal/CustomModal';
 import {
 	useCreateProduct,
 	useGetCategories,
+	useGetFeatures,
 	useToast,
 	useUpdateProduct,
 } from '../../../hooks';
@@ -16,8 +17,8 @@ import {
 function ProductForm({ edit, initialValues = {} }) {
 	const { id } = useParams();
 	const toast = useToast();
-	const [selectedFeature, setSelectedFeature] = useState({});
-	const [openModal, setOpenModal] = useState(false);
+	// const [selectedFeature, setSelectedFeature] = useState({});
+	// const [openModal, setOpenModal] = useState(false);
 	const [preview, setPreview] = useState({ images: initialValues.images });
 	const {
 		onSubmit: createProductOnSubmit,
@@ -29,6 +30,15 @@ function ProductForm({ edit, initialValues = {} }) {
 	} = useUpdateProduct();
 
 	const { categories } = useGetCategories();
+	const { features: initialFeatures } = useGetFeatures();
+	const [features, setFeatures] = useState(
+		initialFeatures.map((feature) => {
+			return {
+				...feature,
+				disabled: false,
+			};
+		}),
+	);
 
 	const handlePreview = ({ target: { files } }) => {
 		setPreview({
@@ -80,36 +90,48 @@ function ProductForm({ edit, initialValues = {} }) {
 		});
 	};
 
-	const onSelectFeature = (selectedFeature) => {
-		if (!selectedFeature) return;
-		setSelectedFeature({
-			currentValue: selectedFeature,
-		});
-		setOpenModal(true);
-	};
+	// const onSelectFeature = (selectedFeature) => {
+	// 	if (!selectedFeature) return;
+	// 	setSelectedFeature({
+	// 		currentValue: selectedFeature,
+	// 	});
+	// 	setOpenModal(true);
+	// };
 
 	const onAddFeature = () => {
 		setValue('features', [...watchFeatures, '']);
+		console.log({ watchFeatures });
 	};
 
-	const onUpdateFeature = () => {
-		if (!selectedFeature?.newValue) return;
+	// const onUpdateFeature = () => {
+	// 	if (!selectedFeature?.newValue) return;
 
-		const updatedWatchFeatures = watchFeatures.map((feature) =>
-			feature === selectedFeature.currentValue
-				? selectedFeature.newValue
-				: feature,
-		);
-		setValue('features', updatedWatchFeatures);
-		setSelectedFeature({});
-		setOpenModal(false);
-	};
+	// 	const updatedWatchFeatures = watchFeatures.map((feature) =>
+	// 		feature === selectedFeature.currentValue
+	// 			? selectedFeature.newValue
+	// 			: feature,
+	// 	);
+	// 	setValue('features', updatedWatchFeatures);
+	// 	setSelectedFeature({});
+	// 	setOpenModal(false);
+	// };
 
 	const onRemoveFeature = (selectedFeature) => {
 		const filteredWatchFeatures = watchFeatures.filter(
 			(feature) => feature !== selectedFeature,
 		);
 		setValue('features', filteredWatchFeatures);
+		setFeatures(
+			features.map((feature) => {
+				if (feature.id === Number(selectedFeature)) {
+					return {
+						...feature,
+						disabled: false,
+					};
+				}
+				return feature;
+			}),
+		);
 	};
 
 	return (
@@ -223,11 +245,11 @@ function ProductForm({ edit, initialValues = {} }) {
 										}}
 										htmlFor={`feature-${index}`}
 									>
-										<IconPencil
+										{/* <IconPencil
 											onClick={() =>
 												onSelectFeature(feature)
 											}
-										/>
+										/> */}
 										<IconTrashFilled
 											onClick={() =>
 												onRemoveFeature(feature)
@@ -235,7 +257,7 @@ function ProductForm({ edit, initialValues = {} }) {
 										/>
 										&nbsp; Característica {index + 1}:
 									</label>
-									<input
+									{/* <input
 										className="input"
 										id={`feature-${index}`}
 										type="text"
@@ -246,7 +268,59 @@ function ProductForm({ edit, initialValues = {} }) {
 										{...register(`features.${index}`, {
 											required: true,
 										})}
-									/>
+									/> */}
+									<select
+										className="input"
+										id="feature"
+										name="feature"
+										defaultValue=""
+										{...register(`features.${index}`, {
+											required: true,
+											setValueAs: (value) =>
+												Number(value),
+											onChange: ({
+												target: { value },
+											}) => {
+												setFeatures(
+													features.map((feature) => {
+														if (
+															feature.id ===
+															Number(value)
+														) {
+															return {
+																...feature,
+																disabled: true,
+															};
+														}
+														return feature;
+													}),
+												);
+											},
+										})}
+									>
+										<option
+											// TODO: Style blank option
+											style={{
+												color: 'var(--color-oslo-grey) !important',
+												paddingInline:
+													'0.5em !important',
+											}}
+											hidden
+											disabled
+											value=""
+										>
+											Selecciona una característica
+										</option>
+										{features?.map((features) => (
+											<option
+												key={features.id}
+												value={features.id}
+												disabled={features.disabled}
+											>
+												{features.name}
+											</option>
+										))}
+									</select>
 								</div>
 								{errors.features?.at(index) && (
 									<span className="form-error-message">
@@ -296,7 +370,7 @@ function ProductForm({ edit, initialValues = {} }) {
 					</button>
 				</form>
 			</main>
-			<CustomModal
+			{/* <CustomModal
 				openModal={openModal}
 				setOpenModal={setOpenModal}
 				contentComponent={
@@ -368,7 +442,7 @@ function ProductForm({ edit, initialValues = {} }) {
 						</div>
 					</div>
 				}
-			/>
+			/> */}
 		</>
 	);
 }

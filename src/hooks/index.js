@@ -7,3 +7,4 @@ export { default as useGetCategories } from './useGetCategories';
 export { default as useGetProduct } from './useGetProduct';
 export { default as useUpdateProduct } from './useUpdateProduct';
 export { default as useGetFeature } from './useGetFeature';
+export { default as useGetFeatures } from './useGetFeatures';
