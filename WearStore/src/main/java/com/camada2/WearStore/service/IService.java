@@ -1,7 +1,5 @@
 package com.camada2.WearStore.service;
 
-import com.camada2.WearStore.entity.Productos;
-
 import java.io.IOException;
 import java.util.List;
 

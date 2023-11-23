@@ -11,17 +11,20 @@ public class TipoUsuarios {
     @Column(name = "idTipoUsuarios")
     private int idTipoUsuarios;
 
-    @Column(name = "nombre")
-    private String nombre;
-
-    @Column(name = "descripcion")
-    private String descripcion;
+    @Enumerated(EnumType.STRING)
+    private ERole rol;
 
     // Constructores, getters y setters
 
     public TipoUsuarios() {
         // Constructor por defecto
     }
+
+    public TipoUsuarios(ERole rol) {
+
+        this.rol = rol;
+    }
+
 
     public int getIdTipoUsuarios() {
         return idTipoUsuarios;
@@ -31,20 +34,12 @@ public class TipoUsuarios {
         this.idTipoUsuarios = idTipoUsuarios;
     }
 
-    public String getNombre() {
-        return nombre;
+    public ERole getNombre() {
+        return rol;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setNombre(ERole rol) {
+        this.rol = rol;
     }
 }
 

@@ -26,7 +26,7 @@ public class ImagenesService implements IS3ServiceImg<String, MultipartFile> {
     @Value("${upload.s3.localPath}")
     private String localPath;
 
-    @Value("${aws.bucket}1")
+    @Value("${aws.bucket}")
     private String bucketName;
 
     @Value("${aws.prefix}")
@@ -43,9 +43,10 @@ public class ImagenesService implements IS3ServiceImg<String, MultipartFile> {
     private ImagenesRepository imagenesRepository;
 
 
-    public Imagenes guardar(Imagenes imagenes, MultipartFile[] files) {
+    public List<Imagenes> guardar(MultipartFile[] files) {
         List<Imagenes> listaImagenes = new ArrayList<>();
-        Arrays.asList(files).stream().forEach(file -> {
+
+        for (MultipartFile file : files) {
             try {
                 String file1 = uploadFile(file);
                 Imagenes imagen = new Imagenes();
@@ -56,8 +57,10 @@ public class ImagenesService implements IS3ServiceImg<String, MultipartFile> {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-        });
-        return imagenesRepository.save(imagenes);
+        };
+
+        imagenesRepository.saveAll(listaImagenes);
+        return listaImagenes;
     }
 
 
@@ -81,7 +84,7 @@ public class ImagenesService implements IS3ServiceImg<String, MultipartFile> {
 
         try {
             String ext = StringUtils.getFilenameExtension(file.getOriginalFilename());
-            if (ext.endsWith(".jpg") || ext.endsWith(".jpeg") || ext.endsWith(".png")) {
+            if (ext.endsWith("jpg") || ext.endsWith("jpeg") || ext.endsWith("png")) {
                 String filename = file.getOriginalFilename();
                 PutObjectRequest putObjectRequest = PutObjectRequest.builder()
                         .bucket(bucketName)
@@ -89,9 +92,9 @@ public class ImagenesService implements IS3ServiceImg<String, MultipartFile> {
                         .build();
                 s3CLient.putObject(putObjectRequest, RequestBody.fromBytes(file.getBytes()));
 
-                return putObjectRequest.key();
+                return "https://carolkibucket.s3.us-west-2.amazonaws.com/"+ putObjectRequest.key();
             } else {
-                return "El archivo debe ser una extension .jpg, .jpng, .png";
+                return "El archivo debe ser una extension .jpg, .jpeg, .png";
             }
         } catch (IOException e) {
             throw new IOException(e.getMessage());

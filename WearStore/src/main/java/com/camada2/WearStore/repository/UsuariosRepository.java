@@ -13,8 +13,9 @@ public interface UsuariosRepository extends JpaRepository<Usuarios, Integer> {
 
     // Ejemplo de consulta personalizada para buscar usuarios por email
     @Query("SELECT u FROM Usuarios u WHERE u.email = :email")
-    List<Usuarios> findUsuariosByEmail(String email);
+    Optional<Usuarios> findUsuariosByEmail(String email);
 
     Optional<Usuarios> findByUser(String user);
+
 }
 
