@@ -1,0 +1,10 @@
+.custom-date-picker .rdrDateRangeWrapper {
+    /* Ajusta la altura del contenedor principal del calendario */
+    height: 100px;
+    
+  }
+
+.custom-date-picker .rdrCalendarWrapper {
+    /* Ajusta el ancho del calendario */
+    width: 300px;
+  }

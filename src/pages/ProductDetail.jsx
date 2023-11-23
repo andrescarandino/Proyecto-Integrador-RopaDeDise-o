@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import ReactSlidy from 'react-slidy';
 import MockData from '../../MOCK_DATA.json';
 import styles from '../styles/productDetail.module.css';
+import ReservacionComponent from './Reserva';
 
 function ProductDetail() {
 	const [slidyActive, setSlidyActive] = useState(false);
@@ -48,6 +49,9 @@ function ProductDetail() {
 						>
 							Ver mas
 						</button>
+					</div>
+					<div>
+						<ReservacionComponent />
 					</div>
 				</div>
 				{slidyActive && (
