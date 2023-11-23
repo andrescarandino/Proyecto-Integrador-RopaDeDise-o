@@ -38,13 +38,5 @@ public class CategoriasController {
     public void eliminarCategoria(@PathVariable Integer id) {
         categoriasService.eliminar(id);
     }
-
-
-    }
-
-
-
-
-
-
+}
 
