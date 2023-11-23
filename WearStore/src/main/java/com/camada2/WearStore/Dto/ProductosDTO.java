@@ -27,6 +27,8 @@ public class ProductosDTO {
 
     private Categorias categorias;
 
+    private Caracteristica caracteristica;
+
 
     public ProductosDTO() {
 
@@ -110,5 +112,13 @@ public class ProductosDTO {
 
     public void setCategorias(Categorias categorias) {
         this.categorias = categorias;
+    }
+
+    public Caracteristica getCaracteristica() {
+        return caracteristica;
+    }
+
+    public void setCaracteristica(Caracteristica caracteristica) {
+        this.caracteristica = caracteristica;
     }
 }

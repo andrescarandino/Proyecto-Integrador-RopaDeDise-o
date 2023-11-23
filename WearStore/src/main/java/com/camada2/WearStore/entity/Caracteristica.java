@@ -11,20 +11,26 @@ public class Caracteristica {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_caracteristica")
+    @Column(name = "idCaracteristica")
     private int idCaracteristica;
 
     private String nombre;
     private String descripcion;
     private String rutaIcono;
 
-    @OneToMany(mappedBy = "caracteristica")
-    private List<CaracteristicasProducto> caracteristicasList;
+    @ManyToMany(mappedBy = "caracteristica")
+    private List<Productos> productos;
 
     //Constructor
-    public Caracteristica() {
 
+    public Caracteristica(int idCaracteristica, String nombre, String descripcion, String rutaIcono, List<Productos> productos) {
+        this.idCaracteristica = idCaracteristica;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.rutaIcono = rutaIcono;
+        this.productos = productos;
     }
+
 
     //getter y setter
 
@@ -61,11 +67,11 @@ public class Caracteristica {
         this.rutaIcono = rutaIcono;
     }
 
-    public List<CaracteristicasProducto> getCaracteristicasList() {
-        return caracteristicasList;
+    public List<Productos> getProductos() {
+        return productos;
     }
 
-    public void setCaracteristicasList(List<CaracteristicasProducto> caracteristicasList) {
-        this.caracteristicasList = caracteristicasList;
+    public void setProductos(List<Productos> productos) {
+        this.productos = productos;
     }
 }

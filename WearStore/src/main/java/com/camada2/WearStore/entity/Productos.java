@@ -71,8 +71,12 @@ public class Productos {
     @JoinColumn (name = "producto_id")
     private List<Imagenes> imagenes;
 
-    @OneToMany (mappedBy = "producto")
-    private List <CaracteristicasProducto> ProductosList;
+    @ManyToMany (fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinTable (name = "ProductoHasCaracteristica", joinColumns = @JoinColumn(name = "idProductos", referencedColumnName = "idProductos"),
+            inverseJoinColumns = @JoinColumn(name = "idCaracteristica", referencedColumnName = "idCaracteristica"))
+    private List<Caracteristica> caracteristica;
+
+
 
     // Constructores, getters y setters
 
@@ -80,7 +84,7 @@ public class Productos {
         // Constructor por defecto
     }
 
-    public Productos(String nombre, String descripcion, Double precio, Integer cantidad, Calendar fechaCreacion, Calendar fechaModificacion, Calendar fechaEliminacion, TipoProductos tipoProductos, Generos generos, Colores colores, Tallas tallas, Categorias categorias, List<Reservas> reservas, List<Imagenes> imagenes) {
+    public Productos(String nombre, String descripcion, Double precio, Integer cantidad, Calendar fechaCreacion, Calendar fechaModificacion, Calendar fechaEliminacion, TipoProductos tipoProductos, Generos generos, Colores colores, Tallas tallas, Categorias categorias, List<Reservas> reservas, List<Imagenes> imagenes, List<Caracteristica> caracteristica) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
@@ -95,6 +99,8 @@ public class Productos {
         this.categorias = categorias;
         this.reservas = reservas;
         this.imagenes = imagenes;
+        this.caracteristica = caracteristica;
+
     }
 
     // Getters y setters
@@ -195,11 +201,11 @@ public class Productos {
         this.imagenes = imagenes;
     }
 
-    public List<CaracteristicasProducto> getProductosList() {
-        return ProductosList;
+    public List<Caracteristica> getCaracteristica() {
+        return caracteristica;
     }
 
-    public void setProductosList(List<CaracteristicasProducto> productosList) {
-        ProductosList = productosList;
+    public void setCaracteristica(List<Caracteristica> caracteristica) {
+        this.caracteristica = caracteristica;
     }
 }

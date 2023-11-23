@@ -39,6 +39,7 @@ public class CaracteristicaService implements IService<Caracteristica, Caracteri
             }
 
         }
+
         return caracteristicaRepository.save(caracteristica);
     }
 
