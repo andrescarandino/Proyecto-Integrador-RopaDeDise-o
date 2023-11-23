@@ -1,5 +1,8 @@
 .navigation {
 	margin: 1.5rem auto;
+	display: flex;
+	gap: 3.5rem;
+	align-items: baseline;
 }
 
 .itemsContainer {
@@ -22,11 +25,13 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	gap: 0.5rem;
+	font-size: 14px;
+	gap: 0.45rem;
 }
 
 .titleItem {
 	font-weight: 700;
 	margin-inline-start: 0;
 	cursor: auto;
+	margin-block: 0.65rem;
 }

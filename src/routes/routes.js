@@ -6,6 +6,8 @@ const ListProducts = lazy(() => import('../pages/admin/ListProduct'));
 const UpdateProduct = lazy(() => import('../pages/admin/UpdateProduct'));
 const CreateCategories = lazy(() => import('../pages/admin/CreateCategories'));
 const ListCategories = lazy(() => import('../pages/admin/ListCategories'));
+const CreateFeatures = lazy(() => import('../pages/admin/CreateFeatures'));
+const ListFeatures = lazy(() => import('../pages/admin/ListFeatures'));
 const ProductDetail = lazy(() => import('../pages/ProductDetail'));
 export const Register = lazy(() => import('../pages/users/Register'));
 export const Login = lazy(() => import('../pages/users/Login'));
@@ -50,6 +52,14 @@ const routes = [
 	{
 		path: 'admin/categories/list',
 		element: ListCategories,
+	},
+	{
+		path: 'admin/features/create',
+		element: CreateFeatures,
+	},
+	{
+		path: 'admin/features/list',
+		element: ListFeatures,
 	},
 	// {
 	// 	path: 'users/register',
