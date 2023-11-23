@@ -24,7 +24,7 @@ public class Reservas {
     @JoinColumn(name = "Usuarios_idUsuarios")
     private Usuarios usuario;
 
-    @ManyToMany(mappedBy = "reservas")
+    @ManyToMany(mappedBy = "reservas", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private List<Productos> productos;
 
     // Constructores, getters y setters

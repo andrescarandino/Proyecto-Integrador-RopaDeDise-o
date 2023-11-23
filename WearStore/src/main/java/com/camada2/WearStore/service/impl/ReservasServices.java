@@ -8,6 +8,7 @@ import com.camada2.WearStore.repository.ReservasRepository;
 import com.camada2.WearStore.repository.UsuariosRepository;
 import com.camada2.WearStore.service.IService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.expression.ExpressionException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,10 +37,36 @@ public class ReservasServices implements IService<Reservas,Reservas> {
     }
 
     @Transactional
-    public Reservas guardarReserva(Reservas reservas, String nombre) throws IOException {
-        List<Productos> p =productosRepository.findProductosByNombre(nombre);
-        reservas.setProductos(p);
-        return reservasRepository.save(reservas);
+    public Reservas guardarReserva(Reservas reservas) throws IOException {
+
+      Integer reservaUserid= reservas.getUsuario().getIdUsuarios();
+      Optional<Usuarios> usuariosGuardado=usuariosRepository.findById(reservaUserid);
+
+        reservas.setUsuario(usuariosGuardado.orElseThrow(() -> new ExpressionException("No se encontró el usuario con ID: " + reservaUserid)));
+
+        List<Productos> productos = reservas.getProductos();
+        List<Productos> productosAsociados = new ArrayList<>();
+
+        for (Productos producto : productos) {
+            // Verificar si el producto ya existe en la base de datos
+            Productos productoExistente = productosRepository.findById(producto.getIdProductos()).orElse(null);
+
+            if (productoExistente != null) {
+                // Actualizar la referencia al producto existente
+                producto = productoExistente;
+            } else {
+                // Guardar el producto si no existe
+                producto = productosRepository.save(producto);
+            }
+            producto.agregarReserva(reservas);
+            productosAsociados.add(producto);
+        }
+        reservas.setProductos(productosAsociados);
+
+        Reservas reservaGuardada =reservasRepository.save(reservas);
+
+
+       return reservaGuardada;
 
 
     }
@@ -60,6 +87,7 @@ public class ReservasServices implements IService<Reservas,Reservas> {
 
     @Override
     public Reservas buscar(Integer i) {
+
         return reservasRepository.findById(i).orElse(null);
     }
 

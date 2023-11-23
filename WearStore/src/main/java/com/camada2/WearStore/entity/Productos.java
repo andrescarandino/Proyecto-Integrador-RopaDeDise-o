@@ -1,11 +1,13 @@
 package com.camada2.WearStore.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import jdk.jfr.Timestamp;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -66,7 +68,8 @@ public class Productos {
     @ManyToMany (fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable (name = "ProductoHasReservas", joinColumns = @JoinColumn(name = "idProductos", referencedColumnName = "idProductos"),
             inverseJoinColumns = @JoinColumn(name = "idReservas", referencedColumnName = "idReservas"))
-    private List<Reservas> reservas;
+    @JsonIgnore
+    private List<Reservas> reservas= new ArrayList<>();;
 
     @OneToMany
     @JoinColumn (name = "producto_id")
@@ -179,6 +182,12 @@ public class Productos {
 
     public List<Reservas> getReservas() {
         return reservas;
+    }
+    public void agregarReserva(Reservas reserva) {
+        if (reservas == null) {
+            reservas = new ArrayList<>();
+        }
+        reservas.add(reserva);
     }
 
     public void setReservas(List<Reservas> reservas) {
