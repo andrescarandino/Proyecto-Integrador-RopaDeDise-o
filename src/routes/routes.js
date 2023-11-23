@@ -51,6 +51,7 @@ const routes = [
 		path: 'admin/categories/list',
 		element: ListCategories,
 	},
+
 	// {
 	// 	path: 'users/register',
 	// 	element: Register,
