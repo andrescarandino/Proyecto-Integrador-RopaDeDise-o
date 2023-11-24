@@ -1,17 +1,21 @@
 /* eslint-disable no-unused-vars */
 import { useForm } from 'react-hook-form';
-import { useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import registerUser from '../../services/registerUser';
 import styles from '../../styles/users/register.module.css';
 import imgRegister from '../../img/imgRegister.png';
 import imgRegister2 from '../../img/imgRegister2.png';
+import { UserContext } from '../../contexts/UserContext';
 
 function Register() {
+	const { state, dispatch } = useContext(UserContext);
 	const [registered, setRegistered] = useState(false);
 	const navigate = useNavigate();
 	const handleHome = () => {
 		navigate('/');
+	};
+	const handleLogin = () => {
+		navigate('/users/login');
 	};
 	const {
 		register,
@@ -20,10 +24,10 @@ function Register() {
 		watch,
 		reset,
 	} = useForm();
-
-	const onSubmit = async (user) => {
-		const res = await registerUser(user);
-		console.log(res);
+	const onSubmit = (data) => {
+		// dispatch({ type: 'LOGIN', user: data, token: null });
+		// const res = await registerUser(user);
+		// console.log(res);
 		// reset();
 	};
 
@@ -143,7 +147,7 @@ function Register() {
 						)}
 
 						{/* <label>Confirmar contraseña:</label> */}
-						{/* <input
+						<input
 							placeholder="Confirmar Contraseña"
 							className={styles.formInput}
 							type="password"
@@ -171,12 +175,18 @@ function Register() {
 						/>
 						{errors.confirmPassword && (
 							<span>{errors.confirmPassword.message}</span>
-						)} */}
+						)}
 
 						<button className={styles.formButton} type="submit">
 							Registrar
 						</button>
 					</form>
+					<div className={styles.registerContainer}>
+						<h4>¿Ya tienes una cuenta?</h4>
+						<button onClick={handleLogin} type="button">
+							Iniciar Sesion
+						</button>
+					</div>
 					<button
 						onClick={handleHome}
 						className={styles.returnButton}

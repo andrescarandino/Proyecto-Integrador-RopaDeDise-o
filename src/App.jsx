@@ -6,30 +6,36 @@ import routes, { Login, Register } from './routes/routes';
 import Spinner from './components/Spinner';
 import './styles/index.css';
 import { ToastContextProvider } from './contexts/ToastContext';
+import { UserContextProvider } from './contexts/UserContext';
 
 function App() {
 	return (
 		<Suspense fallback={<Spinner />}>
-			<ToastContextProvider>
-				<Routes>
-					<Route path="/users/" element={<PublicLayout />}>
-						<Route path="/users/login" element={<Login />} />
-						<Route path="/users/register" element={<Register />} />
-					</Route>
-					<Route path="/" element={<Layout />}>
-						{routes.map((route) => {
-							return (
-								<Route
-									key={route.path}
-									path={route.path}
-									element={<route.element />}
-									index={route?.index}
-								/>
-							);
-						})}
-					</Route>
-				</Routes>
-			</ToastContextProvider>
+			<UserContextProvider>
+				<ToastContextProvider>
+					<Routes>
+						<Route path="/users/" element={<PublicLayout />}>
+							<Route path="/users/login" element={<Login />} />
+							<Route
+								path="/users/register"
+								element={<Register />}
+							/>
+						</Route>
+						<Route path="/" element={<Layout />}>
+							{routes.map((route) => {
+								return (
+									<Route
+										key={route.path}
+										path={route.path}
+										element={<route.element />}
+										index={route?.index}
+									/>
+								);
+							})}
+						</Route>
+					</Routes>
+				</ToastContextProvider>
+			</UserContextProvider>
 		</Suspense>
 	);
 }

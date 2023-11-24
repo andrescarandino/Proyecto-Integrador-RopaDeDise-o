@@ -1,13 +1,16 @@
 /* eslint-disable no-unused-vars */
 import { useForm } from 'react-hook-form';
-import { useRef } from 'react';
+import { useContext, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../../styles/users/login.module.css';
 import Header from '../../components/Header';
 import loginImg from '../../img/loginImg.png';
 import loginImg2 from '../../img/loginImg2.png';
+import { UserContext } from '../../contexts/UserContext';
+import loginUser from '../../services/loginUser';
 
 function Login() {
+	const { state, dispatch } = useContext(UserContext);
 	const navigate = useNavigate();
 	const handleRegister = () => {
 		navigate('/users/register');
@@ -23,10 +26,13 @@ function Login() {
 		reset,
 	} = useForm();
 
-	const onSubmit = handleSubmit((/* data */) => {
-		navigate('/');
-		reset();
-	});
+	const onSubmit = (data) => {
+		const res = loginUser(data);
+		// console.log(res);
+		// dispatch({ type: 'LOGIN', user: data, token: null });
+		// navigate('/');
+		// reset();
+	};
 	const password = useRef(null);
 	password.current = watch('password', '');
 
@@ -40,7 +46,7 @@ function Login() {
 						<h1>carolki.</h1>
 						<h3>...diseñamos pasión</h3>
 					</div>
-					<form onSubmit={onSubmit}>
+					<form onSubmit={handleSubmit(onSubmit)}>
 						{/* <label>Email:</label> */}
 						<input
 							placeholder="Email"

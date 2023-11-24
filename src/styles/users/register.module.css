@@ -51,7 +51,7 @@
     justify-content: space-between;
     height: 21rem;
     width: 80%;
-    margin-top: 3rem;
+    margin-top: 5rem;
   }
 
   .formInput{
@@ -98,7 +98,7 @@
 
   .returnButton{
     position: absolute;
-    bottom: 45px;
+    bottom: 30px;
     border: none;
     background-color: transparent;
     font-size: 25px;
@@ -175,6 +175,7 @@
             animation: rotate-in-2-br-ccw 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
   }
 
+
 @-webkit-keyframes rotate-in-2-br-ccw {
   0% {
     -webkit-transform: rotate(45deg);
@@ -206,6 +207,24 @@
             transform-origin: 100% 100%;
     opacity: 1;
   }
+}
+
+.registerContainer{
+  display: flex;
+  gap: 10px;
+  margin-top: 30px;
+}
+.registerContainer button{
+  border: none;
+  background-color: transparent;
+  font-size: 15px;
+  font-style: italic;
+  cursor: pointer;
+  color: #ae9279;
+}
+
+.registerContainer h4{
+  font-weight: 400;
 }
 
 /*   

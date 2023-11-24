@@ -5,11 +5,11 @@ import styles from '../styles/header.module.css';
 import UserActive from './UserActive';
 
 function Header() {
-	const [usuarioActive, setUsuarioActive] = useState(false);
+	const [usuarioActive, setUsuarioActive] = useState(true);
 	const [menuActive, setMenuActive] = useState(false);
-	useEffect(() => {
-		setUsuarioActive(false);
-	}, []);
+	// useEffect(() => {
+	// 	setUsuarioActive(false);
+	// }, []);
 	const handleMenu = () => {
 		setMenuActive(!menuActive);
 	};
