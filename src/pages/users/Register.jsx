@@ -6,6 +6,7 @@ import styles from '../../styles/users/register.module.css';
 import imgRegister from '../../img/imgRegister.png';
 import imgRegister2 from '../../img/imgRegister2.png';
 import { UserContext } from '../../contexts/UserContext';
+import registerUser from '../../services/registerUser';
 
 function Register() {
 	const { state, dispatch } = useContext(UserContext);
@@ -24,10 +25,13 @@ function Register() {
 		watch,
 		reset,
 	} = useForm();
-	const onSubmit = (data) => {
+	const onSubmit = async (data) => {
+		// eslint-disable-next-line no-param-reassign
+		data.roles = ['USER'];
+		const res = await registerUser(data);
 		// dispatch({ type: 'LOGIN', user: data, token: null });
 		// const res = await registerUser(user);
-		// console.log(res);
+		console.log(res);
 		// reset();
 	};
 

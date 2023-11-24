@@ -26,9 +26,8 @@ function Login() {
 		reset,
 	} = useForm();
 
-	const onSubmit = (data) => {
-		const res = loginUser(data);
-		// console.log(res);
+	const onSubmit = async (data) => {
+		const res = await loginUser(data);
 		// dispatch({ type: 'LOGIN', user: data, token: null });
 		// navigate('/');
 		// reset();
