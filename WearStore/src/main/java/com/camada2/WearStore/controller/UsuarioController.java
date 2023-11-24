@@ -34,7 +34,7 @@ public class UsuarioController {
     @PostMapping
     public ResponseEntity<Usuarios> guardarUsuario(@RequestBody Usuarios usuario) {
         Usuarios usuarioGuardado = usuarioServices.guardar(usuario);
-        usuarioServices.generarVerificacionEmail(usuario.getUser(), usuarioGuardado);
+      //  usuarioServices.generarVerificacionEmail(usuario.getUser(), usuarioGuardado);
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioGuardado);
     }
 
