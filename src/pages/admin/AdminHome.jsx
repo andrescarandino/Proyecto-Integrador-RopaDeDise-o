@@ -38,8 +38,12 @@ function AdminHome() {
 						<li className={menuStyles.item}>
 							Agregar usuario <IconArrowNarrowRight />
 						</li>
-						<li className={menuStyles.item}>
-							Listado de usuarios <IconArrowNarrowRight />
+						<li
+							className={menuStyles.item}
+							role="menuitem"
+							onClick={() => navigate(URLS.ADMIN_LIST_USERS)}
+						>
+							Identificar administrador <IconArrowNarrowRight />
 						</li>
 						<li
 							className={`${menuStyles.item} ${menuStyles.titleItem}`}
