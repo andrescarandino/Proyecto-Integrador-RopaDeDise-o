@@ -4,15 +4,12 @@ const userReducer = (state, action) => {
 			return {
 				...state,
 				isAuthenticated: true,
-				user: action.user,
-				token: action.token,
+				user: action.payload.user,
+				token: action.payload.token,
 			};
 		case 'LOGOUT':
-			localStorage.clear();
 			return {
-				...state,
 				isAuthenticated: false,
-				user: action.user,
 			};
 
 		default:
