@@ -1,8 +1,6 @@
 package com.camada2.WearStore.Dto;
 
-import com.camada2.WearStore.entity.TipoUsuarios;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;

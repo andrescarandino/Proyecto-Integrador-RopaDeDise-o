@@ -35,15 +35,15 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El usuario no existe");
     }
     @PostMapping
-    public ResponseEntity<Usuarios> guardarUsuario(@RequestBody UsuariosDTO usuariosDTO) {
-        Usuarios usuarioGuardado = usuarioServices.guardar(usuariosDTO);
+    public ResponseEntity<Usuarios> guardarUsuario(@RequestBody Usuarios usuarios) {
+        Usuarios usuarioGuardado = usuarioServices.guardar(usuarios);
         usuarioServices.generarVerificacionEmail(usuarioGuardado.getUser(), usuarioGuardado);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PutMapping
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Usuarios>ActualizarUsuario(@RequestBody UsuariosDTO u ){
+    public ResponseEntity<Usuarios>ActualizarUsuario(@RequestBody Usuarios u ){
         usuarioServices.actualizar(u);
         return ResponseEntity.status(HttpStatus.OK).build();
     }

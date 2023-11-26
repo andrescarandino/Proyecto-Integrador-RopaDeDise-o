@@ -3,16 +3,20 @@ package com.camada2.WearStore.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import lombok.Data;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 
 @Entity
 @Table(name = "Usuarios")
-public class Usuarios {
+public class Usuarios implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,9 +47,10 @@ public class Usuarios {
     @Column(name = "estado")
     private int estado;
 
-    @ManyToMany(fetch = FetchType.EAGER, targetEntity = TipoUsuarios.class, cascade = CascadeType.ALL)
-    @JoinTable(name = "usuarios_tipoUsuarios", joinColumns = @JoinColumn(name = "idUsuarios"), inverseJoinColumns = @JoinColumn(name = "idTipoUsuarios"))
-    private Set<TipoUsuarios> roles;
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Roles.class, cascade = CascadeType.ALL)
+    @JoinTable(name = "usuariosHasRoles", joinColumns = @JoinColumn(name = "idUsuarios"), inverseJoinColumns = @JoinColumn(name = "idRoles"))
+    @Enumerated(EnumType.STRING)
+    private Set<Roles> roles;
 
 
     @OneToMany(mappedBy = "usuariosId", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -75,10 +80,6 @@ public class Usuarios {
 
     public void setIdUsuarios(int idUsuarios) {
         this.idUsuarios = idUsuarios;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public void setPassword(String password) {
@@ -133,12 +134,53 @@ public class Usuarios {
         this.user = user;
     }
 
-    public Set<TipoUsuarios> getRoles() {
+    public Set<Roles> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<TipoUsuarios> roles) {
+    public void setRoles(Set<Roles> roles) {
         this.roles = roles;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+
+        List<GrantedAuthority> authorities = roles.stream()
+                .map(rolEnum -> new SimpleGrantedAuthority(rolEnum.getNombre().name()))
+                .collect(Collectors.toList());
+
+
+
+        return authorities;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
 
