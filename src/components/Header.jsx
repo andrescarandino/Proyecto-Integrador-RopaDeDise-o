@@ -1,10 +1,11 @@
+import { useState } from 'react';
+import { IoMdClose, IoMdMenu } from 'react-icons/io';
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { IoMdMenu, IoMdClose } from 'react-icons/io';
 import styles from '../styles/header.module.css';
 import UserActive from './UserActive';
 
 function Header() {
+	// eslint-disable-next-line no-unused-vars
 	const [usuarioActive, setUsuarioActive] = useState(false);
 	const [menuActive, setMenuActive] = useState(false);
 	// useEffect(() => {
