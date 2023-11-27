@@ -1,6 +1,8 @@
 package com.camada2.WearStore.service.impl;
 
 import com.camada2.WearStore.Dto.UsuariosDTO;
+import com.camada2.WearStore.auth.AuthResponse;
+import com.camada2.WearStore.config.jwt.JwtService;
 import com.camada2.WearStore.entity.ERole;
 import com.camada2.WearStore.entity.TipoUsuarios;
 import com.camada2.WearStore.entity.Usuarios;
@@ -46,6 +48,9 @@ public class UsuarioServices implements IService<UsuariosDTO, Usuarios>, UserDet
     @Autowired
     ObjectMapper mapper;
 
+    @Autowired
+    JwtService jwtService;
+
 
     @Override
     public Usuarios guardar(UsuariosDTO usuariosDTO) {
@@ -63,7 +68,11 @@ public class UsuarioServices implements IService<UsuariosDTO, Usuarios>, UserDet
         usuarios.setPassword(passwordEncoder.encode(usuariosDTO.getPassword()));
         usuarios.setRoles(roles);
 
-        return usuariosRepository.save(usuarios);
+        usuariosRepository.save(usuarios);
+
+        return AuthResponse.builder()
+                .token(jwtService.getToken(usuarios))
+                .build();
 
     }
 
