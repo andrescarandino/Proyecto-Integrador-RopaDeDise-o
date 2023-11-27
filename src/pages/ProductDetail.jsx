@@ -2,12 +2,17 @@ import { useState } from 'react';
 import { IoIosClose } from 'react-icons/io';
 import { Link, useParams } from 'react-router-dom';
 import ReactSlidy from 'react-slidy';
+import {
+	IoDiamondOutline,
+	IoCutOutline,
+	IoShirtOutline,
+} from 'react-icons/io5';
 import MockData from '../../MOCK_DATA.json';
 import styles from '../styles/productDetail.module.css';
-import ReservacionComponent from './Reserva';
 
 function ProductDetail() {
 	const [slidyActive, setSlidyActive] = useState(false);
+	const [isCalendarOpen, setCalendarOpen] = useState(false);
 	const params = useParams();
 	const { id } = params;
 	const img = MockData[id - 1].image_url;
@@ -16,7 +21,9 @@ function ProductDetail() {
 	const handleSlidy = () => {
 		setSlidyActive(!slidyActive);
 	};
-
+	const handleCalendarToggle = () => {
+		setCalendarOpen(!isCalendarOpen);
+	};
 	return (
 		<div className={styles.productContainer}>
 			<div className={styles.productHeader}>
@@ -49,9 +56,6 @@ function ProductDetail() {
 						>
 							Ver mas
 						</button>
-					</div>
-					<div>
-						<ReservacionComponent />
 					</div>
 				</div>
 				{slidyActive && (
@@ -95,6 +99,45 @@ function ProductDetail() {
 						</ReactSlidy>
 					</div>
 				)}
+			</div>
+			{isCalendarOpen && (
+				<div className={styles.calendarContainer}>
+					<div className={styles.calendarDiv}>
+						<input type="date" />
+						<input type="date" />
+						<button
+							type="button"
+							className={styles.calendarButton}
+							onClick={''}
+						>
+							Consultar Disponibilidad
+						</button>
+					</div>
+				</div>
+			)}
+			<div className={styles.productFooter}>
+				<div className={styles.productFooterItems}>
+					<IoDiamondOutline />
+					<h2 className={styles.productFooterH2}>Categoria</h2>
+				</div>
+				<div className={styles.productFooterItems}>
+					<IoCutOutline />
+					<h2 className={styles.productFooterH2}>Caracteristica</h2>
+				</div>
+				<div className={styles.productFooterItems}>
+					<IoShirtOutline />
+					<h2 className={styles.productFooterH2}>Talles</h2>
+				</div>
+				{/* <Reservation /> */}
+				<div className="">
+					<button
+						type="button"
+						className={styles.descriptionButton}
+						onClick={handleCalendarToggle}
+					>
+						{!isCalendarOpen ? 'Reserva' : 'Cerrar'}
+					</button>
+				</div>
 			</div>
 		</div>
 	);
