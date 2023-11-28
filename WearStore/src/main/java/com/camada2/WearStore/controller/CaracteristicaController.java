@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/caracteristicas")
-
+@CrossOrigin(origins = "*")
 public class CaracteristicaController {
 
     @Autowired
