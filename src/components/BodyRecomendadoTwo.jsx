@@ -1,11 +1,15 @@
 import PropTypes from 'prop-types';
-import { IoIosStarOutline } from 'react-icons/io';
+import { IoIosStarOutline, IoIosStar } from 'react-icons/io';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 import styles from '../styles/bodyRecomendadoTwo.module.css';
 
 function BodyRecomendadoOne({ data }) {
 	const dataNew = data.slice(9, 10);
-	console.log(dataNew);
+	const [favActive, setFavActive] = useState(false);
+	const handleFav = () => {
+		setFavActive(!favActive);
+	};
 	return (
 		<div className={styles.recomendadoContainer}>
 			{dataNew &&
@@ -22,13 +26,13 @@ function BodyRecomendadoOne({ data }) {
 							<p className={styles.recomendadoP}>
 								{x.description}
 							</p>
-							<div>
+							{/* <div>
 								<IoIosStarOutline />
 								<IoIosStarOutline />
 								<IoIosStarOutline />
 								<IoIosStarOutline />
 								<IoIosStarOutline />
-							</div>
+							</div> */}
 							<button
 								type="button"
 								className={styles.recomendadoButton}
@@ -40,6 +44,14 @@ function BodyRecomendadoOne({ data }) {
 									Recomendado
 								</Link>
 							</button>
+							<IoIosStar
+								onClick={handleFav}
+								className={
+									!favActive
+										? styles.favIcon
+										: styles.favIconActive
+								}
+							/>
 						</div>
 					</>
 				))}

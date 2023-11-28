@@ -89,6 +89,21 @@
 	text-decoration: none;
 }
 
+.favIcon{
+	position: absolute;
+	top: 15px;
+	left: 15px;
+	font-size: 18px;
+	color: rgb(176, 176, 176);
+}
+.favIconActive{
+	position: absolute;
+	top: 15px;
+	left: 15px;
+	font-size: 18px;
+	color: rgb(253, 214, 106);
+}
+
 @media (max-width: 1307px) {
 	.recomendadoContainer {
 		margin-left: 0px;

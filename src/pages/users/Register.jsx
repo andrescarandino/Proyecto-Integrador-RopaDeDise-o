@@ -11,6 +11,7 @@ import registerUser from '../../services/registerUser';
 function Register() {
 	const { state, dispatch } = useContext(UserContext);
 	const [registered, setRegistered] = useState(false);
+	const [error, setError] = useState(false);
 	const navigate = useNavigate();
 	const handleHome = () => {
 		navigate('/');
@@ -29,9 +30,13 @@ function Register() {
 		// eslint-disable-next-line no-param-reassign
 		data.roles = ['USER'];
 		const res = await registerUser(data);
+		// eslint-disable-next-line no-unused-expressions
+		console.log(res.status);
+		// eslint-disable-next-line no-unused-expressions
+		res.status === 201 ? setRegistered(true) : setError(true);
+
 		// dispatch({ type: 'LOGIN', user: data, token: null });
 		// const res = await registerUser(user);
-		console.log(res);
 		// reset();
 	};
 
@@ -199,6 +204,14 @@ function Register() {
 						- volver -
 					</button>
 				</div>
+				{registered && (
+					<div className={styles.messageContainer}>
+						<h5>Te enviamos un email para confirmar el Registro</h5>
+						<button className={styles.messageButton} type="button">
+							- reenviar email -
+						</button>
+					</div>
+				)}
 			</div>
 		</div>
 	);

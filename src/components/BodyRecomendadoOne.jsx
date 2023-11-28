@@ -1,11 +1,15 @@
 import { Link } from 'react-router-dom';
-import { IoIosStarOutline } from 'react-icons/io';
+import { IoIosStarOutline, IoIosStar } from 'react-icons/io';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 import styles from '../styles/bodyRecomendadoOne.module.css';
 
 function BodyRecomendadoOne({ data }) {
 	const dataNew = data.slice(4, 5);
-	console.log(dataNew);
+	const [favActive, setFavActive] = useState(false);
+	const handleFav = () => {
+		setFavActive(!favActive);
+	};
 	return (
 		<div className={styles.recomendadoContainer}>
 			{dataNew.map((x) => (
@@ -18,13 +22,13 @@ function BodyRecomendadoOne({ data }) {
 					<div className={styles.recomendadoDetail}>
 						<h2 className={styles.recomendadoH2}>{x.name}</h2>
 						<p className={styles.recomendadoP}>{x.description}</p>
-						<div>
+						{/* <div>
 							<IoIosStarOutline />
 							<IoIosStarOutline />
 							<IoIosStarOutline />
 							<IoIosStarOutline />
 							<IoIosStarOutline />
-						</div>
+						</div> */}
 						<button
 							type="button"
 							className={styles.recomendadoButton}
@@ -36,6 +40,14 @@ function BodyRecomendadoOne({ data }) {
 								Recomendado
 							</Link>
 						</button>
+						<IoIosStar
+							onClick={handleFav}
+							className={
+								!favActive
+									? styles.favIcon
+									: styles.favIconActive
+							}
+						/>
 					</div>
 				</>
 			))}

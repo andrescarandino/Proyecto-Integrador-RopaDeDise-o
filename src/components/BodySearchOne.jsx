@@ -1,10 +1,15 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { IoIosStar } from 'react-icons/io';
+import { useState } from 'react';
 import styles from '../styles/bodySearchOne.module.css';
 
 function BodySearchOne({ data }) {
 	const dataNew = data.slice(0, 4);
-	console.log(dataNew);
+	const [favActive, setFavActive] = useState(false);
+	const handleFav = () => {
+		setFavActive(!favActive);
+	};
 	return (
 		<div className={styles.bodySearch}>
 			{dataNew.map((x) => (
@@ -18,6 +23,12 @@ function BodySearchOne({ data }) {
 							ver
 						</Link>
 					</button>
+					<IoIosStar
+						onClick={handleFav}
+						className={
+							!favActive ? styles.favIcon : styles.favIconActive
+						}
+					/>
 				</div>
 			))}
 			{/* <div className={styles.divSearch}>

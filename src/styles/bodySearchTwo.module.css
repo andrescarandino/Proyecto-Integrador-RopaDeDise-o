@@ -77,6 +77,21 @@
 	text-decoration: none;
 }
 
+.favIcon{
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	font-size: 18px;
+	color: rgb(176, 176, 176);
+}
+.favIconActive{
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	font-size: 18px;
+	color: rgb(253, 214, 106);
+}
+
 @media (max-width: 1310px) {
 	.bodySearch {
 		grid-template-columns: 1fr 1fr 1fr 1fr;

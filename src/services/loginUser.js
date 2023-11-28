@@ -3,7 +3,7 @@ const loginUser = async (data) => {
 	try {
 		const response = await fetch('http://localhost:8080/login', {
 			method: 'POST',
-			mode: 'no-cors',
+			// mode: 'no-cors',
 			headers: {
 				'Content-type': 'application/json',
 			},
