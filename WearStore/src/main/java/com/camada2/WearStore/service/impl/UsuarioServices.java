@@ -48,9 +48,6 @@ public class UsuarioServices implements IService<UsuariosDTO, Usuarios>, UserDet
     @Autowired
     ObjectMapper mapper;
 
-    @Autowired
-    JwtService jwtService;
-
 
     @Override
     public Usuarios guardar(UsuariosDTO usuariosDTO) {
@@ -68,12 +65,7 @@ public class UsuarioServices implements IService<UsuariosDTO, Usuarios>, UserDet
         usuarios.setPassword(passwordEncoder.encode(usuariosDTO.getPassword()));
         usuarios.setRoles(roles);
 
-        usuariosRepository.save(usuarios);
-
-        return AuthResponse.builder()
-                .token(jwtService.getToken(usuarios))
-                .build();
-
+        return usuariosRepository.save(usuarios);
     }
 
     @Override

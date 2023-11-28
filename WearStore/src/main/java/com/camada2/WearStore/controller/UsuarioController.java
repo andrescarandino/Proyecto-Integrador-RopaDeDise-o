@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/usuarios")
+@CrossOrigin(origins = "*")
 public class UsuarioController {
 
     @Autowired
@@ -37,7 +38,7 @@ public class UsuarioController {
     @PostMapping
     public ResponseEntity<Usuarios> guardarUsuario(@RequestBody UsuariosDTO usuariosDTO) {
         Usuarios usuarioGuardado = usuarioServices.guardar(usuariosDTO);
-        usuarioServices.generarVerificacionEmail(usuarioGuardado.getUser(), usuarioGuardado);
+       // usuarioServices.generarVerificacionEmail(usuarioGuardado.getUser(), usuarioGuardado);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
