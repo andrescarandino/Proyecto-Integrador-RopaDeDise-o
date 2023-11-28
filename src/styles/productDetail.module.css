@@ -7,6 +7,8 @@
 }
 
 .productHeader {
+	position: relative;
+	z-index: 10;
 	display: flex;
 	justify-content: space-between;
 	background-color: white;
@@ -14,6 +16,15 @@
 	border-radius: 5px;
 	-webkit-animation: fade-in-top 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 			animation: fade-in-top 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+.productIcons{
+	position: absolute;
+	right: 15px;
+	top: 15px;
+	font-size: 26px;
+	color: #464646;
+	cursor: pointer;
 }
 
  @-webkit-keyframes fade-in-top {
@@ -123,6 +134,7 @@
 }
 
 .descriptionP {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;

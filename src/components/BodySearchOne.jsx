@@ -3,20 +3,24 @@ import { Link } from 'react-router-dom';
 import styles from '../styles/bodySearchOne.module.css';
 
 function BodySearchOne({ data }) {
+	const dataNew = data.slice(0, 4);
+	console.log(dataNew);
 	return (
 		<div className={styles.bodySearch}>
-			<div className={styles.divSearch}>
-				<img src={data[0].image_url} alt="" />
-				<button type="button" className={styles.searchButton}>
-					<Link
-						className={styles.searchLink}
-						to={`product/${data[0].id}`}
-					>
-						ver
-					</Link>
-				</button>
-			</div>
-			<div className={styles.divSearch}>
+			{dataNew.map((x) => (
+				<div className={styles.divSearch}>
+					<img src={x.image_url} alt="" />
+					<button type="button" className={styles.searchButton}>
+						<Link
+							className={styles.searchLink}
+							to={`product/${x.id}`}
+						>
+							ver
+						</Link>
+					</button>
+				</div>
+			))}
+			{/* <div className={styles.divSearch}>
 				<img src={data[1].image_url} alt="" />
 				<button type="button" className={styles.searchButton}>
 					<Link
@@ -49,7 +53,7 @@ function BodySearchOne({ data }) {
 						ver
 					</Link>
 				</button>
-			</div>
+			</div> */}
 		</div>
 	);
 }

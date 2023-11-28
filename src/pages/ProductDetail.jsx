@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { IoIosClose } from 'react-icons/io';
+import { IoIosClose, IoMdShare } from 'react-icons/io';
 import { Link, useParams } from 'react-router-dom';
 import ReactSlidy from 'react-slidy';
 import {
@@ -9,11 +9,12 @@ import {
 } from 'react-icons/io5';
 import MockData from '../../MOCK_DATA.json';
 import styles from '../styles/productDetail.module.css';
-import CompartirRedes from './CompartirRedes';
+import Social from './Social';
 
 function ProductDetail() {
 	const [slidyActive, setSlidyActive] = useState(false);
-	const [isCalendarOpen, setCalendarOpen] = useState(false);
+	const [calendarOpen, setCalendarOpen] = useState(false);
+	const [socialOpen, setSocialOpen] = useState(false);
 	const params = useParams();
 	const { id } = params;
 	const img = MockData[id - 1].image_url;
@@ -23,7 +24,10 @@ function ProductDetail() {
 		setSlidyActive(!slidyActive);
 	};
 	const handleCalendarToggle = () => {
-		setCalendarOpen(!isCalendarOpen);
+		setCalendarOpen(!calendarOpen);
+	};
+	const handleSocialToggle = () => {
+		setSocialOpen(!socialOpen);
 	};
 
 	return (
@@ -36,7 +40,9 @@ function ProductDetail() {
 					</Link>
 				</button>
 			</div>
-
+			{socialOpen && (
+				<Social url={`http://localhost:5173/product/${id}`} />
+			)}
 			<div className={styles.descriptionContainer}>
 				<div className={styles.descriptionBigImg}>
 					<img src={img} alt="" />
@@ -58,12 +64,10 @@ function ProductDetail() {
 						>
 							Ver mas
 						</button>
-						<button type="button">
-							<CompartirRedes
-								url={`http://localhost:5173/product/${id}`}
-								buttonClassName={styles.descriptionButton} // Pasa la clase como prop
-							/>
-						</button>
+						<IoMdShare
+							onClick={handleSocialToggle}
+							className={styles.productIcons}
+						/>
 					</div>
 				</div>
 				{slidyActive && (
@@ -108,7 +112,7 @@ function ProductDetail() {
 					</div>
 				)}
 			</div>
-			{isCalendarOpen && (
+			{calendarOpen && (
 				<div className={styles.calendarContainer}>
 					<div className={styles.calendarDiv}>
 						<input type="date" />
@@ -145,7 +149,7 @@ function ProductDetail() {
 						className={styles.descriptionButton}
 						onClick={handleCalendarToggle}
 					>
-						{!isCalendarOpen ? 'Reserva' : 'Cerrar'}
+						{!calendarOpen ? 'Reserva' : 'Cerrar'}
 					</button>
 				</div>
 			</div>

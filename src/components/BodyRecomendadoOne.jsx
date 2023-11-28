@@ -4,33 +4,41 @@ import PropTypes from 'prop-types';
 import styles from '../styles/bodyRecomendadoOne.module.css';
 
 function BodyRecomendadoOne({ data }) {
+	const dataNew = data.slice(4, 5);
+	console.log(dataNew);
 	return (
 		<div className={styles.recomendadoContainer}>
-			<img
-				className={styles.recomendadoImg}
-				src={data[9].image_url}
-				alt="recomendado"
-			/>
-
-			<div className={styles.recomendadoDetail}>
-				<h2 className={styles.recomendadoH2}>{data[9].name}</h2>
-				<p className={styles.recomendadoP}>{data[9].description}</p>
-				<div>
-					<IoIosStarOutline />
-					<IoIosStarOutline />
-					<IoIosStarOutline />
-					<IoIosStarOutline />
-					<IoIosStarOutline />
-				</div>
-				<button type="button" className={styles.recomendadoButton}>
-					<Link
-						className={styles.recomendadoLink}
-						to={`product/${data[9].id}`}
-					>
-						Recomendado
-					</Link>
-				</button>
-			</div>
+			{dataNew.map((x) => (
+				<>
+					<img
+						className={styles.recomendadoImg}
+						src={x.image_url}
+						alt="recomendado"
+					/>
+					<div className={styles.recomendadoDetail}>
+						<h2 className={styles.recomendadoH2}>{x.name}</h2>
+						<p className={styles.recomendadoP}>{x.description}</p>
+						<div>
+							<IoIosStarOutline />
+							<IoIosStarOutline />
+							<IoIosStarOutline />
+							<IoIosStarOutline />
+							<IoIosStarOutline />
+						</div>
+						<button
+							type="button"
+							className={styles.recomendadoButton}
+						>
+							<Link
+								className={styles.recomendadoLink}
+								to={`product/${x.id}`}
+							>
+								Recomendado
+							</Link>
+						</button>
+					</div>
+				</>
+			))}
 		</div>
 	);
 }
