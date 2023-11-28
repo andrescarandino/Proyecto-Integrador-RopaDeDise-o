@@ -9,6 +9,7 @@ import {
 } from 'react-icons/io5';
 import MockData from '../../MOCK_DATA.json';
 import styles from '../styles/productDetail.module.css';
+import CompartirRedes from './CompartirRedes';
 
 function ProductDetail() {
 	const [slidyActive, setSlidyActive] = useState(false);
@@ -24,6 +25,7 @@ function ProductDetail() {
 	const handleCalendarToggle = () => {
 		setCalendarOpen(!isCalendarOpen);
 	};
+
 	return (
 		<div className={styles.productContainer}>
 			<div className={styles.productHeader}>
@@ -55,6 +57,12 @@ function ProductDetail() {
 							onClick={handleSlidy}
 						>
 							Ver mas
+						</button>
+						<button type="button">
+							<CompartirRedes
+								url={`http://localhost:5173/product/${id}`}
+								buttonClassName={styles.descriptionButton} // Pasa la clase como prop
+							/>
 						</button>
 					</div>
 				</div>
@@ -108,7 +116,9 @@ function ProductDetail() {
 						<button
 							type="button"
 							className={styles.calendarButton}
-							onClick={''}
+							onClick={() => {
+								console.log('Botón clickeado');
+							}}
 						>
 							Consultar Disponibilidad
 						</button>
