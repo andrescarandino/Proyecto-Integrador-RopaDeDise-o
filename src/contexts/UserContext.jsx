@@ -7,17 +7,16 @@ export const UserContext = createContext();
 
 const initialState = {
 	isAuthenticated: false,
-	user: null,
 	token: null,
 };
 
 const init = () => {
-	const user = JSON.parse(localStorage.getItem('user'));
+	// const user = JSON.parse(localStorage.getItem('user'));
 	const token = JSON.parse(localStorage.getItem('token'));
 
 	return {
-		isAuthenticated: !!user && !!token,
-		user: user || null,
+		isAuthenticated: !!token,
+		// user: user || null,
 		token: token || null,
 	};
 };
@@ -25,13 +24,13 @@ const init = () => {
 export function UserContextProvider({ children }) {
 	const [state, dispatch] = useReducer(userReducer, initialState, init);
 
-	const login = (user, token) => {
+	const login = (token) => {
 		const action = {
 			type: 'LOGIN',
-			payload: { user, token },
+			payload: { token },
 		};
 
-		localStorage.setItem('user', JSON.stringify(user));
+		// localStorage.setItem('user', JSON.stringify(user));
 		localStorage.setItem('token', JSON.stringify(token));
 
 		dispatch(action);
@@ -44,7 +43,7 @@ export function UserContextProvider({ children }) {
 	};
 
 	return (
-		<UserContext.Provider value={{ ...state, login, logout }}>
+		<UserContext.Provider value={{ state, dispatch, login, logout }}>
 			{children}
 		</UserContext.Provider>
 	);

@@ -1,15 +1,13 @@
 /* eslint-disable no-unused-vars */
 import { useForm } from 'react-hook-form';
-import { useContext, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../../styles/users/register.module.css';
 import imgRegister from '../../img/imgRegister.png';
 import imgRegister2 from '../../img/imgRegister2.png';
-import { UserContext } from '../../contexts/UserContext';
 import registerUser from '../../services/registerUser';
 
 function Register() {
-	const { state, dispatch } = useContext(UserContext);
 	const [registered, setRegistered] = useState(false);
 	const [error, setError] = useState(false);
 	const navigate = useNavigate();
@@ -34,10 +32,7 @@ function Register() {
 		console.log(res.status);
 		// eslint-disable-next-line no-unused-expressions
 		res.status === 201 ? setRegistered(true) : setError(true);
-
-		// dispatch({ type: 'LOGIN', user: data, token: null });
-		// const res = await registerUser(user);
-		// reset();
+		reset();
 	};
 
 	const password = useRef(null);

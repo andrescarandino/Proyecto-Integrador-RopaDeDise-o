@@ -1,16 +1,18 @@
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { IoMdClose, IoMdMenu } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 import styles from '../styles/header.module.css';
 import UserActive from './UserActive';
+import { UserContext } from '../contexts/UserContext';
 
 function Header() {
+	const { state } = useContext(UserContext);
 	// eslint-disable-next-line no-unused-vars
-	const [usuarioActive, setUsuarioActive] = useState(false);
+	// const [userActive, setUserActive] = useState(false);
 	const [menuActive, setMenuActive] = useState(false);
-	// useEffect(() => {
-	// 	setUsuarioActive(false);
-	// }, []);
+	const userActive = state.isAuthenticated;
+	console.log(state.isAuthenticated);
+
 	const handleMenu = () => {
 		setMenuActive(!menuActive);
 	};
@@ -42,7 +44,7 @@ function Header() {
 						</button>
 					</div>
 				)}
-				{!usuarioActive && (
+				{!userActive ? (
 					<div className={styles.headerLogin}>
 						<Link to="users/register">
 							<button
@@ -62,8 +64,9 @@ function Header() {
 							</button>
 						</Link>
 					</div>
+				) : (
+					<UserActive />
 				)}
-				{usuarioActive && <UserActive />}
 			</div>
 			{/* <hr className={styles.headerHr} /> */}
 		</div>

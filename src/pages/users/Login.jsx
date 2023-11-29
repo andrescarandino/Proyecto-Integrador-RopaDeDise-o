@@ -2,15 +2,15 @@
 import { useForm } from 'react-hook-form';
 import { useContext, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode';
 import styles from '../../styles/users/login.module.css';
-import Header from '../../components/Header';
 import loginImg from '../../img/loginImg.png';
 import loginImg2 from '../../img/loginImg2.png';
 import { UserContext } from '../../contexts/UserContext';
 import loginUser from '../../services/loginUser';
 
 function Login() {
-	const { state, dispatch } = useContext(UserContext);
+	const { login } = useContext(UserContext);
 	const navigate = useNavigate();
 	const handleRegister = () => {
 		navigate('/users/register');
@@ -25,16 +25,15 @@ function Login() {
 		watch,
 		reset,
 	} = useForm();
-
 	const onSubmit = async (data) => {
-		const res = await loginUser(data);
-		// dispatch({ type: 'LOGIN', user: data, token: null });
-		// navigate('/');
+		const token = await loginUser(data);
+		login(token);
+		console.log(token);
+		navigate('/');
 		// reset();
 	};
 	const password = useRef(null);
 	password.current = watch('password', '');
-
 	return (
 		<div className={styles.bodyContainer}>
 			<div className={styles.bodyContainerRegister}>
