@@ -24,6 +24,18 @@ function Register() {
 		watch,
 		reset,
 	} = useForm();
+	const handleError = () => {
+		setError(true);
+		setTimeout(() => {
+			setError(false);
+		}, 4000);
+	};
+	const handleRegistered = () => {
+		setRegistered(true);
+		setTimeout(() => {
+			setRegistered(false);
+		}, 8000);
+	};
 	const onSubmit = async (data) => {
 		// eslint-disable-next-line no-param-reassign
 		data.roles = ['USER'];
@@ -31,7 +43,7 @@ function Register() {
 		// eslint-disable-next-line no-unused-expressions
 		console.log(res.status);
 		// eslint-disable-next-line no-unused-expressions
-		res.status === 201 ? setRegistered(true) : setError(true);
+		res.status === 201 ? handleRegistered() : handleError();
 		reset();
 	};
 
@@ -205,6 +217,14 @@ function Register() {
 						<button className={styles.messageButton} type="button">
 							- reenviar email -
 						</button>
+					</div>
+				)}
+				{error && (
+					<div className={styles.messageErrorContainer}>
+						<h5>
+							- No se pudo realizar el Registro con Exito -
+							Intente Nuevamente
+						</h5>
 					</div>
 				)}
 			</div>

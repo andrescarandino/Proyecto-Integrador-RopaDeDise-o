@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { IoIosLogOut } from 'react-icons/io';
-import { Link } from 'react-router-dom';
+import { IoMdArrowDropup, IoMdArrowDropdown } from 'react-icons/io';
 import { useContext, useEffect, useState } from 'react';
 import { jwtDecode } from 'jwt-decode';
 import styles from '../styles/userActive.module.css';
@@ -23,10 +22,10 @@ function UserActive() {
 		})();
 	}, []);
 
-	// const [menuActive, setMenuActive] = useState(false);
-	// const handleMenu = () => {
-	// 	setMenuActive(!menuActive);
-	// };
+	const [menuActive, setMenuActive] = useState(false);
+	const handleMenu = () => {
+		setMenuActive(!menuActive);
+	};
 	const user = {
 		firstName: loading ? `${dataUser[1].nombre}` : '',
 		lastName: loading ? `${dataUser[1].apellido}` : '',
@@ -40,17 +39,26 @@ function UserActive() {
 				<h3>
 					{user.firstName} {user.lastName}
 				</h3>
-				{/* <button type="button" onClick={handleMenu}>
-					{menuActive ? <IoMdArrowDropup /> : <IoMdArrowDropdown />}
-				</button> */}
+				<button type="button" onClick={handleMenu}>
+					{menuActive ? (
+						<IoMdArrowDropup className={styles.userLink} />
+					) : (
+						<IoMdArrowDropdown className={styles.userLink} />
+					)}
+				</button>
 				<h2>
 					{letterFirstName}
 					{letterLastName}
 				</h2>
-				<Link>
-					<IoIosLogOut onClick={logout} className={styles.userLink} />
-				</Link>
 			</div>
+			{menuActive && (
+				<div className={styles.menuContainer}>
+					<button type="button" onClick={logout}>
+						cerrar sesion
+					</button>
+					<button type="button">info. personal</button>
+				</div>
+			)}
 		</div>
 	);
 }

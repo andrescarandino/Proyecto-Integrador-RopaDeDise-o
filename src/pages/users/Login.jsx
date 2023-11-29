@@ -2,7 +2,6 @@
 import { useForm } from 'react-hook-form';
 import { useContext, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { jwtDecode } from 'jwt-decode';
 import styles from '../../styles/users/login.module.css';
 import loginImg from '../../img/loginImg.png';
 import loginImg2 from '../../img/loginImg2.png';
