@@ -5,7 +5,7 @@
 	max-width: 1258px;
 	background-color: white;
 	gap: 2.2rem;
-	padding: 2rem 2rem 2rem 2rem;
+	padding: 2rem;
 	margin: 0 auto;
 	-webkit-animation: fade-in-bottom 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 			animation: fade-in-bottom 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
@@ -36,13 +36,15 @@
 	  opacity: 1;
 	}
   }
-  
 
 .sectionCard {
 	display: flex;
 	flex-direction: column;
-	margin-bottom: 2rem;
 }
+ .sectionCard img{
+	width: 16.9rem;
+	height: 22rem;
+ }
 
 .sectionCard:hover {
 	box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
