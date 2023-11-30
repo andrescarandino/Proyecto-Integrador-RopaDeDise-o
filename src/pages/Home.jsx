@@ -10,6 +10,7 @@ import BodySection from '../components/BodySection';
 import Pagination from '../components/Pagination';
 import Search from '../components/Search';
 import styles from '../styles/home.module.css';
+import NoProduct from '../img/noProduct.png';
 
 function Home() {
 	// eslint-disable-next-line no-unused-vars
@@ -19,12 +20,21 @@ function Home() {
 	const indexIni = indexFin - productQt;
 	const nProducts = _.shuffle(MockData.slice(indexIni, indexFin));
 	const nPages = Math.ceil(MockData.length / productQt);
+	const noProduct = [
+		{
+			image_url: NoProduct,
+			description: 'No hay productos en la Base de Datos',
+		},
+	];
+
 	return (
 		<div className={styles.bodyHome}>
 			<Search />
 			<div>
 				<div className={styles.bodyProducts}>
-					<BodySearchOne data={nProducts} />
+					<BodySearchOne
+						data={nProducts.length === 0 ? noProduct : nProducts}
+					/>
 					<BodyRecomendadoOne data={nProducts} />
 				</div>
 				<div className={styles.bodyProductsTwo}>

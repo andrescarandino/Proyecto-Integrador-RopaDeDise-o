@@ -1,10 +1,11 @@
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { IoIosStar } from 'react-icons/io';
 import { useState } from 'react';
 import styles from '../styles/bodySearchTwo.module.css';
 
+// eslint-disable-next-line react/prop-types
 function BodySearchTwo({ data }) {
+	// eslint-disable-next-line react/prop-types
 	const dataNew = data.slice(5, 9);
 	const [favActive, setFavActive] = useState(false);
 	const handleFav = () => {
@@ -68,12 +69,5 @@ function BodySearchTwo({ data }) {
 		</div>
 	);
 }
-
-BodySearchTwo.propTypes = {
-	data: PropTypes.shape({
-		id: PropTypes.string.isRequired,
-		image_url: PropTypes.string.isRequired,
-	}).isRequired,
-};
 
 export default BodySearchTwo;

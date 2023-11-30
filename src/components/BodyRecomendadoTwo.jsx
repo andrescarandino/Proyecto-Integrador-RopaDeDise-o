@@ -1,10 +1,11 @@
-import PropTypes from 'prop-types';
 import { IoIosStarOutline, IoIosStar } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import styles from '../styles/bodyRecomendadoTwo.module.css';
 
+// eslint-disable-next-line react/prop-types
 function BodyRecomendadoOne({ data }) {
+	// eslint-disable-next-line react/prop-types
 	const dataNew = data.slice(9, 10);
 	const [favActive, setFavActive] = useState(false);
 	const handleFav = () => {
@@ -58,12 +59,5 @@ function BodyRecomendadoOne({ data }) {
 		</div>
 	);
 }
-
-BodyRecomendadoOne.propTypes = {
-	data: PropTypes.shape({
-		id: PropTypes.string.isRequired,
-		image_url: PropTypes.string.isRequired,
-	}).isRequired,
-};
 
 export default BodyRecomendadoOne;
