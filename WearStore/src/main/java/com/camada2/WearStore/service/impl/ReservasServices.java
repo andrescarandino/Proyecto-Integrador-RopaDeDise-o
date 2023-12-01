@@ -1,8 +1,10 @@
 package com.camada2.WearStore.service.impl;
 
+import com.camada2.WearStore.entity.FechaOcupada;
 import com.camada2.WearStore.entity.Productos;
 import com.camada2.WearStore.entity.Reservas;
 import com.camada2.WearStore.entity.Usuarios;
+import com.camada2.WearStore.repository.FechaOcupadaRepository;
 import com.camada2.WearStore.repository.ProductosRepository;
 import com.camada2.WearStore.repository.ReservasRepository;
 import com.camada2.WearStore.repository.UsuariosRepository;
@@ -14,8 +16,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ReservasServices implements IService<Reservas,Reservas> {
@@ -28,6 +32,8 @@ public class ReservasServices implements IService<Reservas,Reservas> {
 
     @Autowired
     UsuariosRepository usuariosRepository;
+    @Autowired
+    FechaOcupadaRepository fechaOcupadaRepository;
 
     @Transactional
     @Override
@@ -37,38 +43,45 @@ public class ReservasServices implements IService<Reservas,Reservas> {
     }
 
     @Transactional
-    public Reservas guardarReserva(Reservas reservas) throws IOException {
+    public Reservas guardarReserva(Reservas reserva) throws IOException {
 
-      Integer reservaUserid= reservas.getUsuario().getIdUsuarios();
-      Optional<Usuarios> usuariosGuardado=usuariosRepository.findById(reservaUserid);
+        Integer reservaUserid = reserva.getUsuario().getIdUsuarios();
+        Optional<Usuarios> usuariosGuardado = usuariosRepository.findById(reservaUserid);
+        reserva.setUsuario(usuariosGuardado.orElseThrow(() -> new ExpressionException("No se encontró el usuario con ID: " + reservaUserid)));
 
-        reservas.setUsuario(usuariosGuardado.orElseThrow(() -> new ExpressionException("No se encontró el usuario con ID: " + reservaUserid)));
+        Productos producto = productosRepository.findById(reserva.getProducto().getIdProductos()).orElse(null);
+        Usuarios usuario = usuariosRepository.findById(reserva.getUsuario().getIdUsuarios()).orElse(null);
+        if (producto != null && usuario != null) {
 
-        List<Productos> productos = reservas.getProductos();
-        List<Productos> productosAsociados = new ArrayList<>();
-
-        for (Productos producto : productos) {
-            // Verificar si el producto ya existe en la base de datos
-            Productos productoExistente = productosRepository.findById(producto.getIdProductos()).orElse(null);
-
-            if (productoExistente != null) {
-                // Actualizar la referencia al producto existente
-                producto = productoExistente;
-            } else {
-                // Guardar el producto si no existe
-                producto = productosRepository.save(producto);
+            List<Reservas> reservasEnRango = reservasRepository.findByProductoAndFechaFinAfterAndFechaInicioBefore(
+                    producto, reserva.getFechaInicio(), reserva.getFechaFin()
+            );
+            if (!reservasEnRango.isEmpty()) {
+                throw new RuntimeException("El producto ya está reservado en el rango de fechas especificado.");
             }
-            producto.agregarReserva(reservas);
-            productosAsociados.add(producto);
+            // Establecer las asociaciones
+            reserva.setProducto(producto);
+            reserva.setUsuario(usuario);
+
+            // Guardar la reserva
+            Reservas reservaGuardada = reservasRepository.save(reserva);
+
+            actualizarFechasOcupadas(producto, reserva.getFechaInicio(), reserva.getFechaFin());
+            return reservaGuardada;
+        } else {
+            // Manejar el caso donde el producto o el usuario no se encuentran
+            // Esto podría ser una excepción, un mensaje de error, etc.
+
+            throw new RuntimeException("No se pudo encontrar el producto o el usuario asociado a la reserva.");
         }
-        reservas.setProductos(productosAsociados);
+    }
 
-        Reservas reservaGuardada =reservasRepository.save(reservas);
-
-
-       return reservaGuardada;
-
-
+    private void actualizarFechasOcupadas(Productos producto, Date fechaInicio, Date fechaFin) {
+        FechaOcupada fechaOcupada = new FechaOcupada();
+        fechaOcupada.setFechaInicio(fechaInicio);
+        fechaOcupada.setFechaFin(fechaFin);
+        fechaOcupada.setProducto(producto);
+        fechaOcupadaRepository.save(fechaOcupada);
     }
 
 

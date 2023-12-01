@@ -14,7 +14,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "Productos")
-
 public class Productos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -65,15 +64,17 @@ public class Productos {
     @JoinColumn(name = "idCategorias")
     private Categorias categorias;
 
-    @ManyToMany (fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinTable (name = "ProductoHasReservas", joinColumns = @JoinColumn(name = "idProductos", referencedColumnName = "idProductos"),
-            inverseJoinColumns = @JoinColumn(name = "idReservas", referencedColumnName = "idReservas"))
+
+    @OneToMany(mappedBy = "producto")
     @JsonIgnore
-    private List<Reservas> reservas= new ArrayList<>();;
+    private List<Reservas> reservas;
 
     @OneToMany
     @JoinColumn (name = "producto_id")
     private List<Imagenes> imagenes;
+
+    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<FechaOcupada> fechasOcupadas = new ArrayList<>();
 
     // Constructores, getters y setters
 
@@ -81,7 +82,7 @@ public class Productos {
         // Constructor por defecto
     }
 
-    public Productos(String nombre, String descripcion, Double precio, Integer cantidad, Calendar fechaCreacion, Calendar fechaModificacion, Calendar fechaEliminacion, TipoProductos tipoProductos, Generos generos, Colores colores, Tallas tallas, Categorias categorias, List<Reservas> reservas, List<Imagenes> imagenes) {
+    public Productos(String nombre, String descripcion, Double precio, Integer cantidad, Calendar fechaCreacion, Calendar fechaModificacion, Calendar fechaEliminacion, TipoProductos tipoProductos, Generos generos, Colores colores, Tallas tallas, Categorias categorias, List<Reservas> reservas, List<Imagenes> imagenes,List<FechaOcupada>fechaOcupada) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
@@ -96,9 +97,19 @@ public class Productos {
         this.categorias = categorias;
         this.reservas = reservas;
         this.imagenes = imagenes;
+        this.fechasOcupadas=fechaOcupada;
     }
 
     // Getters y setters
+
+
+    public List<FechaOcupada> getFechasOcupadas() {
+        return fechasOcupadas;
+    }
+
+    public void setFechasOcupadas(List<FechaOcupada> fechasOcupadas) {
+        this.fechasOcupadas = fechasOcupadas;
+    }
 
     public int getIdProductos() {
         return idProductos;

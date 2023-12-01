@@ -24,7 +24,7 @@ public class ReservasController {
     @PostMapping
     public ResponseEntity<Reservas>guardarReserva(@RequestBody Reservas reserva) throws IOException {
         Reservas reservaGuardada= reservasServices.guardarReserva(reserva);
-        return ResponseEntity.status(HttpStatus.CREATED).body(reserva);
+        return ResponseEntity.status(HttpStatus.CREATED).body(reservaGuardada);
     }
 
 @GetMapping("/listar/{id}")

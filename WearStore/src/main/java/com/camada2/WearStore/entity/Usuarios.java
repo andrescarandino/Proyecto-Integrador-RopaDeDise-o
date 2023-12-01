@@ -38,7 +38,7 @@ public class Usuarios {
     @JoinColumn(name = "TipoUsuarios_idTipoUsuarios")
     private TipoUsuarios tipoUsuarios;
 
-    @OneToMany(mappedBy = "usuario")
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Reservas> reservas;
 
 
