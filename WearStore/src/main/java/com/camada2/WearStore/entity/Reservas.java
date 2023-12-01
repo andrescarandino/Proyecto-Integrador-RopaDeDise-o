@@ -12,23 +12,38 @@ public class Reservas {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idReservas")
-    private int idReservas;
+    private Integer idReservas;
 
-    @Column(name = "fecha")
-    private Date fecha;
+    @Column(name = "fecha_inicio")
+    @Temporal(TemporalType.DATE)
+    private Date fechaInicio;
+
+    @Column(name = "fecha_fin")
+    @Temporal(TemporalType.DATE)
+    private Date fechaFin;
 
     @ManyToOne
-    @JoinColumn(name = "Usuarios_idUsuarios")
+    @JoinColumn(name = "id_usuario")
     private Usuarios usuario;
 
-    @ManyToMany(mappedBy = "reservas")
-    private List<Productos> productos;
+    @ManyToOne
+    @JoinColumn(name = "producto_id")
+    private Productos producto;
+
+    // Constructores, getters y setters
 
     // Constructores, getters y setters
 
     public Reservas() {
         // Constructor por defecto
     }
+    public Reservas(Date fechaInicio, Date fechaFin, Usuarios usuario, Productos producto) {
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+        this.usuario = usuario;
+        this.producto = producto;
+    }
+
 
     public int getIdReservas() {
         return idReservas;
@@ -38,12 +53,20 @@ public class Reservas {
         this.idReservas = idReservas;
     }
 
-    public Date getFecha() {
-        return fecha;
+    public Date getFechaInicio() {
+        return fechaInicio;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public Date getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(Date fechaFin) {
+        this.fechaFin = fechaFin;
     }
 
     public Usuarios getUsuario() {
@@ -54,12 +77,14 @@ public class Reservas {
         this.usuario = usuario;
     }
 
-    public List<Productos> getProductos() {
-        return productos;
+
+
+    public Productos getProducto() {
+        return producto;
     }
 
-    public void setProductos(List<Productos> productos) {
-        this.productos = productos;
+    public void setProducto(Productos producto) {
+        this.producto = producto;
     }
 }
 

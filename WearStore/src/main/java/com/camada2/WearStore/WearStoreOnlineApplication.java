@@ -48,7 +48,7 @@ public class WearStoreOnlineApplication implements CommandLineRunner {
     @Autowired
     UsuariosRepository usuariosRepository;
 
-    @Bean
+ /*   @Bean
     CommandLineRunner init() {
         return args -> {
             Usuarios usuario = new Usuarios();
@@ -60,7 +60,7 @@ public class WearStoreOnlineApplication implements CommandLineRunner {
 
             usuariosRepository.save(usuario);
         };
-    }
+    }*/
 
     @Configuration
     public class CorsConfig {

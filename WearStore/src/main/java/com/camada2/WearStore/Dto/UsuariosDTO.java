@@ -1,5 +1,6 @@
 package com.camada2.WearStore.Dto;
 
+import com.camada2.WearStore.entity.Reservas;
 import com.camada2.WearStore.entity.TipoUsuarios;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
@@ -7,6 +8,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -37,13 +39,15 @@ public class UsuariosDTO {
 
     private Set<String> roles;
 
+    private List<Reservas> reservas;
+
     // Constructores, getters y setters
 
     public UsuariosDTO() {
         // Constructor por defecto
     }
 
-    public UsuariosDTO(String user, String nombre, String apellido, String email, String password, String fechaCreacion, int estado) {
+    public UsuariosDTO(String user, String nombre, String apellido, String email, String password, String fechaCreacion, int estado, List<Reservas> reservas) {
         this.user = user;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -51,6 +55,7 @@ public class UsuariosDTO {
         this.password = password;
         this.fechaCreacion = fechaCreacion;
         this.estado = estado;
+        this.reservas=reservas;
     }
 
     public String getPassword() {
