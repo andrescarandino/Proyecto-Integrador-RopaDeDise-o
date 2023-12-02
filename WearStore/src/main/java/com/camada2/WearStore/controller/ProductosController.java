@@ -1,7 +1,9 @@
 package com.camada2.WearStore.controller;
 
 
+import com.camada2.WearStore.entity.FechaOcupada;
 import com.camada2.WearStore.entity.Productos;
+import com.camada2.WearStore.entity.Reservas;
 import com.camada2.WearStore.service.impl.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,6 +12,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -26,10 +29,21 @@ public class ProductosController {
 
         Productos producto = productoService.buscar(id);
 
-        if (producto != null){
-            return ResponseEntity.status(HttpStatus.OK).body(producto);
+        if (producto != null) {
+            // Verificar si hay reservas asociadas y cargar las fechas ocupadas
+            if (producto.getReservas() != null && !producto.getReservas().isEmpty()) {
+                List<FechaOcupada> fechasOcupadas = new ArrayList<>();
+                for (Reservas reserva : producto.getReservas()) {
+                    fechasOcupadas.add(new FechaOcupada(producto, reserva.getFechaInicio(), reserva.getFechaFin()));
+
+                }
+                producto.setFechasOcupadas(fechasOcupadas);
+            }
+
+            return new ResponseEntity<>(producto, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 
     }
 
