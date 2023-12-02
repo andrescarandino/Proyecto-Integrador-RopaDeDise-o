@@ -56,6 +56,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Usuarios>buscarUsuario(@PathVariable Integer id){
       Usuarios usuario= usuarioServices.buscar(id);
         if (usuario != null){

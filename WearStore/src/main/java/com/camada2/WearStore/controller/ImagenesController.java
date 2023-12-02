@@ -37,6 +37,7 @@ public class ImagenesController {
     }
 
     @GetMapping("/list")
+    @PreAuthorize("permitAll()")
     public List<String> getAllObjects() throws IOException {
         return imagenesService.listFiles();
     }

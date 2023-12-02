@@ -28,16 +28,19 @@ public class CaracteristicaController {
     }
     // endpoint para obtener todas las caracteristicas
     @GetMapping
+    @PreAuthorize("permitAll()")
     public ResponseEntity<List<Caracteristica>> obtenerTodasCaracteristica(){
         return ResponseEntity.status(HttpStatus.OK).body(caracteristicaService.listar());
     }
     // Endpoint para obtener una caracteristica por id
     @GetMapping("/{id}")
+    @PreAuthorize("permitAll()")
     public ResponseEntity<Caracteristica> obtenerCaracteristicaPorId(@PathVariable Integer id){
         return ResponseEntity.status(HttpStatus.OK).body(caracteristicaService.buscar(id));
     }
 
     @GetMapping(params ="nombre")
+    @PreAuthorize("permitAll()")
     public ResponseEntity<List<Caracteristica>> buscarCaracteristicaPorNombre(@RequestParam String nombre) {
         List<Caracteristica> caracteristicas = caracteristicaService.buscarPorNombre(nombre);
 

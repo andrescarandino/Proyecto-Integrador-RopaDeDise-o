@@ -18,10 +18,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Set;
+import java.util.*;
+
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -48,17 +46,31 @@ public class WearStoreOnlineApplication implements CommandLineRunner {
     @Autowired
     UsuariosRepository usuariosRepository;
 
+
+
+
     @Bean
     CommandLineRunner init() {
         return args -> {
-            Usuarios usuario = new Usuarios();
-            usuario.setUser("admin");
-            usuario.setNombre("admin");
-            usuario.setEmail("admin@admin");
-            usuario.setPassword(passwordEncoder.encode("admin"));
-            usuario.setRoles(Set.of(new TipoUsuarios(ERole.ADMIN)));
+            String email = "admin@admin";
 
-            usuariosRepository.save(usuario);
+
+            Optional<Usuarios> existingUser = usuariosRepository.findUsuariosByEmail(email);
+
+            if (existingUser.isEmpty()) {
+
+                Usuarios usuario = new Usuarios();
+                usuario.setUser("admin");
+                usuario.setNombre("admin");
+                usuario.setEmail(email);
+                usuario.setPassword(passwordEncoder.encode("admin"));
+                usuario.setRoles(Set.of(new TipoUsuarios(ERole.ADMIN)));
+
+                usuariosRepository.save(usuario);
+            } else {
+
+                System.out.println("El usuario con correo ya existe en la base de datos.");
+            }
         };
     }
 

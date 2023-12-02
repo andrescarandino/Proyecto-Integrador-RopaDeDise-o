@@ -34,6 +34,7 @@ public class ProductosController {
     }
 
     @GetMapping
+    @PreAuthorize("permitAll()")
     public List<Productos> listarProductos(){
         return productoService.listar();
     }
@@ -64,7 +65,7 @@ public class ProductosController {
     }
 
     @GetMapping("/buscar/{palabraClave}")
-
+    @PreAuthorize("permitAll()")
     public List<Productos> buscarPor (@PathVariable("palabraClave") String palabraClave){
     return productoService.buscarPorAtributo(palabraClave);
 

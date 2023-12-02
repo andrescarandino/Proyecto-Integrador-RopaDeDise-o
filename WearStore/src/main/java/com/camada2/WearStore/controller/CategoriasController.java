@@ -30,12 +30,14 @@ public class CategoriasController {
 
     // Endpoint para obtener todas las categorías
     @GetMapping
+    @PreAuthorize("permitAll()")
     public ResponseEntity<List<Categorias>> obtenerTodasCategorias() {
         return ResponseEntity.status(HttpStatus.OK).body(categoriasService.listar());
     }
 
     // Endpoint para obtener una categoría por ID
     @GetMapping("/{id}")
+    @PreAuthorize("permitAll()")
     public ResponseEntity<Categorias> obtenerCategoriaPorId(@PathVariable Integer id) {
         return ResponseEntity.status(HttpStatus.OK).body(categoriasService.buscar(id));
     }
