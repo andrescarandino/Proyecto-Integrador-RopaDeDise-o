@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import styles from '../styles/bodySection.module.css';
 import Abrigo from '../img/categoria_abrigo.png';
 import Blusa from '../img/categoria_blusa.png';
