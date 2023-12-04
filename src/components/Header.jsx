@@ -1,14 +1,12 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { IoMdClose, IoMdMenu } from 'react-icons/io';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../contexts/UserContext';
 import styles from '../styles/header.module.css';
 import UserActive from './UserActive';
-import { UserContext } from '../contexts/UserContext';
 
 function Header() {
 	const { state } = useContext(UserContext);
-	// eslint-disable-next-line no-unused-vars
-	// const [userActive, setUserActive] = useState(false);
 	const [menuActive, setMenuActive] = useState(false);
 	const userActive = state.isAuthenticated;
 	console.log(state.isAuthenticated);

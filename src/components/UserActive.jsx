@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable react-hooks/exhaustive-deps */
 import { IoMdArrowDropup, IoMdArrowDropdown } from 'react-icons/io';
 import { useContext, useEffect, useState } from 'react';
 import { jwtDecode } from 'jwt-decode';

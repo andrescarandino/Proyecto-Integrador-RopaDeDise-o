@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { useForm } from 'react-hook-form';
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -40,7 +39,6 @@ function Register() {
 		// eslint-disable-next-line no-param-reassign
 		data.roles = ['USER'];
 		const res = await registerUser(data);
-		// eslint-disable-next-line no-unused-expressions
 		console.log(res.status);
 		// eslint-disable-next-line no-unused-expressions
 		res.status === 201 ? handleRegistered() : handleError();

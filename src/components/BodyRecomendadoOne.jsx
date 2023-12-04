@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
-import { IoIosStarOutline, IoIosStar } from 'react-icons/io';
 import { useState } from 'react';
+import { IoIosStar } from 'react-icons/io';
+import { Link } from 'react-router-dom';
 import styles from '../styles/bodyRecomendadoOne.module.css';
 
 // eslint-disable-next-line react/prop-types
