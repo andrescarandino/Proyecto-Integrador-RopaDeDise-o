@@ -48,13 +48,12 @@ public class ProductosController {
     }
 
     @GetMapping
-    @PreAuthorize("permitAll()")
     public List<Productos> listarProductos(){
         return productoService.listar();
     }
 
     @PostMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole ('ADMIN')")
     public ResponseEntity<Productos> guardarProducto(@RequestBody Productos producto) throws IOException {
         productoService.guardar(producto);
 
