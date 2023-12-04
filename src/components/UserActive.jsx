@@ -2,6 +2,7 @@
 import { IoMdArrowDropup, IoMdArrowDropdown } from 'react-icons/io';
 import { useContext, useEffect, useState } from 'react';
 import { jwtDecode } from 'jwt-decode';
+import { useNavigate } from 'react-router-dom';
 import styles from '../styles/userActive.module.css';
 import { UserContext } from '../contexts/UserContext';
 import getUser from '../services/getUser';
@@ -10,19 +11,30 @@ function UserActive() {
 	const { state, logout } = useContext(UserContext);
 	const [dataUser, setDataUser] = useState([]);
 	const [loading, setLoading] = useState(false);
+	const [menuActive, setMenuActive] = useState(false);
+	const [adminActive, setAdminActive] = useState(false);
+	const navigate = useNavigate();
 	const { token } = state.token;
 	const decoded = jwtDecode(token);
 	const mail = decoded.sub;
 
+	// eslint-disable-next-line consistent-return
 	useEffect(() => {
+		if (mail === 'admin@admin') {
+			return setAdminActive(true);
+		}
 		(async () => {
 			const res = await getUser(mail, token);
 			setDataUser(res);
 			setLoading(true);
+			console.log(res);
 		})();
 	}, []);
+	const logoutUser = () => {
+		logout();
+		navigate('/');
+	};
 
-	const [menuActive, setMenuActive] = useState(false);
 	const handleMenu = () => {
 		setMenuActive(!menuActive);
 	};
@@ -37,7 +49,9 @@ function UserActive() {
 		<div>
 			<div className={styles.userContainer}>
 				<h3>
-					{user.firstName} {user.lastName}
+					{adminActive
+						? 'ADMINISTRADOR'
+						: `${user.firstName} ${user.lastName}`}
 				</h3>
 				<button type="button" onClick={handleMenu}>
 					{menuActive ? (
@@ -47,13 +61,12 @@ function UserActive() {
 					)}
 				</button>
 				<h2>
-					{letterFirstName}
-					{letterLastName}
+					{adminActive ? `AD` : `${letterFirstName}${letterLastName}`}
 				</h2>
 			</div>
 			{menuActive && (
 				<div className={styles.menuContainer}>
-					<button type="button" onClick={logout}>
+					<button type="button" onClick={logoutUser}>
 						cerrar sesion
 					</button>
 					<button type="button">info. personal</button>

@@ -29,7 +29,12 @@ function Footer() {
 							navigate('/policies');
 						}}
 						className={styles.footerH3}
-						style={{ fontSize: '0.85rem', cursor: 'pointer' }}
+						style={{
+							fontSize: '0.85rem',
+							cursor: 'pointer',
+							marginBottom: '-15px',
+							fontStyle: 'italic',
+						}}
 					>
 						Ver políticas del sitio web
 					</p>

@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import _ from 'underscore';
-import MockData from '../../MOCK_DATA.json';
+// import MockData from '../../MOCK_DATA.json';
 import BodyMain from '../components/BodyMain';
 import BodyRecomendadoOne from '../components/BodyRecomendadoOne';
 import BodyRecomendadoTwo from '../components/BodyRecomendadoTwo';
@@ -11,22 +11,34 @@ import Pagination from '../components/Pagination';
 import Search from '../components/Search';
 import styles from '../styles/home.module.css';
 import NoProduct from '../img/noProduct.png';
+import getProduct from '../services/getProduct';
 
 function Home() {
 	// eslint-disable-next-line no-unused-vars
 	const [productQt, setProductQt] = useState(10);
 	const [currentPage, setCurrentPage] = useState(1);
+	const [productData, setProductData] = useState([]);
 	const indexFin = currentPage * productQt;
 	const indexIni = indexFin - productQt;
-	const nProducts = _.shuffle(MockData.slice(indexIni, indexFin));
-	const nPages = Math.ceil(MockData.length / productQt);
+	const nProducts = _.shuffle(productData.slice(indexIni, indexFin));
+	const nPages = Math.ceil(productData.length / productQt);
 	const noProduct = [
 		{
-			image_url: NoProduct,
+			imagenes: [{ ruta: NoProduct }],
 			description: 'No hay productos en la Base de Datos',
 		},
 	];
-
+	useEffect(() => {
+		const product = async () => {
+			const res = await getProduct();
+			if (res.status === 200) {
+			setProductData(res);
+			}
+			// setProductData([]);
+			// console.log(res);
+		};
+		product();
+	}, []);
 	return (
 		<div className={styles.bodyHome}>
 			<Search />

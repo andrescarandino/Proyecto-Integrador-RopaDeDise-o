@@ -1,21 +1,30 @@
 /* eslint-disable no-unused-vars */
 import { useForm } from 'react-hook-form';
-import { useContext, useRef } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../../styles/users/login.module.css';
 import loginImg from '../../img/loginImg.png';
 import loginImg2 from '../../img/loginImg2.png';
 import { UserContext } from '../../contexts/UserContext';
 import loginUser from '../../services/loginUser';
+import LoaderSpan from '../../components/LoaderSpan';
 
 function Login() {
 	const { login } = useContext(UserContext);
+	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState(false);
 	const navigate = useNavigate();
 	const handleRegister = () => {
 		navigate('/users/register');
 	};
 	const handleHome = () => {
 		navigate('/');
+	};
+	const handleError = () => {
+		setError(true);
+		setTimeout(() => {
+			setError(false);
+		}, 6000);
 	};
 	const {
 		register,
@@ -24,12 +33,21 @@ function Login() {
 		watch,
 		reset,
 	} = useForm();
+	// eslint-disable-next-line consistent-return
 	const onSubmit = async (data) => {
+		setLoading(true);
 		const token = await loginUser(data);
+		if (token === undefined) {
+			setLoading(false);
+			reset();
+			return handleError();
+		}
 		login(token);
+		setLoading(false);
 		console.log(token);
-		navigate('/');
-		// reset();
+		// eslint-disable-next-line no-unused-expressions
+		data.email === 'admin@admin' ? navigate('/admin') : navigate('/');
+		reset();
 	};
 	const password = useRef(null);
 	password.current = watch('password', '');
@@ -63,7 +81,7 @@ function Login() {
 						/>
 
 						<button className={styles.formButton} type="submit">
-							Ingresar
+							{loading ? <LoaderSpan /> : 'Ingresar'}
 						</button>
 					</form>
 					<div className={styles.registerContainer}>
@@ -80,6 +98,11 @@ function Login() {
 						- volver -
 					</button>
 				</div>
+				{error && (
+					<div className={styles.messageErrorContainer}>
+						<h5> - Usuario no Registrado - </h5>
+					</div>
+				)}
 			</div>
 		</div>
 	);

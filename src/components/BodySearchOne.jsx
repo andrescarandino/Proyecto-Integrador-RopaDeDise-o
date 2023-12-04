@@ -16,11 +16,12 @@ function BodySearchOne({ data }) {
 		<div className={styles.bodySearch}>
 			{dataNew.map((x) => (
 				<div className={styles.divSearch}>
-					<img src={x.image_url} alt="" />
+					<img src={x.imagenes[0].ruta} alt="" />
 					<button type="button" className={styles.searchButton}>
 						<Link
 							className={styles.searchLink}
-							to={`product/${x.id}`}
+							to={`product/${x.idProductos}`}
+							prop={x.descripcion}
 						>
 							ver
 						</Link>

@@ -6,9 +6,11 @@ import styles from '../../styles/users/register.module.css';
 import imgRegister from '../../img/imgRegister.png';
 import imgRegister2 from '../../img/imgRegister2.png';
 import registerUser from '../../services/registerUser';
+import LoaderSpan from '../../components/LoaderSpan';
 
 function Register() {
 	const [registered, setRegistered] = useState(false);
+	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(false);
 	const navigate = useNavigate();
 	const handleHome = () => {
@@ -28,7 +30,7 @@ function Register() {
 		setError(true);
 		setTimeout(() => {
 			setError(false);
-		}, 4000);
+		}, 6000);
 	};
 	const handleRegistered = () => {
 		setRegistered(true);
@@ -37,10 +39,12 @@ function Register() {
 		}, 8000);
 	};
 	const onSubmit = async (data) => {
+		setLoading(true);
 		// eslint-disable-next-line no-param-reassign
 		data.roles = ['USER'];
 		const res = await registerUser(data);
 		// eslint-disable-next-line no-unused-expressions
+		setLoading(false);
 		console.log(res.status);
 		// eslint-disable-next-line no-unused-expressions
 		res.status === 201 ? handleRegistered() : handleError();
@@ -194,7 +198,7 @@ function Register() {
 						)}
 
 						<button className={styles.formButton} type="submit">
-							Registrar
+							{loading ? <LoaderSpan /> : 'Registrar'}
 						</button>
 					</form>
 					<div className={styles.registerContainer}>

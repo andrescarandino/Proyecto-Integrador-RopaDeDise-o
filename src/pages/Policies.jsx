@@ -6,14 +6,22 @@ function Policies() {
 			style={{
 				fontFamily: 'var(--ff-roboto)',
 				color: 'var(--color-black-cow)',
-				padding: '1rem',
+				padding: '3rem',
+				maxWidth: '1258px',
+				margin: '2rem auto',
+				backgroundColor: 'white',
+				borderRadius: '5px',
 			}}
 		>
 			<h1
 				style={{
-					textDecoration: 'underline',
 					textAlign: 'center',
 					marginBottom: '2rem',
+					backgroundColor: '#464646',
+					borderRadius: '5px',
+					color: 'white',
+					padding: '1rem',
+					fontWeight: '500',
 				}}
 			>
 				Políticas del sitio web

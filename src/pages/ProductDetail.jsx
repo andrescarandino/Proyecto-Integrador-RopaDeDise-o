@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IoIosClose, IoMdShare } from 'react-icons/io';
 import { Link, useParams } from 'react-router-dom';
 import ReactSlidy from 'react-slidy';
@@ -7,18 +7,19 @@ import {
 	IoCutOutline,
 	IoShirtOutline,
 } from 'react-icons/io5';
-import MockData from '../../MOCK_DATA.json';
+// import MockData from '../../MOCK_DATA.json';
 import styles from '../styles/productDetail.module.css';
 import Social from './Social';
+import getProductId from '../services/getProductId';
 
 function ProductDetail() {
 	const [slidyActive, setSlidyActive] = useState(false);
 	const [calendarOpen, setCalendarOpen] = useState(false);
 	const [socialOpen, setSocialOpen] = useState(false);
+	const [product, setProduct] = useState([]);
+	const [loading, setLoading] = useState(false);
 	const params = useParams();
 	const { id } = params;
-	const img = MockData[id - 1].image_url;
-	const { description } = MockData[id - 1];
 
 	const handleSlidy = () => {
 		setSlidyActive(!slidyActive);
@@ -30,9 +31,21 @@ function ProductDetail() {
 		setSocialOpen(!socialOpen);
 	};
 
+	// useEffect(() => {
+	// 	const productId = async () => {
+	// 		const res = await getProductId(id);
+	// 		// if (res.status === 200) {
+	// 			setProduct(res);
+	// 			console.log(res);
+	// 			setLoading(true);
+	// 		// }
+	// 	};
+	// 	productId();
+	// }, []);
+
 	return (
 		<div className={styles.productContainer}>
-			<div className={styles.productHeader}>
+			{/* <div className={styles.productHeader}>
 				<h2 className={styles.productH2}>Título del Producto</h2>
 				<button type="button" className={styles.productButton}>
 					<Link to="/" className={styles.productLink}>
@@ -45,18 +58,18 @@ function ProductDetail() {
 			)}
 			<div className={styles.descriptionContainer}>
 				<div className={styles.descriptionBigImg}>
-					<img src={img} alt="" />
+					<img src={product.imagenes[0].ruta} alt="" />
 				</div>
 				<div className={styles.descriptionImg}>
-					<img src={img} alt="" />
-					<img src={img} alt="" />
-					<img src={img} alt="" />
-					<img src={img} alt="" />
+					<img src={product.imagenes[1].ruta} alt="" />
+					<img src={product.imagenes[2].ruta} alt="" />
+					<img src={product.imagenes[3].ruta} alt="" />
+					<img src={product.imagenes[4].ruta} alt="" />
 				</div>
 				<div className={styles.descriptionP}>
-					<p>{description}</p>
+					<p>{product.descripcion}</p>
 					<div className={styles.descriptionFooter}>
-						<h4>$00,00</h4>
+						<h4>${product.precio}</h4>
 						<button
 							type="button"
 							className={styles.descriptionButton}
@@ -81,7 +94,7 @@ function ProductDetail() {
 									height: '100%',
 									width: '280px',
 								}}
-								src={img}
+								src={product.imagenes[1].ruta}
 								alt=""
 							/>
 							<img
@@ -89,7 +102,7 @@ function ProductDetail() {
 									height: '100%',
 									width: '280px',
 								}}
-								src={img}
+								src={product.imagenes[2].ruta}
 								alt=""
 							/>
 							<img
@@ -97,7 +110,7 @@ function ProductDetail() {
 									height: '100%',
 									width: '280px',
 								}}
-								src={img}
+								src={product.imagenes[3].ruta}
 								alt=""
 							/>
 							<img
@@ -105,7 +118,7 @@ function ProductDetail() {
 									height: '100%',
 									width: '280px',
 								}}
-								src={img}
+								src={product.imagenes[4].ruta}
 								alt=""
 							/>
 						</ReactSlidy>
@@ -143,7 +156,7 @@ function ProductDetail() {
 					<h2 className={styles.productFooterH2}>Talles</h2>
 				</div>
 				{/* <Reservation /> */}
-				<div className="">
+			{/* <div className="">
 					<button
 						type="button"
 						className={styles.descriptionButton}
@@ -152,7 +165,7 @@ function ProductDetail() {
 						{!calendarOpen ? 'Reserva' : 'Cerrar'}
 					</button>
 				</div>
-			</div>
+			</div> */}
 		</div>
 	);
 }

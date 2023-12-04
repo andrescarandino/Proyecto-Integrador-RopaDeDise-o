@@ -18,14 +18,14 @@ function BodyRecomendadoOne({ data }) {
 					<>
 						<img
 							className={styles.recomendadoImg}
-							src={x.image_url}
+							src={x.imagenes[0].ruta}
 							alt="recomendado"
 						/>
 
 						<div className={styles.recomendadoDetail}>
-							<h2 className={styles.recomendadoH2}>{x.name}</h2>
+							<h2 className={styles.recomendadoH2}>{x.nombre}</h2>
 							<p className={styles.recomendadoP}>
-								{x.description}
+								{x.descripcion}
 							</p>
 							{/* <div>
 								<IoIosStarOutline />
@@ -40,7 +40,7 @@ function BodyRecomendadoOne({ data }) {
 							>
 								<Link
 									className={styles.recomendadoLink}
-									to={`product/${x.id}`}
+									to={`product/${x.idProductos}`}
 								>
 									Recomendado
 								</Link>
