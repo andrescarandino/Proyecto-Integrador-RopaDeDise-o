@@ -1,6 +1,6 @@
 const getProductId = async (id) => {
 	try {
-		const response = await fetch(`http://localhost:8080/productos${id}`, {
+		const response = await fetch(`http://3.15.203.13:8080/productos${id}`, {
 			method: 'GET',
 			mode: 'no-cors',
 			headers: {

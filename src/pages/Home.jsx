@@ -18,6 +18,7 @@ function Home() {
 	const [productQt, setProductQt] = useState(10);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [productData, setProductData] = useState([]);
+	// const [loading, setLoading] = useState(false);
 	const indexFin = currentPage * productQt;
 	const indexIni = indexFin - productQt;
 	const nProducts = _.shuffle(productData.slice(indexIni, indexFin));
@@ -32,10 +33,10 @@ function Home() {
 		const product = async () => {
 			const res = await getProduct();
 			if (res.status === 200) {
-			setProductData(res);
+				// setLoading(true);
+				setProductData(res);
+				console.log(res);
 			}
-			// setProductData([]);
-			// console.log(res);
 		};
 		product();
 	}, []);

@@ -2,7 +2,7 @@
 const getUser = async (mail, token) => {
 	try {
 		const response = await fetch(
-			`http://localhost:8080/usuarios?mail=${mail}`,
+			`http://3.15.203.13:8080/usuarios?mail=${mail}`,
 			{
 				method: 'GET',
 				headers: {
