@@ -1,8 +1,6 @@
 package com.camada2.WearStore.service.impl;
 
 import com.camada2.WearStore.Dto.UsuariosDTO;
-import com.camada2.WearStore.auth.AuthResponse;
-import com.camada2.WearStore.config.jwt.JwtService;
 import com.camada2.WearStore.entity.ERole;
 import com.camada2.WearStore.entity.TipoUsuarios;
 import com.camada2.WearStore.entity.Usuarios;
@@ -53,9 +51,9 @@ public class UsuarioServices implements IService<UsuariosDTO, Usuarios>, UserDet
     public Usuarios guardar(UsuariosDTO usuariosDTO) {
 
 
-        Set<TipoUsuarios> roles = usuariosDTO.getRoles().stream()
+        List<TipoUsuarios> roles = usuariosDTO.getRoles().stream()
                 .map(rol -> new TipoUsuarios(ERole.valueOf(rol)))
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
 
         Usuarios usuarios = new Usuarios();
         usuarios.setUser(usuariosDTO.getNombre() + usuariosDTO.getApellido());
@@ -120,9 +118,9 @@ public Usuarios buscarPorMail(String mail){
     public Usuarios createUser(UsuariosDTO usuariosDTO) {
 
 
-        Set<TipoUsuarios> roles = usuariosDTO.getRoles().stream()
+        List<TipoUsuarios> roles = usuariosDTO.getRoles().stream()
                 .map(rol -> new TipoUsuarios(ERole.valueOf(rol)))
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
 
         Usuarios usuarios = new Usuarios();
         usuarios.setNombre(usuariosDTO.getNombre());
@@ -134,17 +132,16 @@ public Usuarios buscarPorMail(String mail){
         return usuariosRepository.save(usuarios);
     }
 
+    public Collection<GrantedAuthority> mapToAuthorities(List<TipoUsuarios> roles){
+        return roles.stream().map(role -> new SimpleGrantedAuthority(role.getNombre().name())).collect(Collectors.toList());
+    }
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
         Usuarios usuario = usuariosRepository.findUsuariosByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("El usuario " + email + " no existe"));
 
-        Collection<? extends GrantedAuthority> authorities = usuario.getRoles()
-                .stream()
-                .map(rol -> new SimpleGrantedAuthority("ROLE_".concat(rol.getNombre().name())))
-                .collect(Collectors.toSet());
-
-        return new User(usuario.getEmail(), usuario.getPassword(), true, true, true, true, authorities);
+        return new User(usuario.getEmail(), usuario.getPassword(),mapToAuthorities(usuario.getRoles()));
     }
 }

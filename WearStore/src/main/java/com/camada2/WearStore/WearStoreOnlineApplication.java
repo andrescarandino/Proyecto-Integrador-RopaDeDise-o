@@ -64,7 +64,7 @@ public class WearStoreOnlineApplication implements CommandLineRunner {
                 usuario.setNombre("admin");
                 usuario.setEmail(email);
                 usuario.setPassword(passwordEncoder.encode("admin"));
-                usuario.setRoles(Set.of(new TipoUsuarios(ERole.ADMIN)));
+                usuario.setRoles(List.of(new TipoUsuarios(ERole.ADMIN)));
 
                 usuariosRepository.save(usuario);
             } else {

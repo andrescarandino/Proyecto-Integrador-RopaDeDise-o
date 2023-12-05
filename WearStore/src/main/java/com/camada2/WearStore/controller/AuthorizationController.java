@@ -1,9 +1,11 @@
 package com.camada2.WearStore.controller;
 
-import com.camada2.WearStore.auth.AuthResponse;
-import com.camada2.WearStore.auth.LoginRequest;
+
+import com.camada2.WearStore.Dto.DtoAuthRespuesta;
+import com.camada2.WearStore.Dto.DtoLogin;
+import com.camada2.WearStore.config.Security.AuthService;
 import com.camada2.WearStore.repository.UsuariosRepository;
-import com.camada2.WearStore.service.impl.AuthService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,13 +20,14 @@ public class AuthorizationController {
     private UsuariosRepository usuariosRepository;
 
     @Autowired
-    private AuthService authService;
+    AuthService authService;
+
 
     @Autowired
     private AuthenticationManager authenticationManager;
 
     @PostMapping
-    public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request){
+    public ResponseEntity<DtoAuthRespuesta> login(@RequestBody DtoLogin request){
 
         return ResponseEntity.ok(authService.login(request));
     }

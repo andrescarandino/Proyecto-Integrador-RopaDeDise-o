@@ -11,12 +11,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
+import java.util.List;
 
 
 @Entity
 @Table(name = "Usuarios")
-public class Usuarios implements UserDetails {
+public class Usuarios {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,7 +49,7 @@ public class Usuarios implements UserDetails {
 
     @ManyToMany(fetch = FetchType.EAGER, targetEntity = TipoUsuarios.class, cascade = CascadeType.ALL)
     @JoinTable(name = "usuarios_tipoUsuarios", joinColumns = @JoinColumn(name = "idUsuarios"), inverseJoinColumns = @JoinColumn(name = "idTipoUsuarios"))
-    private Set<TipoUsuarios> roles;
+    private List<TipoUsuarios> roles;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Reservas> reservas;
@@ -138,42 +138,13 @@ public class Usuarios implements UserDetails {
         this.user = user;
     }
 
-    public Set<TipoUsuarios> getRoles() {
+    public List<TipoUsuarios> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<TipoUsuarios> roles) {
+    public void setRoles(List<TipoUsuarios> roles) {
         this.roles = roles;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority((roles.toString())));
-    }
-
-    @Override
-    public String getUsername() {
-        return getEmail();
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
 }
 
