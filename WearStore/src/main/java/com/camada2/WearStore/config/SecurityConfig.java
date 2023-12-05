@@ -40,6 +40,11 @@ public class SecurityConfig {
                                 .requestMatchers(HttpMethod.GET,"/img/**").permitAll()
                                 .requestMatchers(HttpMethod.GET,"/categorias/**").permitAll()
                                 .requestMatchers(HttpMethod.GET,"/caracteristicas/**").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/usuarios/**").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/usuarios/**").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/reserva/**").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/reserva/**").permitAll()
+
                                 .anyRequest().authenticated()
               )
                 .sessionManagement(sessionManager -> sessionManager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

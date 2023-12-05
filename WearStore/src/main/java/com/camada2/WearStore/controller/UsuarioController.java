@@ -35,10 +35,11 @@ public class UsuarioController {
     public ResponseEntity<String> UsuarioNoExiste(){
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El usuario no existe");
     }
+    @CrossOrigin(origins = "*")
     @PostMapping
     public ResponseEntity<Usuarios> guardarUsuario(@RequestBody UsuariosDTO usuariosDTO) {
         Usuarios usuarioGuardado = usuarioServices.guardar(usuariosDTO);
-       // usuarioServices.generarVerificacionEmail(usuarioGuardado.getUser(), usuarioGuardado);
+        usuarioServices.generarVerificacionEmail(usuarioGuardado.getUser(), usuarioGuardado);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
