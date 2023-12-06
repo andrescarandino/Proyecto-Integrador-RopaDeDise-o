@@ -32,11 +32,11 @@ function Home() {
 	useEffect(() => {
 		const product = async () => {
 			const res = await getProduct();
-			if (res.status === 200) {
+			//if (res.status === 200) {
 				// setLoading(true);
 				setProductData(res);
 				console.log(res);
-			}
+			//}
 		};
 		product();
 	}, []);
