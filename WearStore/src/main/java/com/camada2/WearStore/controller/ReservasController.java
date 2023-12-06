@@ -22,19 +22,21 @@ public class ReservasController {
 
 
     @PostMapping
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
     public ResponseEntity<Reservas>guardarReserva(@RequestBody Reservas reserva) throws IOException {
         Reservas reservaGuardada= reservasServices.guardarReserva(reserva);
         return ResponseEntity.status(HttpStatus.CREATED).body(reservaGuardada);
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
     public ResponseEntity<Reservas>buscarReserva(@PathVariable Integer id){
         Reservas reservas = reservasServices.buscar(id);
         return ResponseEntity.ok(reservas);
     }
 
     @GetMapping("/{email}")
+    @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
     public ResponseEntity<List<Reservas>> obtenerReservasPorUsuario(@PathVariable String email) {
         List<Reservas> reservas = reservasServices.obtenerReservasPorUsuario(email);
         return ResponseEntity.ok(reservas);

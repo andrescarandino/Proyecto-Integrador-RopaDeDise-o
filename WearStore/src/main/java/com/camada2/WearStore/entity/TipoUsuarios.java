@@ -11,8 +11,7 @@ public class TipoUsuarios {
     @Column(name = "idTipoUsuarios")
     private int idTipoUsuarios;
 
-    @Enumerated(EnumType.STRING)
-    private ERole rol;
+    private String rol;
 
     // Constructores, getters y setters
 
@@ -20,7 +19,7 @@ public class TipoUsuarios {
         // Constructor por defecto
     }
 
-    public TipoUsuarios(ERole rol) {
+    public TipoUsuarios(String rol) {
 
         this.rol = rol;
     }
@@ -34,11 +33,11 @@ public class TipoUsuarios {
         this.idTipoUsuarios = idTipoUsuarios;
     }
 
-    public ERole getNombre() {
+    public String getNombre() {
         return rol;
     }
 
-    public void setNombre(ERole rol) {
+    public void setNombre(String rol) {
         this.rol = rol;
     }
 }

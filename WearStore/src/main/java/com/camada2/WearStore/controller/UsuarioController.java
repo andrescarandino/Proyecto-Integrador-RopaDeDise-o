@@ -1,6 +1,6 @@
 package com.camada2.WearStore.controller;
 
-import com.camada2.WearStore.Dto.UsuariosDTO;
+
 import com.camada2.WearStore.entity.Usuarios;
 import com.camada2.WearStore.exeptions.EmailException;
 import com.camada2.WearStore.exeptions.UsuarioInexistenteExeption;
@@ -36,27 +36,27 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El usuario no existe");
     }
     @PostMapping
-    public ResponseEntity<Usuarios> guardarUsuario(@RequestBody UsuariosDTO usuariosDTO) {
-        Usuarios usuarioGuardado = usuarioServices.guardar(usuariosDTO);
+    public ResponseEntity<Usuarios> guardarUsuario(@RequestBody Usuarios usuarios) {
+        Usuarios usuarioGuardado = usuarioServices.guardar(usuarios);
        // usuarioServices.generarVerificacionEmail(usuarioGuardado.getUser(), usuarioGuardado);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PutMapping
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Usuarios>ActualizarUsuario(@RequestBody UsuariosDTO u ){
+    @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
+    public ResponseEntity<Usuarios>ActualizarUsuario(@RequestBody Usuarios u ){
         usuarioServices.actualizar(u);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @GetMapping
-    @PreAuthorize("hasRole('ADMIN')")
+
     public List<Usuarios>listarUsuarios(){
         return usuarioServices.listar();
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
     public ResponseEntity<Usuarios>buscarUsuario(@PathVariable Integer id){
       Usuarios usuario= usuarioServices.buscar(id);
         if (usuario != null){
@@ -68,13 +68,13 @@ public class UsuarioController {
 
 
     @GetMapping("/buscar")
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
     public ResponseEntity<Usuarios> buscarPorMail(@RequestParam("mail") String mail){
         return ResponseEntity.ok(usuarioServices.buscarPorMail(mail));
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
     public ResponseEntity<?> deleteUser(@PathVariable Integer id){
         usuarioServices.eliminar(id);
         return ResponseEntity.ok().build();
