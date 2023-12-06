@@ -53,11 +53,7 @@ public class ProductosController {
     }
 
     @PostMapping
-<<<<<<< HEAD
     @PreAuthorize("hasAuthority('ADMIN')")
-=======
-    @PreAuthorize("hasRole ('ADMIN')")
->>>>>>> 4f56df34a369a1e009c84290ad46d3de1b65c393
     public ResponseEntity<Productos> guardarProducto(@RequestBody Productos producto) throws IOException {
         productoService.guardar(producto);
 
