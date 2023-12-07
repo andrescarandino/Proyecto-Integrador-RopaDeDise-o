@@ -14,10 +14,16 @@ function UserActive() {
 	const [menuActive, setMenuActive] = useState(false);
 	const [adminActive, setAdminActive] = useState(false);
 	const navigate = useNavigate();
-	const { token } = state.token;
+	const { token } = state;
+	console.log(token);
+	
 	const decoded = jwtDecode(token);
+	console.log(decoded);
 	const mail = decoded.sub;
-
+	// Resto del código...
+	console.error('El token no es una cadena válida.');
+	//const decoded = jwtDecode(token);
+	//const mail = decoded.sub;
 	// eslint-disable-next-line consistent-return
 	useEffect(() => {
 		if (mail === 'admin@admin') {

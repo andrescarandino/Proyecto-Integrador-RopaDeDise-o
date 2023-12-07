@@ -1,7 +1,7 @@
 // eslint-disable-next-line consistent-return
 const loginUser = async (data) => {
 	try {
-		const response = await fetch('http://3.15.203.13:8080/login', {
+		const response = await fetch('http://localhost:8080/login', {
 			method: 'POST',
 			// mode: 'no-cors',
 			headers: {
@@ -10,8 +10,8 @@ const loginUser = async (data) => {
 			body: JSON.stringify(data),
 		});
 		const result = await response.json();
-		console.log(result);
-		return result;
+		console.log(result.jwt);
+		return result.jwt;
 	} catch (error) {
 		console.log(error);
 	}

@@ -1,9 +1,9 @@
 // import useFetch from './useFetch';
 
 const useGetProduct = () => {
-	// const { loading, response } = useFetch('http://localhost:3000/products');
+	 const { loading, response } = useFetch('http://localhost:3000/products');
 
-	// console.log(loading, response);
+	 console.log(loading, response);
 
 	const product = {
 		name: 'Name',

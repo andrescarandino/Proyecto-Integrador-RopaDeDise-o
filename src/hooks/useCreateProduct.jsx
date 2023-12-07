@@ -8,7 +8,7 @@ const useCreateProduct = () => {
 	const onSubmit = async (data) => {
 		try {
 			setIsLoading(true);
-			const URL = 'https://api.escuelajs.co/api/v1/products';
+			const URL = 'http://localhost:8080/productos';
 
 			const formData = new FormData();
 

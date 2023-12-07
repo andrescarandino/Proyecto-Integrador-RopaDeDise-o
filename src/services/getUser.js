@@ -2,7 +2,7 @@
 const getUser = async (mail, token) => {
 	try {
 		const response = await fetch(
-			`http://3.15.203.13:8080/usuarios?mail=${mail}`,
+			`http://localhost:8080/usuarios?mail=${mail}`,
 			{
 				method: 'GET',
 				headers: {
@@ -12,7 +12,8 @@ const getUser = async (mail, token) => {
 			},
 		);
 		const result = await response.json();
-		return result;
+		console.log(result.jwt);
+		return result
 	} catch (error) {
 		console.log(error);
 	}
