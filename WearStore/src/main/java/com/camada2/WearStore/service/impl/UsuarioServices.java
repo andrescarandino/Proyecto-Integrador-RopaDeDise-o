@@ -45,7 +45,7 @@ public class UsuarioServices implements IService<Usuarios, Usuarios> {
         usuario.setPassword(passwordEncoder.encode(usuarios.getPassword()));
         usuario.setRoles(roles);
 
-        return usuariosRepository.save(usuarios);
+        return usuariosRepository.save(usuario);
     }
 
     @Override
@@ -78,8 +78,8 @@ public class UsuarioServices implements IService<Usuarios, Usuarios> {
 
     @Transactional
     public Usuarios generarVerificacionEmail(String user, Usuarios usuarios) {
-        usuariosRepository.save(usuarios);
-        Usuarios usuario = usuariosRepository.findByUser(user).orElseThrow(UsuarioInexistenteExeption::new);
+        //usuariosRepository.save(usuarios);
+        Usuarios usuario = usuariosRepository.findUsuariosByEmail(user).orElseThrow(UsuarioInexistenteExeption::new);
         try {
 
             mailServices.sendEmail(usuario.getEmail(), "Corre de confirmacion de cuenta", "Te dejamos el link:" + "http://localhost:5173/users/login");
