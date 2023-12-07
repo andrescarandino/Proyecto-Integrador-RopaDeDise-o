@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.List;
 
 @Controller
+@CrossOrigin(origins = "*")
 @RequestMapping("/reserva")
 public class ReservasController {
     @Autowired

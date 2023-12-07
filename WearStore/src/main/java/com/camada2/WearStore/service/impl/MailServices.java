@@ -45,7 +45,7 @@ public class MailServices {
 
         try {
 
-            email.setFrom(new InternetAddress("giansicca70@gmail.com"));
+            email.setFrom(new InternetAddress("C2.carolki@gmail.com"));
             email.addRecipient(javax.mail.Message.RecipientType.TO, new InternetAddress(toAddress));
 
             email.setSubject(subject);
