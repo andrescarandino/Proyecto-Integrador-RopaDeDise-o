@@ -11,7 +11,7 @@ const loginUser = async (data) => {
 		});
 		const result = await response.json();
 		console.log(result);
-		return result;
+		return result.jwt;
 	} catch (error) {
 		console.log(error);
 	}

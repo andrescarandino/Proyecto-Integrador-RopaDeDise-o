@@ -9,7 +9,6 @@ function Header() {
 	const { state } = useContext(UserContext);
 	const [menuActive, setMenuActive] = useState(false);
 	const userActive = state.isAuthenticated;
-	console.log(state.isAuthenticated);
 
 	const handleMenu = () => {
 		setMenuActive(!menuActive);

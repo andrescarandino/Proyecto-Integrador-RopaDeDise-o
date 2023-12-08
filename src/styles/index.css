@@ -14,10 +14,10 @@
 	--color-light-grey: #d9d9d9;
 	--color-white: #ffffff;
 	--color-black: #000000;
-	--color-toast-success: #22c55e;
-	--color-toast-info: #3b82f6;
-	--color-toast-warning: #f97316;
-	--color-toast-error: #ef4444;
+	--color-toast-success: #147739;
+	--color-toast-info: #224b8c;
+	--color-toast-warning: #8b4c1f;
+	--color-toast-error: #862727;
 	--input-focus-h: 55;
 	--input-focus-s: 100%;
 	--input-focus-l: 20%;
@@ -288,10 +288,12 @@ label {
 }
 
 .toast-message {
-	color: #151626;
+	color: #464646;
 	font-size: 14px;
 	font-weight: 500;
 	margin-left: 12px;
+	font-family: 'Roboto', sans-serif;
+	font-style: italic;
 }
 
 .dismiss-btn {

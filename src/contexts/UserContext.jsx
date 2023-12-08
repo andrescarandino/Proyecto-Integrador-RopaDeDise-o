@@ -12,7 +12,7 @@ const initialState = {
 
 const init = () => {
 	// const user = JSON.parse(localStorage.getItem('user'));
-	const token = JSON.parse(localStorage.getItem('token'));
+	const token = localStorage.getItem('token');
 
 	return {
 		isAuthenticated: !!token,
@@ -31,7 +31,7 @@ export function UserContextProvider({ children }) {
 		};
 
 		// localStorage.setItem('user', JSON.stringify(user));
-		localStorage.setItem('token', JSON.stringify(token));
+		localStorage.setItem('token', token);
 
 		dispatch(action);
 	};

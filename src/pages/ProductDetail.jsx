@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { IoIosClose, IoMdShare } from 'react-icons/io';
 import { Link, useParams } from 'react-router-dom';
 import ReactSlidy from 'react-slidy';
@@ -7,20 +7,23 @@ import {
 	IoCutOutline,
 	IoShirtOutline,
 } from 'react-icons/io5';
-// import MockData from '../../MOCK_DATA.json';
 import styles from '../styles/productDetail.module.css';
 import Social from './Social';
 import getProductId from '../services/getProductId';
+import noImg from '../img/noImg.png';
+import Calendar from '../components/Calendar';
+import { UserContext } from '../contexts/UserContext';
 
 function ProductDetail() {
+	const { state } = useContext(UserContext);
 	const [slidyActive, setSlidyActive] = useState(false);
 	const [calendarOpen, setCalendarOpen] = useState(false);
 	const [socialOpen, setSocialOpen] = useState(false);
-	const [product, setProduct] = useState([]);
 	const [loading, setLoading] = useState(false);
+	const [product, setProduct] = useState([]);
+	const userActive = state.isAuthenticated;
 	const params = useParams();
 	const { id } = params;
-
 	const handleSlidy = () => {
 		setSlidyActive(!slidyActive);
 	};
@@ -30,22 +33,18 @@ function ProductDetail() {
 	const handleSocialToggle = () => {
 		setSocialOpen(!socialOpen);
 	};
-
-	// useEffect(() => {
-	// 	const productId = async () => {
-	// 		const res = await getProductId(id);
-	// 		// if (res.status === 200) {
-	// 			setProduct(res);
-	// 			console.log(res);
-	// 			setLoading(true);
-	// 		// }
-	// 	};
-	// 	productId();
-	// }, []);
+	useEffect(() => {
+		const productId = async () => {
+			const res = await getProductId(id);
+			setProduct(res);
+			setLoading(true);
+		};
+		productId();
+	}, []);
 
 	return (
 		<div className={styles.productContainer}>
-			{/* <div className={styles.productHeader}>
+			<div className={styles.productHeader}>
 				<h2 className={styles.productH2}>Título del Producto</h2>
 				<button type="button" className={styles.productButton}>
 					<Link to="/" className={styles.productLink}>
@@ -58,13 +57,48 @@ function ProductDetail() {
 			)}
 			<div className={styles.descriptionContainer}>
 				<div className={styles.descriptionBigImg}>
-					<img src={product.imagenes[0].ruta} alt="" />
+					<img
+						src={
+							loading && product.imagenes.length > 0
+								? product.imagenes[0].ruta
+								: noImg
+						}
+						alt=""
+					/>
 				</div>
 				<div className={styles.descriptionImg}>
-					<img src={product.imagenes[1].ruta} alt="" />
-					<img src={product.imagenes[2].ruta} alt="" />
-					<img src={product.imagenes[3].ruta} alt="" />
-					<img src={product.imagenes[4].ruta} alt="" />
+					<img
+						src={
+							loading && product.imagenes.length > 1
+								? product.imagenes[1].ruta
+								: noImg
+						}
+						alt=""
+					/>
+					<img
+						src={
+							loading && product.imagenes.length > 2
+								? product.imagenes[2].ruta
+								: noImg
+						}
+						alt=""
+					/>
+					<img
+						src={
+							loading && product.imagenes.length > 3
+								? product.imagenes[3].ruta
+								: noImg
+						}
+						alt=""
+					/>
+					<img
+						src={
+							loading && product.imagenes.length > 4
+								? product.imagenes[4].ruta
+								: noImg
+						}
+						alt=""
+					/>
 				</div>
 				<div className={styles.descriptionP}>
 					<p>{product.descripcion}</p>
@@ -94,7 +128,11 @@ function ProductDetail() {
 									height: '100%',
 									width: '280px',
 								}}
-								src={product.imagenes[1].ruta}
+								src={
+									loading && product.imagenes.length > 0
+										? product.imagenes[0].ruta
+										: noImg
+								}
 								alt=""
 							/>
 							<img
@@ -102,7 +140,11 @@ function ProductDetail() {
 									height: '100%',
 									width: '280px',
 								}}
-								src={product.imagenes[2].ruta}
+								src={
+									loading && product.imagenes.length > 1
+										? product.imagenes[1].ruta
+										: noImg
+								}
 								alt=""
 							/>
 							<img
@@ -110,7 +152,11 @@ function ProductDetail() {
 									height: '100%',
 									width: '280px',
 								}}
-								src={product.imagenes[3].ruta}
+								src={
+									loading && product.imagenes.length > 2
+										? product.imagenes[2].ruta
+										: noImg
+								}
 								alt=""
 							/>
 							<img
@@ -118,34 +164,36 @@ function ProductDetail() {
 									height: '100%',
 									width: '280px',
 								}}
-								src={product.imagenes[4].ruta}
+								src={
+									loading && product.imagenes.length > 3
+										? product.imagenes[3].ruta
+										: noImg
+								}
+								alt=""
+							/>
+							<img
+								style={{
+									height: '100%',
+									width: '280px',
+								}}
+								src={
+									loading && product.imagenes.length > 4
+										? product.imagenes[4].ruta
+										: noImg
+								}
 								alt=""
 							/>
 						</ReactSlidy>
 					</div>
 				)}
 			</div>
-			{calendarOpen && (
-				<div className={styles.calendarContainer}>
-					<div className={styles.calendarDiv}>
-						<input type="date" />
-						<input type="date" />
-						<button
-							type="button"
-							className={styles.calendarButton}
-							onClick={() => {
-								console.log('Botón clickeado');
-							}}
-						>
-							Consultar Disponibilidad
-						</button>
-					</div>
-				</div>
-			)}
+			{calendarOpen && <Calendar id={id} />}
 			<div className={styles.productFooter}>
 				<div className={styles.productFooterItems}>
 					<IoDiamondOutline />
-					<h2 className={styles.productFooterH2}>Categoria</h2>
+					<h2 className={styles.productFooterH2}>
+						{loading && product.categorias.nombre}
+					</h2>
 				</div>
 				<div className={styles.productFooterItems}>
 					<IoCutOutline />
@@ -155,17 +203,18 @@ function ProductDetail() {
 					<IoShirtOutline />
 					<h2 className={styles.productFooterH2}>Talles</h2>
 				</div>
-				{/* <Reservation /> */}
-			{/* <div className="">
-					<button
-						type="button"
-						className={styles.descriptionButton}
-						onClick={handleCalendarToggle}
-					>
-						{!calendarOpen ? 'Reserva' : 'Cerrar'}
-					</button>
+				<div className="">
+					{userActive && (
+						<button
+							type="button"
+							className={styles.descriptionButton}
+							onClick={handleCalendarToggle}
+						>
+							{!calendarOpen ? 'Reserva' : 'Cerrar'}
+						</button>
+					)}
 				</div>
-			</div> */}
+			</div>
 		</div>
 	);
 }

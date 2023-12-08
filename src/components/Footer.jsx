@@ -36,7 +36,7 @@ function Footer() {
 							fontStyle: 'italic',
 						}}
 					>
-						Ver políticas del sitio web
+						Políticas del sitio web
 					</p>
 				</div>
 

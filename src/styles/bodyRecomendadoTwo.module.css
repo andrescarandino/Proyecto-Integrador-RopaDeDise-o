@@ -1,4 +1,5 @@
 .recomendadoContainer {
+	overflow: hidden;
 	position: relative;
 	display: flex;
 	justify-content: end;

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { IoIosStar } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 import styles from '../styles/bodyRecomendadoOne.module.css';
+import NoProduct from '../img/noProduct.png';
 
 // eslint-disable-next-line react/prop-types
 function BodyRecomendadoOne({ data }) {
@@ -13,8 +14,8 @@ function BodyRecomendadoOne({ data }) {
 	};
 	return (
 		<div className={styles.recomendadoContainer}>
-			{dataNew.map((x) => (
-				<>
+			{dataNew.map((x, index) => (
+				<div key={index}>
 					<img
 						className={styles.recomendadoImg}
 						src={x.imagenes[0].ruta}
@@ -50,7 +51,7 @@ function BodyRecomendadoOne({ data }) {
 							}
 						/>
 					</div>
-				</>
+				</div>
 			))}
 		</div>
 	);

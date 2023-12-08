@@ -46,6 +46,7 @@ function Register() {
 		console.log(res.status);
 		// eslint-disable-next-line no-unused-expressions
 		res.status === 201 ? handleRegistered() : handleError();
+		setLoading(false);
 		reset();
 	};
 

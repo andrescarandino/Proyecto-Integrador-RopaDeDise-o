@@ -10,7 +10,7 @@ import BodySection from '../components/BodySection';
 import Pagination from '../components/Pagination';
 import Search from '../components/Search';
 import styles from '../styles/home.module.css';
-import NoProduct from '../img/noProduct.png';
+import imgConectando from '../img/imgConectando.png';
 import getProduct from '../services/getProduct';
 
 function Home() {
@@ -25,18 +25,16 @@ function Home() {
 	const nPages = Math.ceil(productData.length / productQt);
 	const noProduct = [
 		{
-			imagenes: [{ ruta: NoProduct }],
-			description: 'No hay productos en la Base de Datos',
+			imagenes: [{ ruta: imgConectando }],
+			description: '...conectando',
 		},
 	];
 	useEffect(() => {
 		const product = async () => {
 			const res = await getProduct();
-			if (res.status === 200) {
-				// setLoading(true);
-				setProductData(res);
-				console.log(res);
-			}
+			// setLoading(true);
+			setProductData(res);
+			console.log(res);
 		};
 		product();
 	}, []);

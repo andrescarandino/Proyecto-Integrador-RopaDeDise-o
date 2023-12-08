@@ -14,10 +14,9 @@ function UserActive() {
 	const [menuActive, setMenuActive] = useState(false);
 	const [adminActive, setAdminActive] = useState(false);
 	const navigate = useNavigate();
-	const { token } = state.token;
+	const { token } = state;
 	const decoded = jwtDecode(token);
 	const mail = decoded.sub;
-
 	// eslint-disable-next-line consistent-return
 	useEffect(() => {
 		if (mail === 'admin@admin') {
@@ -39,8 +38,8 @@ function UserActive() {
 		setMenuActive(!menuActive);
 	};
 	const user = {
-		firstName: loading ? `${dataUser[1].nombre}` : '',
-		lastName: loading ? `${dataUser[1].apellido}` : '',
+		firstName: loading ? `${dataUser.nombre}` : '',
+		lastName: loading ? `${dataUser.apellido}` : '',
 	};
 	const letterFirstName = loading && user.firstName.charAt(0).toUpperCase();
 	const letterLastName = loading && user.lastName.charAt(0).toUpperCase();

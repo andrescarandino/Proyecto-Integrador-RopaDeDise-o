@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { IoIosStar } from 'react-icons/io';
 import { useState } from 'react';
 import styles from '../styles/bodySearchOne.module.css';
+import NoProduct from '../img/noProduct.png';
 
 // eslint-disable-next-line react/prop-types
 function BodySearchOne({ data }) {
@@ -14,8 +15,8 @@ function BodySearchOne({ data }) {
 	};
 	return (
 		<div className={styles.bodySearch}>
-			{dataNew.map((x) => (
-				<div className={styles.divSearch}>
+			{dataNew.map((x, index) => (
+				<div key={index} className={styles.divSearch}>
 					<img src={x.imagenes[0].ruta} alt="" />
 					<button type="button" className={styles.searchButton}>
 						<Link

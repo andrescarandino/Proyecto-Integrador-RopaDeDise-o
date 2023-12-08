@@ -1,6 +1,6 @@
 // eslint-disable-next-line consistent-return
 const searchProduct = async (params) => {
-	const url = `http://localhost:8080/productos/buscar/${params}`;
+	const url = `http://3.15.203.13:8080/productos/buscar/${params}`;
 	try {
 		const response = await fetch(url, {
 			method: 'GET',

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { IoIosStar } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 import styles from '../styles/bodyRecomendadoTwo.module.css';
+import NoProduct from '../img/noProduct.png';
 
 // eslint-disable-next-line react/prop-types
 function BodyRecomendadoOne({ data }) {

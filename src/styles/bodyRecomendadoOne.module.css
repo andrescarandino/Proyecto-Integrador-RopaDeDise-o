@@ -1,4 +1,5 @@
 .recomendadoContainer {
+	overflow: hidden;
 	position: relative;
 	display: flex;
 	justify-content: end;
@@ -42,6 +43,7 @@
 
 .recomendadoImg {
 	width: 30rem;
+	height: 100%;
 }
 
 .recomendadoDetail {
