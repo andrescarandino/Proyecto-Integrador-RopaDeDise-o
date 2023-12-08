@@ -1,6 +1,7 @@
+
 .table {
 	/* border: 1px solid black; */
-	width: 75%;
+	width: 80%;
 	margin: 2rem auto;
 	border-radius: 5px;
 	color: var(--color-black-cow);
@@ -22,5 +23,21 @@ th {
 	text-align: center;
 	padding: 0.5rem;
 	border: 1px solid var(--color-black-cow);
-	border-radius: 5px;
+	height: 5rem;
+	color: #000;
+	font-size: 1rem;
+}
+th {
+	background-color: #ae9279;
+	color: white;
+	font-family: 'Roboto', sans-serif;
+	font-style: italic;
+}
+.title{
+	margin: 1rem;
+	text-align: center;
+	font-family: 'Roboto', sans-serif;
+	color: #ae9279;
+	font-style: italic;
+	font-size: 2rem;
 }

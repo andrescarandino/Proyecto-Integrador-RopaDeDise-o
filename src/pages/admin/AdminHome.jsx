@@ -35,9 +35,9 @@ function AdminHome() {
 						>
 							<IconUserFilled /> Usuarios
 						</li>
-						<li className={menuStyles.item}>
+{/* 						<li className={menuStyles.item}>
 							Agregar usuario <IconArrowNarrowRight />
-						</li>
+						</li> */}
 						<li
 							className={menuStyles.item}
 							role="menuitem"

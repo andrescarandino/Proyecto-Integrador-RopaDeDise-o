@@ -21,7 +21,7 @@ function UserActive() {
 	console.log(decoded);
 	const mail = decoded.sub;
 	// Resto del código...
-	console.error('El token no es una cadena válida.');
+	//console.error('El token no es una cadena válida.');
 	//const decoded = jwtDecode(token);
 	//const mail = decoded.sub;
 	// eslint-disable-next-line consistent-return
