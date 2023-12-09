@@ -22,7 +22,7 @@ public class CategoriasController {
 
     // Endpoint para crear una nueva categoría
     @PostMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<?> crearCategoria(@RequestBody Categorias categoria) {
         categoriasService.guardar(categoria);
         return ResponseEntity.status(HttpStatus.CREATED).build();
@@ -30,20 +30,18 @@ public class CategoriasController {
 
     // Endpoint para obtener todas las categorías
     @GetMapping
-    @PreAuthorize("permitAll()")
     public ResponseEntity<List<Categorias>> obtenerTodasCategorias() {
         return ResponseEntity.status(HttpStatus.OK).body(categoriasService.listar());
     }
 
     // Endpoint para obtener una categoría por ID
     @GetMapping("/{id}")
-    @PreAuthorize("permitAll()")
     public ResponseEntity<Categorias> obtenerCategoriaPorId(@PathVariable Integer id) {
         return ResponseEntity.status(HttpStatus.OK).body(categoriasService.buscar(id));
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<?> actualizar(Categorias categorias){
         categoriasService.actualizar(categorias);
         return ResponseEntity.status(HttpStatus.OK).build();
@@ -51,7 +49,7 @@ public class CategoriasController {
 
     // Endpoint para eliminar una categoría por ID
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<?> eliminarCategoria(@PathVariable Integer id) {
         categoriasService.eliminar(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();

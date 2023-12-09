@@ -53,7 +53,7 @@ public class ProductosController {
     }
 
     @PostMapping
-    @PreAuthorize("hasRole ('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Productos> guardarProducto(@RequestBody Productos producto) throws IOException {
         productoService.guardar(producto);
 
@@ -61,7 +61,7 @@ public class ProductosController {
     }
 
     @PutMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Productos> modificarProductos(@RequestBody Productos producto) throws Exception {
 
         productoService.actualizar(producto);
@@ -70,7 +70,7 @@ public class ProductosController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Productos> eliminarProductoPorId(@PathVariable  Integer id) throws IOException {
         productoService.eliminar(id);
 
@@ -78,7 +78,6 @@ public class ProductosController {
     }
 
     @GetMapping("/buscar/{palabraClave}")
-    @PreAuthorize("permitAll()")
     public List<Productos> buscarPor (@PathVariable("palabraClave") String palabraClave){
     return productoService.buscarPorAtributo(palabraClave);
 

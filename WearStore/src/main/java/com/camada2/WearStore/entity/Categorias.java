@@ -20,6 +20,10 @@ public class Categorias {
     @OneToMany(mappedBy = "categorias")
     private List<TipoProductos> tipoProductosList;
 
+    @OneToMany
+    @JoinColumn (name = "categorias_id")
+    private List<Imagenes> imagenes;
+
     // Constructores, getters y setters
 
     public Categorias() {
@@ -40,5 +44,13 @@ public class Categorias {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public List<Imagenes> getImagenes() {
+        return imagenes;
+    }
+
+    public void setImagenes(List<Imagenes> imagenes) {
+        this.imagenes = imagenes;
     }
 }

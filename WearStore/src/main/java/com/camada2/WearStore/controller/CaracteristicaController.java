@@ -21,26 +21,23 @@ public class CaracteristicaController {
     private CaracteristicaService caracteristicaService;
 
     @PostMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<?> crearCaracteristica(@RequestBody Caracteristica caracteristica) throws IOException {
         caracteristicaService.guardar(caracteristica);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
     // endpoint para obtener todas las caracteristicas
     @GetMapping
-    @PreAuthorize("permitAll()")
     public ResponseEntity<List<Caracteristica>> obtenerTodasCaracteristica(){
         return ResponseEntity.status(HttpStatus.OK).body(caracteristicaService.listar());
     }
     // Endpoint para obtener una caracteristica por id
     @GetMapping("/{id}")
-    @PreAuthorize("permitAll()")
     public ResponseEntity<Caracteristica> obtenerCaracteristicaPorId(@PathVariable Integer id){
         return ResponseEntity.status(HttpStatus.OK).body(caracteristicaService.buscar(id));
     }
 
     @GetMapping(params ="nombre")
-    @PreAuthorize("permitAll()")
     public ResponseEntity<List<Caracteristica>> buscarCaracteristicaPorNombre(@RequestParam String nombre) {
         List<Caracteristica> caracteristicas = caracteristicaService.buscarPorNombre(nombre);
 
@@ -53,14 +50,14 @@ public class CaracteristicaController {
 
     // Endpoint para eliminar una categoria por ID
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<?> eliminarCaracteristica(@PathVariable Integer id){
         caracteristicaService.eliminar(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Caracteristica> actualizarCaracteristica(
             @PathVariable Integer id,
             @RequestBody Caracteristica nuevaCaracteristica){

@@ -25,7 +25,6 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.services.gmail.Gmail;
 
-
 @Configuration
 public class MailConfig {
 
@@ -73,21 +72,20 @@ public class MailConfig {
         return credential;
     }
 
-        @Bean
-        public Gmail getService() {
-            NetHttpTransport HTTP_TRANSPORT;
+    @Bean
+    public Gmail getService() {
+        NetHttpTransport HTTP_TRANSPORT;
 
-            try {
-                // Inicializa el transporte HTTP confiable para la aplicación
-                HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
-                // Crea y configura un cliente de la API de Gmail
-                return new Gmail.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
-                        .setApplicationName(APPLICATION_NAME)
-                        .build();
-            }catch(GeneralSecurityException | IOException e) {
-                e.printStackTrace();
-                return null;
-            }
+        try {
+            // Inicializa el transporte HTTP confiable para la aplicación
+            HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+            // Crea y configura un cliente de la API de Gmail
+            return new Gmail.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
+                    .setApplicationName(APPLICATION_NAME)
+                    .build();
+        }catch(GeneralSecurityException | IOException e) {
+            e.printStackTrace();
+            return null;
         }
     }
-
+}

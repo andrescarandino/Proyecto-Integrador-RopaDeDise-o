@@ -21,7 +21,7 @@ public class ImagenesController {
     ImagenesService imagenesService;
 
     @PostMapping("/upload")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<List<Imagenes>> subidaArchivos(@RequestParam("archivos")MultipartFile[] archivos){
 
        List<Imagenes> list = imagenesService.guardar(archivos);
@@ -31,34 +31,34 @@ public class ImagenesController {
     }
 
     @GetMapping("/download/{filename}")
-    @PreAuthorize("hasRole('ADMIN')")
+
     public String downloadFile(@PathVariable("filename") String filename) throws IOException {
         return imagenesService.downloadFile(filename);
     }
 
     @GetMapping("/list")
-    @PreAuthorize("permitAll()")
+
     public List<String> getAllObjects() throws IOException {
         return imagenesService.listFiles();
     }
 
 
     @PutMapping("/rename/{oldFileName}/{newFileName}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String updateFileName(@PathVariable("oldFileName") String oldFileName, @PathVariable("newFileName") String newFileName) throws IOException {
         imagenesService.renameFile(oldFileName,newFileName);
         return "El archivo ha sido renombrado";
     }
 
     @PutMapping("/update/{oldFileName}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String updateFile(@RequestParam("file") MultipartFile file, @PathVariable("oldFileName") String oldFileName) throws IOException {
         imagenesService.updatefile(file, oldFileName);
         return "El archivo fue actualizado";
     }
 
     @DeleteMapping("/delete/{filename}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String deleteFile(@PathVariable("fileName") String filename) throws IOException {
         return imagenesService.deleteFile(filename);
     }

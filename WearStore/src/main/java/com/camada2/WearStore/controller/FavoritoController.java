@@ -21,20 +21,20 @@ public class FavoritoController {
     FavoritoService favoritoService;
 
     @PostMapping
-    @PreAuthorize("hasAnyRole('USER','ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
     public ResponseEntity<Favorito> guardar(@RequestParam ("usuario") int usuario,
                                             @RequestParam ("producto") int producto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(favoritoService.guardar(usuario, producto));
     }
 
     @GetMapping
-    @PreAuthorize("hasAnyRole('USER','ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
     public ResponseEntity<List<Productos>> listar(@RequestParam("usuario") int usuarioId){
         return ResponseEntity.status(HttpStatus.CREATED).body(favoritoService.listar(usuarioId));
     }
 
     @DeleteMapping
-    @PreAuthorize("hasAnyRole('USER','ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
     public ResponseEntity<String> eliminar(@RequestParam("usuario") int usuario,
                                              @RequestParam("producto") int producto){
 
