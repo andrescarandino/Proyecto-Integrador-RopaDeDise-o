@@ -15,10 +15,10 @@ function UserActive() {
 	const [adminActive, setAdminActive] = useState(false);
 	const navigate = useNavigate();
 	const { token } = state;
-	console.log(token);
+	
 	
 	const decoded = jwtDecode(token);
-	console.log(decoded);
+	
 	const mail = decoded.sub;
 	// Resto del código...
 	//console.error('El token no es una cadena válida.');
@@ -33,7 +33,7 @@ function UserActive() {
 			const res = await getUser(mail, token);
 			setDataUser(res);
 			setLoading(true);
-			console.log(res);
+			
 		})();
 	}, []);
 	const logoutUser = () => {

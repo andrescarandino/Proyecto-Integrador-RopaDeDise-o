@@ -1,30 +1,55 @@
 /* eslint-disable jsx-a11y/interactive-supports-focus */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { IconPencil, IconTrashFilled } from '@tabler/icons-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import { useNavigate } from 'react-router-dom';
 import * as createProductStyles from '../../styles/admin/createProduct.module.css';
 import * as ListProductsStyles from '../../styles/admin/listProducts.module.css';
 import getProduct from '../../services/getProduct';
+import { UserContext } from '../../contexts/UserContext';
+import { ToastContext } from '../../contexts/ToastContext';
 
 function ListProducts() {
 	const navigate = useNavigate();
 	const [products, setProducts] = useState([]);
+	const { state, logout } = useContext(UserContext);
+	const toastContext = useContext(ToastContext);
+
+	const eliminarProducto = async (id) => {
+		try {
+			const response = await fetch(`http://localhost:8080/productos/${id}`, {
+				method: 'DELETE',
+				headers: {
+					'Content-type': 'application/json',
+					'Authorization': `Bearer ${state.token}`
+				},
+			});
+			if (response.status === 204){
+				toastContext.success('Producto eliminado');
+				const res = await getProduct();
+				setProducts(res);
+				
+			}else{
+				toastContext.error('Error a eliminar el producto');
+			}
+		} catch (error) {
+			console.log(error);
+		}
+};
 
 	useEffect(() => {
 		const product = async () => {
 			const res = await getProduct();
-			console.log(res)
 				setProducts(res);
 		};
 		product();
 	}, []);
 
 	const handleClickDelete = (id) => {
-		setProducts(products.filter((product) => product.id !== id));
-	};
+		eliminarProducto(id)
+		}
 
 	const handleClickConfirm = (id) => {
 		confirmAlert({
@@ -32,7 +57,7 @@ function ListProducts() {
 			message: '¿Estás seguro de eliminar este producto?',
 			buttons: [
 				{
-					label: 'Si',
+					label: 'Confirmar',
 					onClick: () => handleClickDelete(id),
 				},
 				{
@@ -78,7 +103,7 @@ function ListProducts() {
 											role="button"
 											onClick={() =>
 												navigate(
-													`/admin/products/${product?.id}`,
+													`/admin/products/${product?.product.idProducto}`,
 												)
 											}
 										>
@@ -90,7 +115,7 @@ function ListProducts() {
 											}
 											role="button"
 											onClick={() =>
-												handleClickConfirm(product?.id)
+												handleClickConfirm(product? product.idProductos : null)
 											}
 										>
 											<IconTrashFilled />
@@ -104,6 +129,6 @@ function ListProducts() {
 			</section>
 		</div>
 	);
-}
 
+}
 export default ListProducts;

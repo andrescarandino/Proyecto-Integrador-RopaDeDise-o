@@ -3,16 +3,18 @@ import PropTypes from 'prop-types';
 import { Fragment, useState, useEffect, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { UserContext } from '../../../contexts/UserContext'
+import { ToastContext } from '../../../contexts/ToastContext';
 
 
-
-function ProductForm({  }) {
+function ProductForm() {
 	const { state, logout } = useContext(UserContext);
 	const [images, setImages] = useState([]);
-  	const [imagePreviews, setImagePreviews] = useState([]);
+  	const [imagesPreviews, setImagesPreviews] = useState([]);
 	const [categories, setCategories] = useState([]);
+	const [caracteristicas, setCaracteristicas] = useState([])
 	const [error, setError] = useState(false);
-	console.log(state.token);
+	const toastContext = useContext(ToastContext);
+	
 
 	  useEffect(() => {
     const fetchCategories = async () => {
@@ -21,6 +23,7 @@ function ProductForm({  }) {
           method: 'GET',
           headers: {
             'Content-type': 'application/json',
+			'Authorization': `Bearer ${state.token}`
           },
         });
 
@@ -32,11 +35,11 @@ function ProductForm({  }) {
         setCategories(result);
       } catch (error) {
         console.error('Error fetching product:', error);
-        throw error;
+        toastContext.error('error al crear el producto');
       }
     };
 
-    const fetchFeatures = async () => {
+    const fetchCaracteristicas = async () => {
       try {
         const response = await fetch('http://localhost:8080/caracteristicas', {
           method: 'GET',
@@ -46,12 +49,11 @@ function ProductForm({  }) {
         });
 
         if (!response.ok) {
-          throw new Error('Features response was not ok');
+          throw new Error('caracteristicas response was not ok');
         }
 
         const result = await response.json();
-		//console.log(result)
-        setFeatures(result);
+        setCaracteristicas(result);
       } catch (error) {
         console.error('Error fetching features:', error);
         throw error;
@@ -59,7 +61,7 @@ function ProductForm({  }) {
     };
 
     fetchCategories();
-    fetchFeatures();
+    fetchCaracteristicas();
   }, []);
 
 
@@ -85,6 +87,7 @@ function ProductForm({  }) {
 			descripcion: data.description,
 			categories: data.categories,
 			precio: data.precio,
+			caracteristicas: data.caracteristicas,
 			// Resto de los campos del producto...
 			imagenes: images.map((image) => ({ idImagenes: image.idImagenes })),
 		  };
@@ -99,18 +102,19 @@ function ProductForm({  }) {
 			body: JSON.stringify(productoData),
 		  });
 	  
-		  if (!productoResponse.ok) {
-			throw new Error('Error al crear el producto');
+		  if (productoResponse.status === 201) {
+			toastContext.success('Producto creado');
+			reset();
+		  }else{
+			toastContext.error('El producto ya existe');
 		  }
-	  
+		  
 		  const productoCreado = await productoResponse.json();
-	  
-		  console.log('Producto creado:', productoCreado);
-	  
-		  // Restablecer el formulario o realizar otras acciones después de la creación
-		  reset();
+
+		  
 		} catch (error) {
 		  console.error('Error:', error.message);
+
 		}
 	  };
 	  
@@ -226,6 +230,39 @@ function ProductForm({  }) {
 					>
 						Administrar características
 					</p>
+					<div className="form-group">
+						<label htmlFor="caracterisitas">
+							Selecciona una caracteristica:
+						</label>
+					<select
+							className="input"
+							id="caracteristica"
+							name="caracteristica"
+							defaultValue=""
+							multiple
+							{...register('caracteristica', {
+								required: true,
+							})}
+						>
+							<option
+								// TODO: Style blank option
+								style={{
+									color: 'var(--color-oslo-grey) !important',
+									paddingInline: '0.5em !important',
+								}}
+								hidden
+								disabled
+								value=""
+								
+							>
+								Selecciona una característica
+							</option>
+							{caracteristicas?.map((category) => (
+								<option key={category.idCategorias} value={category.idCategorias} >
+									{category.nombre}
+								</option>
+							))}
+						</select>
 					<button
 						type="button"
 						className="submit-button"
@@ -233,83 +270,12 @@ function ProductForm({  }) {
 					>
 						Añadir nueva
 					</button>
-{/* 					{watchFeatures?.length > 0 &&
-						watchFeatures?.map((feature, index) => (
-							<Fragment key={index}>
-								<div className="form-group">
-									<label
-										style={{
-											display: 'flex',
-											alignItems: 'center',
-										}}
-										htmlFor={`feature-${index}`}
-									/>
-										<IconTrashFilled
-											onClick={() =>
-												onRemoveFeature(feature)
-											}
-										/>
-										&nbsp; Característica {index + 1}:
-									<select
-										className="input"
-										id="feature"
-										name="feature"
-										defaultValue=""
-										{...register(`features.${index}`, {
-											required: true,
-											setValueAs: (value) =>
-												Number(value),
-											onChange: ({
-												target: { value },
-											}) => {
-												setFeatures(
-													features.map((feature) => {
-														if (
-															feature.id ===
-															Number(value)
-														) {
-															return {
-																...feature,
-																disabled: true,
-															};
-														}
-														return feature;
-													}),
-												);
-											},
-										})}
-									>
-										<option
-											
-											style={{
-												color: 'var(--color-oslo-grey) !important',
-												paddingInline:
-													'0.5em !important',
-											}}
-											hidden
-											disabled
-											value=""
-										>
-											Selecciona una característica
-										</option>
-										{features?.map((features) => (
-											<option
-												key={features.id}
-												value={features.id}
-												disabled={features.disabled}
-											>
-												{features.name}
-											</option>
-										))}
-									</select>
-								</div>
-								{errors.features?.at(index) && (
-									<span className="form-error-message">
-										Este campo es requerido.
-									</span>
-								)}
-							</Fragment>
-						))} */}
+					</div>
+					{errors.caracteristicas && (
+						<span className="form-error-message">
+							Este campo es requerido.
+						</span>)}
+
 					<div className="form-group">
 						<label htmlFor="image">Selecciona las imágenes:</label>
 						<input
@@ -321,8 +287,8 @@ function ProductForm({  }) {
 						  {...register('images', {
 							onChange: async (e) => {
 								const selectedImages = Array.from(e.target.files || []);
-								setImagePreviews(selectedImages.map((image)=> URL.createObjectURL(image)));
-								// Subir imágenes
+								setImagesPreviews(selectedImages.map((image)=> URL.createObjectURL(image)));
+								
 								const formData = new FormData();
 								selectedImages.forEach((image) => formData.append('archivos', image));
 						  
@@ -352,18 +318,17 @@ function ProductForm({  }) {
 					)}
 					<div className='imgPreviewContainer'>
 
-						{imagePreviews.length > 0 &&
-						  imagePreviews.map((preview, index) => (
-							  <div className="form-preview-item" key={index}>
-						      <img
-						        src={preview}
-						        alt={`Previsualización de la imagen ${index + 1}`}
-						        key={preview}
-						        width={150}
-						        height={150}
-								/>
-						    </div>
-						  ))}
+					{imagesPreviews.length > 0 &&
+  						imagesPreviews.map((preview, index) => (
+    					<div className="form-preview-item" key={index}>
+      					<img
+       						 src={preview}
+       						 alt={`Previsualización de la imagen ${index + 1}`}
+        					 width={150}
+        					 height={150}
+									/>
+								</div>
+							))}
 						</div>
 					<button type="submit" className="submit-button">
 						Agregar producto
