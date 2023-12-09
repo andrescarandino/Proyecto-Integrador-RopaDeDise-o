@@ -1,7 +1,7 @@
 // eslint-disable-next-line consistent-return
 const postDate = async (reservaData, token) => {
 	try {
-		const response = await fetch('http://3.15.203.13:8080/reserva', {
+		const response = await fetch('http://localhost:8080/reserva', {
 			method: 'POST',
 			headers: {
 				'Content-type': 'application/json',

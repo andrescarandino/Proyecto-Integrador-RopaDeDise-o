@@ -1,6 +1,6 @@
 const getCategory = async () => {
 	try {
-		const response = await fetch('http://3.15.203.13:8080/categorias', {
+		const response = await fetch('http://localhost:8080/categorias', {
 			method: 'GET',
 			headers: {
 				'Content-type': 'application/json',
