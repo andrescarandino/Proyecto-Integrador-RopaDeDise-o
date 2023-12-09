@@ -3,8 +3,8 @@ import { IconPencil, IconTrashFilled } from '@tabler/icons-react';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import { useNavigate } from 'react-router-dom';
-import * as createProductStyles from '../../styles/admin/createProduct.module.css';
-import * as ListProductsStyles from '../../styles/admin/listProducts.module.css';
+
+import * as ListCategoriesStyles from '../../styles/admin/listCategories.module.css';
 import getProduct from '../../services/getProduct';
 import { UserContext } from '../../contexts/UserContext';
 import { ToastContext } from '../../contexts/ToastContext';
@@ -88,9 +88,9 @@ function ListCategories() {
 	return (
 	<div>
 		ListCategories
-		<section className={ListProductsStyles.sectionContainer}>
+		<section className={ListCategoriesStyles.sectionContainer}>
 				<div>
-					<table className={ListProductsStyles.table}>
+					<table className={ListCategoriesStyles.table}>
 						<thead>
 							<tr>
 								<th>Nombre</th>
@@ -113,7 +113,7 @@ function ListCategories() {
 									<td>
 										<div
 											className={
-												ListProductsStyles.actionButton
+												ListCategoriesStyles.actionButton
 											}
 											role="button"
 											onClick={() =>
@@ -126,7 +126,7 @@ function ListCategories() {
 										</div>
 										<div
 											className={
-												ListProductsStyles.actionButton
+												ListCategoriesStyles.actionButton
 											}
 											role="button"
 											onClick={() =>

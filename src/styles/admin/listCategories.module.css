@@ -1,0 +1,42 @@
+.table {
+	/* border: 1px solid black; */
+	width: 70%;
+	margin: 2rem auto;
+	border-radius: 5px;
+	color: var(--color-black-cow);
+}
+
+.actions {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.15rem;
+}
+
+.actionButton {
+	cursor: pointer;
+}
+
+td,
+th {
+	text-align: center;
+	padding: 0.5rem;
+	border: 1px solid var(--color-black-cow);
+	height: 5rem;
+	color: #000;
+	font-size: 1.5rem;
+}
+th {
+	background-color: #ae9279;
+	color: white;
+	font-family: 'Roboto', sans-serif;
+	font-style: italic;
+}
+.title{
+	margin: 1rem;
+	text-align: center;
+	font-family: 'Roboto', sans-serif;
+	color: #ae9279;
+	font-style: italic;
+	font-size: 2rem;
+}

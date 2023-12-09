@@ -224,10 +224,10 @@ label {
 	padding: 2rem;
 	gap: 1rem;
 }
-.imgPreviewContainer{
+ .imgPreviewContainer{
 	display: flex;
 	margin: auto;
-}
+} 
 
 .form-error-message {
 	color: red;
