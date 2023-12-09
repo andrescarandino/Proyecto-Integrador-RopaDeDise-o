@@ -221,9 +221,13 @@ label {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	padding-top: 2rem;
+	padding: 2rem;
 	gap: 1rem;
 }
+ .imgPreviewContainer{
+	display: flex;
+	margin: auto;
+} 
 
 .form-error-message {
 	color: red;

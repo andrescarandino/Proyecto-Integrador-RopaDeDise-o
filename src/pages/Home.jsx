@@ -45,7 +45,7 @@ function Home() {
 			<div>
 				<div className={styles.bodyProducts}>
 					<BodySearchOne
-						data={nProducts.length === 0 ? noProduct : nProducts}
+						data={nProducts}
 					/>
 					<BodyRecomendadoOne data={nProducts} />
 				</div>

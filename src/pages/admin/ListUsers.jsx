@@ -2,45 +2,43 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import {
 	IconEye,
-	IconEyeOff,
+	IconUserUp,
 	IconInfoCircle,
-	IconPencil,
+	IconUserDown,
 	IconTrashFilled,
 } from '@tabler/icons-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import * as createProductStyles from '../../styles/admin/createProduct.module.css';
 import * as ListProductsStyles from '../../styles/admin/listProducts.module.css';
 
 function ListUsers() {
-	const [users, setUsers] = useState([
-		{
-			id: 1,
-			name: 'Nombre 1',
-			permissions: 'Navegación',
-		},
-		{
-			id: 2,
-			name: 'Nombre 2',
-			permissions: 'Administración',
-		},
-		{
-			id: 3,
-			name: 'Nombre 3',
-			permissions: 'Navegación',
-		},
-		{
-			id: 4,
-			name: 'Nombre 4',
-			permissions: 'Administración',
-		},
-		{
-			id: 5,
-			name: 'Nombre 5',
-			permissions: 'Navegación',
-		},
-	]);
+	const [users, setUsers] = useState([]);
+
+	const getUsers = async () => {
+		try {
+			const response = await fetch('http://localhost:8080/usuarios', {
+				method: 'GET',
+				headers: {
+					'Content-type': 'application/json',
+				},
+			});
+			const result = await response.json();
+			console.log(result);
+			return result;
+		} catch (error) {
+			console.log(error);
+		}
+	};
+	useEffect(() => {
+		const user = async () => {
+			const res = await getUsers();
+				setUsers(res);
+		};
+		user();
+	}, []);
+
 
 	const handleClickDelete = (id) => {
 		setUsers(users.filter((user) => user.id !== id));
@@ -63,7 +61,7 @@ function ListUsers() {
 		});
 	};
 
-	const handleClickConfirm = (id, type = 'delete') => {
+	/* const handleClickConfirm = (id, type = 'delete') => {
 		let onConfirm = null;
 		const onDelete = () => {
 			return {
@@ -80,15 +78,15 @@ function ListUsers() {
 				],
 			};
 		};
-
-		const onTogglePermissions = () => {
+ */
+ 		const onTogglePermissions = () => {
 			return {
 				title: 'Modificar permisos de usuario',
 				message:
 					'¿Estás seguro de modificar los permisos de este usuario?',
 				buttons: [
 					{
-						label: 'Si',
+						label: 'Confirmar',
 						onClick: () => handleClickPermissions(id),
 					},
 					{
@@ -98,10 +96,12 @@ function ListUsers() {
 			};
 		};
 
-		onConfirm = type === 'delete' ? onDelete() : onTogglePermissions();
+		 onTogglePermissions();
 
 		confirmAlert(onConfirm);
-	};
+	 
+	
+	
 	return (
 		<div className={createProductStyles.container}>
 			<header className={createProductStyles.headerContainer}>
@@ -119,7 +119,7 @@ function ListUsers() {
 					<table className={ListProductsStyles.table}>
 						<thead>
 							<tr>
-								<th>Id</th>
+								
 								<th>Nombre</th>
 								<th>Permisos</th>
 								<th
@@ -137,39 +137,27 @@ function ListUsers() {
 						<tbody>
 							{users.map((user) => (
 								<tr>
-									<td>{user?.id}</td>
-									<td>{user?.name}</td>
-									<td>{user?.permissions}</td>
+									<td>{user?.email}</td>
+									<td>{user?.authorities[0].authority}</td>
 									<td className={ListProductsStyles.actions}>
 										<div
 											className={
 												ListProductsStyles.actionButton
 											}
 											role="button"
-											onClick={() => {}}
+											onClick={() =>
+												onTogglePermissions(
+													user.idUsuarios
+												)}
 										>
-											<IconPencil />
-										</div>
-										<div
-											className={
-												ListProductsStyles.actionButton
-											}
-											role="button"
-											onClick={() => {
-												handleClickConfirm(
-													user?.id,
-													'toggle',
-												);
-											}}
-										>
-											{user.permissions ===
-											'Administración' ? (
-												<IconEyeOff />
+											{user.authorities[0].authority ===
+											'ADMIN' ? (
+												<IconUserDown/>
 											) : (
-												<IconEye />
+												< IconUserUp />
 											)}
 										</div>
-										<div
+{/* 										<div
 											className={
 												ListProductsStyles.actionButton
 											}
@@ -182,7 +170,7 @@ function ListUsers() {
 											}
 										>
 											<IconTrashFilled />
-										</div>
+										</div> */}
 									</td>
 								</tr>
 							))}
@@ -191,7 +179,7 @@ function ListUsers() {
 				</div>
 			</section>
 		</div>
-	);
-}
+	)
+									}
 
 export default ListUsers;

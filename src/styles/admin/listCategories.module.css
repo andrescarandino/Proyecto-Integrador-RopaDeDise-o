@@ -1,7 +1,6 @@
-
 .table {
 	/* border: 1px solid black; */
-	width: 80%;
+	width: 70%;
 	margin: 2rem auto;
 	border-radius: 5px;
 	color: var(--color-black-cow);
@@ -25,7 +24,7 @@ th {
 	border: 1px solid var(--color-black-cow);
 	height: 5rem;
 	color: #000;
-	font-size: 1rem;
+	font-size: 1.5rem;
 }
 th {
 	background-color: #ae9279;

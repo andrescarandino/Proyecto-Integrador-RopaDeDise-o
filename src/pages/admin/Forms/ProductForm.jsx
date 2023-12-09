@@ -1,138 +1,124 @@
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import { IconTrashFilled } from '@tabler/icons-react';
 import PropTypes from 'prop-types';
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useEffect, useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { useParams } from 'react-router-dom';
-// import CustomModal from '../../../components/modal/CustomModal';
-import {
-	useCreateProduct,
-	useGetCategories,
-	useGetFeatures,
-	useToast,
-	useUpdateProduct,
-} from '../../../hooks';
+import { UserContext } from '../../../contexts/UserContext'
+import { ToastContext } from '../../../contexts/ToastContext';
 
-function ProductForm({ edit, initialValues = {} }) {
-	const { id } = useParams();
-	const toast = useToast();
-	// const [selectedFeature, setSelectedFeature] = useState({});
-	// const [openModal, setOpenModal] = useState(false);
-	const [preview, setPreview] = useState({ images: initialValues.images });
-	const {
-		onSubmit: createProductOnSubmit,
-		statusCode: createProductStatusCode,
-	} = useCreateProduct();
-	const {
-		onSubmit: updateProductOnSubmit,
-		statusCode: updateProductStatusCode,
-	} = useUpdateProduct();
 
-	const { categories } = useGetCategories();
-	const { features: initialFeatures } = useGetFeatures();
-	const [features, setFeatures] = useState(
-		initialFeatures.map((feature) => {
-			return {
-				...feature,
-				disabled: false,
-			};
-		}),
-	);
+function ProductForm() {
+	const { state, logout } = useContext(UserContext);
+	const [images, setImages] = useState([]);
+  	const [imagesPreviews, setImagesPreviews] = useState([]);
+	const [categories, setCategories] = useState([]);
+	const [caracteristicas, setCaracteristicas] = useState([])
+	const [error, setError] = useState(false);
+	const toastContext = useContext(ToastContext);
+	
 
-	const handlePreview = ({ target: { files } }) => {
-		setPreview({
-			images: Array.from(files).map((file) => URL.createObjectURL(file)),
-		});
-	};
+	  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch('http://localhost:8080/categorias', {
+          method: 'GET',
+          headers: {
+            'Content-type': 'application/json',
+			'Authorization': `Bearer ${state.token}`
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error('Categories response was not ok');
+        }
+
+        const result = await response.json();
+        setCategories(result);
+      } catch (error) {
+        console.error('Error fetching product:', error);
+        toastContext.error('error al crear el producto');
+      }
+    };
+
+    const fetchCaracteristicas = async () => {
+      try {
+        const response = await fetch('http://localhost:8080/caracteristicas', {
+          method: 'GET',
+          headers: {
+            'Content-type': 'application/json',
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error('caracteristicas response was not ok');
+        }
+
+        const result = await response.json();
+        setCaracteristicas(result);
+      } catch (error) {
+        console.error('Error fetching features:', error);
+        throw error;
+      }
+    };
+
+    fetchCategories();
+    fetchCaracteristicas();
+  }, []);
+
 
 	const {
 		register,
-		setValue,
-		watch,
 		handleSubmit,
 		formState: { errors },
-	} = useForm({
-		defaultValues: initialValues,
-	});
+		watch,
+		reset,
+	} = useForm();
 
-	const watchFeatures = watch('features');
+	const onErrors = () => {
+		setError(true);
+		setTimeout(() => {
+			setError(false);
+		}, 6000);
+	};
 
-	const onSubmit = (data) => {
-		console.log({
-			data,
-			errors,
-		});
+	const onSubmit = async (data) => {
+		try {
+		  const productoData = {
+			nombre: data.name,
+			descripcion: data.description,
+			categories: data.categories,
+			precio: data.precio,
+			caracteristicas: data.caracteristicas,
+			// Resto de los campos del producto...
+			imagenes: images.map((image) => ({ idImagenes: image.idImagenes })),
+		  };
+	  
+		  // Realizar la llamada para crear el producto
+		  const productoResponse = await fetch('http://localhost:8080/productos', {
+			method: 'POST',
+			headers: {
+			  'Content-Type': 'application/json',
+			  'Authorization': `Bearer ${state.token}`
+			},
+			body: JSON.stringify(productoData),
+		  });
+	  
+		  if (productoResponse.status === 201) {
+			toastContext.success('Producto creado');
+			reset();
+		  }else{
+			toastContext.error('El producto ya existe');
+		  }
+		  
+		  const productoCreado = await productoResponse.json();
 
-		let statusCode = null;
-		if (edit) {
-			updateProductOnSubmit(data, id);
-			statusCode = updateProductStatusCode;
-		} else {
-			createProductOnSubmit(data);
-			statusCode = createProductStatusCode;
+		  
+		} catch (error) {
+		  console.error('Error:', error.message);
+
 		}
+	  };
+	  
 
-		if (statusCode !== 200) {
-			toast.error(
-				`Error al ${edit ? 'actualizar' : 'crear'} el producto.`,
-			);
-		} else {
-			toast.success(
-				`¡Producto ${edit ? 'actualizado' : 'creado'} correctamente!`,
-			);
-		}
-	};
-
-	const onErrors = (errors) => {
-		console.log({
-			errors,
-		});
-	};
-
-	// const onSelectFeature = (selectedFeature) => {
-	// 	if (!selectedFeature) return;
-	// 	setSelectedFeature({
-	// 		currentValue: selectedFeature,
-	// 	});
-	// 	setOpenModal(true);
-	// };
-
-	const onAddFeature = () => {
-		setValue('features', [...watchFeatures, '']);
-		console.log({ watchFeatures });
-	};
-
-	// const onUpdateFeature = () => {
-	// 	if (!selectedFeature?.newValue) return;
-
-	// 	const updatedWatchFeatures = watchFeatures.map((feature) =>
-	// 		feature === selectedFeature.currentValue
-	// 			? selectedFeature.newValue
-	// 			: feature,
-	// 	);
-	// 	setValue('features', updatedWatchFeatures);
-	// 	setSelectedFeature({});
-	// 	setOpenModal(false);
-	// };
-
-	const onRemoveFeature = (selectedFeature) => {
-		const filteredWatchFeatures = watchFeatures.filter(
-			(feature) => feature !== selectedFeature,
-		);
-		setValue('features', filteredWatchFeatures);
-		setFeatures(
-			features.map((feature) => {
-				if (feature.id === Number(selectedFeature)) {
-					return {
-						...feature,
-						disabled: false,
-					};
-				}
-				return feature;
-			}),
-		);
-	};
 
 	return (
 		<>
@@ -179,6 +165,23 @@ function ProductForm({ edit, initialValues = {} }) {
 						</span>
 					)}
 					<div className="form-group">
+						<label htmlFor="precio">Escribe el precio:</label>
+						<input
+							className="input"
+							id="name"
+							type="number"
+  							step="any"
+							autoComplete="off"
+							placeholder="Precio"
+							{...register('precio', { required: true })}
+						/>
+					</div>
+					{errors.precio && (
+						<span className="form-error-message">
+							Este campo es requerido.
+						</span>
+					)}
+					<div className="form-group">
 						<label htmlFor="category">
 							Selecciona una categoría:
 						</label>
@@ -204,8 +207,8 @@ function ProductForm({ edit, initialValues = {} }) {
 								Selecciona una categoría
 							</option>
 							{categories?.map((category) => (
-								<option key={category.id} value={category.id}>
-									{category.name}
+								<option key={category.idCategorias} value={category.idCategorias}>
+									{category.nombre}
 								</option>
 							))}
 						</select>
@@ -227,245 +230,116 @@ function ProductForm({ edit, initialValues = {} }) {
 					>
 						Administrar características
 					</p>
+					<div className="form-group">
+						<label htmlFor="caracterisitas">
+							Selecciona una caracteristica:
+						</label>
+					<select
+							className="input"
+							id="caracteristica"
+							name="caracteristica"
+							defaultValue=""
+							multiple
+							{...register('caracteristica', {
+								required: true,
+							})}
+						>
+							<option
+								// TODO: Style blank option
+								style={{
+									color: 'var(--color-oslo-grey) !important',
+									paddingInline: '0.5em !important',
+								}}
+								hidden
+								disabled
+								value=""
+								
+							>
+								Selecciona una característica
+							</option>
+							{caracteristicas?.map((category) => (
+								<option key={category.idCategorias} value={category.idCategorias} >
+									{category.nombre}
+								</option>
+							))}
+						</select>
 					<button
 						type="button"
 						className="submit-button"
-						onClick={onAddFeature}
+						//onClick={onAddFeature}
 					>
 						Añadir nueva
 					</button>
-					{watchFeatures?.length > 0 &&
-						watchFeatures?.map((feature, index) => (
-							<Fragment key={index}>
-								<div className="form-group">
-									<label
-										style={{
-											display: 'flex',
-											alignItems: 'center',
-										}}
-										htmlFor={`feature-${index}`}
-									>
-										{/* <IconPencil
-											onClick={() =>
-												onSelectFeature(feature)
-											}
-										/> */}
-										<IconTrashFilled
-											onClick={() =>
-												onRemoveFeature(feature)
-											}
-										/>
-										&nbsp; Característica {index + 1}:
-									</label>
-									{/* <input
-										className="input"
-										id={`feature-${index}`}
-										type="text"
-										autoComplete="off"
-										placeholder={`Característica ${
-											index + 1
-										}`}
-										{...register(`features.${index}`, {
-											required: true,
-										})}
-									/> */}
-									<select
-										className="input"
-										id="feature"
-										name="feature"
-										defaultValue=""
-										{...register(`features.${index}`, {
-											required: true,
-											setValueAs: (value) =>
-												Number(value),
-											onChange: ({
-												target: { value },
-											}) => {
-												setFeatures(
-													features.map((feature) => {
-														if (
-															feature.id ===
-															Number(value)
-														) {
-															return {
-																...feature,
-																disabled: true,
-															};
-														}
-														return feature;
-													}),
-												);
-											},
-										})}
-									>
-										<option
-											// TODO: Style blank option
-											style={{
-												color: 'var(--color-oslo-grey) !important',
-												paddingInline:
-													'0.5em !important',
-											}}
-											hidden
-											disabled
-											value=""
-										>
-											Selecciona una característica
-										</option>
-										{features?.map((features) => (
-											<option
-												key={features.id}
-												value={features.id}
-												disabled={features.disabled}
-											>
-												{features.name}
-											</option>
-										))}
-									</select>
-								</div>
-								{errors.features?.at(index) && (
-									<span className="form-error-message">
-										Este campo es requerido.
-									</span>
-								)}
-							</Fragment>
-						))}
+					</div>
+					{errors.caracteristicas && (
+						<span className="form-error-message">
+							Este campo es requerido.
+						</span>)}
+
 					<div className="form-group">
 						<label htmlFor="image">Selecciona las imágenes:</label>
 						<input
-							id="image"
-							className="input"
-							type="file"
-							multiple
-							accept="image/*"
-							{...register(
-								'images',
-								{
-									onChange: handlePreview,
-								},
-								{ required: true },
-							)}
+						  id="image"
+						  className="input"
+						  type="file"
+						  multiple
+						  accept="image/*"
+						  {...register('images', {
+							onChange: async (e) => {
+								const selectedImages = Array.from(e.target.files || []);
+								setImagesPreviews(selectedImages.map((image)=> URL.createObjectURL(image)));
+								
+								const formData = new FormData();
+								selectedImages.forEach((image) => formData.append('archivos', image));
+						  
+								const uploadResponse = await fetch('http://localhost:8080/img/upload', {
+								  method: 'POST',
+								  headers: {
+									'Authorization': `Bearer ${state.token}`
+								  },
+								  body: formData,
+								});
+						  
+								if (!uploadResponse.ok) {
+								  throw new Error('Error al subir las imágenes');
+								}
+						  
+								const uploadedImages = await uploadResponse.json();
+								setImages(uploadedImages);
+						    },
+						  })}
 						/>
+
 					</div>
 					{errors.images && (
 						<span className="form-error-message">
 							Este campo es requerido.
 						</span>
 					)}
-					{preview?.images?.length > 0 &&
-						preview?.images?.map((image, index) => (
-							<div className="form-preview-item" key={image}>
-								<img
-									src={image}
-									alt={`Previsualización de la imagen ${
-										index + 1
-									}`}
-									key={image}
-									width={300}
-									height={300}
-								/>
-							</div>
-						))}
+					<div className='imgPreviewContainer'>
+
+					{imagesPreviews.length > 0 &&
+  						imagesPreviews.map((preview, index) => (
+    					<div className="form-preview-item" key={index}>
+      					<img
+       						 src={preview}
+       						 alt={`Previsualización de la imagen ${index + 1}`}
+        					 width={150}
+        					 height={150}
+									/>
+								</div>
+							))}
+						</div>
 					<button type="submit" className="submit-button">
-						{edit ? 'Editar' : 'Agregar'} producto
+						Agregar producto
 					</button>
 				</form>
 			</main>
-			{/* <CustomModal
-				openModal={openModal}
-				setOpenModal={setOpenModal}
-				contentComponent={
-					<div
-						// TODO: load default value of selected feature
-						style={{
-							fontFamily: 'var(--ff-roboto)',
-						}}
-					>
-						<header
-							style={{
-								color: 'var(--color-black-cow)',
-							}}
-						>
-							<p
-								style={{
-									fontSize: '15px',
-									fontWeight: '600',
-									marginBlockEnd: '0.75rem',
-								}}
-							>
-								Editar característica &quot;
-								{selectedFeature?.currentValue}&quot;
-							</p>
-							<p
-								style={{
-									fontSize: '14px',
-								}}
-							>
-								Escribe a continuación el nuevo valor de esta
-								característica.
-							</p>
-						</header>
-						<div className="form-group">
-							<label htmlFor="edit-feature">
-								Característica:
-							</label>
-							<input
-								className="input"
-								id="edit-feature"
-								type="text"
-								autoComplete="off"
-								placeholder="Característica"
-								onChange={(e) => {
-									setSelectedFeature({
-										...selectedFeature,
-										newValue: e.target.value,
-									});
-								}}
-							/>
-						</div>
-						{!selectedFeature?.newValue && (
-							<span className="form-error-message">
-								Escribe el nuevo valor de la característica.
-							</span>
-						)}
-						<div
-							style={{
-								display: 'flex',
-							}}
-						>
-							<button
-								type="button"
-								className="submit-button"
-								onClick={onUpdateFeature}
-							>
-								Guardar cambio
-							</button>
-						</div>
-					</div>
-				}
-			/> */}
+
 		</>
 	);
 }
 
-ProductForm.propTypes = {
-	edit: PropTypes.bool.isRequired,
-	initialValues: PropTypes.shape({
-		name: PropTypes.string,
-		description: PropTypes.string,
-		images: PropTypes.arrayOf(PropTypes.string),
-		features: PropTypes.arrayOf(PropTypes.string),
-		category: PropTypes.string,
-	}),
-};
 
-ProductForm.defaultProps = {
-	initialValues: {
-		name: '',
-		description: '',
-		images: [],
-		features: [],
-		category: '',
-	},
-};
 
 export default ProductForm;

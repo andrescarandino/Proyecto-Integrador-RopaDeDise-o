@@ -16,6 +16,7 @@ function UserActive() {
 	const navigate = useNavigate();
 	const { token } = state;
 	const decoded = jwtDecode(token);
+	
 	const mail = decoded.sub;
 	// eslint-disable-next-line consistent-return
 	useEffect(() => {
@@ -26,7 +27,7 @@ function UserActive() {
 			const res = await getUser(mail, token);
 			setDataUser(res);
 			setLoading(true);
-			console.log(res);
+			
 		})();
 	}, []);
 	const logoutUser = () => {

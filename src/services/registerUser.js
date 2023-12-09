@@ -1,4 +1,4 @@
-const ENDPOINT = 'http://3.15.203.13:8080/usuarios';
+const ENDPOINT = 'http://localhost:8080/usuarios';
 
 const registerUser = async (data) => {
 	try {

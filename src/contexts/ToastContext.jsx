@@ -13,7 +13,7 @@ const initialState = {
 export function ToastContextProvider({ children }) {
 	const [state, dispatch] = useReducer(toastReducer, initialState);
 	const addToast = (type, message) => {
-		const id = Math.floor(Math.random() * 10000000);
+		const id = Math.floor(Math.random() * 10000);
 		dispatch({ type: 'ADD_TOAST', payload: { id, message, type } });
 	};
 
@@ -49,7 +49,7 @@ export function ToastContextProvider({ children }) {
 
 	return (
 		<ToastContext.Provider value={value}>
-			<ToastsContainer toasts={state.toasts} position="top-right" />
+			<ToastsContainer toasts={state.toasts} position="bottom-right" />
 			{children}
 		</ToastContext.Provider>
 	);
