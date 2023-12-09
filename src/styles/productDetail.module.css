@@ -274,12 +274,11 @@
     margin: 1% auto ;
 	padding: 15px ;
 	gap: 15px;
-		-webkit-animation: slide-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-				animation: slide-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	
+		-webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+				animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
- @-webkit-keyframes slide-in-top {
+ @-webkit-keyframes slide-in-bottom {
 	0% {
 	  -webkit-transform: translateY(3rem);
 			  transform: translateY(3rem);
@@ -291,7 +290,7 @@
 	  opacity: 1;
 	}
   }
-  @keyframes slide-in-top {
+  @keyframes slide-in-bottom {
 	0% {
 	  -webkit-transform: translateY(3rem);
 			  transform: translateY(3rem);
@@ -303,6 +302,7 @@
 	  opacity: 1;
 	}
   }
+  
   
 .calendarContainer input{
 	height: 1.5rem;

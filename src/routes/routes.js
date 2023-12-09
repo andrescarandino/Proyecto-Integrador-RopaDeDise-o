@@ -15,7 +15,6 @@ export const Register = lazy(() => import('../pages/users/Register'));
 export const Login = lazy(() => import('../pages/users/Login'));
 const Home = lazy(() => import('../pages/Home'));
 const NotFound = lazy(() => import('../pages/NotFound'));
-const ProductSearch = lazy(() => import('../pages/ProductSearch'));
 const Policies = lazy(() => import('../pages/Policies'));
 
 const routes = [
@@ -31,10 +30,6 @@ const routes = [
 	{
 		path: 'product/:id',
 		element: ProductDetail,
-	},
-	{
-		path: 'productos/buscar/*',
-		element: ProductSearch,
 	},
 	{
 		path: 'policies',

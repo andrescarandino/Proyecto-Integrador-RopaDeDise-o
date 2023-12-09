@@ -13,6 +13,7 @@ import getProductId from '../services/getProductId';
 import noImg from '../img/noImg.png';
 import Calendar from '../components/Calendar';
 import { UserContext } from '../contexts/UserContext';
+import Wsp from '../components/Wsp';
 
 function ProductDetail() {
 	const { state } = useContext(UserContext);

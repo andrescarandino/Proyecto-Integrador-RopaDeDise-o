@@ -12,6 +12,7 @@ import Search from '../components/Search';
 import styles from '../styles/home.module.css';
 import imgConectando from '../img/imgConectando.png';
 import getProduct from '../services/getProduct';
+import Wsp from '../components/Wsp';
 
 function Home() {
 	// eslint-disable-next-line no-unused-vars

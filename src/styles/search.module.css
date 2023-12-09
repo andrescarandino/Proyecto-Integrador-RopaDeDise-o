@@ -1,4 +1,6 @@
 .searchContainer{
+    position: relative;
+    z-index: 1;
     display: grid;
     justify-content: center;
     align-content: center;
@@ -37,6 +39,7 @@
   
 
 .searchDiv{
+    position: relative;
     display: flex;
     width: 18rem;
     background-color: white;
@@ -66,12 +69,101 @@
     font-size: 18px;
     margin-top: 3px;
 }
+
+
+.searchModal{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  width: 96%;
+  top: 14rem;
+    -webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+            animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+ @-webkit-keyframes slide-in-bottom {
+  0% {
+    -webkit-transform: translateY(30px);
+            transform: translateY(30px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-bottom {
+  0% {
+    -webkit-transform: translateY(30px);
+            transform: translateY(30px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
+.searchModalContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  width: 45rem;
+  border-radius: 5px;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+.searchModalDiv{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  width: 18rem;
+  padding: 1rem;
+  gap: 1rem;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.searchModalLink{
+  text-decoration: none;
+}
+.searchModalDiv h3{
+  font-family: 'Roboto', sans-serif;
+  font-style: italic;
+  color: #464646;
+}
+.searchModalDiv img{
+  width: 2rem;
+}
+
+@media (max-width: 810px){
+  .searchModal{
+    top: 12rem;
+  }
+}
 @media (max-width: 768px){
     .searchContainer{
         width: 100%;
         margin: 1rem auto ;
     }
-}
+    .searchModal{
+      top: 11rem;
+    }
+  }
+@media (max-width: 576px){
+  .searchModal{
+    top: 10rem;
+  }
+  }
 @media (max-width: 390px){
     .searchContainer{
         margin: 1rem auto ;

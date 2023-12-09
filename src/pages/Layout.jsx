@@ -3,6 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { useWindowDimensions } from '../hooks';
+import Wsp from '../components/Wsp';
 
 function Layout() {
 	const { pathname } = useLocation();
@@ -43,6 +44,7 @@ function Layout() {
 		<div>
 			<Header />
 			<Outlet />
+			<Wsp />
 			<Footer />
 		</div>
 	);
