@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@Controller
+@RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/reserva")
 public class ReservasController {
@@ -36,7 +36,7 @@ public class ReservasController {
         return ResponseEntity.ok(reservas);
     }
 
-    @GetMapping("/{email}")
+    @GetMapping("/email/{email}")
     @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
     public ResponseEntity<List<Reservas>> obtenerReservasPorUsuario(@PathVariable String email) {
         List<Reservas> reservas = reservasServices.obtenerReservasPorUsuario(email);
