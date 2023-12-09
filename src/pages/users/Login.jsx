@@ -8,9 +8,10 @@ import loginImg2 from '../../img/loginImg2.png';
 import { UserContext } from '../../contexts/UserContext';
 import loginUser from '../../services/loginUser';
 import LoaderSpan from '../../components/LoaderSpan';
+import { jwtDecode } from 'jwt-decode';
 
 function Login() {
-	const { login } = useContext(UserContext);
+	const { login, state } = useContext(UserContext);
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(false);
 	const navigate = useNavigate();

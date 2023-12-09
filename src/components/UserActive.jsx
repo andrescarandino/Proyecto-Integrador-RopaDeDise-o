@@ -16,23 +16,26 @@ function UserActive() {
 	const navigate = useNavigate();
 	const { token } = state;
 	const decoded = jwtDecode(token);
+	const mail = decoded.sub
+	const authority = decoded.permissions[0].authority;
 	
-	const mail = decoded.sub;
-	// eslint-disable-next-line consistent-return
 	useEffect(() => {
-		if (mail === 'admin@admin') {
+		if (authority === 'ADMIN') {
 			return setAdminActive(true);
-		}
-		(async () => {
+		}else{
+		 (async () => {
 			const res = await getUser(mail, token);
 			setDataUser(res);
 			setLoading(true);
 			
-		})();
+		})()}; 
 	}, []);
 	const logoutUser = () => {
 		logout();
 		navigate('/');
+	};
+	const panelAdmin = () => {
+		navigate('/admin');
 	};
 
 	const handleMenu = () => {
@@ -67,9 +70,11 @@ function UserActive() {
 			{menuActive && (
 				<div className={styles.menuContainer}>
 					<button type="button" onClick={logoutUser}>
-						cerrar sesion
+						Cerrar sesion
 					</button>
-					<button type="button">info. personal</button>
+					{adminActive? <button onClick={panelAdmin}>
+						 Panel admin</button> : null}
+					<button type="button">Info. personal</button>
 				</div>
 			)}
 		</div>
