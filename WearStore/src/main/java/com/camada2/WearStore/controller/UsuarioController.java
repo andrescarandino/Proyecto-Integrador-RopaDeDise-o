@@ -50,7 +50,6 @@ public class UsuarioController {
     }
 
     @GetMapping
-
     public List<Usuarios>listarUsuarios(){
         return usuarioServices.listar();
     }

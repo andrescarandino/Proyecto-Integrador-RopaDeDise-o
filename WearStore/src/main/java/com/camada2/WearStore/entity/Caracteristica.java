@@ -31,7 +31,8 @@ public class Caracteristica {
         this.productos = productos;
     }
 
-
+    public Caracteristica() {
+    }
     //getter y setter
 
 
