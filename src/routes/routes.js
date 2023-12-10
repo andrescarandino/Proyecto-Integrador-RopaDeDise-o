@@ -3,6 +3,7 @@ import { lazy } from 'react';
 const AdminHome = lazy(() => import('../pages/admin/AdminHome'));
 const ListUsers = lazy(() => import('../pages/admin/ListUsers'));
 const CreateProduct = lazy(() => import('../pages/admin/CreateProduct'));
+const EditProductForm = lazy(() => import('../pages/admin/Forms/EditProductForm'));
 const ListProducts = lazy(() => import('../pages/admin/ListProduct'));
 const UpdateProduct = lazy(() => import('../pages/admin/UpdateProduct'));
 const CreateCategories = lazy(() => import('../pages/admin/CreateCategories'));
@@ -42,6 +43,9 @@ const routes = [
 	{
 		path: 'admin/products/create',
 		element: CreateProduct,
+	},{
+		path: 'admin/products/edit/:id',
+		element: EditProductForm
 	},
 	{
 		path: 'admin/products/list',

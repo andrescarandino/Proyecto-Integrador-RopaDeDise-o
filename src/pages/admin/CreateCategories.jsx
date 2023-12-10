@@ -4,13 +4,14 @@ import { useState, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { useCreateCategory, useToast } from '../../hooks';
 import { UserContext } from '../../contexts/UserContext'
-
+import { ToastContext } from '../../contexts/ToastContext';
 function CreateCategories() {
 	
 	const { state, logout } = useContext(UserContext);
 	const [image, setImages] = useState([]);
   	const [imagePreviews, setImagePreviews] = useState([]);
 	const [error, setError] = useState(false);
+	const toastContext = useContext(ToastContext);
 
 
 	const {
@@ -47,8 +48,9 @@ function CreateCategories() {
 			body: JSON.stringify(categoriaData),
 		  });
 	  
-		  if (productoResponse.status !== 201) {
-			throw new Error('Error al crear el producto');
+		  if (productoResponse.status === 201) {
+			toastContext.success('Categoria creada');
+			reset();
 		  }
 	  
 		  const productoCreado = await productoResponse.json();
