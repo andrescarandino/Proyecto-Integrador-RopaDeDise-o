@@ -20,6 +20,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -37,6 +38,9 @@ public class WearStoreOnlineApplication implements CommandLineRunner {
     @Autowired
     UsuariosRepository usuariosRepository;
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
     @Bean
     CommandLineRunner init() {
         return args -> {
@@ -51,7 +55,7 @@ public class WearStoreOnlineApplication implements CommandLineRunner {
                 usuario.setUser("admin");
                 usuario.setNombre("admin");
                 usuario.setEmail(email);
-                usuario.setPassword(("admin"));
+                usuario.setPassword(passwordEncoder.encode("admin"));
                 usuario.setRoles(List.of(new TipoUsuarios("ADMIN")));
 
                 usuariosRepository.save(usuario);

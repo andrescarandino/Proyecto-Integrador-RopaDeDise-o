@@ -3,18 +3,18 @@ package com.camada2.WearStore.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import lombok.Data;
+import lombok.*;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.List;
+import java.util.*;
+
 import java.util.stream.Collectors;
 
 
+@Builder
 @Entity
 @Table(name = "Usuarios")
 public class Usuarios implements UserDetails{
@@ -73,6 +73,20 @@ public class Usuarios implements UserDetails{
         this.password = password;
         this.fechaCreacion = fechaCreacion;
         this.estado = estado;
+    }
+
+    public Usuarios(int idUsuarios, String user, String nombre, String apellido, String email, String password, String fechaCreacion, int estado, List<TipoUsuarios> roles, List<Reservas> reservas, List<Favorito> favoritos) {
+        this.idUsuarios = idUsuarios;
+        this.user = user;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.password = password;
+        this.fechaCreacion = fechaCreacion;
+        this.estado = estado;
+        this.roles = roles;
+        this.reservas = reservas;
+        this.favoritos = favoritos;
     }
 
     public int getIdUsuarios() {
@@ -147,7 +161,20 @@ public class Usuarios implements UserDetails{
         this.roles = roles;
     }
 
+    public List<Reservas> getReservas() {
+        return reservas;
+    }
+
+    public void setReservas(List<Reservas> reservas) {
+        this.reservas = reservas;
+    }
+
+    public List<Favorito> getFavoritos() {
+        return favoritos;
+    }
+
     @Override
+
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
         List<GrantedAuthority> authorities = roles.stream()

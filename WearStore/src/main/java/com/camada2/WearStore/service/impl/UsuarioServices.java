@@ -71,9 +71,8 @@ public class UsuarioServices implements IService<Usuarios, Usuarios> {
     @Override
     public Usuarios actualizar(Usuarios usuarios) {
 
-        Usuarios usuario = mapper.convertValue(usuarios, Usuarios.class);
+        return usuariosRepository.save(usuarios);
 
-        return usuariosRepository.save(usuario);
     }
 
     @Transactional
