@@ -17,7 +17,7 @@ function UserActive() {
 	const { token } = state;
 	const decoded = jwtDecode(token);
 	const mail = decoded.sub
-	const authority = decoded.permissions[0].authority;
+	const authority = decoded.role[0].nombre;
 	
 	useEffect(() => {
 		if (authority === 'ADMIN') {
@@ -54,7 +54,8 @@ function UserActive() {
 				<h3>
 					{adminActive
 						? 'ADMINISTRADOR'
-						: `${user.firstName} ${user.lastName}`}
+						: `${user.firstName} ${user.lastName}` }
+
 				</h3>
 				<button type="button" onClick={handleMenu}>
 					{menuActive ? (

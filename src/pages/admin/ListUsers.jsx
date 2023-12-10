@@ -7,14 +7,17 @@ import {
 	IconUserDown,
 	IconTrashFilled,
 } from '@tabler/icons-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
-import * as createProductStyles from '../../styles/admin/createProduct.module.css';
-import * as ListProductsStyles from '../../styles/admin/listProducts.module.css';
+import * as listUserStyles from '../../styles/admin/listUser.module.css';
+import { UserContext } from '../../contexts/UserContext';
+import { ToastContext } from '../../contexts/ToastContext';
 
 function ListUsers() {
 	const [users, setUsers] = useState([]);
+	const { state, logout } = useContext(UserContext);
+	const toastContext = useContext(ToastContext);
 
 	const getUsers = async () => {
 		try {
@@ -26,61 +29,67 @@ function ListUsers() {
 			});
 			const result = await response.json();
 			console.log(result);
-			return result;
+			setUsers(result);
 		} catch (error) {
 			console.log(error);
 		}
 	};
 	useEffect(() => {
-		const user = async () => {
-			const res = await getUsers();
-				setUsers(res);
-		};
-		user();
+		
+		getUsers();
 	}, []);
 
 
-	const handleClickDelete = (id) => {
-		setUsers(users.filter((user) => user.id !== id));
-	};
+
 
 	const handleClickPermissions = (id) => {
-		// TODO: add logic to toggle permission on the API
-		const user = users.find((user) => user.id === id);
-		const isAdmin = user.permissions === 'Administración';
-		setUsers((prevValue) => {
-			return prevValue.map((user) => {
-				if (user.id === id) {
-					return {
-						...user,
-						permissions: isAdmin ? 'Navegación' : 'Administración',
-					};
+		
+		const user = users.find((user) => user.idUsuarios === id);
+		console.log(user)
+		user.roles[0] = (user.roles[0].nombre === "ADMIN") ?
+			{
+				idTipoUsuarios : 2,
+				nombre: "USER"
+			} : {
+				idTipoUsuarios: 1,
+				nombre: "ADMIN"
+			}
+
+		const userPut =	{
+				idUsuarios: user.idUsuarios,
+				nombre: user.nombre,
+				apellido: user.apellido,
+				email: user.email,
+				password: user.password,
+				roles: [user.roles[0]]
+		}
+		const putUser = async () => {
+			try {
+				const response = await fetch(`http://localhost:8080/usuarios`, {
+					method: 'PUT',
+					headers: {
+						'Content-type': 'application/json',
+						'Authorization': `Bearer ${state.token}`,
+					},
+					body: JSON.stringify(userPut)
+				})
+				if(response.ok){
+				toastContext.success('Usuario modificado');	
+				getUsers();
 				}
-				return user;
-			});
-		});
+			} catch (error) {
+				console.log(error);
+			}
+		};
+		putUser();
+		
 	};
 
-	/* const handleClickConfirm = (id, type = 'delete') => {
-		let onConfirm = null;
-		const onDelete = () => {
-			return {
-				title: 'Eliminar usuario',
-				message: '¿Estás seguro de eliminar este usuario?',
-				buttons: [
-					{
-						label: 'Si',
-						onClick: () => handleClickDelete(id),
-					},
-					{
-						label: 'Cancelar',
-					},
-				],
-			};
-		};
- */
- 		const onTogglePermissions = () => {
-			return {
+
+ 		const onTogglePermissions = (id) => {
+			console.log(id);
+			confirmAlert({
+			
 				title: 'Modificar permisos de usuario',
 				message:
 					'¿Estás seguro de modificar los permisos de este usuario?',
@@ -93,30 +102,24 @@ function ListUsers() {
 						label: 'Cancelar',
 					},
 				],
-			};
+			});
 		};
 
-		 onTogglePermissions();
-
-		confirmAlert(onConfirm);
 	 
 	
 	
 	return (
-		<div className={createProductStyles.container}>
-			<header className={createProductStyles.headerContainer}>
-				<h2 className={createProductStyles.title}>
-					Lista de usuarios | Identificar administrador
+		<div className={listUserStyles.container}>
+			<header className={listUserStyles.headerContainer}>
+				<h2 className={listUserStyles.title}>
+					 Identificar administrador
 				</h2>
 			</header>
-			<section className={createProductStyles.sectionContainer}>
-				<p className={createProductStyles.sectionDescription}>
-					Estimado administrador. En esta pestaña encontrarás el
-					listado de usuarios registrados. Desde aquí podrás
-					gestionarlos.
+			<section className={listUserStyles.sectionContainer}>
+				<p className={listUserStyles.sectionDescription}>
 				</p>
 				<div>
-					<table className={ListProductsStyles.table}>
+					<table className={listUserStyles.table}>
 						<thead>
 							<tr>
 								
@@ -128,9 +131,10 @@ function ListUsers() {
 										justifyContent: 'center',
 										alignItems: 'center',
 										gap: '5px',
+										width: '40%',
 									}}
 								>
-									Acciones <IconInfoCircle size={20} />
+									Modificar permisos <IconInfoCircle size={20} />
 								</th>
 							</tr>
 						</thead>
@@ -138,39 +142,24 @@ function ListUsers() {
 							{users.map((user) => (
 								<tr>
 									<td>{user?.email}</td>
-									<td>{user?.authorities[0].authority}</td>
-									<td className={ListProductsStyles.actions}>
+									<td>{user?.roles[0].nombre}</td>
+									<td className={listUserStyles.actions}>
 										<div
 											className={
-												ListProductsStyles.actionButton
+												listUserStyles.actionButton
 											}
 											role="button"
 											onClick={() =>
-												onTogglePermissions(
-													user.idUsuarios
-												)}
+												onTogglePermissions(user.idUsuarios)
+											}
 										>
-											{user.authorities[0].authority ===
+											{user.roles[0].nombre ===
 											'ADMIN' ? (
 												<IconUserDown/>
 											) : (
 												< IconUserUp />
 											)}
 										</div>
-{/* 										<div
-											className={
-												ListProductsStyles.actionButton
-											}
-											role="button"
-											onClick={() =>
-												handleClickConfirm(
-													user?.id,
-													'delete',
-												)
-											}
-										>
-											<IconTrashFilled />
-										</div> */}
 									</td>
 								</tr>
 							))}
@@ -180,6 +169,6 @@ function ListUsers() {
 			</section>
 		</div>
 	)
-									}
+}
 
 export default ListUsers;
