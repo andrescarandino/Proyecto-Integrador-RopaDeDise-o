@@ -81,7 +81,7 @@ public class UsuarioServices implements IService<Usuarios, Usuarios> {
         Usuarios usuario = usuariosRepository.findUsuariosByEmail(user).orElseThrow(UsuarioInexistenteExeption::new);
         try {
 
-            mailServices.sendEmail(usuario.getEmail(), "Corre de confirmacion de cuenta", "Te dejamos el link:" + "http://localhost:5173/users/login");
+            mailServices.sendEmail(usuario.getEmail(), "Correo de confirmacion de cuenta", "Gracias por registrarte en Carolki, te dejamos el link para acceder a tu cuenta:" + "http://localhost:5173/users/login");
             usuariosRepository.save(usuario);
         } catch (Exception e) {
             throw new EmailException();
