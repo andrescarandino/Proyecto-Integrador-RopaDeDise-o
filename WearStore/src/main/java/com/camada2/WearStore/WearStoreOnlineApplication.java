@@ -41,7 +41,7 @@ public class WearStoreOnlineApplication implements CommandLineRunner {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    @Bean
+  /*  @Bean
     CommandLineRunner init() {
         return args -> {
             String email = "admin@admin";
@@ -64,7 +64,7 @@ public class WearStoreOnlineApplication implements CommandLineRunner {
                 System.out.println("El usuario con correo ya existe en la base de datos.");
             }
         };
-    }
+    }*/
 
     @Configuration
     public class CorsConfig {

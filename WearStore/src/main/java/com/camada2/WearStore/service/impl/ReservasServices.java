@@ -4,6 +4,7 @@ import com.camada2.WearStore.entity.FechaOcupada;
 import com.camada2.WearStore.entity.Productos;
 import com.camada2.WearStore.entity.Reservas;
 import com.camada2.WearStore.entity.Usuarios;
+import com.camada2.WearStore.exeptions.ReservaException;
 import com.camada2.WearStore.repository.FechaOcupadaRepository;
 import com.camada2.WearStore.repository.ProductosRepository;
 import com.camada2.WearStore.repository.ReservasRepository;
@@ -58,6 +59,10 @@ public class ReservasServices implements IService<Reservas,Reservas>{
             );
             if (!reservasEnRango.isEmpty()) {
                 throw new RuntimeException("El producto ya está reservado en el rango de fechas especificado.");
+            }
+            Date fechaActual = new Date();
+            if (reserva.getFechaInicio().before(fechaActual)) {
+                throw new ReservaException("No se puede reservar en fechas anteriores.");
             }
             // Establecer las asociaciones
             reserva.setProducto(producto);

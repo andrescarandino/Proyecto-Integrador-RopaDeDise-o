@@ -3,6 +3,8 @@ package com.camada2.WearStore.controller;
 import com.camada2.WearStore.entity.Productos;
 import com.camada2.WearStore.entity.Reservas;
 import com.camada2.WearStore.entity.Usuarios;
+import com.camada2.WearStore.exeptions.EmailException;
+import com.camada2.WearStore.exeptions.ReservaException;
 import com.camada2.WearStore.service.impl.ReservasServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +23,11 @@ public class ReservasController {
     @Autowired
     ReservasServices reservasServices;
 
+    @ExceptionHandler(ReservaException.class)
+    public ResponseEntity<String> ReservaException(){
+        return ResponseEntity.status(HttpStatus.CONFLICT).body("La fecha de la reserva no puede ser anterior al dia de hoy" +
+                "o tal vez el producto ya tiene ocupadas esas fechas");
+    }
 
     @PostMapping
     @PreAuthorize("hasAnyAuthority('ADMIN','USER')")
