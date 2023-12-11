@@ -51,14 +51,13 @@ function CreateCategories() {
 		  if (productoResponse.status === 201) {
 			toastContext.success('Categoria creada');
 			reset();
+			setImagePreviews([]);
 		  }
 	  
 		  const productoCreado = await productoResponse.json();
 	  
 		  console.log('Producto creado:', productoCreado);
 	  
-		  // Restablecer el formulario o realizar otras acciones después de la creación
-		  reset();
 		} catch (error) {
 		  console.error('Error:', error.message);
 		}

@@ -100,15 +100,4 @@ function FeaturesForm({ edit, initialValues }) {
 
 export default FeaturesForm;
 
-FeaturesForm.propTypes = {
-	edit: PropTypes.bool,
-	initialValues: PropTypes.shape({
-		name: PropTypes.string,
-		icon: PropTypes.string,
-	}),
-};
 
-FeaturesForm.defaultProps = {
-	edit: false,
-	initialValues: {},
-};

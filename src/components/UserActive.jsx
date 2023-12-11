@@ -27,7 +27,6 @@ function UserActive() {
 			const res = await getUser(mail, token);
 			setDataUser(res);
 			setLoading(true);
-			
 		})()}; 
 	}, []);
 	const logoutUser = () => {
