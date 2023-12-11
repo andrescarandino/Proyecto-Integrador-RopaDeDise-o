@@ -1,21 +1,19 @@
-import { useState } from 'react';
-import { IoIosStar } from 'react-icons/io';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
 import styles from '../styles/bodyRecomendadoOne.module.css';
-import NoProduct from '../img/noProduct.png';
+import { UserContext } from '../contexts/UserContext';
+import Fav from './Fav';
 
 // eslint-disable-next-line react/prop-types
 function BodyRecomendadoOne({ data }) {
+	const { state } = useContext(UserContext);
+	const { isAuthenticated } = state;
 	// eslint-disable-next-line react/prop-types
 	const dataNew = data.slice(4, 5);
-	const [favActive, setFavActive] = useState(false);
-	const handleFav = () => {
-		setFavActive(!favActive);
-	};
 	return (
 		<div className={styles.recomendadoContainer}>
-			{dataNew.map((x, index) => (
-				<div key={index}>
+			{dataNew.map((x) => (
+				<div key={x.idProductos}>
 					<img
 						className={styles.recomendadoImg}
 						src={x.imagenes[0].ruta}
@@ -42,14 +40,7 @@ function BodyRecomendadoOne({ data }) {
 								Recomendado
 							</Link>
 						</button>
-						<IoIosStar
-							onClick={handleFav}
-							className={
-								!favActive
-									? styles.favIcon
-									: styles.favIconActive
-							}
-						/>
+						{isAuthenticated && <Fav idProduct={x.idProductos} />}
 					</div>
 				</div>
 			))}

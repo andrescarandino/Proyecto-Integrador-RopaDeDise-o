@@ -1,22 +1,20 @@
 // import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { IoIosStar } from 'react-icons/io';
-import { useState } from 'react';
+import { useContext } from 'react';
 import styles from '../styles/bodySearchOne.module.css';
-import NoProduct from '../img/noProduct.png';
+import Fav from './Fav';
+import { UserContext } from '../contexts/UserContext';
 
 // eslint-disable-next-line react/prop-types
 function BodySearchOne({ data }) {
+	const { state } = useContext(UserContext);
+	const { isAuthenticated } = state;
 	// eslint-disable-next-line react/prop-types
 	const dataNew = data.slice(0, 4);
-	const [favActive, setFavActive] = useState(false);
-	const handleFav = () => {
-		setFavActive(!favActive);
-	};
 	return (
 		<div className={styles.bodySearch}>
-			{dataNew.map((x, index) => (
-				<div key={index} className={styles.divSearch}>
+			{dataNew.map((x) => (
+				<div key={x.idProductos} className={styles.divSearch}>
 					<img src={x.imagenes[0].ruta} alt="" />
 					<button type="button" className={styles.searchButton}>
 						<Link
@@ -27,48 +25,9 @@ function BodySearchOne({ data }) {
 							ver
 						</Link>
 					</button>
-					<IoIosStar
-						onClick={handleFav}
-						className={
-							!favActive ? styles.favIcon : styles.favIconActive
-						}
-					/>
+					{isAuthenticated && <Fav idProduct={x.idProductos} />}
 				</div>
 			))}
-			{/* <div className={styles.divSearch}>
-				<img src={data[1].image_url} alt="" />
-				<button type="button" className={styles.searchButton}>
-					<Link
-						className={styles.searchLink}
-						to={`product/${data[1].id}`}
-					>
-						ver
-					</Link>
-				</button>
-			</div>
-
-			<div className={styles.divSearch}>
-				<img src={data[2].image_url} alt="" />
-				<button type="button" className={styles.searchButton}>
-					<Link
-						className={styles.searchLink}
-						to={`product/${data[2].id}`}
-					>
-						ver
-					</Link>
-				</button>
-			</div>
-			<div className={styles.divSearch}>
-				<img src={data[3].image_url} alt="" />
-				<button type="button" className={styles.searchButton}>
-					<Link
-						className={styles.searchLink}
-						to={`product/${data[3].id}`}
-					>
-						ver
-					</Link>
-				</button>
-			</div> */}
 		</div>
 	);
 }

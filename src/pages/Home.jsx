@@ -44,9 +44,7 @@ function Home() {
 			<Search />
 			<div>
 				<div className={styles.bodyProducts}>
-					<BodySearchOne
-						data={nProducts}
-					/>
+					<BodySearchOne data={nProducts} />
 					<BodyRecomendadoOne data={nProducts} />
 				</div>
 				<div className={styles.bodyProductsTwo}>

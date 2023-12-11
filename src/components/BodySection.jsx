@@ -1,11 +1,12 @@
 /* eslint-disable react/no-array-index-key */
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import styles from '../styles/bodySection.module.css';
 import getCategory from '../services/getCategory';
-import noImg from '../img/noImg.png'
+import noImg from '../img/noImg.png';
 
 function BodySection() {
-	const [categoryData, setCategoryData] = useState();
+	const [categoryData, setCategoryData] = useState([]);
 	const [loading, setLoading] = useState();
 	useEffect(() => {
 		const product = async () => {
@@ -23,15 +24,19 @@ function BodySection() {
 					<div key={index} className={styles.sectionFila}>
 						<div className={styles.sectionCard}>
 							<img
-								src={x.imagenes.lenght > 0 ? x.imagenes[0].ruta : noImg}
+								src={
+									// x.imagenes.lenght > 0
+									x.imagenes[0].ruta
+									// : noImg
+								}
 								alt="Categoría de ropa elegante"
 							/>
-							<button
-								type="button"
+							<Link
+								to={`categorias/${x.idCategorias}`}
 								className={styles.sectionButton}
 							>
 								{x.nombre}
-							</button>
+							</Link>
 						</div>
 					</div>
 				))}

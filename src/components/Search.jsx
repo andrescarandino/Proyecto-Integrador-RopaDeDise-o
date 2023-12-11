@@ -5,15 +5,15 @@ import styles from '../styles/search.module.css';
 import searchProduct from '../services/searchProduct';
 
 function Search() {
-	// const navigate = useNavigate();
-	const [product, setProduct] = useState([]);
+	const [suggestions, setSuggestions] = useState([]);
 	const [loading, setLoading] = useState(false);
-	// const [noProduct, setNoProduct] = useState(false);
 	const [keyword, setKeyword] = useState('');
 	const menuRef = useRef();
+
 	useEffect(() => {
 		const handler = (e) => {
 			if (!menuRef.current.contains(e.target)) {
+				setSuggestions([]);
 				setLoading(false);
 			}
 		};
@@ -21,15 +21,31 @@ function Search() {
 		return () => {
 			document.removeEventListener('mousedown', handler);
 		};
-	});
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		if (keyword.length === 0) {
-			return null;
+	}, []);
+
+	const fetchSuggestionsFromDatabase = async (query) => {
+		try {
+			const data = await searchProduct(query);
+			return data;
+		} catch (error) {
+			console.error('Error al obtener sugerencias:', error);
+			return [];
 		}
-		const data = await searchProduct(keyword);
-		setProduct(data);
+	};
+
+	const handleInputChange = async (value) => {
+		setKeyword(value);
+
+		if (value.trim() === '') {
+			setSuggestions([]);
+			setLoading(false);
+			return;
+		}
+
 		setLoading(true);
+
+		const suggestionsData = await fetchSuggestionsFromDatabase(value);
+		setSuggestions(suggestionsData);
 	};
 	return (
 		<div>
@@ -39,12 +55,12 @@ function Search() {
 						type="search"
 						placeholder="Buscar"
 						className={styles.searchInput}
-						onChange={(e) => setKeyword(e.target.value)}
+						onChange={(e) => handleInputChange(e.target.value)}
 					/>
 					<button
 						type="button"
 						className={styles.searchButton}
-						onClick={handleSubmit}
+						onClick={() => handleInputChange(keyword)}
 					>
 						<IoMdSearch className={styles.searchIcon} />
 					</button>
@@ -53,8 +69,8 @@ function Search() {
 			{loading && (
 				<div className={styles.searchModal}>
 					<div className={styles.searchModalContainer} ref={menuRef}>
-						{product &&
-							product.map((x) => (
+						{suggestions &&
+							suggestions.map((x) => (
 								<div
 									key={x.idProductos}
 									className={styles.searchModalDiv}

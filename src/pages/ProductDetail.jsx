@@ -198,7 +198,9 @@ function ProductDetail() {
 				</div>
 				<div className={styles.productFooterItems}>
 					<IoCutOutline />
-					<h2 className={styles.productFooterH2}>Caracteristica</h2>
+					<h2 className={styles.productFooterH2}>
+						
+					</h2>
 				</div>
 				<div className={styles.productFooterItems}>
 					<IoShirtOutline />

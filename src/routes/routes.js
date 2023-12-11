@@ -16,6 +16,7 @@ export const Login = lazy(() => import('../pages/users/Login'));
 const Home = lazy(() => import('../pages/Home'));
 const NotFound = lazy(() => import('../pages/NotFound'));
 const Policies = lazy(() => import('../pages/Policies'));
+const CategoryDetail = lazy(() => import('../pages/CategoryDetail'));
 
 const routes = [
 	{
@@ -30,6 +31,10 @@ const routes = [
 	{
 		path: 'product/:id',
 		element: ProductDetail,
+	},
+	{
+		path: 'categorias/:id',
+		element: CategoryDetail,
 	},
 	{
 		path: 'policies',

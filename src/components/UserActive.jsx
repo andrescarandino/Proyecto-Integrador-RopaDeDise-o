@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { IoMdArrowDropup, IoMdArrowDropdown } from 'react-icons/io';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { jwtDecode } from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
 import styles from '../styles/userActive.module.css';
@@ -16,19 +16,30 @@ function UserActive() {
 	const navigate = useNavigate();
 	const { token } = state;
 	const decoded = jwtDecode(token);
-	const mail = decoded.sub
-	const authority = decoded.permissions[0].authority;
-	
+	const mail = decoded.sub;
+	const authority = decoded.role[0].nombre;
+	const menuRef = useRef();
+	useEffect(() => {
+		const handler = (e) => {
+			if (!menuRef.current.contains(e.target)) {
+				setMenuActive(false);
+			}
+		};
+		document.addEventListener('mousedown', handler);
+		return () => {
+			document.removeEventListener('mousedown', handler);
+		};
+	});
+	// eslint-disable-next-line consistent-return
 	useEffect(() => {
 		if (authority === 'ADMIN') {
 			return setAdminActive(true);
-		}else{
-		 (async () => {
+		}
+		(async () => {
 			const res = await getUser(mail, token);
 			setDataUser(res);
 			setLoading(true);
-			
-		})()}; 
+		})();
 	}, []);
 	const logoutUser = () => {
 		logout();
@@ -68,12 +79,15 @@ function UserActive() {
 				</h2>
 			</div>
 			{menuActive && (
-				<div className={styles.menuContainer}>
+				<div className={styles.menuContainer} ref={menuRef}>
 					<button type="button" onClick={logoutUser}>
 						Cerrar sesion
 					</button>
-					{adminActive? <button onClick={panelAdmin}>
-						 Panel admin</button> : null}
+					{adminActive ? (
+						<button type="button" onClick={panelAdmin}>
+							Panel admin
+						</button>
+					) : null}
 					<button type="button">Info. personal</button>
 				</div>
 			)}

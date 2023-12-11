@@ -1,62 +1,50 @@
-import { useState } from 'react';
-import { IoIosStar } from 'react-icons/io';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
 import styles from '../styles/bodyRecomendadoTwo.module.css';
-import NoProduct from '../img/noProduct.png';
+import { UserContext } from '../contexts/UserContext';
+import Fav from './Fav';
 
 // eslint-disable-next-line react/prop-types
 function BodyRecomendadoOne({ data }) {
+	const { state } = useContext(UserContext);
+	const { isAuthenticated } = state;
 	// eslint-disable-next-line react/prop-types
 	const dataNew = data.slice(9, 10);
-	const [favActive, setFavActive] = useState(false);
-	const handleFav = () => {
-		setFavActive(!favActive);
-	};
 	return (
 		<div className={styles.recomendadoContainer}>
-			{dataNew &&
-				dataNew.map((x) => (
-					<>
-						<img
-							className={styles.recomendadoImg}
-							src={x.imagenes[0].ruta}
-							alt="recomendado"
-						/>
+			{dataNew.map((x) => (
+				<div key={x.idProductos}>
+					<img
+						className={styles.recomendadoImg}
+						src={x.imagenes[0].ruta}
+						alt="recomendado"
+					/>
 
-						<div className={styles.recomendadoDetail}>
-							<h2 className={styles.recomendadoH2}>{x.nombre}</h2>
-							<p className={styles.recomendadoP}>
-								{x.descripcion}
-							</p>
-							{/* <div>
+					<div className={styles.recomendadoDetail}>
+						<h2 className={styles.recomendadoH2}>{x.nombre}</h2>
+						<p className={styles.recomendadoP}>{x.descripcion}</p>
+						{/* <div>
 								<IoIosStarOutline />
 								<IoIosStarOutline />
 								<IoIosStarOutline />
 								<IoIosStarOutline />
 								<IoIosStarOutline />
 							</div> */}
-							<button
-								type="button"
-								className={styles.recomendadoButton}
+						<button
+							type="button"
+							className={styles.recomendadoButton}
+						>
+							<Link
+								className={styles.recomendadoLink}
+								to={`product/${x.idProductos}`}
 							>
-								<Link
-									className={styles.recomendadoLink}
-									to={`product/${x.idProductos}`}
-								>
-									Recomendado
-								</Link>
-							</button>
-							<IoIosStar
-								onClick={handleFav}
-								className={
-									!favActive
-										? styles.favIcon
-										: styles.favIconActive
-								}
-							/>
-						</div>
-					</>
-				))}
+								Recomendado
+							</Link>
+						</button>
+						{isAuthenticated && <Fav idProduct={x.idProductos} />}
+					</div>
+				</div>
+			))}
 		</div>
 	);
 }
