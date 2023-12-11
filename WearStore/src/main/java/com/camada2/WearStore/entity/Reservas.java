@@ -31,12 +31,11 @@ public class Reservas {
 
     @ManyToOne
     @JoinColumn(name = "id_usuario")
-    @JsonIgnore
+
     private Usuarios usuario;
 
     @ManyToOne
     @JoinColumn(name = "producto_id")
-    @JsonIgnore
     private Productos producto;
 
     // Constructores, getters y setters
