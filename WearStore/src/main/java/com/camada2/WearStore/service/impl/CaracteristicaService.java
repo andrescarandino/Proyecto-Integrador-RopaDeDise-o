@@ -17,12 +17,8 @@ import java.util.List;
 @Service
 public class CaracteristicaService implements IService<Caracteristica, Caracteristica> {
 
-    private final CaracteristicaRepository caracteristicaRepository;
-
     @Autowired
-    public CaracteristicaService(CaracteristicaRepository caracteristicaRepository) {
-        this.caracteristicaRepository = caracteristicaRepository;
-    }
+    CaracteristicaRepository caracteristicaRepository;
 
     @Override
     public Caracteristica guardar(Caracteristica caracteristica) throws IOException {

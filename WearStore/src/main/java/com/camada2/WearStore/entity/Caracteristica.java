@@ -1,5 +1,6 @@
 package com.camada2.WearStore.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class Caracteristica {
     private String rutaIcono;
 
     @ManyToMany(mappedBy = "caracteristica")
+    @JsonIgnore
     private List<Productos> productos;
 
     //Constructor
