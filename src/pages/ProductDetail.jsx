@@ -46,7 +46,7 @@ function ProductDetail() {
 	return (
 		<div className={styles.productContainer}>
 			<div className={styles.productHeader}>
-				<h2 className={styles.productH2}>Título del Producto</h2>
+				<h2 className={styles.productH2}>{product.nombre}</h2>
 				<button type="button" className={styles.productButton}>
 					<Link to="/" className={styles.productLink}>
 						Volver
@@ -198,9 +198,7 @@ function ProductDetail() {
 				</div>
 				<div className={styles.productFooterItems}>
 					<IoCutOutline />
-					<h2 className={styles.productFooterH2}>
-						
-					</h2>
+					<h2 className={styles.productFooterH2}>algodón</h2>
 				</div>
 				<div className={styles.productFooterItems}>
 					<IoShirtOutline />

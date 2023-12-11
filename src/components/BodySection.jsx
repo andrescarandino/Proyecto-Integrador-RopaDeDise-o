@@ -20,15 +20,11 @@ function BodySection() {
 	return (
 		<div className={styles.sectionContainer}>
 			{loading &&
-				categoryData.map((x, index) => (
-					<div key={index} className={styles.sectionFila}>
+				categoryData.map((x) => (
+					<div key={x.idCategorias} className={styles.sectionFila}>
 						<div className={styles.sectionCard}>
 							<img
-								src={
-									// x.imagenes.lenght > 0
-									x.imagenes[0].ruta
-									// : noImg
-								}
+								src={x.imagenes[0].ruta}
 								alt="Categoría de ropa elegante"
 							/>
 							<Link
