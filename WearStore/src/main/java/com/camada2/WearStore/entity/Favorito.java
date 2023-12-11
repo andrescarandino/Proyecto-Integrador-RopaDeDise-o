@@ -1,5 +1,6 @@
 package com.camada2.WearStore.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 
@@ -12,10 +13,12 @@ import jakarta.persistence.*;
 
         @ManyToOne
         @JoinColumn(name = "idUsuarios")
+        @JsonIgnore
         private Usuarios usuariosId;
 
         @ManyToOne
         @JoinColumn(name = "idProductos")
+        @JsonIgnore
         private Productos productosId;
 
 

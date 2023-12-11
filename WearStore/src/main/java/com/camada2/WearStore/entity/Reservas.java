@@ -1,6 +1,7 @@
 package com.camada2.WearStore.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -30,10 +31,12 @@ public class Reservas {
 
     @ManyToOne
     @JoinColumn(name = "id_usuario")
+    @JsonIgnore
     private Usuarios usuario;
 
     @ManyToOne
     @JoinColumn(name = "producto_id")
+    @JsonIgnore
     private Productos producto;
 
     // Constructores, getters y setters
