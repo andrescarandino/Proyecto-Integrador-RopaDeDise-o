@@ -12,8 +12,6 @@ function CreateProduct() {
 					<div className="form-header-texts-container">
 						<h2 className="form-page-title">Crear producto</h2>
 						<p className="section-description">
-							Estimado administrador, desde ésta sección podrás
-							crear un nuevo producto para la plataforma.
 						</p>
 					</div>
 				</header>

@@ -1,46 +1,68 @@
 /* eslint-disable jsx-a11y/interactive-supports-focus */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { IconPencil, IconTrashFilled } from '@tabler/icons-react';
-import { useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import { useNavigate } from 'react-router-dom';
 import * as createProductStyles from '../../styles/admin/createProduct.module.css';
 import * as ListProductsStyles from '../../styles/admin/listProducts.module.css';
 import { isUrl } from '../../utils';
+import { UserContext } from '../../contexts/UserContext';
+import { ToastContext } from '../../contexts/ToastContext';
 
 function ListProducts() {
 	const navigate = useNavigate();
-	const [features, setFeatures] = useState([
-		{
-			id: 1,
-			name: 'Nombre',
-			icon: 'https://www.svgrepo.com/show/532034/cloud-arrow-down.svg',
-		},
-		{
-			id: 2,
-			name: 'Nombre',
-			icon: 'https://www.svgrepo.com/show/532040/cloud-rain-alt-1.svg',
-		},
-		{
-			id: 3,
-			name: 'Nombre',
-			icon: 'https://www.svgrepo.com/show/530622/milk-tea.svg',
-		},
-		{
-			id: 4,
-			name: 'Nombre',
-			icon: 'https://www.svgrepo.com/show/530362/watermelon.svg',
-		},
-		{
-			id: 5,
-			name: 'Nombre',
-			icon: 'https://www.svgrepo.com/show/530670/double-helix.svg',
-		},
-	]);
+	const [features, setFeatures] = useState([]);
+	const { state, logout } = useContext(UserContext);
+	const toastContext = useContext(ToastContext);
+	
+	const listarCaracteristicas = async () => {
+		try {
+			const response = await fetch('http://localhost:8080/caracteristicas', {
+				method: 'GET',
+				headers: {
+					'Content-type': 'application/json',
+				},
+			});
+			if (response.status === 200){
+				const result = await response.json();
+					setFeatures(result);
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	}
+	const eliminarCaracteristica = async (id) => {
+		try {
+			const response = await fetch(`http://localhost:8080/caracteristicas/${id}`, {
+				method: 'DELETE',
+				headers: {
+					'Content-type': 'application/json',
+					'Authorization': `Bearer ${state.token}`
+				},
+			});
+			if (response.status === 204){
+				toastContext.success('Caracteristica eliminada')
+				listarCaracteristicas();
+				
+			}else{
+				toastContext.error('La caracteristica esta asociada a un producto');
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
+
+	useEffect(()=> {
+		listarCaracteristicas();
+
+	}, [])
 
 	const handleClickDelete = (id) => {
-		setFeatures(features.filter((feature) => feature.id !== id));
+		console.log("eliminando feature" +id)
+		eliminarCaracteristica(id);
 	};
 
 	const handleClickConfirm = (id) => {
@@ -49,7 +71,7 @@ function ListProducts() {
 			message: '¿Estás seguro de eliminar este característica?',
 			buttons: [
 				{
-					label: 'Si',
+					label: 'Confirmar',
 					onClick: () => handleClickDelete(id),
 				},
 				{
@@ -84,19 +106,15 @@ function ListProducts() {
 						<tbody>
 							{features.map((feature) => (
 								<tr>
-									<td>{feature?.id}</td>
-									<td>{feature?.name}</td>
+									<td>{feature?.idCaracteristica}</td>
+									<td>{feature?.nombre}</td>
 									<td>
-										{isUrl(feature?.icon) ? (
 											<img
-												src={feature?.icon}
+												src={feature.rutaIcono}
 												alt="Icono"
 												width={24}
 												height={24}
 											/>
-										) : (
-											''
-										)}
 									</td>
 									<td className={ListProductsStyles.actions}>
 										<div
@@ -106,7 +124,7 @@ function ListProducts() {
 											role="button"
 											onClick={() =>
 												navigate(
-													`/admin/features/${feature?.id}`,
+													`/admin/features/${feature? feature.idCaracteristica : null}`,
 												)
 											}
 										>
@@ -118,7 +136,7 @@ function ListProducts() {
 											}
 											role="button"
 											onClick={() =>
-												handleClickConfirm(feature?.id)
+												handleClickConfirm(feature.idCaracteristica)
 											}
 										>
 											<IconTrashFilled />

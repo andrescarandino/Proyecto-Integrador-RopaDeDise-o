@@ -1,9 +1,10 @@
 import { IconTrashFilled } from '@tabler/icons-react';
-import PropTypes from 'prop-types';
+import PropTypes, { number } from 'prop-types';
 import { Fragment, useState, useEffect, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { UserContext } from '../../../contexts/UserContext'
 import { ToastContext } from '../../../contexts/ToastContext';
+import * as ProductFormStyles from '../../../styles/admin/ProductForm.module.css';
 
 
 function ProductForm() {
@@ -87,10 +88,11 @@ function ProductForm() {
 			descripcion: data.description,
 			categories: data.categories,
 			precio: data.precio,
-			caracteristicas: data.caracteristicas,
+			caracteristica: data.caracteristicas.map(id => ({ idCaracteristica: id })),
 			// Resto de los campos del producto...
 			imagenes: images.map((image) => ({ idImagenes: image.idImagenes })),
 		  };
+		  console.log(productoData);
 	  
 		  // Realizar la llamada para crear el producto
 		  const productoResponse = await fetch('http://localhost:8080/productos', {
@@ -104,7 +106,10 @@ function ProductForm() {
 	  
 		  if (productoResponse.status === 201) {
 			toastContext.success('Producto creado');
+			console.log(productoResponse);
+
 			reset();
+			setImagesPreviews([])
 		  }else{
 			toastContext.error('El producto ya existe');
 		  }
@@ -181,7 +186,7 @@ function ProductForm() {
 							Este campo es requerido.
 						</span>
 					)}
-					<div className="form-group">
+					<div className={"form-group"} >
 						<label htmlFor="category">
 							Selecciona una categoría:
 						</label>
@@ -218,59 +223,45 @@ function ProductForm() {
 							Este campo es requerido.
 						</span>
 					)}
-					<p
-						style={{
+					<div className={ProductFormStyles.caracteristica}>
+						<div>
+
+					  <p
+					    style={{
 							color: 'var(--color-black-cow)',
 							fontWeight: '600',
-							fontSize: '14px',
+							fontSize: '1rem',
 							marginBlockStart: '1.75rem',
 							marginBlockEnd: '.25rem',
-							textAlign: 'end',
-						}}
-					>
-						Administrar características
-					</p>
-					<div className="form-group">
-						<label htmlFor="caracterisitas">
-							Selecciona una caracteristica:
-						</label>
-					<select
-							className="input"
-							id="caracteristica"
-							name="caracteristica"
-							defaultValue=""
-							multiple
-							{...register('caracteristica', {
-								required: true,
-							})}
+							
+					    }}
 						>
-							<option
-								// TODO: Style blank option
-								style={{
-									color: 'var(--color-oslo-grey) !important',
-									paddingInline: '0.5em !important',
-								}}
-								hidden
-								disabled
-								value=""
-								
-							>
-								Selecciona una característica
-							</option>
-							{caracteristicas?.map((category) => (
-								<option key={category.idCategorias} value={category.idCategorias} >
-									{category.nombre}
-								</option>
-							))}
-						</select>
-					<button
-						type="button"
-						className="submit-button"
-						//onClick={onAddFeature}
-					>
-						Añadir nueva
-					</button>
+					 	   Características:
+					 	 </p>
+						</div>
+					  <div className={ProductFormStyles.checkList}>
+					    {caracteristicas?.map((caracteristica) => (
+					      <div key={caracteristica.idCaracteristica} className={ProductFormStyles.inputLabel} >
+					        <input
+					          type="checkbox"
+					          id={`caracteristica_${caracteristica.idCaracteristica}`}
+					          value={caracteristica.idCaracteristica}
+					          {...register(`caracteristicas`, {
+					            required: false,
+					          })}
+					        />
+					        <label htmlFor={`caracteristica_${caracteristica.idCaracteristica}`} >
+								<div className={ProductFormStyles.checkList}>
+					          {caracteristica.nombre} 
+
+								</div>
+					        </label>
+					      </div>
+					    ))}
+					  </div>
 					</div>
+
+					
 					{errors.caracteristicas && (
 						<span className="form-error-message">
 							Este campo es requerido.

@@ -1,9 +1,9 @@
 import { IconRulerMeasure } from '@tabler/icons-react';
-import FeaturesForm from './Forms/FeaturesForm';
+import EditFeaturesForm from './Forms/EditFeaturesForm';
 import { useGetFeature } from '../../hooks';
 
 function UpdateFeatures() {
-	const { feature } = useGetFeature();
+	/* const { feature } = useGetFeature(); */
 
 	return (
 		<div className="form-page-container">
@@ -16,13 +16,9 @@ function UpdateFeatures() {
 						<h2 className="form-page-title">
 							Editar característica
 						</h2>
-						<p className="section-description">
-							Estimado administrador, desde ésta sección podrás
-							editar una característica de producto.
-						</p>
 					</div>
 				</header>
-				<FeaturesForm edit initialValues={feature} />
+				<EditFeaturesForm/>
 			</section>
 		</div>
 	);

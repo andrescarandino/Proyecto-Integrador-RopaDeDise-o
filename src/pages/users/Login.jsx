@@ -47,7 +47,8 @@ function Login() {
 		setLoading(false);
 		console.log(token);
 		// eslint-disable-next-line no-unused-expressions
-		data.email === 'admin@admin' ? navigate('/admin') : navigate('/');
+		//data.email === 'admin@admin' ? navigate('/admin') : navigate('/');
+		navigate('/');
 		reset();
 	};
 	const password = useRef(null);

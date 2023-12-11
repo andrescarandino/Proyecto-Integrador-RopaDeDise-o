@@ -1,6 +1,7 @@
 
 .table {
 	/* border: 1px solid black; */
+    align-self: center;
 	width: 70%;
 	margin: 2rem auto;
 	border-radius: 5px;
@@ -12,11 +13,10 @@
 	justify-content: center;
 	align-items: center;
 	gap: 0.15rem;
+    width: 40%;
 }
 
-.actionButton {
-	cursor: pointer;
-}
+
 
 td,
 th {
@@ -25,7 +25,7 @@ th {
 	border: 1px solid var(--color-black-cow);
 	height: 5rem;
 	color: #000;
-	font-size: 1rem;
+	font-size: 1.2rem;
 }
 th {
 	background-color: #ae9279;

@@ -65,7 +65,8 @@ function UserActive() {
 				<h3>
 					{adminActive
 						? 'ADMINISTRADOR'
-						: `${user.firstName} ${user.lastName}`}
+						: `${user.firstName} ${user.lastName}` }
+
 				</h3>
 				<button type="button" onClick={handleMenu}>
 					{menuActive ? (

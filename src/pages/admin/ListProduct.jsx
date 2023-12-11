@@ -78,23 +78,16 @@ function ListProducts() {
 					<table className={ListProductsStyles.table}>
 						<thead>
 							<tr>
+								<th>Id</th>
 								<th>Nombre</th>
-								<th>Descripción</th>
-								<th>Categoria</th>
-								<th>Características</th>
 								<th>Acciones</th>
 							</tr>
 						</thead>
 						<tbody>
 							{products.map((product) => (
 								<tr>
+									<td>{product.idProductos}</td>
 									<td>{product?.nombre}</td>
-									<td>{product?.descripcion}</td>
-
-									<td>{(product.categorias === null) ? "Sin categoria" 
-										: product.categorias.nombre }</td>
-									<td>{(product.caracteristica.length === 0) ? "Sin caracteristica" 
-										: product.categorias.nombre }</td>
 									<td className={ListProductsStyles.actions}>
 										<div
 											className={
@@ -103,7 +96,7 @@ function ListProducts() {
 											role="button"
 											onClick={() =>
 												navigate(
-													`/admin/products/${product?.product.idProducto}`,
+													`/admin/products/edit/${product.idProductos}`,
 												)
 											}
 										>

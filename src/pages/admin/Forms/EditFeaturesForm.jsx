@@ -1,27 +1,52 @@
-import { IconRulerMeasure } from '@tabler/icons-react';
-import FeaturesForm from './Forms/FeaturesForm';
-import { IconCategoryFilled } from '@tabler/icons-react';
-import { useState, useContext } from 'react';
+import PropTypes, { number } from 'prop-types';
+import { useEffect, useState, useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { useCreateCategory, useToast } from '../../hooks';
-import { UserContext } from '../../contexts/UserContext'
-import { ToastContext } from '../../contexts/ToastContext';
-
-function CreateFeatures() {
-	
-	const { state, logout } = useContext(UserContext);
-	const [image, setImages] = useState([]);
-  	const [imagePreviews, setImagePreviews] = useState([]);
-	const [error, setError] = useState(false);
+import { useToast } from '../../../hooks';
+import { isUrl } from '../../../utils';
+import { useNavigate, useParams } from 'react-router-dom';
+import { ToastContext } from '../../../contexts/ToastContext';
+import { UserContext } from '../../../contexts/UserContext';
+ import { URLS } from '../../../constants/urls';
+function FeaturesForm() {
+	const toast = useToast();
+	const [preview, setPreview] = useState();
+	const [imagePreviews, setImagePreviews] = useState([])
+	const [image, setImage] = useState([])
+    const { state, logout } = useContext(UserContext);
+    const { setValue, control, reset } = useForm();
+    const {id} = useParams();
+	const navigate = useNavigate();
 	const toastContext = useContext(ToastContext);
+    
+    const getCaracteristica = async (id) => {
+		try {
+			const response = await fetch(`http://localhost:8080/caracteristicas/${id}`, {
+				method: 'GET',
+				headers: {
+					'Content-type': 'application/json',
+					'Authorization': `Bearer ${state.token}`
+				},
+			});
+            
+			const resp = await response.json()
+			setPreview(resp);	
+			
+		} catch (error) {
+			console.log(error);
+		}
+	}
+    useEffect(() => {
+        getCaracteristica(id);
 
+    }, [])
 
+	
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
 		watch,
-		reset,
+		
 	} = useForm();
 
 	const onErrors = () => {
@@ -31,7 +56,7 @@ function CreateFeatures() {
 		}, 6000);
 	};
 
-	const onSubmit = async (data) => {
+	const onSubmit = async (data, id) => {
 		try {
 		  const caracteristicaData = {
 			nombre: data.title,
@@ -40,8 +65,8 @@ function CreateFeatures() {
 		  };
 	  
 		  // Realizar la llamada para crear el producto
-		  const productoResponse = await fetch('http://localhost:8080/caracteristicas', {
-			method: 'POST',
+		  const productoResponse = await fetch(`http://localhost:8080/caracteristicas/${preview.idCaracteristica}`, {
+			method: 'PUT',
 			headers: {
 			  'Content-Type': 'application/json',
 			  'Authorization': `Bearer ${state.token}`
@@ -49,8 +74,8 @@ function CreateFeatures() {
 			body: JSON.stringify(caracteristicaData),
 		  });
 	  
-		  if (productoResponse.status === 201) {
-			toastContext.success('Caracterisitica creada');
+		  if (productoResponse.status === 200) {
+			toastContext.success('Caracterisitica actualizada');
 			reset();
 			setImagePreviews([])
 		  }
@@ -64,19 +89,16 @@ function CreateFeatures() {
 		  console.error('Error:', error.message);
 		}
 	  };
-	
-
-
 
 	return (
 		<div className="form-page-container">
 			<section className="section-container">
 				<header className="form-header">
 					<div className="form-header-icon-container">
-						<IconCategoryFilled />
+						{/* <IconCategoryFilled /> */}
 					</div>
 					<div className="form-header-texts-container">
-						<h2 className="form-page-title">Agregar Caracteristica</h2>
+						<h2 className="form-page-title">Editar Caracteristica</h2>
 					</div>
 				</header>
 				<main className="form-container">
@@ -129,7 +151,7 @@ function CreateFeatures() {
 								}
 						  
 								const uploadedImages = await uploadResponse.json();
-								setImages(uploadedImages);
+								setImage(uploadedImages);
 						    },
 						  })}
 						/>
@@ -160,7 +182,5 @@ function CreateFeatures() {
 		</div>
 	);
 }
-	
 
-
-export default CreateFeatures;
+export default FeaturesForm;
