@@ -1,5 +1,6 @@
 package com.camada2.WearStore.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -53,8 +54,10 @@ public class Usuarios implements UserDetails{
     private List<TipoUsuarios> roles;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Reservas> reservas;
     @OneToMany(mappedBy = "usuariosId", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Favorito> favoritos = new ArrayList<>();
 
     public void setFavoritos(List<Favorito> favoritos) {
