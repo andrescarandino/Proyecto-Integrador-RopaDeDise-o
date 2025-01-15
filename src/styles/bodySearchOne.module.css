@@ -45,6 +45,10 @@
 .divSearch:hover{
 	filter: saturate(120%);
 }
+.divSearch img:hover{
+	transform: scale(0.97);
+	
+}
 
 .divSearch Img {
 	width: 100%;

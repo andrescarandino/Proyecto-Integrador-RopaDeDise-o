@@ -9,20 +9,20 @@ function BodyRecomendadoOne({ data }) {
 	const { state } = useContext(UserContext);
 	const { isAuthenticated } = state;
 	// eslint-disable-next-line react/prop-types
-	const dataNew = data.slice(9, 10);
+	const dataNew = data.slice(0, 1);
 	return (
 		<div className={styles.recomendadoContainer}>
 			{dataNew.map((x) => (
-				<div key={x.idProductos}>
+				<div key={x.id}>
 					<img
 						className={styles.recomendadoImg}
-						src={x.imagenes[0].ruta}
+						src={x.image_url}
 						alt="recomendado"
 					/>
 
 					<div className={styles.recomendadoDetail}>
-						<h2 className={styles.recomendadoH2}>{x.nombre}</h2>
-						<p className={styles.recomendadoP}>{x.descripcion}</p>
+						<h2 className={styles.recomendadoH2}>{x.name}</h2>
+						<p className={styles.recomendadoP}>{x.description}</p>
 						{/* <div>
 								<IoIosStarOutline />
 								<IoIosStarOutline />
@@ -36,12 +36,12 @@ function BodyRecomendadoOne({ data }) {
 						>
 							<Link
 								className={styles.recomendadoLink}
-								to={`product/${x.idProductos}`}
+								to={``}
 							>
 								Recomendado
 							</Link>
 						</button>
-						{isAuthenticated && <Fav idProduct={x.idProductos} />}
+						{isAuthenticated && <Fav idProduct={x.id} />}
 					</div>
 				</div>
 			))}

@@ -9,21 +9,22 @@ function BodySearchTwo({ data }) {
 	const { state } = useContext(UserContext);
 	const { isAuthenticated } = state;
 	// eslint-disable-next-line react/prop-types
-	const dataNew = data.slice(5, 9);
+	const dataNew = data.slice(0, 4);
 	return (
 		<div className={styles.bodySearch}>
 			{dataNew.map((x) => (
-				<div key={x.idProductos} className={styles.divSearch}>
-					<img src={x.imagenes[0].ruta} alt="" />
+				<div key={x.id} className={styles.divSearch}>
+					<img src={x.image_url} alt="" />
 					<button type="button" className={styles.searchButton}>
 						<Link
 							className={styles.searchLink}
-							to={`product/${x.idProductos}`}
+							to={``}
+							prop={x.description}
 						>
 							ver
 						</Link>
 					</button>
-					{isAuthenticated && <Fav idProduct={x.idProductos} />}
+					{isAuthenticated && <Fav idProduct={x.id} />}
 				</div>
 			))}
 		</div>
